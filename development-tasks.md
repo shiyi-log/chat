@@ -48,7 +48,7 @@
 目标：把服务端变成我们自己的私有测试环境。
 
 - [ ] 生成项目专用密钥和配置。
-- [ ] 确认是否需要替换 Teamgram 默认服务端 RSA key。
+- [x] 确认当前服务端 RSA key，并导出客户端可用公钥。
 - [ ] 配置私有服务器 IP / 域名。
 - [ ] 修改数据库、Redis、MinIO 等默认账号密码。
 - [ ] 整理必需环境变量。
@@ -65,11 +65,13 @@
 
 目标：桌面端连接我们自己的 Teamgram 服务端。
 
-- [ ] 决定继续改当前桌面端，还是切换到 Teamgram 的 `teamgram-desktop` fork。
-- [ ] 修改 `Telegram/SourceFiles/mtproto/mtproto_dc_options.cpp`。
-- [ ] 将生产和测试 DC 1 指向我们的服务器 `SERVER_IP:10443`。
-- [ ] 确认 Desktop 使用的 RSA 公钥是否需要和服务端替换。
-- [ ] 如服务端 key 变更，同步替换 Desktop 内置 RSA 公钥。
+- [x] 决定第一轮继续改当前桌面端快照。
+- [x] 修改 `Telegram/SourceFiles/mtproto/mtproto_dc_options.cpp`。
+- [x] 将生产和测试 DC 1 指向本机私有服务端 `127.0.0.1:10443`。
+- [x] 确认 Desktop 使用的 RSA 公钥需要和服务端一致。
+- [x] 同步替换 Desktop 内置 RSA 公钥。
+- [x] 完成静态验证：内置 DC 地址已收敛到本机私有服务端，diff 检查无空白错误。
+- [x] 提交并推送：`983e0f1 桌面端接入本地私有服务端`。
 - [ ] 配置私有 `TDESKTOP_API_ID` / `TDESKTOP_API_HASH`。
 - [ ] 替换应用名称、图标、Bundle/App ID。
 - [ ] 禁用或替换上游官方更新、崩溃上报、支持链接。
@@ -85,11 +87,15 @@
 目标：安卓端连接我们自己的 Teamgram 服务端。
 
 - [x] 提交当前 `BuildVars.java` 中的私有 API 配置。
-- [ ] 决定继续改当前安卓端，还是切换到 Teamgram 的 `teamgram-android` fork。
-- [ ] 修改 `TMessagesProj/jni/tgnet/ConnectionsManager.cpp`。
-- [ ] 在 `ConnectionsManager::initDatacenters()` 中将 DC 1 指向 `SERVER_IP:10443`。
-- [ ] 检查 `TMessagesProj/jni/tgnet/Handshake.cpp` 中的 RSA 公钥逻辑。
-- [ ] 如服务端 key 变更，同步替换 Android 内置 RSA 公钥。
+- [x] 决定第一轮继续改当前安卓端快照。
+- [x] 修改 `TMessagesProj/jni/tgnet/ConnectionsManager.cpp`。
+- [x] 在 `ConnectionsManager::initDatacenters()` 中将 DC 1 指向 Android 模拟器访问宿主机的 `10.0.2.2:10443`。
+- [x] 检查 `TMessagesProj/jni/tgnet/Handshake.cpp` 中的 RSA 公钥逻辑。
+- [x] 同步替换 Android 内置 RSA 公钥。
+- [x] 同步替换 simple config 解密公钥。
+- [x] 完成静态验证：目标网络文件不再包含官方 DC 地址，diff 检查无空白错误。
+- [x] 提交并推送：`a634c447 安卓端接入本地私有服务端`。
+- [ ] 安装 Java Runtime 后重新运行 Gradle 工程解析。
 - [ ] 替换包名、应用名、图标、通知渠道名称。
 - [ ] 替换 Firebase / `google-services.json`。
 - [ ] 禁用或替换上游官方支持、更新、上报接口。
@@ -103,12 +109,16 @@
 
 目标：iOS 端连接我们自己的 Teamgram 服务端。
 
-- [ ] 决定继续改当前 iOS 端，还是切换到 Teamgram 的 `teamgram-ios` fork。
-- [ ] 定位当前代码中的 `Network.swift` 或等效网络入口。
-- [ ] 将 DC 1 的 `seedAddressList` 指向我们的服务器。
-- [ ] 确认 iOS 端是否需要显式配置 `10443` 端口。
-- [ ] 检查 `submodules/MtProtoKit/Sources/MTDatacenterAuthMessageService.m` 中的 RSA 公钥逻辑。
-- [ ] 如服务端 key 变更，同步替换 iOS 内置 RSA 公钥。
+- [x] 决定第一轮继续改当前 iOS 端快照。
+- [x] 定位当前代码中的 `Network.swift` 网络入口。
+- [x] 将 DC 1 的 `seedAddressList` 指向本机私有服务端 `127.0.0.1`。
+- [x] 确认 iOS 端需要显式配置 `10443` 端口。
+- [x] 检查 `submodules/MtProtoKit/Sources/MTDatacenterAuthMessageService.m` 中的 RSA 公钥逻辑。
+- [x] 同步替换 iOS 内置 RSA 公钥。
+- [x] 同步替换备用配置解密公钥。
+- [x] 完成静态验证：目标网络文件不再包含官方 DC 地址，diff 检查无空白错误。
+- [x] 提交并推送：`3201a932 iOS端接入本地私有服务端`。
+- [ ] 安装完整 Xcode 后生成工程并构建模拟器版本。
 - [ ] 在构建配置中设置私有 `api_id` / `api_hash`。
 - [ ] 替换 Bundle ID、应用名、图标、URL Scheme、签名配置。
 - [ ] 禁用或替换上游官方支持、更新、上报接口。
@@ -170,6 +180,28 @@
 - [ ] 部署依赖服务。
 - [ ] 部署应用服务。
 - [ ] 使用所有客户端跑一轮冒烟测试。
+
+## 阶段 9：压力测试与验收 / Load Test
+
+目标：在可重复环境里确认服务端和三端客户端的基础稳定性。
+
+- [ ] 准备公网 IP 或局域网固定 IP，保证桌面端、Android 真机、iOS 真机可同时访问。
+- [ ] 准备 Android Java/SDK 环境并构建 Debug APK。
+- [ ] 准备完整 Xcode、iOS 签名证书和模拟器/真机环境。
+- [ ] 准备桌面端构建依赖并构建 macOS 版本。
+- [ ] 编写服务端入口压测脚本，覆盖 TCP `10443` 和 WebSocket `11443`。
+- [ ] 执行第一轮低并发压测，记录 CPU、内存、MySQL、Redis、Kafka、MinIO 指标。
+- [ ] 执行登录、发消息、上传小文件的多端冒烟测试。
+- [ ] 执行 1 小时稳定性测试。
+- [ ] 输出压测报告和下一轮容量建议。
+
+## 当前阻塞项
+
+- Android 构建被本机 Java Runtime 缺失阻塞。
+- iOS 构建被本机缺完整 Xcode 阻塞；当前只有 Command Line Tools，Bazel 已安装。
+- 真机和多端互通测试需要局域网固定 IP 或公网域名，不能继续使用本机回环地址。
+- iOS 真机包需要开发者账号和签名证书。
+- 正式压力测试需要先完成可运行客户端包和稳定服务端入口地址。
 
 ## 第一轮开发建议 / First Sprint
 
