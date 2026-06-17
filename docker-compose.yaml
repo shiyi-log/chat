@@ -1,6 +1,7 @@
 services:
   teamgram:
     build: .
+    container_name: private-chat-teamgram
     restart: always
     ports:
       - "10443:10443"

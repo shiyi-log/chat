@@ -1,17 +1,19 @@
-# docker-compose-env2: 高性能组件栈（独立方案，不依赖 docker-compose-env.yaml）
+# 私有聊天系统本地依赖栈。
+# 宿主端口使用 1xxxx 前缀，避免占用本机已有 MySQL、Redis、Grafana 等常用端口。
+# 容器网络别名仍保留 mysql、redis、etcd、kafka、minio，供 teamgramd/etc2/*.yaml 使用。
 # 组件: jaeger, prometheus, grafana, elasticsearch, kibana,
 #       go-stash, filebeat, kafka, mysql, redis, etcd, minio, minio-mc, node-exporter
-# 启动: docker compose -f docker-compose-env2.yaml up -d
+# 启动核心依赖: docker compose -f docker-compose-env.yaml up -d mysql redis etcd kafka minio minio-mc
 
 services:
   # --- 消息队列 (Bitnami Kafka KRaft 模式，无需 Zookeeper) ---
   #消息队列 - Message queue
   kafka:
     image: apache/kafka:3.9.0
-    container_name: kafka
+    container_name: private-chat-kafka
     ports:
-      - 9092:9092  # 容器内部之间使用的监听端口
-      - 9094:9094  # 容器外部访问监听端口
+      - "127.0.0.1:19092:9092"  # 宿主调试端口，容器内部仍使用 kafka:9092
+      - "127.0.0.1:19094:9094"  # 宿主调试端口
     environment:
       KAFKA_NODE_ID: 1
       KAFKA_PROCESS_ROLES: broker,controller
@@ -38,10 +40,10 @@ services:
   # --- 配置与发现 ---
   etcd:
     image: quay.io/coreos/etcd:v3.5.11
-    container_name: etcd
+    container_name: private-chat-etcd
     ports:
-      - "2379:2379"
-      - "2380:2380"
+      - "127.0.0.1:12379:2379"
+      - "127.0.0.1:12380:2380"
     environment:
       ETCD_NAME: node1
       ETCD_DATA_DIR: /etcd-data
@@ -62,9 +64,9 @@ services:
   # --- 缓存 ---
   redis:
     image: redis:7-alpine
-    container_name: redis
+    container_name: private-chat-redis
     ports:
-      - "6379:6379"
+      - "127.0.0.1:16379:6379"
     command: redis-server --appendonly yes
     volumes:
       - ./data/redis:/data
@@ -80,14 +82,14 @@ services:
   # --- 关系数据库 ---
   mysql:
     image: mysql:8.0
-    container_name: mysql
+    container_name: private-chat-mysql
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
       MYSQL_DATABASE: ${MYSQL_DATABASE:-teamgram}
       MYSQL_USER: ${MYSQL_USER:-teamgram}
       MYSQL_PASSWORD: ${MYSQL_PASSWORD:-teamgram}
     ports:
-      - "3306:3306"
+      - "127.0.0.1:13306:3306"
     volumes:
       - ./data/mysql:/var/lib/mysql
       - ./teamgramd/deploy/sql:/docker-entrypoint-initdb.d/
@@ -108,10 +110,10 @@ services:
   # --- 对象存储 ---
   minio:
     image: minio/minio:latest
-    container_name: minio
+    container_name: private-chat-minio
     ports:
-      - "9000:9000"
-      - "9001:9001"
+      - "127.0.0.1:19000:9000"
+      - "127.0.0.1:19001:9001"
     environment:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minio}
       MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-miniostorage}
@@ -124,7 +126,7 @@ services:
 
   minio-mc:
     image: minio/mc:latest
-    container_name: minio-mc
+    container_name: private-chat-minio-mc
     entrypoint: ["/bin/sh", "-c"]
     command:
       - |
@@ -146,7 +148,7 @@ services:
   #jaeger链路追踪 — Jaeger for tracing
   jaeger:
     image: jaegertracing/all-in-one:1.63.0
-    container_name: jaeger
+    container_name: private-chat-jaeger
     restart: always
     ports:
       - "5775:5775/udp"
@@ -168,7 +170,7 @@ services:
   # --- 可观测：指标 ---
   node-exporter:
     image: prom/node-exporter:v1.7.0
-    container_name: node-exporter
+    container_name: private-chat-node-exporter
     ports:
       - "9100:9100"
     volumes:
@@ -187,7 +189,7 @@ services:
   #prometheus监控 — Prometheus for monitoring
   prometheus:
     image: prom/prometheus:v2.28.1
-    container_name: prometheus
+    container_name: private-chat-prometheus
     environment:
       # 时区上海 - Time zone Shanghai (Change if needed)
       TZ: Asia/Shanghai
@@ -207,7 +209,7 @@ services:
   #查看prometheus监控数据 - Grafana to view Prometheus monitoring data
   grafana:
     image: grafana/grafana:8.0.6
-    container_name: grafana
+    container_name: private-chat-grafana
     hostname: grafana
     user: root
     environment:
@@ -219,13 +221,13 @@ services:
     volumes:
       - ./data/grafana/data:/var/lib/grafana
     ports:
-      - "3001:3000"
+      - "127.0.0.1:13001:3000"
     networks:
       - teamgram_net
 
   # --- 日志与搜索 ---
   elasticsearch:
-    container_name: elasticsearch
+    container_name: private-chat-elasticsearch
     image: elasticsearch:8.12.2
     restart: always
     environment:
@@ -245,7 +247,7 @@ services:
       - teamgram_net
 
   kibana:
-    container_name: kibana
+    container_name: private-chat-kibana
     image: kibana:8.12.2
     restart: always
     environment:
@@ -262,7 +264,7 @@ services:
 
   filebeat:
     image: elastic/filebeat:8.12.2
-    container_name: filebeat
+    container_name: private-chat-filebeat
     environment:
       # 时区上海 - Time zone Shanghai (Change if needed)
       TZ: Asia/Shanghai
@@ -283,7 +285,7 @@ services:
   #消费kafka中filebeat收集的数据输出到es - The data output collected by FileBeat in Kafka is output to ES
   go-stash:
     image: kevinwan/go-stash:1.1.1
-    container_name: go-stash
+    container_name: private-chat-go-stash
     environment:
       # 时区上海 - Time zone Shanghai (Change if needed)
       TZ: Asia/Shanghai
