@@ -1,13 +1,13 @@
 {
-	"bundle_id": "org.{! a random string !}.Telegram",
-	"api_id": "{! get one at https://my.telegram.org/apps !}",
-	"api_hash": "{! get one at https://my.telegram.org/apps !}",
+	"bundle_id": "com.privatechat.ios",
+	"api_id": "{! use the api_id assigned for the private chat server !}",
+	"api_hash": "{! use the api_hash assigned for the private chat server !}",
 	"team_id": "{! check README.md !}",
 	"app_center_id": "0",
 	"is_internal_build": "true",
 	"is_appstore_build": "false",
 	"appstore_id": "0",
-	"app_specific_url_scheme": "tg",
+	"app_specific_url_scheme": "privatechat",
 	"premium_iap_product_id": "",
 	"enable_siri": false,
 	"enable_icloud": false
