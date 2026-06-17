@@ -1,13 +1,14 @@
 # 私有聊天系统开发任务 / Private Chat Development Tasks
 
-本文档用于管理四个本地仓库的开发任务：
+本文档用于管理五个本地仓库的开发任务：
 
 - 服务端 / Server：`server`
 - PC/Mac 桌面端 / Desktop：`desktop`
 - iOS 端 / iOS：`ios`
 - 安卓端 / Android：`android`
+- 项目文档 / Docs：`docs`
 
-说明：当前 **Mac 桌面端包含在 `desktop` 仓库中**。如果后续决定单独支持 Telegram-Mac 原生 macOS 客户端，再新增第五个仓库和任务列表。
+说明：当前 **Mac 桌面端包含在 `desktop` 仓库中**。如果后续决定单独支持原生 macOS 客户端，再新增独立仓库和任务列表。
 
 ## 阶段 0：仓库基线 / Repository Baseline
 
@@ -16,11 +17,14 @@
 - [x] 为 `desktop` 创建 `private-main` 分支。
 - [x] 为 `ios` 创建 `private-main` 分支。
 - [x] 为 `android` 创建 `private-main` 分支。
-- [x] 将三端客户端原 Telegram 远程仓库保留为 `upstream`。
+- [x] 为 `docs` 创建 `private-main` 分支。
+- [x] 备份三端客户端旧 `.git` 元数据，不补全庞大的上游历史。
+- [x] 当前客户端仓库采用私有源码快照模式独立维护。
 - [x] 提交安卓端已有的私有 `APP_ID` / `APP_HASH` 修改。
-- [ ] 确定我们自己的 Git 托管地址。
-- [ ] 为四个仓库添加我们自己的远程地址 / private remote。
-- [ ] 推送四个仓库的 `private-main` 分支。
+- [x] 确定我们自己的 Git 托管地址：GitHub 私有仓库。
+- [x] 为五个仓库添加我们自己的远程地址 / private remote。
+- [x] 推送五个仓库的 `private-main` 分支。
+- [x] 将仓库命名统一为中性私有品牌：`private-chat-*`。
 
 ## 阶段 1：本地启动服务端 / Local Server Boot
 
@@ -68,7 +72,7 @@
 - [ ] 如服务端 key 变更，同步替换 Desktop 内置 RSA 公钥。
 - [ ] 配置私有 `TDESKTOP_API_ID` / `TDESKTOP_API_HASH`。
 - [ ] 替换应用名称、图标、Bundle/App ID。
-- [ ] 禁用或替换官方 Telegram 更新、崩溃上报、支持链接。
+- [ ] 禁用或替换上游官方更新、崩溃上报、支持链接。
 - [ ] 构建 macOS 桌面端。
 - [ ] 按需构建 Windows / Linux 桌面端。
 - [ ] 完成登录冒烟测试 / login smoke test。
@@ -88,7 +92,7 @@
 - [ ] 如服务端 key 变更，同步替换 Android 内置 RSA 公钥。
 - [ ] 替换包名、应用名、图标、通知渠道名称。
 - [ ] 替换 Firebase / `google-services.json`。
-- [ ] 禁用或替换官方 Telegram 支持、更新、上报接口。
+- [ ] 禁用或替换上游官方支持、更新、上报接口。
 - [ ] 构建 Debug APK。
 - [ ] 完成登录冒烟测试。
 - [ ] 完成私聊消息收发测试。
@@ -107,7 +111,7 @@
 - [ ] 如服务端 key 变更，同步替换 iOS 内置 RSA 公钥。
 - [ ] 在构建配置中设置私有 `api_id` / `api_hash`。
 - [ ] 替换 Bundle ID、应用名、图标、URL Scheme、签名配置。
-- [ ] 禁用或替换官方 Telegram 支持、更新、上报接口。
+- [ ] 禁用或替换上游官方支持、更新、上报接口。
 - [ ] 生成 Xcode 工程。
 - [ ] 构建模拟器版本。
 - [ ] 签名准备好后构建设备版本。

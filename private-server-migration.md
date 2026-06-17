@@ -1,6 +1,6 @@
 # 私有聊天系统服务端迁移方案 / Private Server Migration
 
-本文档说明如何让现有 现有 MTProto 客户端连接我们自己的服务端。
+本文档说明如何让现有 MTProto 客户端连接我们自己的服务端。
 
 涉及仓库：
 
@@ -8,8 +8,9 @@
 - PC/Mac 桌面端 / Desktop：`desktop`
 - iOS 端：`ios`
 - 安卓端：`android`
+- 项目文档 / Docs：`docs`
 
-说明：当前 Mac 桌面端由 `desktop` 支持。如果后续需要单独的 Telegram-Mac 原生客户端，需要另建仓库和任务。
+说明：当前 Mac 桌面端由 `desktop` 支持。如果后续需要单独的原生 macOS 客户端，需要另建仓库和任务。
 
 ## 总体判断 / Decision
 
@@ -257,7 +258,7 @@ Teamgram 已经实现了这些能力，优先复用。
 
 ## 合规和品牌 / Compliance And Branding
 
-派生客户端不能继续使用 Telegram 官方名称和 Logo。需要处理：
+派生客户端不能继续使用上游官方名称和 Logo。需要处理：
 
 - 产品名称
 - 包名 / Bundle ID
