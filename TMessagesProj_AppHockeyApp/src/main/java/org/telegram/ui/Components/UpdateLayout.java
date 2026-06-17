@@ -64,7 +64,7 @@ public class UpdateLayout extends IUpdateLayout {
             } else {
                 final File file = ApplicationLoader.applicationLoaderInstance.getDownloadedUpdateFile();
                 if (file != null) {
-                    AndroidUtilities.openForView(file, "Telegram.apk", "application/vnd.android.package-archive", activity, null, false);
+                    AndroidUtilities.openForView(file, "PrivateChat.apk", "application/vnd.android.package-archive", activity, null, false);
                 }
             }
         });

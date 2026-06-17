@@ -301,7 +301,7 @@ public class UpdateAppAlertDialog extends BottomSheet {
                 if (file == null) return;
                 Activity activity = AndroidUtilities.findActivity(getContext());
                 if (activity == null) return;
-                AndroidUtilities.openForView(file, "Telegram.apk", "application/vnd.android.package-archive", activity, null, false);
+                AndroidUtilities.openForView(file, "PrivateChat.apk", "application/vnd.android.package-archive", activity, null, false);
                 dismiss();
             });
         } else {
