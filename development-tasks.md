@@ -97,12 +97,14 @@
 - [x] 同步替换 simple config 解密公钥。
 - [x] 完成静态验证：目标网络文件不再包含官方 DC 地址，diff 检查无空白错误。
 - [x] 提交并推送：`a634c447 安卓端接入本地私有服务端`。
-- [ ] 安装 Java Runtime 后重新运行 Gradle 工程解析。
+- [x] 安装 Java Runtime 后重新运行 Gradle 工程解析。
 - [x] 替换 Android 对外包名和应用显示名。
 - [ ] 替换图标、通知渠道名称。
-- [ ] 替换 Firebase / `google-services.json`。
+- [x] 替换 Firebase / `google-services.json` 和 Huawei AGConnect 包名配置。
 - [ ] 禁用或替换上游官方支持、更新、上报接口。
-- [ ] 构建 Debug APK。
+- [x] 构建 Debug APK：`TMessagesProj_App/build/outputs/apk/afat/debug/app.apk`。
+- [x] 确认 Debug APK 对外包名为 `com.privatechat.messenger.beta`。
+- [ ] 安装 Debug APK 到模拟器或真机。
 - [ ] 完成登录冒烟测试。
 - [ ] 完成私聊消息收发测试。
 
@@ -192,7 +194,7 @@
 目标：在可重复环境里确认服务端和三端客户端的基础稳定性。
 
 - [ ] 准备公网 IP 或局域网固定 IP，保证桌面端、Android 真机、iOS 真机可同时访问。
-- [ ] 准备 Android Java/SDK 环境并构建 Debug APK。
+- [x] 准备 Android Java/SDK 环境并构建 Debug APK。
 - [ ] 准备完整 Xcode、iOS 签名证书和模拟器/真机环境。
 - [ ] 准备桌面端构建依赖并构建 macOS 版本。
 - [ ] 编写服务端入口压测脚本，覆盖 TCP `10443` 和 WebSocket `11443`。
@@ -203,7 +205,7 @@
 
 ## 当前阻塞项
 
-- Android 构建被本机 Java Runtime 缺失阻塞。
+- Android Debug APK 已构建成功；安装启动测试被本机无在线设备、且未安装 Android Emulator 组件阻塞。
 - iOS 构建被本机缺完整 Xcode 阻塞；当前只有 Command Line Tools，Bazel 已安装。
 - 真机和多端互通测试需要局域网固定 IP 或公网域名，不能继续使用本机回环地址。
 - iOS 真机包需要开发者账号和签名证书。
