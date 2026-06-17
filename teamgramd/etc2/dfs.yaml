@@ -30,7 +30,7 @@ MiniHttp:
 Cache:
   - Host: redis:6379
 Minio:
-  Endpoint: minio:9000
+  Endpoint: host.docker.internal:9000
   AccessKeyID: minio
   SecretAccessKey: miniostorage
   UseSSL: false

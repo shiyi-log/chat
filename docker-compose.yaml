@@ -3,6 +3,8 @@ services:
     build: .
     container_name: private-chat-teamgram
     restart: always
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     ports:
       - "10443:10443"
       - "11443:11443"

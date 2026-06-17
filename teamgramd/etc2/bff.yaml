@@ -75,4 +75,4 @@ StatusClient:
 SyncClient:
   Topic:   "Sync-T"
   Brokers:
-    - kafka:9092
+    - host.docker.internal:9092

@@ -25,7 +25,7 @@ SyncConsumer:
   Topics:
     - "Sync-T"
   Brokers:
-    - kafka:9092
+    - host.docker.internal:9092
   Group: "Sync-MainCommunity-S"
 
 Routine:
