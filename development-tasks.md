@@ -30,16 +30,16 @@
 
 目标：在本机用 Docker 启动 Teamgram，并确认客户端网关可连接。
 
-- [ ] 检查 `server/docker-compose-env.yaml` 的端口和数据目录。
-- [ ] 检查 `server/docker-compose.yaml` 的应用服务配置。
-- [ ] 检查本机 Docker / Docker Compose 是否可用。
-- [ ] 启动依赖服务：MySQL、Redis、etcd、Kafka、MinIO。
-- [ ] 启动 Teamgram 应用服务。
-- [ ] 验证客户端网关端口：
+- [x] 检查 `server/docker-compose-env.yaml` 的端口和数据目录。
+- [x] 检查 `server/docker-compose.yaml` 的应用服务配置。
+- [x] 检查本机 Docker / Docker Compose 是否可用。
+- [x] 启动依赖服务：MySQL、Redis、etcd、Kafka、MinIO。
+- [x] 启动 Teamgram 应用服务。
+- [x] 验证客户端网关端口：
   - TCP `10443`
   - TCP `5222`
   - WebSocket `11443`
-- [ ] 检查 `gnetway`、`session`、`bff`、`msg`、`sync` 日志。
+- [x] 检查 `gnetway`、`session`、`bff`、`msg`、`sync` 日志。
 - [ ] 确认默认登录验证码逻辑。
 - [ ] 生产环境前替换默认/演示验证码逻辑。
 
