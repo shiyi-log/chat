@@ -25,7 +25,7 @@ SyncConsumer:
   Topics:
     - "Sync-T"
   Brokers:
-    - host.docker.internal:9092
+    - host.docker.internal:19092
   Group: "Sync-MainCommunity-S"
 
 Routine:

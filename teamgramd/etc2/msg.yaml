@@ -36,7 +36,7 @@ InboxConsumer:
   Topics:
     - "Inbox-T"
   Brokers:
-    - host.docker.internal:9092
+    - host.docker.internal:19092
   Group: "Inbox-MainCommunity-S"
 
 IdgenClient:
@@ -54,12 +54,12 @@ BizServiceClient:
 InboxClient:
   Topic:   "Inbox-T"
   Brokers:
-    - host.docker.internal:9092
+    - host.docker.internal:19092
 
 SyncClient:
   Topic:   "Sync-T"
   Brokers:
-    - host.docker.internal:9092
+    - host.docker.internal:19092
 
 Redis2:
   Host: redis:6379
