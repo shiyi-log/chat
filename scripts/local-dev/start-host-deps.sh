@@ -6,6 +6,7 @@ DATA_DIR="$ROOT/data/local-dev"
 LOG_DIR="$ROOT/teamgramd/logs"
 KAFKA_CONFIG="$DATA_DIR/kafka-server.properties"
 KAFKA_LOG="$LOG_DIR/kafka-host.log"
+KAFKA_CLUSTER_ID="MkU3OEVBNTcwNTJENDM2Qk"
 MINIO_LOG="$LOG_DIR/minio-host.log"
 MINIO_DATA="$DATA_DIR/minio"
 
@@ -37,7 +38,7 @@ log.retention.check.interval.ms=300000
 CFG
 
 if [ ! -f "$DATA_DIR/kafka/kraft-combined-logs/meta.properties" ]; then
-  kafka-storage format --standalone -c "$KAFKA_CONFIG" >/dev/null
+  kafka-storage format --standalone -t "$KAFKA_CLUSTER_ID" -c "$KAFKA_CONFIG" >/dev/null
 fi
 
 if ! lsof -nP -iTCP:9092 -sTCP:LISTEN >/dev/null 2>&1; then
