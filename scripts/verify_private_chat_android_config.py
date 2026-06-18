@@ -146,6 +146,35 @@ def main():
         value = get_string_value(strings_text, key)
         record(checks, "private chat" in value.lower(), f"{strings_path}：{key} 应包含 Private Chat")
         record(checks, "telegram" not in value.lower(), f"{strings_path}：{key} 不应继续显示 Telegram")
+    account_invite_private_keys = (
+        "PhoneNumberHelp",
+        "ChangePhoneNumberOccupied",
+        "UseProxySponsorInfo",
+        "UseProxyTelegramInfo2",
+        "AddAnotherAccountInfo",
+        "CheckPhoneNumberInfo",
+        "UpdateTelegram",
+        "UpdateAppAlert",
+        "EmailLoginChangeMessage",
+        "NoMailInstalled",
+        "InviteUser",
+        "AreYouSureLogout",
+        "NoUsernameFound",
+        "NoPhoneFound",
+        "AuthAnotherClientInfo4",
+        "AuthAnotherClientInfo5",
+        "SessionsListInfo",
+        "TelegramContacts_one",
+        "TelegramContacts_other",
+        "InviteTextNum_one",
+        "InviteTextNum_other",
+        "InviteToTelegramShort",
+        "NoUsernameFound2",
+    )
+    for key in account_invite_private_keys:
+        value = get_string_value(strings_text, key)
+        record(checks, "private chat" in value.lower(), f"{strings_path}：{key} 应包含 Private Chat")
+        record(checks, "telegram" not in value.lower(), f"{strings_path}：{key} 不应继续显示 Telegram")
     private_url_keys = (
         "TelegramFeaturesUrl",
         "TelegramFaqUrl",
@@ -154,6 +183,7 @@ def main():
         "WebAppDisclaimerUrl",
         "AuthAnotherClientDownloadClientUrl",
         "AuthAnotherWebClientUrl",
+        "CheckPhoneNumberLearnMoreUrl",
     )
     for key in private_url_keys:
         value = get_string_value(strings_text, key)
@@ -203,6 +233,7 @@ def main():
     print("- 对外包名、应用名和默认英文登录入口已指向 Private Chat")
     print("- 默认英文帮助、通知、QR 登录和更新入口已纳入高可见品牌门禁")
     print("- 默认英文权限、锁屏、存储、Passcode 和通话通知渠道说明已纳入系统入口品牌门禁")
+    print("- 默认英文账号、邀请、会话和版本更新入口已纳入品牌门禁")
     print("- 库模块保留 org.telegram.messenger 内部构建匹配项，最终 App 模块不保留旧对外包名")
     print("- 模拟器私有 DC 已指向 10.0.2.2:10443，单 DC 防御逻辑存在")
     print("- 当前验证是静态配置验证；真机/公网测试仍需要替换服务端地址和发布证书")
