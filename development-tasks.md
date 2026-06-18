@@ -106,14 +106,19 @@
 - [x] 安装 Java Runtime 后重新运行 Gradle 工程解析。
 - [x] 替换 Android 对外包名和应用显示名。
 - [x] 修复 Android 默认英文欢迎页和登录权限弹窗的上游品牌漏项。
+- [x] 新增并运行 Android 私有化静态配置验证脚本：`scripts/verify_private_chat_android_config.py`，当前 `35/35` 项通过。
+- [x] 修复 Android Debug/Beta 包名判断仍使用旧包名的问题。
+- [x] 修复 Android 默认英文登录验证码入口仍显示上游品牌的问题。
 - [ ] 替换图标、通知渠道名称。
 - [x] 替换 Firebase / `google-services.json` 和 Huawei AGConnect 包名配置。
 - [ ] 禁用或替换上游官方支持、更新、上报接口。
 - [x] 构建 Debug APK：`TMessagesProj_App/build/outputs/apk/afat/debug/app.apk`。
 - [x] 确认 Debug APK 对外包名为 `com.privatechat.messenger.beta`。
 - [x] 安装 Debug APK 到 Android 15 ARM64 模拟器。
+- [x] 重新构建并覆盖安装最新 Debug APK 到两台 Android 15 ARM64 模拟器。
 - [x] 修复私有单 DC 配置下首次启动 native 崩溃。
 - [x] 完成 Android 模拟器启动冒烟验证：应用进程存活，已连接私有 DC 1，完成握手、`TL_config` 和 `TL_pong`。
+- [x] 完成 Android 最新 Debug APK 双模拟器启动复测：`emulator-5554`、`emulator-5564` 均可显式启动 `LaunchActivity`，进程存活且未发现 `FATAL EXCEPTION`。
 - [x] 完成 Android 登录/注册冒烟测试：测试号 `+4 2400`，验证码 `12345`，注册用户 `Android Smoke`，进入主界面。
 - [x] 修复 Android 登录成功后的默认英文空会话页和联系人权限说明品牌漏项。
 - [x] 完成两台 Android 模拟器私聊消息互发测试：`Android Smoke` 与 `Android Two` 可互发文本消息并在对端会话页显示。
@@ -218,6 +223,7 @@
 - [ ] 准备完整 Xcode、iOS 签名证书和模拟器/真机环境。
 - [ ] 准备桌面端构建依赖并构建 macOS 版本。
 - [x] 执行服务端入口短连接验证，覆盖 TCP `10443`、`5222`、`11443`。
+- [x] 新增可重复执行的服务端入口压测脚本：`server/scripts/local-dev/tcp_entry_stress.py`。
 - [x] 执行第一轮低并发入口连接测试，记录 CPU、内存、MySQL、Redis、Kafka、MinIO 指标快照。
 - [ ] 编写服务端业务压测脚本，覆盖登录、发消息、WebSocket `11443` 和文件入口。
 - [ ] 执行登录、发消息、上传小文件的多端冒烟测试。
@@ -226,9 +232,10 @@
 
 ## 当前阻塞项
 
-- Android Debug APK 已安装到两台 Android 15 ARM64 模拟器并启动成功；账号 `+42400` / `+42401` 已完成登录注册、联系人导入和双向私聊文本消息验证。
+- Android Debug APK 已重新构建并覆盖安装到两台 Android 15 ARM64 模拟器；账号 `+42400` / `+42401` 已完成登录注册、联系人导入和双向私聊文本消息验证。
+- Android 最新 APK 复测结果：两台模拟器均可启动 `LaunchActivity`，进程存活，日志中未发现 `FATAL EXCEPTION`。
 - Android 当前仍有 Firebase `FIS_AUTH_ERROR` / client blocked 日志，需要后续替换真实 Firebase 配置或禁用推送能力。
-- 服务端当前运行态包含热替换后的 `bff`；仍需在网络和镜像源稳定后执行完整镜像重建并复测。
+- 服务端当前 Docker 镜像已完成重建并在线运行；后续生产部署仍需替换默认验证码、默认账号密码和公网/局域网固定入口。
 - Desktop macOS 构建被本机缺完整 Xcode、缺 Qt/第三方库环境阻塞；Linux Docker 构建环境被 EPEL 镜像源 SSL 连接失败阻塞。
 - iOS 私有化静态配置验证已通过，但构建仍被本机缺完整 Xcode 阻塞；当前只有 Command Line Tools，Bazel 已安装；配置生成还需要私有 `api_id`、`api_hash`、Apple Team ID。
 - 真机和多端互通测试需要局域网固定 IP 或公网域名，不能继续使用本机回环地址。
