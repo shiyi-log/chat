@@ -49,6 +49,14 @@ if [[ "$ACTION" != indexbuild ]]; then
         "$BAZEL_OUTPUTS_PRODUCT_BASENAME" \
         "$TARGET_BUILD_DIR"
 
+      # Xcode may need to write framework-side generated files after the copy.
+      chmod -R u+w "$TARGET_BUILD_DIR/$BAZEL_OUTPUTS_PRODUCT_BASENAME"
+
+      if [[ "$BAZEL_OUTPUTS_PRODUCT_BASENAME" == *.framework && -n "${PRODUCT_MODULE_NAME:-}" ]]; then
+        mkdir -p \
+          "$TARGET_BUILD_DIR/$BAZEL_OUTPUTS_PRODUCT_BASENAME/Modules/$PRODUCT_MODULE_NAME.swiftmodule/Project"
+      fi
+
       if [[ -n "${TEST_HOST:-}" ]]; then
         # We need to re-sign test frameworks that Xcode placed into the test
         # host un-signed

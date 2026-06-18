@@ -9,7 +9,8 @@
 - 默认 URL Scheme 已改为 `privatechat`。
 - iOS 模拟器默认连接宿主机私有服务端：`127.0.0.1:10443`。
 - MTProto 认证公钥和备用配置解密公钥已替换为当前私有服务端公钥。
-- 当前已完成本地静态配置验证；尚未生成 Xcode 工程，也未构建模拟器或真机包。
+- 当前已完成本地静态配置验证、模拟器专用 Xcode 工程生成、iOS 26.5 模拟器 Debug 构建、安装和启动冒烟验证。
+- 真机包和发布包仍未完成，需要真实 Apple 签名证书、provisioning profile、正式私有 API 凭据和可被设备访问的局域网 IP 或公网域名。
 
 ## 本地验证
 
@@ -21,49 +22,57 @@ python3 scripts/verify_private_chat_ios_config.py
 
 验证覆盖：
 
-- `build-system/template_minimal_development_configuration.json` 中的 Bundle ID、URL Scheme 和待替换占位项。
+- `build-system/template_minimal_development_configuration.json` 中的 Bundle ID、URL Scheme 和可生成工程的本地开发凭据格式。
 - `Telegram/Telegram-iOS/Config-Fork.xcconfig` 中的应用名、Bundle ID 和 URL Scheme。
 - `Telegram/Telegram-iOS/Info.plist` 中的 URL Scheme、权限文案和主题文件类型。
+- `Telegram/BUILD` 中实际构建产物使用的主 App 显示名、权限文案和主题文件类型。
 - 分享扩展登录提示。
 - iOS 网络 seed DC 地址和端口。
 - README 私有化说明。
 
 ## 构建前置条件
 
-iOS 端完整构建仍需要：
+iOS 端本地模拟器构建已验证，真机和发布构建仍需要：
 
-- 完整 Xcode，而不是只安装 Command Line Tools。
-- Apple Developer Team ID。
 - 可用签名证书和 provisioning profile。
-- 私有项目的 `api_id` 和 `api_hash`。
+- 正式私有项目的 `api_id`、`api_hash` 和 Apple Developer Team ID。
 - 真机测试时需要把 `127.0.0.1` 改为局域网 IP 或公网域名。
 
-生成工程前必须先替换：
+当前模板内的 `api_id`、`api_hash`、`team_id` 是为了让本地模拟器工程可生成的开发值，不是生产发布凭据。生产发布前必须替换：
 
 ```text
 build-system/template_minimal_development_configuration.json
 ```
 
-其中 `api_id`、`api_hash`、`team_id` 目前故意保留为占位值，避免误判为可发布配置。
-
 ## 本地构建入口
 
-准备好完整 Xcode 和私有配置后，可继续使用原构建入口生成 Xcode 工程：
+生成无签名模拟器工程：
 
 ```sh
 python3 build-system/Make/Make.py \
+    --overrideXcodeVersion \
     --cacheDir="$HOME/private-chat-ios-bazel-cache" \
     generateProject \
     --configurationPath=build-system/template_minimal_development_configuration.json \
-    --xcodeManagedCodesigning
+    --codesigningInformationPath=build-system/fake-codesigning \
+    --disableProvisioningProfiles \
+    --disableExtensions
 ```
 
-如果只做模拟器构建，可按需禁用 provisioning profile；真机和发布包必须使用真实签名配置。
+构建 iOS 模拟器 Debug 包：
+
+```sh
+xcodebuild -project Telegram/Telegram.xcodeproj \
+    -scheme Telegram \
+    -configuration Debug \
+    -destination 'platform=iOS Simulator,id=6884B260-4102-40AE-9507-FB1A0ED22725' \
+    build
+```
+
+真机和发布包必须使用真实签名配置。
 
 ## 后续测试要求
 
-- 生成 Xcode 工程。
-- 构建模拟器版本。
 - 使用私有服务端完成登录冒烟测试。
 - 真机签名准备好后构建设备版本。
 - 使用固定局域网 IP 或公网域名完成 Android / iOS / Desktop 多端互通测试。

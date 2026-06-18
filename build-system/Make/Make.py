@@ -490,7 +490,7 @@ def resolve_codesigning(arguments, base_path, build_configuration, provisioning_
     )
 
 
-def resolve_configuration(base_path, bazel_command_line: BazelCommandLine, arguments, additional_codesigning_output_path):
+def resolve_configuration(base_path, bazel_command_line: BazelCommandLine, arguments, additional_codesigning_output_path, allow_missing_aps_environment=False):
     configuration_repository_path = '{}/build-input/configuration-repository'.format(base_path)
     os.makedirs(configuration_repository_path, exist_ok=True)
 
@@ -517,9 +517,12 @@ def resolve_configuration(base_path, bazel_command_line: BazelCommandLine, argum
         provisioning_profiles_path=provisioning_path,
         additional_codesigning_output_path=additional_codesigning_output_path
     )
-    if codesigning_data.aps_environment is None:
+    if codesigning_data.aps_environment is None and not allow_missing_aps_environment:
         print('Could not find a valid aps-environment entitlement in the provided provisioning profiles')
         sys.exit(1)
+
+    if codesigning_data.aps_environment is None:
+        codesigning_data.aps_environment = ''
 
     if bazel_command_line is not None:
         build_configuration.write_to_variables_file(bazel_path=bazel_command_line.bazel, use_xcode_managed_codesigning=codesigning_data.use_xcode_managed_codesigning, aps_environment=codesigning_data.aps_environment, path=configuration_repository_path + '/variables.bzl')
@@ -555,7 +558,8 @@ def generate_project(bazel, arguments):
         base_path=os.getcwd(),
         bazel_command_line=bazel_command_line,
         arguments=arguments,
-        additional_codesigning_output_path=None
+        additional_codesigning_output_path=None,
+        allow_missing_aps_environment=arguments.disableProvisioningProfiles
     )
 
     bazel_command_line.set_build_number(arguments.buildNumber)
@@ -675,7 +679,8 @@ def build(bazel, arguments):
         base_path=os.getcwd(),
         bazel_command_line=bazel_command_line,
         arguments=arguments,
-        additional_codesigning_output_path=None
+        additional_codesigning_output_path=None,
+        allow_missing_aps_environment=False
     )
 
     bazel_command_line.set_configuration(arguments.configuration)
@@ -782,7 +787,8 @@ def query(bazel, arguments):
             base_path=os.getcwd(),
             bazel_command_line=bazel_command_line,
             arguments=arguments,
-            additional_codesigning_output_path=None
+            additional_codesigning_output_path=None,
+            allow_missing_aps_environment=False
         )
 
     # Parse the query arguments
@@ -810,7 +816,8 @@ def build_spm(bazel, arguments):
         base_path=os.getcwd(),
         bazel_command_line=bazel_command_line,
         arguments=arguments,
-        additional_codesigning_output_path=None
+        additional_codesigning_output_path=None,
+        allow_missing_aps_environment=False
     )
 
     bazel_command_line.set_configuration(arguments.configuration)
