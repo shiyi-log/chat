@@ -437,7 +437,7 @@ void ConnectionsManager::loadConfig() {
             RAND_bytes((uint8_t *) &pushSessionId, 8);
         }
         if (currentDatacenterId == 0) {
-            currentDatacenterId = 2;
+            currentDatacenterId = 1;
         }
         saveConfig();
     }
@@ -2720,10 +2720,16 @@ void ConnectionsManager::processRequestQueue(uint32_t connectionTypes, uint32_t 
             if (requestStartTime != 0 && abs(currentTime - requestStartTime) >= timeout) {
                 std::vector<uint32_t> allDc;
                 for (auto & datacenter : datacenters) {
-                    if (datacenter.first == datacenterId || datacenter.second->isCdnDatacenter) {
+                    if (datacenter.second == nullptr || datacenter.first == datacenterId || datacenter.second->isCdnDatacenter) {
                         continue;
                     }
                     allDc.push_back(datacenter.first);
+                }
+                if (allDc.empty()) {
+                    iter++;
+                    if (LOGS_ENABLED)
+                        DEBUG_D("skip queue, token = %d: no alternative dc", request->requestToken);
+                    continue;
                 }
                 uint8_t index;
                 RAND_bytes(&index, 1);
@@ -3071,7 +3077,7 @@ void ConnectionsManager::processRequestQueue(uint32_t connectionTypes, uint32_t 
 
 Datacenter *ConnectionsManager::getDatacenterWithId(uint32_t datacenterId) {
     if (datacenterId == DEFAULT_DATACENTER_ID) {
-        return datacenters[currentDatacenterId];
+        datacenterId = currentDatacenterId;
     }
     auto iter = datacenters.find(datacenterId);
     return iter != datacenters.end() ? iter->second : nullptr;
