@@ -1,0 +1,135 @@
+#!/usr/bin/env python3
+import json
+import re
+import sys
+import xml.etree.ElementTree as ET
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def read_text(relative_path):
+    return (ROOT / relative_path).read_text(encoding="utf-8")
+
+
+def record(checks, ok, message):
+    checks.append((ok, message))
+
+
+def parse_properties(text):
+    values = {}
+    for raw_line in text.splitlines():
+        line = raw_line.strip()
+        if not line or line.startswith("#") or "=" not in line:
+            continue
+        key, value = line.split("=", 1)
+        values[key.strip()] = value.strip()
+    return values
+
+
+def get_string_value(xml_text, name):
+    root = ET.fromstring(xml_text)
+    for item in root.findall("string"):
+        if item.get("name") == name:
+            return item.text or ""
+    return ""
+
+
+def google_package_names(relative_path):
+    data = json.loads(read_text(relative_path))
+    names = []
+    for client in data.get("client", []):
+        info = client.get("client_info", {}).get("android_client_info", {})
+        package_name = info.get("package_name")
+        if package_name:
+            names.append(package_name)
+    return names
+
+
+def main():
+    checks = []
+
+    props_path = "gradle.properties"
+    props = parse_properties(read_text(props_path))
+    record(checks, props.get("APP_PACKAGE") == "com.privatechat.messenger", f"{props_path}：APP_PACKAGE 应为 com.privatechat.messenger")
+    record(checks, props.get("APP_VERSION_NAME") == "12.7.3", f"{props_path}：APP_VERSION_NAME 应为当前基线 12.7.3")
+
+    app_gradle_path = "TMessagesProj_App/build.gradle"
+    app_gradle = read_text(app_gradle_path)
+    record(checks, "defaultConfig.applicationId = APP_PACKAGE" in app_gradle, f"{app_gradle_path}：applicationId 应来自 APP_PACKAGE")
+    record(checks, 'applicationIdSuffix ".beta"' in app_gradle, f"{app_gradle_path}：Debug/Beta 后缀应为 .beta")
+    record(checks, 'applicationIdSuffix ".web"' in app_gradle, f"{app_gradle_path}：Standalone 后缀应为 .web")
+    record(checks, 'namespace \'org.telegram.messenger.regular\'' in app_gradle, f"{app_gradle_path}：内部 namespace 暂保留以匹配源码包路径")
+
+    expected_packages = {
+        "com.privatechat.messenger",
+        "com.privatechat.messenger.beta",
+        "com.privatechat.messenger.web",
+    }
+    library_google_path = "TMessagesProj/google-services.json"
+    library_packages = set(google_package_names(library_google_path))
+    record(checks, expected_packages.issubset(library_packages), f"{library_google_path}：应包含 Private Chat 三个对外包名")
+    record(checks, "org.telegram.messenger" in library_packages, f"{library_google_path}：库模块需保留 org.telegram.messenger 内部构建匹配项")
+
+    app_google_path = "TMessagesProj_App/google-services.json"
+    app_packages = set(google_package_names(app_google_path))
+    record(checks, expected_packages.issubset(app_packages), f"{app_google_path}：应包含 Private Chat 三个对外包名")
+    record(checks, "org.telegram.messenger" not in app_packages, f"{app_google_path}：不应保留旧 org.telegram.messenger 对外包名")
+
+    strings_path = "TMessagesProj/src/main/res/values/strings.xml"
+    strings_text = read_text(strings_path)
+    record(checks, get_string_value(strings_text, "AppName") == "Private Chat", f"{strings_path}：AppName 应为 Private Chat")
+    record(checks, get_string_value(strings_text, "AppNameBeta") == "Private Chat Beta", f"{strings_path}：AppNameBeta 应为 Private Chat Beta")
+    for key in ("SentAppCode", "SentAppCodeWithPhone", "SentAppCodeTitle", "SentCallCode", "CallText", "OtherLoginCode", "AllowReadCall", "InviteToTelegram"):
+        record(checks, "private chat" in get_string_value(strings_text, key).lower(), f"{strings_path}：{key} 应包含 Private Chat")
+    record(checks, get_string_value(strings_text, "NoChats") == "Welcome to Private Chat", f"{strings_path}：NoChats 应为 Welcome to Private Chat")
+
+    buildvars_path = "TMessagesProj/src/main/java/org/telegram/messenger/BuildVars.java"
+    buildvars = read_text(buildvars_path)
+    record(checks, 'APP_ID = 25686376' in buildvars, f"{buildvars_path}：APP_ID 应保留当前私有基线值")
+    record(checks, 'APP_HASH = "3e7e5e874a044e71575e3fd63e12290c"' in buildvars, f"{buildvars_path}：APP_HASH 应保留当前私有基线值")
+    record(checks, '"com.privatechat.messenger.beta".equals' in buildvars, f"{buildvars_path}：Beta 包名判断应使用 com.privatechat.messenger.beta")
+    record(checks, '"org.telegram.messenger.beta".equals' not in buildvars, f"{buildvars_path}：不应继续用旧 Beta 包名判断")
+
+    conn_path = "TMessagesProj/jni/tgnet/ConnectionsManager.cpp"
+    conn = read_text(conn_path)
+    official_dc_pattern = re.compile(r"\b(149\.154|91\.108)\.\d+\.\d+\b")
+    record(checks, conn.count('new Datacenter(instanceNum, 1)') >= 2, f"{conn_path}：生产和测试默认 DC 应收敛到 DC 1")
+    record(checks, conn.count('addAddressAndPort("10.0.2.2", 10443, 0, "")') >= 2, f"{conn_path}：模拟器私有 DC 应指向 10.0.2.2:10443")
+    record(checks, "currentDatacenterId = 1;" in conn, f"{conn_path}：未登录默认 DC 应初始化为 1")
+    record(checks, "auto iter = datacenters.find(datacenterId);" in conn and "return iter != datacenters.end() ? iter->second : nullptr;" in conn, f"{conn_path}：DEFAULT_DATACENTER_ID 查询应避免 map[] 插入空指针")
+    record(checks, "if (allDc.empty())" in conn and "no alternative dc" in conn, f"{conn_path}：单 DC 情况应跳过随机切换备用 DC")
+    record(checks, official_dc_pattern.search(conn) is None, f"{conn_path}：不应保留官方 DC IP")
+
+    handshake_path = "TMessagesProj/jni/tgnet/Handshake.cpp"
+    handshake = read_text(handshake_path)
+    datacenter_path = "TMessagesProj/jni/tgnet/Datacenter.cpp"
+    datacenter = read_text(datacenter_path)
+    record(checks, "-----BEGIN RSA PUBLIC KEY-----" in handshake, f"{handshake_path}：握手 RSA 公钥应存在")
+    record(checks, "-----BEGIN RSA PUBLIC KEY-----" in datacenter, f"{datacenter_path}：simple config RSA 公钥应存在")
+
+    readme_path = "README.md"
+    readme = read_text(readme_path)
+    record(checks, readme.startswith("# Private Chat Android 安卓端"), f"{readme_path}：应使用 Private Chat 中文优先说明")
+    record(checks, "official Telegram Android distribution" in readme, f"{readme_path}：应包含英文摘要说明非官方 Telegram 发布")
+
+    failed = [message for ok, message in checks if not ok]
+    passed_count = len(checks) - len(failed)
+
+    if failed:
+        print(f"Android 私有化配置验证失败：{passed_count}/{len(checks)} 项通过")
+        for message in failed:
+            print(f"- {message}")
+        return 1
+
+    print(f"Android 私有化配置验证通过：{passed_count}/{len(checks)} 项通过")
+    print("- 对外包名、应用名和默认英文登录入口已指向 Private Chat")
+    print("- 库模块保留 org.telegram.messenger 内部构建匹配项，最终 App 模块不保留旧对外包名")
+    print("- 模拟器私有 DC 已指向 10.0.2.2:10443，单 DC 防御逻辑存在")
+    print("- 当前验证是静态配置验证；真机/公网测试仍需要替换服务端地址和发布证书")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

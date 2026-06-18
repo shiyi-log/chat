@@ -1,39 +1,52 @@
-## Telegram messenger for Android
+# Private Chat Android 安卓端
 
-[Telegram](https://telegram.org) is a messaging app with a focus on speed and security. It’s superfast, simple and free.
-This repo contains the official source code for [Telegram App for Android](https://play.google.com/store/apps/details?id=org.telegram.messenger).
+这是 `Private Chat` 私有聊天系统的 Android 客户端源码快照，用于连接我们自建的 `private-chat-server`。当前仓库不再作为 Telegram 官方 Android 客户端发布，也不应使用 Telegram 品牌对外分发。
 
-## Creating your Telegram Application
+## 当前状态
 
-We welcome all developers to use our API and source code to create applications on our platform.
-There are several things we require from **all developers** for the moment.
+- 对外包名前缀已改为 `com.privatechat.messenger`。
+- Debug/Beta 包名为 `com.privatechat.messenger.beta`。
+- 默认应用显示名为 `Private Chat`，Beta 显示名为 `Private Chat Beta`。
+- Android 模拟器默认连接宿主机私有服务端：`10.0.2.2:10443`。
+- MTProto 握手公钥和 simple config 解密公钥已替换为当前私有服务端公钥。
+- 当前已完成本机 `afatDebug` APK 构建，并在两台 Android 模拟器完成启动稳定性验证。
 
-1. [**Obtain your own api_id**](https://core.telegram.org/api/obtaining_api_id) for your application.
-2. Please **do not** use the name Telegram for your app — or make sure your users understand that it is unofficial.
-3. Kindly **do not** use our standard logo (white paper plane in a blue circle) as your app's logo.
-3. Please study our [**security guidelines**](https://core.telegram.org/mtproto/security_guidelines) and take good care of your users' data and privacy.
-4. Please remember to publish **your** code too in order to comply with the licences.
+## 本地验证
 
-### API, Protocol documentation
+运行 Android 私有化配置验证：
 
-Telegram API manuals: https://core.telegram.org/api
+```sh
+python3 scripts/verify_private_chat_android_config.py
+```
 
-MTproto protocol manuals: https://core.telegram.org/mtproto
+验证覆盖：
 
-### Compilation Guide
+- Gradle 包名、版本号和 Debug/Beta applicationId。
+- Google Services / Huawei 配置中的对外包名。
+- 默认英文应用名、登录验证码入口和联系人邀请入口高可见文案。
+- Native 私有 DC 地址、端口、默认 DC 防御逻辑和服务端公钥存在性。
+- README 不再保留官方发布说明。
 
-**Note**: In order to support [reproducible builds](https://core.telegram.org/reproducible-builds), this repo contains dummy release.keystore,  google-services.json and filled variables inside BuildVars.java. Before publishing your own APKs please make sure to replace all these files with your own.
+## 本地构建
 
-You will require Android Studio 3.4, Android NDK rev. 20 and Android SDK 8.1
+当前本机可用的调试包构建命令：
 
-1. Download the Telegram source code from https://github.com/DrKLO/Telegram ( git clone https://github.com/DrKLO/Telegram.git )
-2. Copy your release.keystore into TMessagesProj/config
-3. Fill out RELEASE_KEY_PASSWORD, RELEASE_KEY_ALIAS, RELEASE_STORE_PASSWORD in gradle.properties to access your  release.keystore
-4.  Go to https://console.firebase.google.com/, create two android apps with application IDs org.telegram.messenger and org.telegram.messenger.beta, turn on firebase messaging and download google-services.json, which should be copied to the same folder as TMessagesProj.
-5. Open the project in the Studio (note that it should be opened, NOT imported).
-6. Fill out values in TMessagesProj/src/main/java/org/telegram/messenger/BuildVars.java – there’s a link for each of the variables showing where and which data to obtain.
-7. You are ready to compile Telegram.
+```sh
+JAVA_HOME='/Applications/IntelliJ IDEA CE.app/Contents/jbr/Contents/Home' ./gradlew :TMessagesProj_App:assembleAfatDebug --stacktrace
+```
 
-### Localization
+调试 APK 输出路径：
 
-We moved all translations to https://translations.telegram.org/en/android/. Please use it.
+```text
+TMessagesProj_App/build/outputs/apk/afat/debug/app.apk
+```
+
+## 后续测试要求
+
+- 真机测试需要把 `10.0.2.2` 改为局域网 IP 或公网域名，并确保服务端端口、防火墙和证书可访问。
+- 正式发布需要替换 release keystore、Google/Firebase/Huawei 配置和推送证书。
+- 当前还有深层 Premium、广告、Passport、故事等文案和功能入口需要继续按私有产品策略清理或隐藏。
+
+## English Summary
+
+This repository is a private Android client snapshot for `Private Chat`, configured for a self-hosted `private-chat-server`. It is not an official Telegram Android distribution and should not be shipped with Telegram branding.

@@ -34,15 +34,15 @@
     <!--code enter view-->
     <string name="YourCode">Phone verification</string>
     <string name="SentSmsCode">We’ve sent an SMS with an activation code to your phone **%1$s**.</string>
-    <string name="SentAppCode">We\'ve sent the code to the **Telegram** app on your other device.</string>
-    <string name="SentAppCodeWithPhone">We\'ve sent the code to the **Telegram** app for %1$s on your other device.</string>
-    <string name="SentAppCodeTitle">Check your Telegram messages</string>
+    <string name="SentAppCode">We\'ve sent the code to the **Private Chat** app on your other device.</string>
+    <string name="SentAppCodeWithPhone">We\'ve sent the code to the **Private Chat** app for %1$s on your other device.</string>
+    <string name="SentAppCodeTitle">Check your Private Chat messages</string>
     <string name="SentFragmentCode">Get the code for %1$s in the Anonymous Numbers section on Fragment.</string>
     <string name="SentSmsCodeTitle">Enter code</string>
     <string name="OpenFragment">Open Fragment</string>
-    <string name="SentCallCode">We\'re calling your phone **%1$s**.\n\nDon\'t accept the call, Telegram will process everything automatically.</string>
+    <string name="SentCallCode">We\'re calling your phone **%1$s**.\n\nDon\'t accept the call, Private Chat will process everything automatically.</string>
     <string name="SentCallOnly">Calling your phone **%1$s** to dictate the code.</string>
-    <string name="CallText">Telegram will call you in %1$d:%2$02d</string>
+    <string name="CallText">Private Chat will call you in %1$d:%2$02d</string>
     <string name="SmsText">Sending you an SMS in %1$d:%2$02d</string>
     <string name="Calling">Calling you...</string>
     <string name="SendingSms">Sending SMS...</string>
@@ -61,7 +61,7 @@
     <string name="CancelLinkExpired">Link is invalid or expired.</string>
     <string name="CancelLinkSuccessTitle">Success</string>
     <string name="CancelLinkSuccess">The deletion process was cancelled for your account %1$s. You may close this window now.</string>
-    <string name="OtherLoginCode">Your login code is **%1$s**. Enter it in the Telegram app where you are trying to log in.\n\nDo not give this code to anyone.</string>
+    <string name="OtherLoginCode">Your login code is **%1$s**. Enter it in the Private Chat app where you are trying to log in.\n\nDo not give this code to anyone.</string>
     <string name="SmsAvailableIn">You can request an SMS in %1$d:%2$02d</string>
     <string name="ResendSmsAvailableIn">You can request a new SMS in %1$d:%2$02d</string>
     <string name="RequestSmsButton">Get the code via SMS</string>
