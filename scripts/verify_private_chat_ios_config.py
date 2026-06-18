@@ -87,6 +87,12 @@ def main():
     record(checks, has_private_port, f"{network_path}：DC 端口应为 10443")
     record(checks, official_dc_pattern.search(network_text) is None, f"{network_path}：不应保留官方 DC IP")
 
+    readme_path = "README.md"
+    readme_text = read_text(readme_path)
+    record(checks, readme_text.startswith("# Private Chat iOS 端"), f"{readme_path}：应使用 Private Chat 中文优先说明")
+    record(checks, "官方 iOS 客户端发布" in readme_text, f"{readme_path}：应明确说明不作为上游官方 iOS 客户端发布")
+    record(checks, "official Telegram iOS distribution" in readme_text, f"{readme_path}：应包含英文摘要说明非官方 Telegram 发布")
+
     failed = [message for ok, message in checks if not ok]
     passed_count = len(checks) - len(failed)
 
@@ -100,6 +106,7 @@ def main():
     print("- Bundle ID、应用名和 URL Scheme 已指向 Private Chat 私有配置")
     print("- 本地模板仍明确保留 api_id、api_hash、team_id 占位值，生成工程前必须替换")
     print("- iOS 网络 seed DC 1 已指向 127.0.0.1:10443，本地模拟器可用于后续连接验证")
+    print("- README 已改为中文优先的 Private Chat iOS 私有快照说明")
     return 0
 
 

@@ -1,116 +1,73 @@
-# Telegram iOS Source Code Compilation Guide
+# Private Chat iOS 端
 
-We welcome all developers to use our API and source code to create applications on our platform.
-There are several things we require from **all developers** for the moment.
+这是 `Private Chat` 私有聊天系统的 iOS 客户端源码快照，用于连接我们自建的 `private-chat-server`。当前仓库不再作为 Telegram 官方 iOS 客户端发布，也不应使用 Telegram 品牌对外分发。
 
-# Creating your Telegram Application
+## 当前状态
 
-1. [**Obtain your own api_id**](https://core.telegram.org/api/obtaining_api_id) for your application.
-2. Please **do not** use the name Telegram for your app — or make sure your users understand that it is unofficial.
-3. Kindly **do not** use our standard logo (white paper plane in a blue circle) as your app's logo.
-3. Please study our [**security guidelines**](https://core.telegram.org/mtproto/security_guidelines) and take good care of your users' data and privacy.
-4. Please remember to publish **your** code too in order to comply with the licences.
+- 默认应用显示名已改为 `Private Chat`。
+- 默认 Bundle ID 已改为 `com.privatechat.ios`。
+- 默认 URL Scheme 已改为 `privatechat`。
+- iOS 模拟器默认连接宿主机私有服务端：`127.0.0.1:10443`。
+- MTProto 认证公钥和备用配置解密公钥已替换为当前私有服务端公钥。
+- 当前已完成本地静态配置验证；尚未生成 Xcode 工程，也未构建模拟器或真机包。
 
-# Quick Compilation Guide
+## 本地验证
 
-## Get the Code
+运行 iOS 私有化配置验证：
 
+```sh
+python3 scripts/verify_private_chat_ios_config.py
 ```
-git clone --recursive -j8 https://github.com/TelegramMessenger/Telegram-iOS.git
+
+验证覆盖：
+
+- `build-system/template_minimal_development_configuration.json` 中的 Bundle ID、URL Scheme 和待替换占位项。
+- `Telegram/Telegram-iOS/Config-Fork.xcconfig` 中的应用名、Bundle ID 和 URL Scheme。
+- `Telegram/Telegram-iOS/Info.plist` 中的 URL Scheme、权限文案和主题文件类型。
+- 分享扩展登录提示。
+- iOS 网络 seed DC 地址和端口。
+- README 私有化说明。
+
+## 构建前置条件
+
+iOS 端完整构建仍需要：
+
+- 完整 Xcode，而不是只安装 Command Line Tools。
+- Apple Developer Team ID。
+- 可用签名证书和 provisioning profile。
+- 私有项目的 `api_id` 和 `api_hash`。
+- 真机测试时需要把 `127.0.0.1` 改为局域网 IP 或公网域名。
+
+生成工程前必须先替换：
+
+```text
+build-system/template_minimal_development_configuration.json
 ```
 
-## Setup Xcode
+其中 `api_id`、`api_hash`、`team_id` 目前故意保留为占位值，避免误判为可发布配置。
 
-Install Xcode (directly from https://developer.apple.com/download/applications or using the App Store).
+## 本地构建入口
 
-## Adjust Configuration
+准备好完整 Xcode 和私有配置后，可继续使用原构建入口生成 Xcode 工程：
 
-1. Generate a random identifier:
-```
-openssl rand -hex 8
-```
-2. Create a new Xcode project. Use `Telegram` as the Product Name. Use `org.{identifier from step 1}` as the Organization Identifier.
-3. Open `Keychain Access` and navigate to `Certificates`. Locate `Apple Development: your@email.address (XXXXXXXXXX)` and double tap the certificate. Under `Details`, locate `Organizational Unit`. This is the Team ID.
-4. Edit `build-system/template_minimal_development_configuration.json`. Use data from the previous steps.
-
-## Generate an Xcode project
-
-```
+```sh
 python3 build-system/Make/Make.py \
-    --cacheDir="$HOME/telegram-bazel-cache" \
+    --cacheDir="$HOME/private-chat-ios-bazel-cache" \
     generateProject \
     --configurationPath=build-system/template_minimal_development_configuration.json \
     --xcodeManagedCodesigning
 ```
 
-# Advanced Compilation Guide
+如果只做模拟器构建，可按需禁用 provisioning profile；真机和发布包必须使用真实签名配置。
 
-## Xcode
+## 后续测试要求
 
-1. Copy and edit `build-system/appstore-configuration.json`.
-2. Copy `build-system/fake-codesigning`. Create and download provisioning profiles, using the `profiles` folder as a reference for the entitlements.
-3. Generate an Xcode project:
-```
-python3 build-system/Make/Make.py \
-    --cacheDir="$HOME/telegram-bazel-cache" \
-    generateProject \
-    --configurationPath=configuration_from_step_1.json \
-    --codesigningInformationPath=directory_from_step_2
-```
+- 生成 Xcode 工程。
+- 构建模拟器版本。
+- 使用私有服务端完成登录冒烟测试。
+- 真机签名准备好后构建设备版本。
+- 使用固定局域网 IP 或公网域名完成 Android / iOS / Desktop 多端互通测试。
 
-## IPA
+## English Summary
 
-1. Repeat the steps from the previous section. Use distribution provisioning profiles.
-2. Run:
-```
-python3 build-system/Make/Make.py \
-    --cacheDir="$HOME/telegram-bazel-cache" \
-    build \
-    --configurationPath=...see previous section... \
-    --codesigningInformationPath=...see previous section... \
-    --buildNumber=100001 \
-    --configuration=release_arm64
-```
-
-# FAQ
-
-## Xcode is stuck at "build-request.json not updated yet"
-
-Occasionally, you might observe the following message in your build log:
-```
-"/Users/xxx/Library/Developer/Xcode/DerivedData/Telegram-xxx/Build/Intermediates.noindex/XCBuildData/xxx.xcbuilddata/build-request.json" not updated yet, waiting...
-```
-
-Should this occur, simply cancel the ongoing build and initiate a new one.
-
-## Telegram_xcodeproj: no such package 
-
-Following a system restart, the auto-generated Xcode project might encounter a build failure accompanied by this error:
-```
-ERROR: Skipping '@rules_xcodeproj_generated//generator/Telegram/Telegram_xcodeproj:Telegram_xcodeproj': no such package '@rules_xcodeproj_generated//generator/Telegram/Telegram_xcodeproj': BUILD file not found in directory 'generator/Telegram/Telegram_xcodeproj' of external repository @rules_xcodeproj_generated. Add a BUILD file to a directory to mark it as a package.
-```
-
-If you encounter this issue, re-run the project generation steps in the README.
-
-
-# Tips
-
-## Codesigning is not required for simulator-only builds
-
-Add `--disableProvisioningProfiles`:
-```
-python3 build-system/Make/Make.py \
-    --cacheDir="$HOME/telegram-bazel-cache" \
-    generateProject \
-    --configurationPath=path-to-configuration.json \
-    --codesigningInformationPath=path-to-provisioning-data \
-    --disableProvisioningProfiles
-```
-
-## Versions
-
-Each release is built using a specific Xcode version (see `versions.json`). The helper script checks the versions of the installed software and reports an error if they don't match the ones specified in `versions.json`. It is possible to bypass these checks:
-
-```
-python3 build-system/Make/Make.py --overrideXcodeVersion build ... # Don't check the version of Xcode
-```
+This repository is a private iOS client snapshot for `Private Chat`, configured for a self-hosted `private-chat-server`. It is not an official Telegram iOS distribution and should not be shipped with Telegram branding.
