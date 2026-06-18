@@ -1,5 +1,5 @@
-# This file is part of Telegram Desktop,
-# the official desktop application for the Telegram messaging service.
+# This file is part of Private Chat Desktop,
+# a private desktop client for a self-hosted chat service.
 #
 # For license and copyright information please follow this link:
 # https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
@@ -27,8 +27,8 @@ endif()
 project(Telegram
     LANGUAGES C CXX
     VERSION ${desktop_app_version_cmake}
-    DESCRIPTION "Official Telegram Desktop messenger"
-    HOMEPAGE_URL "https://desktop.telegram.org"
+    DESCRIPTION "Private Chat Desktop messenger"
+    HOMEPAGE_URL "https://private-chat.local"
 )
 
 if (APPLE)

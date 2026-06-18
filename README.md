@@ -1,99 +1,37 @@
-# [Telegram Desktop][telegram_desktop] – Official Messenger
+# Private Chat Desktop 桌面端
 
-This is the complete source code and the build instructions for the official [Telegram][telegram] messenger desktop client, based on the [Telegram API][telegram_api] and the [MTProto][telegram_proto] secure protocol.
+这是 `Private Chat` 私有聊天系统的桌面端源码快照，用于连接我们自建的 `private-chat-server`。当前仓库不再作为 Telegram Desktop 官方客户端发布，也不应使用 Telegram 品牌对外分发。
 
-[![Version](https://badge.fury.io/gh/telegramdesktop%2Ftdesktop.svg)](https://github.com/telegramdesktop/tdesktop/releases)
-[![Build Status](https://github.com/telegramdesktop/tdesktop/workflows/Windows./badge.svg)](https://github.com/telegramdesktop/tdesktop/actions)
-[![Build Status](https://github.com/telegramdesktop/tdesktop/workflows/MacOS./badge.svg)](https://github.com/telegramdesktop/tdesktop/actions)
-[![Build Status](https://github.com/telegramdesktop/tdesktop/workflows/Linux./badge.svg)](https://github.com/telegramdesktop/tdesktop/actions)
-[![Built with Depot](https://img.shields.io/badge/Built%20with-Depot.dev-46A75A)](https://depot.dev)
+## 当前状态
 
-[![Preview of Telegram Desktop][preview_image]][preview_image_url]
+- 内置生产和测试 DC 已指向本机私有服务端：`127.0.0.1:10443`，IPv6 本机地址为 `::1:10443`。
+- 内置 MTProto RSA 公钥已替换为当前私有服务端公钥。
+- Linux、Windows、macOS 的高可见入口正在分批改为 `Private Chat` / `Private Chat Desktop`。
+- 本机仍缺完整桌面端构建环境，当前以静态配置验证为主。
 
-The source code is published under GPLv3 with OpenSSL exception, the license is available [here][license].
+## 本地验证
 
-## Supported systems
+运行桌面端私有化配置验证：
 
-The latest version is available for
+```sh
+python3 scripts/verify_private_chat_desktop_config.py
+```
 
-* [Windows 7 and above (64 bit)](https://telegram.org/dl/desktop/win64) ([portable](https://telegram.org/dl/desktop/win64_portable))
-* [Windows 7 and above (32 bit)](https://telegram.org/dl/desktop/win) ([portable](https://telegram.org/dl/desktop/win_portable))
-* [macOS 10.13 and above](https://telegram.org/dl/desktop/mac)
-* [Linux static build for 64 bit](https://telegram.org/dl/desktop/linux)
-* [Snap](https://snapcraft.io/telegram-desktop)
-* [Flatpak](https://flathub.org/apps/details/org.telegram.desktop)
+验证覆盖：
 
-## Old system versions
+- 私有 DC 地址与端口。
+- macOS `Info.plist` 高可见名称。
+- Windows 安装器、版本资源和 UWP/AppX 显示名称。
+- Linux desktop/AppStream 元数据。
+- 顶层 CMake/README 不再保留官方发布说明。
 
-Version **4.9.9** was the last that supports older systems
+## 后续构建要求
 
-* [macOS 10.12](https://updates.tdesktop.com/tmac/tsetup.4.9.9.dmg)
-* [Linux with glibc < 2.28 static build](https://updates.tdesktop.com/tlinux/tsetup.4.9.9.tar.xz)
+- macOS：需要完整 Xcode，而不是仅安装 Command Line Tools。
+- Linux：需要可用 Qt/CMake/Ninja 或可成功构建的 Docker 环境。
+- Windows：需要 Visual Studio、Windows SDK、签名/打包配置。
+- 跨设备测试：需要把 `127.0.0.1` 改为局域网 IP 或公网域名，并确保证书、端口和防火墙可访问。
 
-Version **2.4.4** was the last that supports older systems
+## English Summary
 
-* [OS X 10.10 and 10.11](https://updates.tdesktop.com/tosx/tsetup-osx.2.4.4.dmg)
-* [Linux static build for 32 bit](https://updates.tdesktop.com/tlinux32/tsetup32.2.4.4.tar.xz)
-
-Version **1.8.15** was the last that supports older systems
-
-* [Windows XP and Vista](https://updates.tdesktop.com/tsetup/tsetup.1.8.15.exe) ([portable](https://updates.tdesktop.com/tsetup/tportable.1.8.15.zip))
-* [OS X 10.8 and 10.9](https://updates.tdesktop.com/tmac/tsetup.1.8.15.dmg)
-* [OS X 10.6 and 10.7](https://updates.tdesktop.com/tmac32/tsetup32.1.8.15.dmg)
-
-## Third-party
-
-* Qt 6 ([LGPL](http://doc.qt.io/qt-6/lgpl.html)) and Qt 5.15 ([LGPL](http://doc.qt.io/qt-5/lgpl.html)) slightly patched
-* OpenSSL 3.2.1 ([Apache License 2.0](https://www.openssl.org/source/apache-license-2.0.txt))
-* WebRTC ([New BSD License](https://github.com/desktop-app/tg_owt/blob/master/LICENSE))
-* zlib ([zlib License](http://www.zlib.net/zlib_license.html))
-* LZMA SDK 9.20 ([public domain](http://www.7-zip.org/sdk.html))
-* liblzma ([public domain](http://tukaani.org/xz/))
-* Google Breakpad ([License](https://chromium.googlesource.com/breakpad/breakpad/+/master/LICENSE))
-* Google Crashpad ([Apache License 2.0](https://chromium.googlesource.com/crashpad/crashpad/+/master/LICENSE))
-* GYP ([BSD License](https://github.com/bnoordhuis/gyp/blob/master/LICENSE))
-* Ninja ([Apache License 2.0](https://github.com/ninja-build/ninja/blob/master/COPYING))
-* OpenAL Soft ([LGPL](https://github.com/kcat/openal-soft/blob/master/COPYING))
-* Opus codec ([BSD License](http://www.opus-codec.org/license/))
-* FFmpeg ([LGPL](https://www.ffmpeg.org/legal.html))
-* Guideline Support Library ([MIT License](https://github.com/Microsoft/GSL/blob/master/LICENSE))
-* Range-v3 ([Boost License](https://github.com/ericniebler/range-v3/blob/master/LICENSE.txt))
-* Open Sans font ([Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0.html))
-* Vazirmatn font ([SIL Open Font License 1.1](https://github.com/rastikerdar/vazirmatn/blob/master/OFL.txt))
-* Emoji alpha codes ([MIT License](https://github.com/emojione/emojione/blob/master/extras/alpha-codes/LICENSE.md))
-* xxHash ([BSD License](https://github.com/Cyan4973/xxHash/blob/dev/LICENSE))
-* QR Code generator ([MIT License](https://github.com/nayuki/QR-Code-generator#license))
-* CMake ([New BSD License](https://github.com/Kitware/CMake/blob/master/Copyright.txt))
-* Hunspell ([LGPL](https://github.com/hunspell/hunspell/blob/master/COPYING.LESSER))
-* Ada ([Apache License 2.0](https://github.com/ada-url/ada/blob/main/LICENSE-APACHE))
-
-## Build instructions
-
-* [Windows (32-bit and 64-bit)][win]
-* [macOS][mac]
-* [GNU/Linux using Docker][linux]
-
-[//]: # (LINKS)
-[telegram]: https://telegram.org
-[telegram_desktop]: https://desktop.telegram.org
-[telegram_api]: https://core.telegram.org
-[telegram_proto]: https://core.telegram.org/mtproto
-[license]: LICENSE
-[win]: docs/building-win.md
-[mac]: docs/building-mac.md
-[linux]: docs/building-linux.md
-[preview_image]: https://github.com/telegramdesktop/tdesktop/blob/dev/docs/assets/preview.png "Preview of Telegram Desktop"
-[preview_image_url]: https://raw.githubusercontent.com/telegramdesktop/tdesktop/dev/docs/assets/preview.png
-
-## Thanks to
-
-<a href="https://depot.dev">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://depot.dev/assets/brand/1693758816/depot-logo-horizontal-on-dark.svg">
-    <source media="(prefers-color-scheme: light)" srcset="https://depot.dev/assets/brand/1693758816/depot-logo-horizontal-on-light.svg">
-    <img alt="Depot" src="https://depot.dev/assets/brand/1693758816/depot-logo-horizontal-on-light.svg" width="150">
-  </picture>
-</a>
-
-CI infrastructure sponsored by [Depot](https://depot.dev) — fast GitHub Actions runners.
-
+This repository is a private snapshot for `Private Chat Desktop`, configured for a self-hosted `private-chat-server`. It is not an official Telegram Desktop distribution and should not be shipped with Telegram branding.
