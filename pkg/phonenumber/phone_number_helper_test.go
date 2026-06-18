@@ -21,6 +21,8 @@ package phonenumber
 import (
 	"fmt"
 	"testing"
+
+	"github.com/teamgram/proto/mtproto"
 )
 
 //func TestCheckPhoneNumber(t *testing.T) {
@@ -50,4 +52,39 @@ func TestMakePhoneNumber2(t *testing.T) {
 
 	fmt.Println(pNumber)
 	fmt.Println(pNumber.GetNormalizeDigits(), ", ", pNumber.GetRegionCode(), ", ", pNumber.GetCountryCode())
+}
+
+func TestCheckPhoneNumberInvalidLocalTestPhones(t *testing.T) {
+	tests := []struct {
+		name      string
+		input     string
+		wantPhone string
+		wantErr   error
+	}{
+		{name: "primary android smoke number with plus", input: "+42400", wantPhone: "42400"},
+		{name: "primary android smoke number without plus", input: "42400", wantPhone: "42400"},
+		{name: "second account number with plus", input: "+42401", wantPhone: "42401"},
+		{name: "range end number without plus", input: "42409", wantPhone: "42409"},
+		{name: "spaces from client input", input: "+4 2402", wantPhone: "42402"},
+		{name: "reserved admin smoke number", input: "+42777", wantPhone: "42777"},
+		{name: "outside local range", input: "+42410", wantErr: mtproto.ErrPhoneNumberInvalid},
+	}
+
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			_, gotPhone, err := CheckPhoneNumberInvalid(tt.input)
+			if tt.wantErr != nil {
+				if err == nil {
+					t.Fatalf("CheckPhoneNumberInvalid(%q) error = nil, want %v", tt.input, tt.wantErr)
+				}
+				return
+			}
+			if err != nil {
+				t.Fatalf("CheckPhoneNumberInvalid(%q) error = %v", tt.input, err)
+			}
+			if gotPhone != tt.wantPhone {
+				t.Fatalf("CheckPhoneNumberInvalid(%q) phone = %q, want %q", tt.input, gotPhone, tt.wantPhone)
+			}
+		})
+	}
 }

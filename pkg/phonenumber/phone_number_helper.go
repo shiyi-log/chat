@@ -103,19 +103,8 @@ func CheckPhoneNumberInvalid(phone string) (string, string, error) {
 	}
 
 	phone = strings.ReplaceAll(phone, " ", "")
-	switch phone {
-	case "+42400":
-		return "", phone[1:], nil
-	case "+42401":
-		return "", phone[1:], nil
-	case "+42777":
-		return "", phone[1:], nil
-	case "42400":
-		return "", phone, nil
-	case "42401":
-		return "", phone, nil
-	case "42777":
-		return "", phone, nil
+	if isLocalTestPhone(phone) {
+		return "", strings.TrimPrefix(phone, "+"), nil
 	}
 
 	// fragment
@@ -146,4 +135,15 @@ func CheckPhoneNumberInvalid(phone string) (string, string, error) {
 	}
 
 	return pNumber.GetRegionCode(), pNumber.GetNormalizeDigits(), nil
+}
+
+func isLocalTestPhone(phone string) bool {
+	normalized := strings.TrimPrefix(phone, "+")
+	if normalized == "42777" {
+		return true
+	}
+	return len(normalized) == 5 &&
+		strings.HasPrefix(normalized, "4240") &&
+		normalized[4] >= '0' &&
+		normalized[4] <= '9'
 }
