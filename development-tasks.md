@@ -102,6 +102,7 @@
 - [x] 提交并推送：`a634c447 安卓端接入本地私有服务端`。
 - [x] 安装 Java Runtime 后重新运行 Gradle 工程解析。
 - [x] 替换 Android 对外包名和应用显示名。
+- [x] 修复 Android 默认英文欢迎页和登录权限弹窗的上游品牌漏项。
 - [ ] 替换图标、通知渠道名称。
 - [x] 替换 Firebase / `google-services.json` 和 Huawei AGConnect 包名配置。
 - [ ] 禁用或替换上游官方支持、更新、上报接口。
