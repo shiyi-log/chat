@@ -175,6 +175,84 @@ def main():
         value = get_string_value(strings_text, key)
         record(checks, "private chat" in value.lower(), f"{strings_path}：{key} 应包含 Private Chat")
         record(checks, "telegram" not in value.lower(), f"{strings_path}：{key} 不应继续显示 Telegram")
+    general_experience_private_keys = (
+        "PaymentWarningText",
+        "ImportImportingInfo",
+        "ImportDoneInfo",
+        "GroupUserLeftError",
+        "ChannelAntiSpamUser",
+        "ChannelAntiSpamInfo",
+        "ChannelAntiSpamFalsePositiveReported",
+        "ChannelLinkInfo",
+        "ChannelUserLeftError",
+        "BotPermissionGameAlert",
+        "BlockUserAlert",
+        "ReportSentInfo",
+        "BlockUserMessage",
+        "BlockUsersMessage",
+        "EncryptionKeyDescription",
+        "UsernameHelp",
+        "ImportStickersDoneInfo",
+        "CreateNewThemeAlert",
+        "ProfilePopupNotificationInfo",
+        "SecretWebPageInfo",
+        "TelegramVersion",
+        "LowDiskSpaceMessage",
+        "EnableAllStreamingInfo",
+        "ClearingCacheDescription",
+        "LocalDatabaseInfo",
+        "WebSessionsTitle",
+        "TerminateWebSessionInfo",
+        "AreYouSureWebSessions",
+        "ClearOtherWebSessionsHelp",
+        "ScreenCaptureAlert",
+        "RecoveryEmailSubtitle",
+        "YourEmailSkipWarningText",
+        "EnabledPasswordText",
+        "PrivacyPhoneInfo",
+        "PrivacyPhoneInfo3",
+        "PrivacyPaymentsClearAlert",
+        "PrivacyBotsInfo",
+        "PrivacyCallsP2PHelp",
+        "SyncContactsDeleteText",
+        "UnsupportedMedia2",
+        "SecretLinkPreviewAlert",
+        "ClearTelegramCache",
+        "TelegramCacheSize",
+        "LocalDatabaseSize",
+        "VoipInCallBranding",
+        "VoipInVideoCallBranding",
+        "VoipInConferenceCallBranding",
+        "VoipOutgoingCall",
+        "VoipRingtoneInfo",
+        "VoipPeerVideoOutdated",
+        "VoipRateCallAlert",
+        "VoipNeedMicPermissionWithHint",
+        "VoipNeedMicCameraPermissionWithHint",
+        "VoipNeedCameraPermission",
+        "CallViaTelegram",
+        "VideoCallViaTelegram",
+        "VoiceCallViaTelegram",
+        "CallReportSent",
+        "VoipQuickRepliesExplain",
+        "VoipInCallBrandingWithName",
+        "VoipInVideoCallBrandingWithName",
+        "VoipErrorUnknown",
+        "PrimaryLinkHelp",
+        "PrimaryLinkHelpChannel",
+        "OptimizingTelegram",
+        "MigrateOldFolderDescription",
+        "AllowBackgroundActivityInfo",
+        "AllowBackgroundActivityInfoOneUIBelowS",
+        "AllowBackgroundActivityInfoOneUIAboveS",
+        "DownloadedFilesMessage",
+        "CreatePasscodeInfoPIN",
+        "CreatePasscodeInfoPassword",
+    )
+    for key in general_experience_private_keys:
+        value = get_string_value(strings_text, key)
+        record(checks, "private chat" in value.lower(), f"{strings_path}：{key} 应包含 Private Chat")
+        record(checks, "telegram" not in value.lower(), f"{strings_path}：{key} 不应继续显示 Telegram")
     private_url_keys = (
         "TelegramFeaturesUrl",
         "TelegramFaqUrl",
@@ -184,6 +262,7 @@ def main():
         "AuthAnotherClientDownloadClientUrl",
         "AuthAnotherWebClientUrl",
         "CheckPhoneNumberLearnMoreUrl",
+        "EncryptionKeyLink",
     )
     for key in private_url_keys:
         value = get_string_value(strings_text, key)
@@ -234,6 +313,7 @@ def main():
     print("- 默认英文帮助、通知、QR 登录和更新入口已纳入高可见品牌门禁")
     print("- 默认英文权限、锁屏、存储、Passcode 和通话通知渠道说明已纳入系统入口品牌门禁")
     print("- 默认英文账号、邀请、会话和版本更新入口已纳入品牌门禁")
+    print("- 默认英文通用体验、隐私安全、缓存、通话和导入入口已纳入品牌门禁")
     print("- 库模块保留 org.telegram.messenger 内部构建匹配项，最终 App 模块不保留旧对外包名")
     print("- 模拟器私有 DC 已指向 10.0.2.2:10443，单 DC 防御逻辑存在")
     print("- 当前验证是静态配置验证；真机/公网测试仍需要替换服务端地址和发布证书")
