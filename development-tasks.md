@@ -248,7 +248,7 @@
 - Android 当前仍有 Firebase `FIS_AUTH_ERROR` / client blocked 日志，需要后续替换真实 Firebase 配置或禁用推送能力。
 - 服务端当前 Docker 镜像已完成重建并在线运行；后续生产部署仍需替换默认验证码、默认账号密码和公网/局域网固定入口。
 - Desktop 私有化静态配置验证当前 `28/28` 项通过；完整 Xcode 26.5 已安装，macOS 构建不再被 Xcode 阻塞。
-- Desktop macOS 构建当前被 Qt 6.11.1 和第三方库准备阻塞；`configure.sh force` 已能进入 CMake/Xcode 探测但失败于 `Neither Qt6 nor Qt5 is found`，`prepare/mac.sh` 已推进到 `[15/26](Libraries/libjxl)`，当前失败于 `third_party/lcms` GitHub HTTP/2 下载中断。
+- Desktop macOS 构建当前被 Qt 6.11.1 准备阻塞；`configure.sh force` 已能进入 CMake/Xcode 探测但失败于 `Neither Qt6 nor Qt5 is found`，`prepare/mac.sh` 已推进到 `[23/26](Libraries/qt_6.11.1)`，`libjxl`、`libvpx`、`liblcms2`、`regex`、`ffmpeg`、`openal-soft`、`breakpad`、`crashpad` 已完成并缓存，当前正在拉取 Qt 必要模块源码。
 - Desktop Linux Docker 构建环境被 EPEL 镜像源 SSL 连接失败阻塞。
 - iOS 私有化静态配置验证已扩展到默认英文 `PresentationStrings`、Widget 扩展和实际构建用主 App plist 片段，当前 `290/290` 项通过；Xcode 26.5 / iOS 26.5 Simulator 已完成工程生成、Debug 构建、安装和启动冒烟验证。
 - iOS 真机/发布构建仍需要真实 Apple Developer Team ID、签名证书、provisioning profile 和正式私有 `api_id` / `api_hash`。
