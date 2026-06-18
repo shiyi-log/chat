@@ -333,13 +333,13 @@
     <string name="ContactsPermissionAlertNotNow">Not now</string>
     <string name="ContactsPermissionAlertContinue">Continue</string>
     <string name="NotificationsPermissionAlertTitle">Turn on notifications</string>
-    <string name="NotificationsPermissionAlertSubtitle">Please allow Telegram to send you notifications to stay in touch with your friends and family.</string>
+    <string name="NotificationsPermissionAlertSubtitle">Please allow Private Chat to send you notifications to stay in touch with your friends and family.</string>
     <string name="NotificationsPermissionAlert1">Get notified about new messages</string>
     <string name="NotificationsPermissionAlert2">Learn when you are mentioned in groups</string>
     <string name="NotificationsPermissionAlert3">Mute specific chats and types of chats</string>
     <string name="NotificationsPermissionContinue">Continue</string>
     <string name="NotificationsPermissionSettings">Open Settings</string>
-    <string name="YourContacts">Your contacts on Telegram</string>
+    <string name="YourContacts">Your contacts on Private Chat</string>
     <string name="ConnectingYourContacts">Connecting your contacts...</string>
     <string name="ArchiveHintHeader1">This is your Archive</string>
     <string name="ArchiveHintText1">Chats with enabled notifications get unarchived when new messages arrive.</string>
@@ -1891,11 +1891,11 @@
     <string name="WithinAMonth">last seen within a month</string>
     <string name="ALongTimeAgo">last seen a long time ago</string>
     <string name="NewMessageTitle">New Message</string>
-    <string name="InviteFriendsHelp">Select contacts to invite them to Telegram</string>
-    <string name="InviteToTelegram">INVITE TO TELEGRAM</string>
-    <string name="ShareTelegram2">Share Telegram</string>
+    <string name="InviteFriendsHelp">Select contacts to invite them to Private Chat</string>
+    <string name="InviteToTelegram">INVITE TO PRIVATE CHAT</string>
+    <string name="ShareTelegram2">Share Private Chat</string>
     <string name="UpdateContactsTitle">Update contacts?</string>
-    <string name="UpdateContactsMessage">Telegram has detected many unsynced contacts, would you like to sync them now? Choose \'OK\' if you\'re using your own device, SIM card and Google account.</string>
+    <string name="UpdateContactsMessage">Private Chat has detected many unsynced contacts, would you like to sync them now? Choose \'OK\' if you\'re using your own device, SIM card and Google account.</string>
     <string name="SortedByName">Sorted by name</string>
     <string name="SortedByLastSeen">Sorted by last seen time</string>
     <string name="AddContactByPhone">Add %1$s</string>
@@ -1903,7 +1903,7 @@
     <string name="NoContactsYet2Invite">Invite Friends ></string>
 
     <string name="NoContactsYet3">Add Contacts</string>
-    <string name="NoContactsYet3Sub">You have no contacts on Telegram yet. How about adding them?</string>
+    <string name="NoContactsYet3Sub">You have no contacts on Private Chat yet. How about adding them?</string>
 
     <string name="NewContactAlertTitle">New contact</string>
     <string name="NewContactAlertMessage">Phone number **%1$s** is not in your contacts list. Do you want to add it?</string>
@@ -1956,7 +1956,7 @@
     <string name="CopyNumber">Copy Number</string>
     <string name="ShareLink">Share Link</string>
     <string name="ShareLinks">Share Links</string>
-    <string name="LinkInfo">Anyone who has Telegram installed will be able to join your group by following this link.</string>
+    <string name="LinkInfo">Anyone who has Private Chat installed will be able to join your group by following this link.</string>
     <string name="SearchForPeople">Search for people...</string>
     <string name="SearchForPeopleAndGroups">Search for users and groups...</string>
     <string name="GigagroupConvertTitle">Broadcast Groups</string>
@@ -1985,8 +1985,8 @@
     <string name="ShareContact">Share contact</string>
     <string name="AddContact">Add to contacts</string>
     <string name="AddContactTitle">Add Contact</string>
-    <string name="ContactNotRegisteredTitle">Invite to Telegram</string>
-    <string name="ContactNotRegistered">%1$s is not on Telegram yet, would you like to invite them to join?</string>
+    <string name="ContactNotRegisteredTitle">Invite to Private Chat</string>
+    <string name="ContactNotRegistered">%1$s is not on Private Chat yet, would you like to invite them to join?</string>
     <string name="Invite">Invite</string>
     <string name="Block">BLOCK</string>
     <string name="BlockAndDeleteReplies">BLOCK AND DELETE REPLIES</string>
@@ -4597,18 +4597,18 @@
     <string name="NoOneJoined">No one joined</string>
     <string name="NoOneSubscribed">No one subscribed</string>
     <string name="LinkLimitReached">Limit reached</string>
-    <string name="QRCodeLinkHelpGroup">Everyone on Telegram can scan this code to join your group.</string>
+    <string name="QRCodeLinkHelpGroup">Everyone on Private Chat can scan this code to join your group.</string>
     <string name="DeleteLinkHelp">This will delete link.</string>
     <string name="DeleteAllRevokedLinkHelp">This will delete all revoked links.</string>
     <string name="LinksCreatedByThisAdmin">Invite links created by this admin</string>
     <string name="LinksCreatedByOtherAdmins">Invite links created by other admins</string>
     <string name="PermanentLinkForThisAdmin">Invite link for this admin</string>
-    <string name="QRCodeLinkHelpChannel">Everyone on Telegram can scan this code to join your channel.</string>
-    <string name="QRCodeLinkHelpChannelDirect">Everyone on Telegram can scan this code to write to your channel.</string>
+    <string name="QRCodeLinkHelpChannel">Everyone on Private Chat can scan this code to join your channel.</string>
+    <string name="QRCodeLinkHelpChannelDirect">Everyone on Private Chat can scan this code to write to your channel.</string>
     <string name="QRCodeLinkHelpProxy">Your friends can add this proxy by scanning this code with phone or in-app camera.</string>
-    <string name="QRCodeLinkHelpFolder">Everyone on Telegram can scan this code to add this folder and join the chats included in this invite link.</string>
-    <string name="QRCodeLinkGroupCall">Everyone on Telegram can scan this code to join your group call.</string>
-    <string name="LinkInfoChannel">Anyone who has Telegram installed will be able to join your channel by following this link.</string>
+    <string name="QRCodeLinkHelpFolder">Everyone on Private Chat can scan this code to add this folder and join the chats included in this invite link.</string>
+    <string name="QRCodeLinkGroupCall">Everyone on Private Chat can scan this code to join your group call.</string>
+    <string name="LinkInfoChannel">Anyone who has Private Chat installed will be able to join your channel by following this link.</string>
     <string name="LinkExpiresInTime">The link expires in %s</string>
     <string name="PublicLink">Public link</string>
     <string name="InviteExpired">This invite link has expired.</string>
