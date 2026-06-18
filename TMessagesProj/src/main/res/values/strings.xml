@@ -1864,7 +1864,7 @@
     <string name="NotificationActionMissedCallConference">You missed a call from %1$s</string>
     <string name="NotificationActionMissedCallConferenceOther_one">You missed a call from %2$s and %1$d other</string>
     <string name="NotificationActionMissedCallConferenceOther_other">You missed a call from %2$s and %1$d others</string>
-    <string name="SecretChatName">Telegram</string>
+    <string name="SecretChatName">Private Chat</string>
     <!--contacts view-->
     <string name="SelectContact">Select Contact</string>
     <string name="ShareContactTitle">Share Contact</string>
@@ -3106,7 +3106,7 @@
     <!--passcode view-->
     <string name="Passcode">Passcode Lock</string>
     <string name="ChangePasscode">Change Passcode</string>
-    <string name="ChangePasscodeInfo">When you set up an additional passcode, a lock icon will appear on the chats page. Tap it to lock and unlock your Telegram app.\n\nNote: if you forget the passcode, you\'ll need to delete and reinstall the app. All secret chats will be lost.</string>
+    <string name="ChangePasscodeInfo">When you set up an additional passcode, a lock icon will appear on the chats page. Tap it to lock and unlock your Private Chat app.\n\nNote: if you forget the passcode, you\'ll need to delete and reinstall the app. All secret chats will be lost.</string>
     <string name="ChangePasscodeInfoShort">When you set up a passcode, a lock icon will apear on the chats page. Tap it to lock and unlock the app.</string>
     <string name="EnablePasscode">Enable passcode</string>
     <string name="ConfirmCreatePasscode">Re-enter your passcode</string>
@@ -3114,7 +3114,7 @@
     <string name="PasscodeSwitchToPIN">Switch to PIN</string>
     <string name="PasscodesDoNotMatchTryAgain">Passcodes don\'t match. Please try again.</string>
     <string name="EnterYourPasscode">Enter your passcode</string>
-    <string name="EnterYourPasscodeInfo">Please enter your current Telegram passcode to manage this option.</string>
+    <string name="EnterYourPasscodeInfo">Please enter your current Private Chat passcode to manage this option.</string>
     <string name="ForgotPasscode">Forgot passcode?</string>
     <string name="ForgotPasscodeInfo">If you forgot your passcode, you\'ll need to delete and reinstall the app.\n\nAll secret chats will be lost.</string>
     <string name="PasscodeScreenHint">Tap a lock icon on the chats page to lock and unlock the app.</string>
@@ -3122,7 +3122,7 @@
     <string name="DisablePasscodeConfirmMessage">Are you sure you want to turn off passcode?</string>
     <string name="DisablePasscodeTurnOff">Turn Off</string>
     <string name="EnterNewPasscode">Enter your new passcode</string>
-    <string name="EnterYourTelegramPasscode">Enter your Telegram passcode</string>
+    <string name="EnterYourTelegramPasscode">Enter your Private Chat passcode</string>
     <string name="AutoLock">Auto-lock</string>
     <string name="AutoLockInfo">Require passcode if away for a time.</string>
     <string name="AutoLockInTime">in %1$s</string>
@@ -3533,10 +3533,10 @@
     <string name="StorageUsage">Storage Usage</string>
     <string name="StorageCleared">Storage Cleared</string>
     <string name="StorageUsageCalculating">Calculating cache size...</string>
-    <string name="StorageUsageTelegram">Telegram uses %s of your device storage.</string>
-    <string name="StorageUsageTelegramLess">Telegram uses %s of your device storage.</string>
-    <string name="StorageCleared2">All media can be re-downloaded from the Telegram cloud if you need it again.</string>
-    <string name="StorageUsageInfo">All media will stay in the Telegram cloud and can be re-downloaded if you need it again.</string>
+    <string name="StorageUsageTelegram">Private Chat uses %s of your device storage.</string>
+    <string name="StorageUsageTelegramLess">Private Chat uses %s of your device storage.</string>
+    <string name="StorageCleared2">All media can be re-downloaded from the Private Chat cloud if you need it again.</string>
+    <string name="StorageUsageInfo">All media will stay in the Private Chat cloud and can be re-downloaded if you need it again.</string>
     <string name="NetworkUsage">Data Usage</string>
     <string name="StoragePath">Storage Path</string>
     <string name="NetworkUsageAllTab">All</string>
@@ -3557,7 +3557,7 @@
     <string name="OutgoingCalls">Outgoing calls</string>
     <string name="IncomingCalls">Incoming calls</string>
     <string name="IncomingCallsSystemSetting">Internal calls notifications</string>
-    <string name="IncomingCallsSystemSettingDescription">You can change ringtone sound in Telegram -> Settings -> Notifications and Sounds.</string>
+    <string name="IncomingCallsSystemSettingDescription">You can change ringtone sound in Private Chat -> Settings -> Notifications and Sounds.</string>
     <string name="OutgoingCallsCount_one">%1$d outgoing call</string>
     <string name="OutgoingCallsCount_other">%1$d outgoing calls</string>
     <string name="IncomingCallsCount_one">%1$d incoming call</string>
@@ -4067,26 +4067,26 @@
     <string name="TosUpdateDecline">We\'re very sorry, but this means we must part ways here. Unlike others, we don\'t use your data for ad targeting or other commercial purposes. Telegram only stores the information it needs to function as a feature-rich cloud service. You can adjust how we use your data (e.g., delete synced contacts) in Privacy &amp; Security settings.\n\nBut if you\'re generally not OK with Telegram\'s modest needs, it won\'t be possible for us to provide this service. You can deactivate your account now — or look around some more and deactivate it later if you feel you\'re not happy with the way we use your data.</string>
     <string name="TosDeclineDeleteAccount">Warning, this will irreversibly delete your Telegram account along with all the data you store in the Telegram cloud.\n\nImportant: You can Cancel now and export your data before deleting your account instead of losing it all. (To do this, open the latest version of Telegram Desktop and go to Settings &gt; Export Telegram Data.)</string>
     <!--permissions-->
-    <string name="PermissionStorageWithHint">**Telegram** needs storage access so you can send and save photos, videos, music and other media. Tap Settings -> Permissions, and turn **Files and media** on.</string>
-    <string name="PermissionNoAudioWithHint">**Telegram** needs microphone access so that you can send voice messages. Tap Settings -> Permissions, and turn **Microphone** on.</string>
-    <string name="PermissionNoBluetoothWithHint">**Telegram** needs bluetooth access to record video from your headset microphone. Tap Settings -> Permissions, and turn **Bluetooth** on.</string>
-    <string name="PermissionNoAudioVideoWithHint">**Telegram** needs microphone access so that you can send voice messages. Tap Settings -> Permissions, and turn **Microphone** on. </string>
-    <string name="PermissionNoCameraWithHint">**Telegram** needs camera access so that you can take photos and videos. Tap Settings -> Permissions, and turn **Camera** on.</string>
-    <string name="PermissionNoCameraMicVideo">**Telegram** needs camera and microphone access so that you can send video messages. Tap Settings -> Permissions, and turn **Microphone** and **Camera** on.</string>
-    <string name="PermissionNoLocation">Telegram needs access to your location so that you can share it with your friends.</string>
-    <string name="PermissionNoLocationStory">Telegram needs access to your location so that you can add your current weather widget to a story.</string>
-    <string name="PermissionNoLocationFriends">**Telegram** needs access to location so that you can share it with your friends. Tap Settings -> Permissions, and turn **Location** on.</string>
-    <string name="PermissionNoLocationNavigation">**Telegram** needs access to location so that you can get directions. Tap Settings -> Permissions, and turn **Location** on.</string>
-    <string name="PermissionNoContactsSharing">**Telegram** needs access to contacts so that you can share them with your friends. Tap Settings -> Permissions, and turn **Contacts** on.</string>
-    <string name="PermissionNoContactsSaving">**Telegram** needs access to contacts to save them on your phone. Tap Settings -> Permissions, and turn **Contacts** on.</string>
-    <string name="PermissionNoStorageAvatar">**Telegram** needs storage access so you can upload profile picture. Tap Settings -> Permissions, and turn **Files and media** on.</string>
-    <string name="PermissionNoAudioStorageStory">**Telegram** needs access to music files to upload with your story. Tap Settings -> Permissions, and turn **Music and Audio** on.</string>
-    <string name="PermissionDrawAboveOtherApps">Telegram needs access to draw above other apps to play videos in Picture-in-Picture mode.</string>
-    <string name="PermissionDrawAboveOtherAppsGroupCall">Overlay mode lets you use push-to-talk and see who is talking even when you are outside of Telegram.</string>
+    <string name="PermissionStorageWithHint">**Private Chat** needs storage access so you can send and save photos, videos, music and other media. Tap Settings -> Permissions, and turn **Files and media** on.</string>
+    <string name="PermissionNoAudioWithHint">**Private Chat** needs microphone access so that you can send voice messages. Tap Settings -> Permissions, and turn **Microphone** on.</string>
+    <string name="PermissionNoBluetoothWithHint">**Private Chat** needs bluetooth access to record video from your headset microphone. Tap Settings -> Permissions, and turn **Bluetooth** on.</string>
+    <string name="PermissionNoAudioVideoWithHint">**Private Chat** needs microphone access so that you can send voice messages. Tap Settings -> Permissions, and turn **Microphone** on. </string>
+    <string name="PermissionNoCameraWithHint">**Private Chat** needs camera access so that you can take photos and videos. Tap Settings -> Permissions, and turn **Camera** on.</string>
+    <string name="PermissionNoCameraMicVideo">**Private Chat** needs camera and microphone access so that you can send video messages. Tap Settings -> Permissions, and turn **Microphone** and **Camera** on.</string>
+    <string name="PermissionNoLocation">Private Chat needs access to your location so that you can share it with your friends.</string>
+    <string name="PermissionNoLocationStory">Private Chat needs access to your location so that you can add your current weather widget to a story.</string>
+    <string name="PermissionNoLocationFriends">**Private Chat** needs access to location so that you can share it with your friends. Tap Settings -> Permissions, and turn **Location** on.</string>
+    <string name="PermissionNoLocationNavigation">**Private Chat** needs access to location so that you can get directions. Tap Settings -> Permissions, and turn **Location** on.</string>
+    <string name="PermissionNoContactsSharing">**Private Chat** needs access to contacts so that you can share them with your friends. Tap Settings -> Permissions, and turn **Contacts** on.</string>
+    <string name="PermissionNoContactsSaving">**Private Chat** needs access to contacts to save them on your phone. Tap Settings -> Permissions, and turn **Contacts** on.</string>
+    <string name="PermissionNoStorageAvatar">**Private Chat** needs storage access so you can upload profile picture. Tap Settings -> Permissions, and turn **Files and media** on.</string>
+    <string name="PermissionNoAudioStorageStory">**Private Chat** needs access to music files to upload with your story. Tap Settings -> Permissions, and turn **Music and Audio** on.</string>
+    <string name="PermissionDrawAboveOtherApps">Private Chat needs access to draw above other apps to play videos in Picture-in-Picture mode.</string>
+    <string name="PermissionDrawAboveOtherAppsGroupCall">Overlay mode lets you use push-to-talk and see who is talking even when you are outside of Private Chat.</string>
     <string name="PermissionOpenSettings">SETTINGS</string>
-    <string name="PermissionXiaomiLockscreen">Please allow Telegram to be shown on the lock screen so that calls can work properly.</string>
-    <string name="PermissionFSILockscreen">Please allow Telegram to be shown on the lock screen so that calls can work properly.</string>
-    <string name="PermissionBackgroundLocation">To share your live location in this chat, Telegram needs access to your location all the time, including while the app is in the background.\n\nWe will access your location only for the duration you choose, and you can stop sharing it any time. We won\'t use your location for any purpose other than sharing it in this chat.</string>
+    <string name="PermissionXiaomiLockscreen">Please allow Private Chat to be shown on the lock screen so that calls can work properly.</string>
+    <string name="PermissionFSILockscreen">Please allow Private Chat to be shown on the lock screen so that calls can work properly.</string>
+    <string name="PermissionBackgroundLocation">To share your live location in this chat, Private Chat needs access to your location all the time, including while the app is in the background.\n\nWe will access your location only for the duration you choose, and you can stop sharing it any time. We won\'t use your location for any purpose other than sharing it in this chat.</string>
     <string name="PermissionDrawAboveOtherAppsTitle">Picture-in-Picture</string>
     <string name="PermissionDrawAboveOtherAppsGroupCallTitle">Voice Chat Overlay</string>
     <!--charts-->
@@ -8221,11 +8221,11 @@
     <string name="ViewChannelProfile">View Channel Info ></string>
     <string name="BuyUsernameOnFragment">Buy on Fragment</string>
     <string name="ViewChannel">View Channel</string>
-    <string name="UnlockToUse">Unlock to use Telegram</string>
+    <string name="UnlockToUse">Unlock to use Private Chat</string>
     <string name="UsePIN">Use PIN</string>
     <string name="EnterPINorFingerprint">Enter your PIN or use a fingerprint</string>
     <string name="EnterPIN">Enter your PIN</string>
-    <string name="AppLocked">Telegram Locked</string>
+    <string name="AppLocked">Private Chat Locked</string>
     <string name="ShowSensitiveContent">Show 18+ Content</string>
     <string name="ShowSensitiveContentInfo">Do not hide media that contain content suitable only for adults</string>
     <string name="ConfirmSensitiveContentTitle">18+ Content</string>
