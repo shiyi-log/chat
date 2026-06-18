@@ -64,8 +64,12 @@ func checkPhoneNumberInvalid(phone string) (string, string, error) {
 	if phone == "+42400" ||
 		phone == "+424000" ||
 		phone == "+424001" ||
-		phone == "+42777" {
-		return "", phone[1:], nil
+		phone == "+42777" ||
+		phone == "42400" ||
+		phone == "424000" ||
+		phone == "424001" ||
+		phone == "42777" {
+		return "", strings.TrimPrefix(phone, "+"), nil
 	}
 
 	// fragment
