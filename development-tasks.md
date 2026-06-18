@@ -106,9 +106,10 @@
 - [x] 安装 Java Runtime 后重新运行 Gradle 工程解析。
 - [x] 替换 Android 对外包名和应用显示名。
 - [x] 修复 Android 默认英文欢迎页和登录权限弹窗的上游品牌漏项。
-- [x] 新增并运行 Android 私有化静态配置验证脚本：`scripts/verify_private_chat_android_config.py`，当前 `35/35` 项通过。
+- [x] 新增并运行 Android 私有化静态配置验证脚本：`scripts/verify_private_chat_android_config.py`，当前 `91/91` 项通过。
 - [x] 修复 Android Debug/Beta 包名判断仍使用旧包名的问题。
 - [x] 修复 Android 默认英文登录验证码入口仍显示上游品牌的问题。
+- [x] 修复 Android 默认英文帮助、通知、QR 登录、更新入口和联系人加入提示中的高可见品牌漏项。
 - [ ] 替换图标、通知渠道名称。
 - [x] 替换 Firebase / `google-services.json` 和 Huawei AGConnect 包名配置。
 - [ ] 禁用或替换上游官方支持、更新、上报接口。
@@ -242,7 +243,7 @@
 - 真机和多端互通测试需要局域网固定 IP 或公网域名，不能继续使用本机回环地址。
 - iOS 真机包需要开发者账号和签名证书。
 - 正式压力测试需要先完成可运行客户端包和稳定服务端入口地址。
-- 品牌彻底清理仍需产品域名、图标、隐私政策、服务条款、崩溃上报和自动更新端点。
+- 品牌彻底清理仍需正式产品域名、图标、隐私政策、服务条款、崩溃上报、自动更新端点，以及 Premium、广告、Stories、Passport 等深层功能入口的产品策略。
 
 ## 第一轮开发建议 / First Sprint
 
