@@ -109,7 +109,7 @@ def main():
     print(f"Desktop 私有化配置验证通过：{passed_count}/{len(checks)} 项通过")
     print("- 内置 DC 已指向 127.0.0.1:10443 / ::1:10443")
     print("- macOS、Windows、UWP、Linux 高可见入口已指向 Private Chat")
-    print("- 当前验证是静态配置验证；完整桌面端构建仍需要 Qt/Xcode/Visual Studio 或可用 Docker 构建环境")
+    print("- 当前验证是静态配置验证；完整桌面端构建仍需要 Qt、第三方库、Visual Studio 或可用 Docker 构建环境")
     return 0
 
 
