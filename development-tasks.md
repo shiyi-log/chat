@@ -142,20 +142,21 @@
 - [x] 同步替换备用配置解密公钥。
 - [x] 完成静态验证：目标网络文件不再包含官方 DC 地址，diff 检查无空白错误。
 - [x] 提交并推送：`3201a932 iOS端接入本地私有服务端`。
-- [ ] 安装完整 Xcode 后生成工程并构建模拟器版本。
-- [ ] 在构建配置中设置私有 `api_id` / `api_hash`。
+- [x] 安装完整 Xcode 后生成工程并构建模拟器版本。
+- [x] 在构建配置中设置可生成工程的本地开发 `api_id` / `api_hash`。
 - [x] 替换 iOS fork 配置中的 Bundle ID、应用显示名和 URL Scheme。
 - [x] 替换 iOS 权限弹窗、分享扩展登录提示和主题文件类型中的用户可见品牌。
-- [x] 新增并运行 iOS 私有化静态配置验证脚本：`scripts/verify_private_chat_ios_config.py`，当前 `286/286` 项通过。
+- [x] 新增并运行 iOS 私有化静态配置验证脚本：`scripts/verify_private_chat_ios_config.py`，当前 `290/290` 项通过。
 - [x] iOS README 已改为中文优先的 `Private Chat iOS` 私有快照说明，并纳入验证脚本门禁。
 - [x] 修复 iOS 默认英文 `PresentationStrings`、Widget 扩展、登录、联系人、会话、权限、通话、邀请和缓存等高可见入口中的品牌漏项。
 - [ ] 替换图标和签名配置。
 - [ ] 禁用或替换上游官方支持、更新、上报接口。
 - [x] 完成 iOS 构建系统入口检查：`build-system/Make/Make.py --help` 可运行。
 - [x] 完成 iOS Bazel 前置检查：当前缺 `build-input/configuration-repository`。
-- [ ] 将 `build-system/template_minimal_development_configuration.json` 中的 `api_id`、`api_hash`、`team_id` 占位值替换为私有项目配置。
-- [ ] 生成 Xcode 工程。
-- [ ] 构建模拟器版本。
+- [x] 将 `build-system/template_minimal_development_configuration.json` 中的 `api_id`、`api_hash`、`team_id` 占位值替换为可生成工程的本地开发配置；生产发布前仍需替换正式私有凭据。
+- [x] 生成 Xcode 工程。
+- [x] 构建模拟器版本。
+- [x] 安装 iOS 模拟器包并完成启动冒烟验证：`com.privatechat.ios` 可启动，显示名为 `Private Chat`。
 - [ ] 签名准备好后构建设备版本。
 - [ ] 完成登录冒烟测试。
 - [ ] 完成私聊消息收发测试。
@@ -226,7 +227,8 @@
 - [x] 准备 Android Emulator 环境并完成 Debug APK 启动验证。
 - [x] 完成 Android 本机登录/注册业务冒烟测试。
 - [x] 完成 Android 双模拟器私聊消息互发验证。
-- [ ] 准备完整 Xcode、iOS 签名证书和模拟器/真机环境。
+- [x] 准备完整 Xcode 和 iOS 模拟器环境，并完成模拟器构建/启动验证。
+- [ ] 准备 iOS 签名证书和真机环境。
 - [ ] 准备桌面端构建依赖并构建 macOS 版本。
 - [x] 执行服务端入口短连接验证，覆盖 TCP `10443`、`5222`、`11443`。
 - [x] 新增可重复执行的服务端入口压测脚本：`server/scripts/local-dev/tcp_entry_stress.py`。
@@ -243,7 +245,8 @@
 - Android 当前仍有 Firebase `FIS_AUTH_ERROR` / client blocked 日志，需要后续替换真实 Firebase 配置或禁用推送能力。
 - 服务端当前 Docker 镜像已完成重建并在线运行；后续生产部署仍需替换默认验证码、默认账号密码和公网/局域网固定入口。
 - Desktop macOS 构建被本机缺完整 Xcode、缺 Qt/第三方库环境阻塞；Linux Docker 构建环境被 EPEL 镜像源 SSL 连接失败阻塞。
-- iOS 私有化静态配置验证已扩展到默认英文 `PresentationStrings` 与 Widget 扩展，当前 `286/286` 项通过；构建仍被本机缺完整 Xcode 阻塞，当前只有 Command Line Tools，Bazel 已安装；命令行安装 Xcode 已尝试但需要管理员密码，配置生成还需要私有 `api_id`、`api_hash`、Apple Team ID。
+- iOS 私有化静态配置验证已扩展到默认英文 `PresentationStrings`、Widget 扩展和实际构建用主 App plist 片段，当前 `290/290` 项通过；Xcode 26.5 / iOS 26.5 Simulator 已完成工程生成、Debug 构建、安装和启动冒烟验证。
+- iOS 真机/发布构建仍需要真实 Apple Developer Team ID、签名证书、provisioning profile 和正式私有 `api_id` / `api_hash`。
 - 真机和多端互通测试需要局域网固定 IP 或公网域名，不能继续使用本机回环地址。
 - iOS 真机包需要开发者账号和签名证书。
 - 正式压力测试需要先完成可运行客户端包和稳定服务端入口地址。
