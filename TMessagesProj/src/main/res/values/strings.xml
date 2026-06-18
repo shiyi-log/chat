@@ -5632,7 +5632,7 @@
     <string name="GiftTelegramPremiumTitle">Gift Telegram Premium</string>
     <string name="GiftTelegramPremiumOrStarsTitle">Gift Premium or Stars</string>
     <string name="GiftTelegramPremiumDescription">Let **%1$s** enjoy exclusive features of Telegram with **Telegram Premium**.</string>
-    <string name="TelegramPremium">Telegram Premium</string>
+    <string name="TelegramPremium">Private Chat Premium</string>
     <string name="TelegramPremiumSubtitle">Go **beyond the limits**, get exclusive features and support us by subscribing to **Telegram Premium**.</string>
     <string name="TelegramPremiumSubscribedTitle">You are all set!</string>
     <string name="TelegramPremiumSubscribedSubtitle">Thank you for subscribing to **Telegram Premium**.\nHere’s what is now unlocked.</string>
@@ -7685,7 +7685,7 @@
     <string name="PremiumPreviewLastSeenDescription">View the last seen and read times of others even if you hide yours.</string>
     <string name="PremiumPreviewMessagePrivacy">Message Privacy</string>
     <string name="PremiumPreviewMessagePrivacyDescription">Restrict people you don\'t know from sending you messages.</string>
-    <string name="TelegramBusiness">Telegram Business</string>
+    <string name="TelegramBusiness">Private Chat Business</string>
     <string name="TelegramBusinessSubtitle">Subscribe to **Telegram Premium** to unlock these additional business features.</string>
     <string name="TelegramBusinessSubtitleTemp">Turn your account into a **business page** with these additional features.\nThe benefits of Telegram Business are **temporarily included** with Telegram Premium.</string>
     <string name="TelegramBusinessSubscribedSubtitle">You have now unlocked these additional business features.</string>
