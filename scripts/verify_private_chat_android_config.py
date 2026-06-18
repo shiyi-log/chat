@@ -83,6 +83,46 @@ def main():
     record(checks, get_string_value(strings_text, "AppNameBeta") == "Private Chat Beta", f"{strings_path}：AppNameBeta 应为 Private Chat Beta")
     for key in ("SentAppCode", "SentAppCodeWithPhone", "SentAppCodeTitle", "SentCallCode", "CallText", "OtherLoginCode", "AllowReadCall", "InviteToTelegram"):
         record(checks, "private chat" in get_string_value(strings_text, key).lower(), f"{strings_path}：{key} 应包含 Private Chat")
+    high_visibility_private_keys = (
+        "DidNotGetTheCodeInfo",
+        "CancelAccountResetInfo2",
+        "GotAQuestion",
+        "ContactJoined",
+        "LanguageUnknownCustomAlert",
+        "AskAQuestionInfo",
+        "TelegramFAQ",
+        "TelegramFaq",
+        "TelegramFeatures",
+        "NotificationsServiceConnectionInfo",
+        "AuthAnotherClientInfo1",
+        "AuthAnotherClientInfo2",
+        "AuthAnotherClientUrl",
+        "QRCodePermissionNoCameraWithHint",
+        "AppUpdate",
+        "AppUpdateBeta",
+        "NotificationContactJoined",
+        "NotificationUnrecognizedDevice",
+        "NotificationHiddenName",
+        "NotificationHiddenChatName",
+        "InviteText2",
+    )
+    for key in high_visibility_private_keys:
+        value = get_string_value(strings_text, key)
+        record(checks, "private chat" in value.lower(), f"{strings_path}：{key} 应包含 Private Chat")
+        record(checks, "telegram" not in value.lower(), f"{strings_path}：{key} 不应继续显示 Telegram")
+    private_url_keys = (
+        "TelegramFeaturesUrl",
+        "TelegramFaqUrl",
+        "PrivacyPolicyUrl",
+        "TermsOfServiceUrl",
+        "WebAppDisclaimerUrl",
+        "AuthAnotherClientDownloadClientUrl",
+        "AuthAnotherWebClientUrl",
+    )
+    for key in private_url_keys:
+        value = get_string_value(strings_text, key)
+        record(checks, value.startswith("https://privatechat.local/"), f"{strings_path}：{key} 应指向 privatechat.local 占位域名")
+        record(checks, "telegram.org" not in value and "t.me" not in value, f"{strings_path}：{key} 不应继续指向官方域名")
     record(checks, get_string_value(strings_text, "NoChats") == "Welcome to Private Chat", f"{strings_path}：NoChats 应为 Welcome to Private Chat")
 
     buildvars_path = "TMessagesProj/src/main/java/org/telegram/messenger/BuildVars.java"
@@ -125,6 +165,7 @@ def main():
 
     print(f"Android 私有化配置验证通过：{passed_count}/{len(checks)} 项通过")
     print("- 对外包名、应用名和默认英文登录入口已指向 Private Chat")
+    print("- 默认英文帮助、通知、QR 登录和更新入口已纳入高可见品牌门禁")
     print("- 库模块保留 org.telegram.messenger 内部构建匹配项，最终 App 模块不保留旧对外包名")
     print("- 模拟器私有 DC 已指向 10.0.2.2:10443，单 DC 防御逻辑存在")
     print("- 当前验证是静态配置验证；真机/公网测试仍需要替换服务端地址和发布证书")
