@@ -2690,6 +2690,10 @@ public class MediaDataController extends BaseController {
         getConnectionsManager().sendRequest(req, (response, error) -> AndroidUtilities.runOnUIThread(() -> {
             if (response instanceof TLRPC.TL_messages_stickerSet) {
                 TLRPC.TL_messages_stickerSet stickerSet = (TLRPC.TL_messages_stickerSet) response;
+                if (!isValidStickerSetResponse(stickerSet)) {
+                    loadingPremiumGiftStickers = false;
+                    return;
+                }
                 getUserConfig().premiumGiftsStickerPack = stickerSet.set.short_name;
                 getUserConfig().lastUpdatedPremiumGiftsStickerPack = System.currentTimeMillis();
                 getUserConfig().saveConfig(false);
@@ -2722,6 +2726,10 @@ public class MediaDataController extends BaseController {
         getConnectionsManager().sendRequest(req, (response, error) -> AndroidUtilities.runOnUIThread(() -> {
             if (response instanceof TLRPC.TL_messages_stickerSet) {
                 TLRPC.TL_messages_stickerSet stickerSet = (TLRPC.TL_messages_stickerSet) response;
+                if (!isValidStickerSetResponse(stickerSet)) {
+                    loadingPremiumTonStickers = false;
+                    return;
+                }
                 getUserConfig().premiumTonStickerPack = stickerSet.set.short_name;
                 getUserConfig().lastUpdatedTonGiftsStickerPack = System.currentTimeMillis();
                 getUserConfig().saveConfig(false);
@@ -2754,6 +2762,10 @@ public class MediaDataController extends BaseController {
         getConnectionsManager().sendRequest(req, (response, error) -> AndroidUtilities.runOnUIThread(() -> {
             if (response instanceof TLRPC.TL_messages_stickerSet) {
                 TLRPC.TL_messages_stickerSet stickerSet = (TLRPC.TL_messages_stickerSet) response;
+                if (!isValidStickerSetResponse(stickerSet)) {
+                    loadingGenericAnimations = false;
+                    return;
+                }
                 getUserConfig().genericAnimationsStickerPack = stickerSet.set.short_name;
                 getUserConfig().lastUpdatedGenericAnimations = System.currentTimeMillis();
                 getUserConfig().saveConfig(false);
@@ -2789,6 +2801,10 @@ public class MediaDataController extends BaseController {
         getConnectionsManager().sendRequest(req, (response, error) -> AndroidUtilities.runOnUIThread(() -> {
             if (response instanceof TLRPC.TL_messages_stickerSet) {
                 TLRPC.TL_messages_stickerSet stickerSet = (TLRPC.TL_messages_stickerSet) response;
+                if (!isValidStickerSetResponse(stickerSet)) {
+                    loadingDefaultTopicIcons = false;
+                    return;
+                }
                 getUserConfig().defaultTopicIcons = stickerSet.set.short_name;
                 getUserConfig().lastUpdatedDefaultTopicIcons = System.currentTimeMillis();
                 getUserConfig().saveConfig(false);
@@ -2862,7 +2878,7 @@ public class MediaDataController extends BaseController {
                     return;
                 }
             }
-            if (res != null) {
+            if (isValidStickerSetResponse(res)) {
                 if (!cache) {
                     putDiceStickersToCache(name, res, date);
                 }
@@ -3149,7 +3165,7 @@ public class MediaDataController extends BaseController {
     private static long calcStickersHash(ArrayList<TLRPC.TL_messages_stickerSet> sets) {
         long acc = 0;
         for (int a = 0; a < sets.size(); a++) {
-            if (sets.get(a) == null) {
+            if (!isValidStickerSetResponse(sets.get(a))) {
                 continue;
             }
             TLRPC.StickerSet set = sets.get(a).set;
@@ -3159,6 +3175,10 @@ public class MediaDataController extends BaseController {
             acc = calcHash(acc, set.hash);
         }
         return acc;
+    }
+
+    private static boolean isValidStickerSetResponse(TLRPC.TL_messages_stickerSet set) {
+        return set != null && set.set != null && !TextUtils.isEmpty(set.set.short_name);
     }
 
     private void processLoadedStickers(int type, ArrayList<TLRPC.TL_messages_stickerSet> res, boolean cache, int date, long hash) {
@@ -3200,7 +3220,7 @@ public class MediaDataController extends BaseController {
 
                     for (int a = 0; a < res.size(); a++) {
                         TLRPC.TL_messages_stickerSet stickerSet = res.get(a);
-                        if (stickerSet == null || removingStickerSetsUndos.indexOfKey(stickerSet.set.id) >= 0) {
+                        if (!isValidStickerSetResponse(stickerSet) || removingStickerSetsUndos.indexOfKey(stickerSet.set.id) >= 0) {
                             continue;
                         }
                         stickerSetsNew.add(stickerSet);
