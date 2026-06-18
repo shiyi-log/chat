@@ -135,6 +135,7 @@
 - [ ] 在构建配置中设置私有 `api_id` / `api_hash`。
 - [x] 替换 iOS fork 配置中的 Bundle ID、应用显示名和 URL Scheme。
 - [x] 替换 iOS 权限弹窗、分享扩展登录提示和主题文件类型中的用户可见品牌。
+- [x] 新增并运行 iOS 私有化静态配置验证脚本：`scripts/verify_private_chat_ios_config.py`，当前 `21/21` 项通过。
 - [ ] 替换图标和签名配置。
 - [ ] 禁用或替换上游官方支持、更新、上报接口。
 - [x] 完成 iOS 构建系统入口检查：`build-system/Make/Make.py --help` 可运行。
@@ -222,7 +223,7 @@
 - Android Debug APK 已安装到 Android 15 ARM64 模拟器并启动成功，已连接私有 DC 1；登录验证码和注册登录冒烟测试已完成，私聊消息收发测试仍需第二个可登录账号或多端可运行客户端。
 - Android 当前仍有 Firebase `FIS_AUTH_ERROR` / client blocked 日志，需要后续替换真实 Firebase 配置或禁用推送能力。
 - Desktop macOS 构建被本机缺完整 Xcode、缺 Qt/第三方库环境阻塞；Linux Docker 构建环境被 EPEL 镜像源 SSL 连接失败阻塞。
-- iOS 构建被本机缺完整 Xcode 阻塞；当前只有 Command Line Tools，Bazel 已安装；配置生成还需要私有 `api_id`、`api_hash`、Apple Team ID。
+- iOS 私有化静态配置验证已通过，但构建仍被本机缺完整 Xcode 阻塞；当前只有 Command Line Tools，Bazel 已安装；配置生成还需要私有 `api_id`、`api_hash`、Apple Team ID。
 - 真机和多端互通测试需要局域网固定 IP 或公网域名，不能继续使用本机回环地址。
 - iOS 真机包需要开发者账号和签名证书。
 - 正式压力测试需要先完成可运行客户端包和稳定服务端入口地址。
