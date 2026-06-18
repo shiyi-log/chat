@@ -116,7 +116,7 @@
 - [x] 完成 Android 模拟器启动冒烟验证：应用进程存活，已连接私有 DC 1，完成握手、`TL_config` 和 `TL_pong`。
 - [x] 完成 Android 登录/注册冒烟测试：测试号 `+4 2400`，验证码 `12345`，注册用户 `Android Smoke`，进入主界面。
 - [x] 修复 Android 登录成功后的默认英文空会话页和联系人权限说明品牌漏项。
-- [ ] 完成私聊消息收发测试。
+- [x] 完成两台 Android 模拟器私聊消息互发测试：`Android Smoke` 与 `Android Two` 可互发文本消息并在对端会话页显示。
 
 ## 阶段 5：iOS 端 / iOS Client
 
@@ -154,14 +154,17 @@
 目标：确认所有客户端都能通过我们的服务端互相通信。
 
 - [ ] 在 PC/Mac 上创建测试用户 A。
-- [ ] 在 Android 上创建测试用户 B。
+- [x] 在 Android 上创建测试用户 B：`Android Smoke` / `Android Two` 已在两台模拟器完成登录注册。
 - [ ] 在 iOS 上创建测试用户 C。
 - [ ] 测试 A -> B 文本消息。
 - [ ] 测试 B -> C 文本消息。
 - [ ] 测试 C -> A 文本消息。
-- [ ] 验证重启 App 后历史消息仍存在。
-- [ ] 验证未读数。
-- [ ] 验证联系人逻辑。
+- [x] 验证 Android B -> Android B 文本消息：两台 Android 模拟器已完成双向文本消息互发。
+- [x] 验证 Android 双端历史消息可拉取并在会话页显示。
+- [x] 验证 Android 双端联系人逻辑：`contacts.importContacts` 已触发，`contacts.getContacts` 能返回对方。
+- [ ] 验证跨 Desktop / Android / iOS 的历史消息仍存在。
+- [ ] 验证跨 Desktop / Android / iOS 的未读数。
+- [ ] 验证跨 Desktop / Android / iOS 的联系人逻辑。
 - [ ] 验证基础群聊。
 - [ ] 验证小图片上传下载。
 - [ ] 验证小文件上传下载。
@@ -211,6 +214,7 @@
 - [x] 准备 Android Java/SDK 环境并构建 Debug APK。
 - [x] 准备 Android Emulator 环境并完成 Debug APK 启动验证。
 - [x] 完成 Android 本机登录/注册业务冒烟测试。
+- [x] 完成 Android 双模拟器私聊消息互发验证。
 - [ ] 准备完整 Xcode、iOS 签名证书和模拟器/真机环境。
 - [ ] 准备桌面端构建依赖并构建 macOS 版本。
 - [x] 执行服务端入口短连接验证，覆盖 TCP `10443`、`5222`、`11443`。
@@ -222,8 +226,9 @@
 
 ## 当前阻塞项
 
-- Android Debug APK 已安装到两台 Android 15 ARM64 模拟器并启动成功，第一账号 `+42400` 已登录；第二账号 `+42401` 登录链路正在复测，私聊消息收发测试仍需第二账号完成登录后继续。
+- Android Debug APK 已安装到两台 Android 15 ARM64 模拟器并启动成功；账号 `+42400` / `+42401` 已完成登录注册、联系人导入和双向私聊文本消息验证。
 - Android 当前仍有 Firebase `FIS_AUTH_ERROR` / client blocked 日志，需要后续替换真实 Firebase 配置或禁用推送能力。
+- 服务端当前运行态包含热替换后的 `bff`；仍需在网络和镜像源稳定后执行完整镜像重建并复测。
 - Desktop macOS 构建被本机缺完整 Xcode、缺 Qt/第三方库环境阻塞；Linux Docker 构建环境被 EPEL 镜像源 SSL 连接失败阻塞。
 - iOS 私有化静态配置验证已通过，但构建仍被本机缺完整 Xcode 阻塞；当前只有 Command Line Tools，Bazel 已安装；配置生成还需要私有 `api_id`、`api_hash`、Apple Team ID。
 - 真机和多端互通测试需要局域网固定 IP 或公网域名，不能继续使用本机回环地址。
