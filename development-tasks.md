@@ -42,6 +42,7 @@
 - [x] 检查 `gnetway`、`session`、`bff`、`msg`、`sync` 日志。
 - [x] 确认默认登录验证码逻辑：当前本地 none 验证器固定验证码为 `12345`。
 - [x] 修复 Android 实际发送纯数字测试号导致 `42400` 被误判为无效号码的问题。
+- [x] 修复授权登录链路未复用公共测试号池导致 `42401` 被误判为无效号码的问题。
 - [ ] 生产环境前替换默认/演示验证码逻辑。
 
 ## 阶段 2：服务端私有化配置 / Server Configuration
@@ -220,7 +221,7 @@
 
 ## 当前阻塞项
 
-- Android Debug APK 已安装到 Android 15 ARM64 模拟器并启动成功，已连接私有 DC 1；登录验证码和注册登录冒烟测试已完成，私聊消息收发测试仍需第二个可登录账号或多端可运行客户端。
+- Android Debug APK 已安装到两台 Android 15 ARM64 模拟器并启动成功，第一账号 `+42400` 已登录；第二账号 `+42401` 登录链路正在复测，私聊消息收发测试仍需第二账号完成登录后继续。
 - Android 当前仍有 Firebase `FIS_AUTH_ERROR` / client blocked 日志，需要后续替换真实 Firebase 配置或禁用推送能力。
 - Desktop macOS 构建被本机缺完整 Xcode、缺 Qt/第三方库环境阻塞；Linux Docker 构建环境被 EPEL 镜像源 SSL 连接失败阻塞。
 - iOS 私有化静态配置验证已通过，但构建仍被本机缺完整 Xcode 阻塞；当前只有 Command Line Tools，Bazel 已安装；配置生成还需要私有 `api_id`、`api_hash`、Apple Team ID。
