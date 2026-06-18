@@ -112,7 +112,8 @@
 - [x] 安装 Debug APK 到 Android 15 ARM64 模拟器。
 - [x] 修复私有单 DC 配置下首次启动 native 崩溃。
 - [x] 完成 Android 模拟器启动冒烟验证：应用进程存活，已连接私有 DC 1，完成握手、`TL_config` 和 `TL_pong`。
-- [ ] 完成登录冒烟测试。
+- [x] 完成 Android 登录/注册冒烟测试：测试号 `+4 2400`，验证码 `12345`，注册用户 `Android Smoke`，进入主界面。
+- [x] 修复 Android 登录成功后的默认英文空会话页和联系人权限说明品牌漏项。
 - [ ] 完成私聊消息收发测试。
 
 ## 阶段 5：iOS 端 / iOS Client
@@ -206,6 +207,7 @@
 - [ ] 准备公网 IP 或局域网固定 IP，保证桌面端、Android 真机、iOS 真机可同时访问。
 - [x] 准备 Android Java/SDK 环境并构建 Debug APK。
 - [x] 准备 Android Emulator 环境并完成 Debug APK 启动验证。
+- [x] 完成 Android 本机登录/注册业务冒烟测试。
 - [ ] 准备完整 Xcode、iOS 签名证书和模拟器/真机环境。
 - [ ] 准备桌面端构建依赖并构建 macOS 版本。
 - [x] 执行服务端入口短连接验证，覆盖 TCP `10443`、`5222`、`11443`。
@@ -217,7 +219,7 @@
 
 ## 当前阻塞项
 
-- Android Debug APK 已安装到 Android 15 ARM64 模拟器并启动成功，已连接私有 DC 1；登录验证码、注册登录和消息收发测试仍需确认服务端验证码生成/读取方式和测试账号流程。
+- Android Debug APK 已安装到 Android 15 ARM64 模拟器并启动成功，已连接私有 DC 1；登录验证码和注册登录冒烟测试已完成，私聊消息收发测试仍需第二个可登录账号或多端可运行客户端。
 - Android 当前仍有 Firebase `FIS_AUTH_ERROR` / client blocked 日志，需要后续替换真实 Firebase 配置或禁用推送能力。
 - Desktop macOS 构建被本机缺完整 Xcode、缺 Qt/第三方库环境阻塞；Linux Docker 构建环境被 EPEL 镜像源 SSL 连接失败阻塞。
 - iOS 构建被本机缺完整 Xcode 阻塞；当前只有 Command Line Tools，Bazel 已安装；配置生成还需要私有 `api_id`、`api_hash`、Apple Team ID。
