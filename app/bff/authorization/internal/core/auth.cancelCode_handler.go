@@ -20,7 +20,6 @@ package core
 
 import (
 	"github.com/teamgram/proto/mtproto"
-	"github.com/teamgram/teamgram-server/pkg/phonenumber"
 )
 
 // AuthCancelCode
@@ -34,7 +33,7 @@ func (c *AuthorizationCore) AuthCancelCode(in *mtproto.TLAuthCancelCode) (*mtpro
 	//
 	// 2. check number
 	// 客户端发送的手机号格式为: "+86 111 1111 1111"，归一化
-	_, err := phonenumber.CheckAndGetPhoneNumber(in.GetPhoneNumber())
+	_, _, err := checkPhoneNumberInvalid(in.GetPhoneNumber())
 	if err != nil {
 		c.Logger.Errorf("check phone_number error - %v", err)
 		err = mtproto.ErrPhoneNumberInvalid

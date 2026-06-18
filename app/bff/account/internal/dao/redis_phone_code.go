@@ -30,7 +30,7 @@ import (
 )
 
 const (
-	phoneCodeTimeout int64 = 90 // salt timeout
+	phoneCodeTimeout int64 = 180
 	cachePhonePrefix       = "phone_codes.1"
 )
 
