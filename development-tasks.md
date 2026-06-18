@@ -79,6 +79,9 @@
 - [ ] 禁用或替换上游官方更新、崩溃上报、支持链接。
 - [ ] 构建 macOS 桌面端。
 - [ ] 按需构建 Windows / Linux 桌面端。
+- [x] 完成桌面端构建环境检查。
+- [ ] 准备完整 Xcode 和桌面端 Qt/第三方库环境。
+- [ ] 修复或切换 Linux Docker 构建镜像源后重新准备 `tdesktop:centos_env`。
 - [ ] 完成登录冒烟测试 / login smoke test。
 - [ ] 完成私聊消息收发测试。
 
@@ -129,6 +132,9 @@
 - [x] 替换 iOS 权限弹窗、分享扩展登录提示和主题文件类型中的用户可见品牌。
 - [ ] 替换图标和签名配置。
 - [ ] 禁用或替换上游官方支持、更新、上报接口。
+- [x] 完成 iOS 构建系统入口检查：`build-system/Make/Make.py --help` 可运行。
+- [x] 完成 iOS Bazel 前置检查：当前缺 `build-input/configuration-repository`。
+- [ ] 将 `build-system/template_minimal_development_configuration.json` 中的 `api_id`、`api_hash`、`team_id` 占位值替换为私有项目配置。
 - [ ] 生成 Xcode 工程。
 - [ ] 构建模拟器版本。
 - [ ] 签名准备好后构建设备版本。
@@ -206,7 +212,8 @@
 ## 当前阻塞项
 
 - Android Debug APK 已构建成功；安装启动测试被本机无在线设备、且未安装 Android Emulator 组件阻塞。
-- iOS 构建被本机缺完整 Xcode 阻塞；当前只有 Command Line Tools，Bazel 已安装。
+- Desktop macOS 构建被本机缺完整 Xcode、缺 Qt/第三方库环境阻塞；Linux Docker 构建环境被 EPEL 镜像源 SSL 连接失败阻塞。
+- iOS 构建被本机缺完整 Xcode 阻塞；当前只有 Command Line Tools，Bazel 已安装；配置生成还需要私有 `api_id`、`api_hash`、Apple Team ID。
 - 真机和多端互通测试需要局域网固定 IP 或公网域名，不能继续使用本机回环地址。
 - iOS 真机包需要开发者账号和签名证书。
 - 正式压力测试需要先完成可运行客户端包和稳定服务端入口地址。
