@@ -83,7 +83,10 @@
 - [ ] 构建 macOS 桌面端。
 - [ ] 按需构建 Windows / Linux 桌面端。
 - [x] 完成桌面端构建环境检查。
-- [ ] 准备完整 Xcode 和桌面端 Qt/第三方库环境。
+- [x] 安装完整 Xcode 26.5 并确认 `xcode-select` 指向 `/Applications/Xcode.app/Contents/Developer`。
+- [ ] 准备桌面端 Qt 6.11.1 和第三方库环境。
+- [x] 执行桌面端私有化静态配置验证：当前 `28/28` 项通过。
+- [ ] 修复 macOS 依赖准备中 `libjxl` 的 `third_party/lcms` GitHub 下载中断问题。
 - [ ] 修复或切换 Linux Docker 构建镜像源后重新准备 `tdesktop:centos_env`。
 - [ ] 完成登录冒烟测试 / login smoke test。
 - [ ] 完成私聊消息收发测试。
@@ -229,7 +232,7 @@
 - [x] 完成 Android 双模拟器私聊消息互发验证。
 - [x] 准备完整 Xcode 和 iOS 模拟器环境，并完成模拟器构建/启动验证。
 - [ ] 准备 iOS 签名证书和真机环境。
-- [ ] 准备桌面端构建依赖并构建 macOS 版本。
+- [ ] 准备桌面端 Qt 6.11.1 / 第三方库依赖并构建 macOS 版本。
 - [x] 执行服务端入口短连接验证，覆盖 TCP `10443`、`5222`、`11443`。
 - [x] 新增可重复执行的服务端入口压测脚本：`server/scripts/local-dev/tcp_entry_stress.py`。
 - [x] 执行第一轮低并发入口连接测试，记录 CPU、内存、MySQL、Redis、Kafka、MinIO 指标快照。
@@ -244,7 +247,9 @@
 - Android 最新 APK 复测结果：两台模拟器均可启动 `LaunchActivity`，进程存活，日志中未发现 `FATAL EXCEPTION`。
 - Android 当前仍有 Firebase `FIS_AUTH_ERROR` / client blocked 日志，需要后续替换真实 Firebase 配置或禁用推送能力。
 - 服务端当前 Docker 镜像已完成重建并在线运行；后续生产部署仍需替换默认验证码、默认账号密码和公网/局域网固定入口。
-- Desktop macOS 构建被本机缺完整 Xcode、缺 Qt/第三方库环境阻塞；Linux Docker 构建环境被 EPEL 镜像源 SSL 连接失败阻塞。
+- Desktop 私有化静态配置验证当前 `28/28` 项通过；完整 Xcode 26.5 已安装，macOS 构建不再被 Xcode 阻塞。
+- Desktop macOS 构建当前被 Qt 6.11.1 和第三方库准备阻塞；`configure.sh force` 已能进入 CMake/Xcode 探测但失败于 `Neither Qt6 nor Qt5 is found`，`prepare/mac.sh` 已推进到 `[15/26](Libraries/libjxl)`，当前失败于 `third_party/lcms` GitHub HTTP/2 下载中断。
+- Desktop Linux Docker 构建环境被 EPEL 镜像源 SSL 连接失败阻塞。
 - iOS 私有化静态配置验证已扩展到默认英文 `PresentationStrings`、Widget 扩展和实际构建用主 App plist 片段，当前 `290/290` 项通过；Xcode 26.5 / iOS 26.5 Simulator 已完成工程生成、Debug 构建、安装和启动冒烟验证。
 - iOS 真机/发布构建仍需要真实 Apple Developer Team ID、签名证书、provisioning profile 和正式私有 `api_id` / `api_hash`。
 - 真机和多端互通测试需要局域网固定 IP 或公网域名，不能继续使用本机回环地址。
