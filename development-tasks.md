@@ -115,7 +115,7 @@
 - [x] 安装 Java Runtime 后重新运行 Gradle 工程解析。
 - [x] 替换 Android 对外包名和应用显示名。
 - [x] 修复 Android 默认英文欢迎页和登录权限弹窗的上游品牌漏项。
-- [x] 新增并运行 Android 私有化静态配置验证脚本：`scripts/verify_private_chat_android_config.py`，当前 `345/345` 项通过。
+- [x] 新增并运行 Android 私有化静态配置验证脚本：`scripts/verify_private_chat_android_config.py`，当前 `358/358` 项通过。
 - [x] 修复 Android Debug/Beta 包名判断仍使用旧包名的问题。
 - [x] 修复 Android 默认英文登录验证码入口仍显示上游品牌的问题。
 - [x] 修复 Android 默认英文帮助、通知、QR 登录、更新入口和联系人加入提示中的高可见品牌漏项。
@@ -124,7 +124,8 @@
 - [x] 修复 Android 默认英文付款、导入、群组/频道、举报、屏蔽、用户名、Secret Chat、主题、通知、缓存/数据库、网页会话、两步验证、隐私、通话、旧目录迁移、下载和 Passcode 创建说明中的通用体验品牌漏项。
 - [ ] 替换图标、通知渠道名称。
 - [x] 替换 Firebase / `google-services.json` 和 Huawei AGConnect 包名配置。
-- [ ] 禁用或替换上游官方支持、更新、上报接口。
+- [x] 默认禁用 Firebase / Huawei 第三方推送 token 获取，避免未配置第三方项目时报错。
+- [ ] 接入正式自建推送、支持、更新、上报接口。
 - [x] 构建 Debug APK：`TMessagesProj_App/build/outputs/apk/afat/debug/app.apk`。
 - [x] 确认 Debug APK 对外包名为 `com.privatechat.messenger.beta`。
 - [x] 安装 Debug APK 到 Android 15 ARM64 模拟器。
@@ -251,7 +252,7 @@
 
 - Android Debug APK 已重新构建并覆盖安装到两台 Android 15 ARM64 模拟器；账号 `+42400` / `+42401` 已完成登录注册、联系人导入和双向私聊文本消息验证。
 - Android 最新 APK 复测结果：两台模拟器均可启动 `LaunchActivity`，进程存活，日志中未发现 `FATAL EXCEPTION`。
-- Android 当前仍有 Firebase `FIS_AUTH_ERROR` / client blocked 日志，需要后续替换真实 Firebase 配置或禁用推送能力。
+- Android 已默认禁用 Firebase / Huawei 第三方推送 token 获取，避免未配置第三方项目时继续触发 `FIS_AUTH_ERROR` / client blocked；生产推送仍需接入自建服务或正式第三方项目。
 - 服务端当前 Docker 镜像已完成重建并在线运行；后续生产部署仍需替换默认验证码、默认账号密码和公网/局域网固定入口。
 - Desktop 私有化静态配置验证当前 `56/56` 项通过；完整 Xcode 26.5、Qt 6.11.1 和第三方库依赖已完成准备。
 - Desktop macOS Debug 构建已通过，产物为 `desktop/out/Debug/Private Chat.app`，生成产物 `CFBundleIdentifier = com.privatechat.desktop.debug`，`CFBundleName = Private Chat`，并已通过本地 `codesign --verify --deep --strict` 校验。
@@ -262,7 +263,7 @@
 - 真机和多端互通测试需要局域网固定 IP 或公网域名，不能继续使用本机回环地址。
 - iOS 真机包需要开发者账号和签名证书。
 - 正式压力测试需要先完成可运行客户端包和稳定服务端入口地址。
-- Android 已完成账号/邀请/会话/版本更新和通用体验入口品牌补漏，私有化静态验证扩展到 `345/345` 项通过，最新 Debug APK 构建通过。
+- Android 已完成账号/邀请/会话/版本更新和通用体验入口品牌补漏，并已默认禁用第三方推送 token 获取；私有化静态验证扩展到 `358/358` 项通过，最新 Debug APK 构建通过。
 - 品牌彻底清理仍需正式产品域名、图标、隐私政策、服务条款、崩溃上报、自动更新端点，以及 Premium、广告、Stories、Passport 等深层功能入口的产品策略。
 
 ## 统一语言和品牌词入口策略
