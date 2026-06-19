@@ -277,6 +277,13 @@ def main():
         "lng_allow_bot_pass",
         "lng_bot_no_scan_qr",
         "lng_bot_no_share_story",
+        "lng_cloud_password_passport_losing",
+        "lng_action_suggested_photo_me",
+        "lng_action_suggested_photo",
+        "lng_action_suggested_video_me",
+        "lng_action_suggested_video",
+        "lng_theme_editor_need_unlock",
+        "lng_posts_subtitle_empty",
     ]
     for key in private_chat_lang_keys:
         value = lang_values.get(key, "")
@@ -288,11 +295,22 @@ def main():
         "lng_settings_faq_link": "https://private-chat.local/faq#general-questions",
         "lng_profile_bot_privacy_url": "https://private-chat.local/privacy-tpa",
         "lng_mini_apps_tos_url": "https://private-chat.local/tos/mini-apps",
+        "lng_telegram_features_url": "https://private-chat.local/features",
+        "lng_popular_apps_info_url": "https://private-chat.local/docs/mini-apps",
     }
     for key, expected_url in private_url_lang_keys.items():
         value = lang_values.get(key, "")
         record(checks, value == expected_url, f"{lang_path}：{key} 应指向 {expected_url}")
         record(checks, "telegram.org" not in value and "t.me" not in value, f"{lang_path}：{key} 不应继续指向上游官方域名")
+
+    private_link_example_lang_keys = [
+        "lng_group_about3",
+        "lng_factcheck_links",
+    ]
+    for key in private_link_example_lang_keys:
+        value = lang_values.get(key, "")
+        record(checks, "privatechat.local" in value, f"{lang_path}：{key} 应使用 privatechat.local 链接示例")
+        record(checks, "t.me" not in value, f"{lang_path}：{key} 不应继续使用 t.me 链接示例")
 
     failed = [message for ok, message in checks if not ok]
     passed_count = len(checks) - len(failed)
