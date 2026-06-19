@@ -130,11 +130,26 @@ def main():
     record(checks, '.protocol = u"privatechat"_q' in application_text, f"{application_path}：运行时应注册 privatechat URL scheme")
     record(checks, '.protocol = u"tg"_q' not in application_text, f"{application_path}：运行时不应继续注册 tg URL scheme")
     record(checks, 'protocolName = u"Private Chat Link"_q' in application_text, f"{application_path}：运行时协议名称应为 Private Chat Link")
+    record(checks, 'return u"https://private-chat.local/changelog/"_q;' in application_text, f"{application_path}：版本记录链接应指向私有占位地址")
+    record(checks, "telegramdesktop.github.io" not in application_text, f"{application_path}：不应继续使用官方版本记录地址")
 
     local_url_handlers_path = "Telegram/SourceFiles/core/local_url_handlers.cpp"
     local_url_handlers_text = read_text(local_url_handlers_path)
     record(checks, 'url.startsWith(u"privatechat://"_q, Qt::CaseInsensitive)' in local_url_handlers_text, f"{local_url_handlers_path}：应支持 privatechat:// 本地深链")
     record(checks, 'return u"tg://"_q + url.mid(u"privatechat://"_q.size())' in local_url_handlers_text, f"{local_url_handlers_path}：privatechat:// 应映射到现有本地处理流程")
+
+    main_menu_path = "Telegram/SourceFiles/window/window_main_menu.cpp"
+    main_menu_text = read_text(main_menu_path)
+    record(checks, 'u"Private Chat Desktop"_q' in main_menu_text, f"{main_menu_path}：主菜单底部应显示 Private Chat Desktop")
+    record(checks, 'u"https://private-chat.local"_q' in main_menu_text, f"{main_menu_path}：主菜单底部链接应指向私有占位地址")
+    record(checks, "desktop.telegram.org" not in main_menu_text, f"{main_menu_path}：不应继续使用官方桌面端主页")
+
+    updater_win_path = "Telegram/SourceFiles/_other/updater_win.cpp"
+    updater_win_text = read_text(updater_win_path)
+    record(checks, 'L"Private Chat Desktop"' in updater_win_text, f"{updater_win_path}：Windows 更新器注册信息应显示 Private Chat Desktop")
+    record(checks, 'L"Private Chat"' in updater_win_text, f"{updater_win_path}：Windows 更新器发布者应显示 Private Chat")
+    record(checks, 'L"https://private-chat.local"' in updater_win_text, f"{updater_win_path}：Windows 更新器帮助链接应指向私有占位地址")
+    record(checks, "desktop.telegram.org" not in updater_win_text, f"{updater_win_path}：Windows 更新器不应继续使用官方主页")
 
     readme_path = "README.md"
     readme_text = read_text(readme_path)
