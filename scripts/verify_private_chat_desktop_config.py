@@ -21,6 +21,11 @@ def contains_all(text, values):
     return all(value in text for value in values)
 
 
+def read_plist(path):
+    with path.open("rb") as handle:
+        return plistlib.load(handle)
+
+
 def main():
     checks = []
 
@@ -33,9 +38,22 @@ def main():
     record(checks, official_dc_pattern.search(dc_text) is None, f"{dc_path}：不应保留官方 DC IP")
 
     plist_path = "Telegram/Telegram.plist"
-    with (ROOT / plist_path).open("rb") as handle:
-        plist = plistlib.load(handle)
+    plist = read_plist(ROOT / plist_path)
     record(checks, plist.get("CFBundleGetInfoString") == "Private Chat Desktop messaging app", f"{plist_path}：CFBundleGetInfoString 应为 Private Chat Desktop")
+
+    cmake_path = "Telegram/CMakeLists.txt"
+    cmake_text = read_text(cmake_path)
+    record(checks, 'set(bundle_identifier "com.privatechat.desktop")' in cmake_text, f"{cmake_path}：Release Bundle ID 应为 com.privatechat.desktop")
+    record(checks, 'set(bundle_identifier "com.privatechat.desktop$<$<CONFIG:Debug>:.debug>")' in cmake_text, f"{cmake_path}：Xcode Debug Bundle ID 应为 com.privatechat.desktop.debug")
+    record(checks, 'set(output_name "Private Chat")' in cmake_text, f"{cmake_path}：macOS 输出名称应为 Private Chat")
+
+    built_plist_path = ROOT / "out/Debug/Private Chat.app/Contents/Info.plist"
+    if built_plist_path.exists():
+        built_plist = read_plist(built_plist_path)
+        record(checks, built_plist.get("CFBundleIdentifier") == "com.privatechat.desktop.debug", f"{built_plist_path.relative_to(ROOT)}：Debug Bundle ID 应为 com.privatechat.desktop.debug")
+        record(checks, built_plist.get("CFBundleName") == "Private Chat", f"{built_plist_path.relative_to(ROOT)}：CFBundleName 应为 Private Chat")
+    else:
+        record(checks, True, "out/Debug/Private Chat.app 尚未生成，跳过生成产物 Bundle 元数据检查")
 
     setup_path = "Telegram/build/setup.iss"
     setup_text = read_text(setup_path)
@@ -87,10 +105,10 @@ def main():
     record(checks, metainfo_root.findtext("name") == "Private Chat", f"{metainfo_path}：名称应为 Private Chat")
     record(checks, "Private Chat is a private instant messaging client" in metainfo_text, f"{metainfo_path}：简介应说明私有客户端")
 
-    cmake_path = "CMakeLists.txt"
-    cmake_text = read_text(cmake_path)
-    record(checks, 'DESCRIPTION "Private Chat Desktop messenger"' in cmake_text, f"{cmake_path}：项目描述应为 Private Chat Desktop")
-    record(checks, 'HOMEPAGE_URL "https://private-chat.local"' in cmake_text, f"{cmake_path}：主页应为私有占位地址")
+    root_cmake_path = "CMakeLists.txt"
+    root_cmake_text = read_text(root_cmake_path)
+    record(checks, 'DESCRIPTION "Private Chat Desktop messenger"' in root_cmake_text, f"{root_cmake_path}：项目描述应为 Private Chat Desktop")
+    record(checks, 'HOMEPAGE_URL "https://private-chat.local"' in root_cmake_text, f"{root_cmake_path}：主页应为私有占位地址")
 
     readme_path = "README.md"
     readme_text = read_text(readme_path)
