@@ -21,6 +21,15 @@ def contains_all(text, values):
     return all(value in text for value in values)
 
 
+def read_lang_strings(relative_path):
+    text = read_text(relative_path)
+    pattern = re.compile(
+        r'"(?P<key>[^"]+)"\s*=\s*"(?P<value>(?:\\.|[^"\\])*)";',
+        re.MULTILINE,
+    )
+    return {match.group("key"): match.group("value") for match in pattern.finditer(text)}
+
+
 def read_plist(path):
     with path.open("rb") as handle:
         return plistlib.load(handle)
@@ -155,6 +164,65 @@ def main():
     readme_text = read_text(readme_path)
     record(checks, readme_text.startswith("# Private Chat Desktop 桌面端"), f"{readme_path}：应使用 Private Chat 中文优先说明")
     record(checks, "official Telegram Desktop distribution" in readme_text, f"{readme_path}：应包含英文摘要说明非官方 Telegram 发布")
+
+    lang_path = "Telegram/Resources/langs/lang.strings"
+    lang_values = read_lang_strings(lang_path)
+    private_chat_lang_keys = [
+        "lng_error_start_minimized_passcoded",
+        "lng_proxy_unsupported",
+        "lng_signin_sure_reset",
+        "lng_settings_use_winhello_about",
+        "lng_settings_use_touchid_about",
+        "lng_settings_use_applewatch_about",
+        "lng_settings_use_systempwd_about",
+        "lng_settings_username_about",
+        "lng_settings_peer_to_peer_about",
+        "lng_settings_logged_in_title",
+        "lng_settings_logged_in_description",
+        "lng_settings_disconnect_all_sure",
+        "lng_settings_suggestion_phone_number_about",
+        "lng_settings_suggestion_phone_number_change",
+        "lng_settings_cloud_password_start_about",
+        "lng_settings_cloud_login_email_box_about",
+        "lng_settings_cloud_login_email_about",
+        "lng_local_storage_device_telegram",
+        "lng_local_storage_device_usage",
+        "lng_local_storage_about",
+        "lng_passcode_about",
+        "lng_passcode_about2",
+        "lng_passcode_about3",
+        "lng_passcode_winhello_unlock",
+        "lng_cloud_password_create",
+        "lng_cloud_password_about_recover",
+        "lng_proxy_about",
+        "lng_proxy_sponsor_about",
+        "lng_proxy_sponsor_warning",
+        "lng_settings_export_data",
+        "lng_settings_ask_sure",
+        "lng_settings_faq",
+        "lng_settings_features",
+        "lng_sessions_other_desc",
+        "lng_sessions_about_apps",
+        "lng_blocked_list_confirm_text",
+        "lng_edit_privacy_phone_number_warning",
+        "lng_edit_privacy_phone_number_contacts",
+        "lng_change_phone_error",
+        "lng_profile_unofficial_warning",
+    ]
+    for key in private_chat_lang_keys:
+        value = lang_values.get(key, "")
+        record(checks, "Private Chat" in value, f"{lang_path}：{key} 应显示 Private Chat")
+        record(checks, "Telegram" not in value, f"{lang_path}：{key} 不应继续显示 Telegram")
+
+    private_url_lang_keys = {
+        "lng_settings_suggestion_phone_number_about_link": "https://private-chat.local/faq/change-phone-number",
+        "lng_settings_faq_link": "https://private-chat.local/faq#general-questions",
+        "lng_profile_bot_privacy_url": "https://private-chat.local/privacy-tpa",
+    }
+    for key, expected_url in private_url_lang_keys.items():
+        value = lang_values.get(key, "")
+        record(checks, value == expected_url, f"{lang_path}：{key} 应指向 {expected_url}")
+        record(checks, "telegram.org" not in value and "t.me" not in value, f"{lang_path}：{key} 不应继续指向上游官方域名")
 
     failed = [message for ok, message in checks if not ok]
     passed_count = len(checks) - len(failed)
