@@ -110,6 +110,12 @@ def main():
     record(checks, 'DESCRIPTION "Private Chat Desktop messenger"' in root_cmake_text, f"{root_cmake_path}：项目描述应为 Private Chat Desktop")
     record(checks, 'HOMEPAGE_URL "https://private-chat.local"' in root_cmake_text, f"{root_cmake_path}：主页应为私有占位地址")
 
+    variables_path = "cmake/variables.cmake"
+    variables_text = read_text(variables_path)
+    record(checks, "set(disable_autoupdate 1)" in variables_text, f"{variables_path}：默认应关闭自动更新")
+    record(checks, 'option(DESKTOP_APP_DISABLE_AUTOUPDATE "Disable autoupdate." ${disable_autoupdate})' in variables_text, f"{variables_path}：自动更新开关应保留可显式覆盖入口")
+    record(checks, 'option(DESKTOP_APP_DISABLE_CRASH_REPORTS "Disable crash report generation." ON)' in variables_text, f"{variables_path}：默认应关闭崩溃上报")
+
     readme_path = "README.md"
     readme_text = read_text(readme_path)
     record(checks, readme_text.startswith("# Private Chat Desktop 桌面端"), f"{readme_path}：应使用 Private Chat 中文优先说明")
@@ -127,6 +133,7 @@ def main():
     print(f"Desktop 私有化配置验证通过：{passed_count}/{len(checks)} 项通过")
     print("- 内置 DC 已指向 127.0.0.1:10443 / ::1:10443")
     print("- macOS、Windows、UWP、Linux 高可见入口已指向 Private Chat")
+    print("- 默认构建已关闭自动更新和崩溃上报，可在接入自建服务后显式打开")
     print("- 当前验证是静态配置验证；登录、多端互通、发布签名和正式服务器入口仍需单独验证")
     return 0
 

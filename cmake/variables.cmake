@@ -11,18 +11,7 @@ if (DESKTOP_APP_SPECIAL_TARGET STREQUAL "")
     set(no_special_target 1)
 endif()
 
-set(disable_autoupdate 0)
-if (DESKTOP_APP_SPECIAL_TARGET STREQUAL ""
-    OR DESKTOP_APP_SPECIAL_TARGET STREQUAL "uwp"
-    OR DESKTOP_APP_SPECIAL_TARGET STREQUAL "uwp64"
-    OR DESKTOP_APP_SPECIAL_TARGET STREQUAL "uwparm"
-    OR DESKTOP_APP_SPECIAL_TARGET STREQUAL "macstore")
-    set(disable_autoupdate 1)
-endif()
-
-if (DEFINED ENV{FLATPAK_ID})
-    set(disable_autoupdate 0)
-endif()
+set(disable_autoupdate 1)
 
 set(CMAKE_CXX_SCAN_FOR_MODULES OFF CACHE BOOL "")
 set(CMAKE_MSVC_DEBUG_INFORMATION_FORMAT
@@ -36,7 +25,7 @@ cmake_dependent_option(DESKTOP_APP_DISABLE_X11_INTEGRATION "Disable all code for
 cmake_dependent_option(DESKTOP_APP_USE_ALLOCATION_TRACER "Use simple allocation tracer." OFF LINUX OFF)
 option(DESKTOP_APP_USE_PACKAGED_FONTS "Use preinstalled fonts instead of bundled patched ones." OFF)
 option(DESKTOP_APP_USE_PACKAGED_RLOTTIE "Find rlottie using CMake instead of bundled patched one." OFF)
-option(DESKTOP_APP_DISABLE_CRASH_REPORTS "Disable crash report generation." ${no_special_target})
+option(DESKTOP_APP_DISABLE_CRASH_REPORTS "Disable crash report generation." ON)
 option(DESKTOP_APP_DISABLE_AUTOUPDATE "Disable autoupdate." ${disable_autoupdate})
 option(DESKTOP_APP_DISABLE_QT_PLUGINS "Disable bundled Qt plugins." OFF)
 option(DESKTOP_APP_USE_HUNSPELL_ONLY "Disable system spellchecker and use bundled Hunspell only. (For debugging purposes)" OFF)
