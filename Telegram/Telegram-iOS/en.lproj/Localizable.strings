@@ -3508,14 +3508,14 @@ Unused sets are archived when you add more.";
 
 "Passport.Phone.Title" = "Phone Number";
 "Passport.Phone.UseTelegramNumber" = "Use %@";
-"Passport.Phone.UseTelegramNumberHelp" = "Use the same phone number as on Telegram.";
+"Passport.Phone.UseTelegramNumberHelp" = "Use the same phone number as on Private Chat.";
 "Passport.Phone.EnterOtherNumber" = "OR ENTER NEW PHONE NUMBER";
 "Passport.Phone.Help" = "Note: You will receive a confirmation code on the phone number you provide.";
 "Passport.Phone.Delete" = "Delete Phone Number";
 
 "Passport.Email.Title" = "Email";
 "Passport.Email.UseTelegramEmail" = "Use %@";
-"Passport.Email.UseTelegramEmailHelp" = "Use the same address as on Telegram.";
+"Passport.Email.UseTelegramEmailHelp" = "Use the same address as on Private Chat.";
 "Passport.Email.EnterOtherEmail" = "OR ENTER NEW EMAIL ADDRESS";
 "Passport.Email.EmailPlaceholder" = "Enter your email address";
 "Passport.Email.Help" = "Note: You will receive a confirmation code to the email address you provide.";
@@ -7547,7 +7547,7 @@ Sorry for the inconvenience.";
 "WebApp.RemoveConfirmationText" = "Remove **%@** from the attachment menu?";
 
 "Notifications.SystemTones" = "SYSTEM TONES";
-"Notifications.TelegramTones" = "TELEGRAM TONES";
+"Notifications.TelegramTones" = "Private Chat Tones";
 
 "Notifications.UploadSound" = "Upload Sound";
 "Notifications.MessageSoundInfo" = "Press and hold a short voice note or mp3 file in any chat and select \"Save for Notifications\". It will appear here.";
@@ -8098,7 +8098,7 @@ Sorry for the inconvenience.";
 "Login.EnterCodeSMSText" = "We've sent an SMS with an activation code to your phone **%@**.";
 "Login.SendCodeAsSMS" = "Send the code as an SMS";
 "Login.EnterCodeTelegramTitle" = "Enter Code";
-"Login.EnterCodeTelegramText" = "We've sent the code to the **Telegram app** for %@ on your other device.";
+"Login.EnterCodeTelegramText" = "We've sent the code to the **Private Chat app** for %@ on your other device.";
 "Login.AddEmailTitle" = "Add Email";
 "Login.AddEmailText" = "Please enter your valid email address to protect your account.";
 "Login.AddEmailPlaceholder" = "Enter your email";
@@ -12256,19 +12256,19 @@ Sorry for the inconvenience.";
 "Chat.Context.Phone.CreateNewContact" = "Create New Contact";
 "Chat.Context.Phone.AddToExistingContact" = "Add to Existing Contact";
 "Chat.Context.Phone.SendMessage" = "Send Message";
-"Chat.Context.Phone.TelegramVoiceCall" = "Telegram Voice Call";
-"Chat.Context.Phone.TelegramVideoCall" = "Telegram Video Call";
-"Chat.Context.Phone.InviteToTelegram" = "Invite to Telegram";
+"Chat.Context.Phone.TelegramVoiceCall" = "Private Chat Voice Call";
+"Chat.Context.Phone.TelegramVideoCall" = "Private Chat Video Call";
+"Chat.Context.Phone.InviteToTelegram" = "Invite to Private Chat";
 "Chat.Context.Phone.CallViaCarrier" = "Call via Carrier";
 "Chat.Context.Phone.CopyNumber" = "Copy Number";
-"Chat.Context.Phone.NotOnTelegram" = "This number is not on Telegram.";
+"Chat.Context.Phone.NotOnTelegram" = "This number is not on Private Chat.";
 "Chat.Context.Phone.ViewProfile" = "View Profile";
 
 "Chat.Context.Username.SendMessage" = "Send Message";
 "Chat.Context.Username.OpenGroup" = "Open Group";
 "Chat.Context.Username.OpenChannel" = "Open Channel";
 "Chat.Context.Username.Copy" = "Copy Username";
-"Chat.Context.Username.NotOnTelegram" = "This user doesn't exist on Telegram.";
+"Chat.Context.Username.NotOnTelegram" = "This user doesn't exist on Private Chat.";
 
 "Chat.Context.Hashtag.Search" = "Search";
 "Chat.Context.Hashtag.Copy" = "Copy Hashtag";
@@ -12582,7 +12582,7 @@ Sorry for the inconvenience.";
 "Browser.ContextMenu.CopyLink" = "Copy Link";
 "Browser.ContextMenu.Share" = "Share";
 
-"WebBrowser.Telegram" = "Telegram";
+"WebBrowser.Telegram" = "Private Chat";
 
 "Monetization.Proceeds.Ton.Info" = "TON from your total balance can be used for ads or withdrawn as rewards 3 days after they are earned.";
 "Monetization.Proceeds.Stars.Info" = "Stars from your total balance can be used for ads or withdrawn as rewards 21 days after they are earned.";

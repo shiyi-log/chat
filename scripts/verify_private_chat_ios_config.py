@@ -306,6 +306,16 @@ def main():
         "Settings.TipsUsername",
         "PrivacyPhoneNumberSettings.CustomPublicLink",
         "DownloadList.ClearAlertText",
+        "Passport.Phone.UseTelegramNumberHelp",
+        "Passport.Email.UseTelegramEmailHelp",
+        "Notifications.TelegramTones",
+        "Login.EnterCodeTelegramText",
+        "Chat.Context.Phone.TelegramVoiceCall",
+        "Chat.Context.Phone.TelegramVideoCall",
+        "Chat.Context.Phone.InviteToTelegram",
+        "Chat.Context.Phone.NotOnTelegram",
+        "Chat.Context.Username.NotOnTelegram",
+        "WebBrowser.Telegram",
     )
     for key in default_english_private_keys:
         value = strings.get(key, "")
