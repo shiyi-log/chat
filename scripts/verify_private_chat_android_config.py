@@ -259,6 +259,10 @@ def main():
         "PrivacyPolicyUrl",
         "TermsOfServiceUrl",
         "WebAppDisclaimerUrl",
+        "BotWebViewToSLink",
+        "BotWebViewStartPermissionLink",
+        "ProfileBotOpenAppInfoLink",
+        "ProfileBotOpenAppInfoOwnerLink",
         "AuthAnotherClientDownloadClientUrl",
         "AuthAnotherWebClientUrl",
         "CheckPhoneNumberLearnMoreUrl",
@@ -269,6 +273,17 @@ def main():
         record(checks, value.startswith("https://privatechat.local/"), f"{strings_path}：{key} 应指向 privatechat.local 占位域名")
         record(checks, "telegram.org" not in value and "t.me" not in value, f"{strings_path}：{key} 不应继续指向官方域名")
     record(checks, get_string_value(strings_text, "NoChats") == "Welcome to Private Chat", f"{strings_path}：NoChats 应为 Welcome to Private Chat")
+    policy_webapp_private_keys = (
+        "TosDecline",
+        "TosUpdateDecline",
+        "TosDeclineDeleteAccount",
+        "BotWebAppDisclaimerSubtitle",
+        "ProfileBotOpenAppInfoOwner",
+    )
+    for key in policy_webapp_private_keys:
+        value = get_string_value(strings_text, key)
+        record(checks, "private chat" in value.lower(), f"{strings_path}：{key} 应包含 Private Chat")
+        record(checks, "telegram" not in value.lower() and "telegram.org" not in value.lower(), f"{strings_path}：{key} 不应继续显示 Telegram 或官方链接")
 
     buildvars_path = "TMessagesProj/src/main/java/org/telegram/messenger/BuildVars.java"
     buildvars = read_text(buildvars_path)

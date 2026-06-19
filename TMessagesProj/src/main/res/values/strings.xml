@@ -3724,7 +3724,7 @@
     <string name="BotWebViewSettings">Settings</string>
     <string name="BotWebViewOpenBot">Open bot</string>
     <string name="BotWebViewToS">Terms of Use</string>
-    <string name="BotWebViewToSLink">https://telegram.org/tos/mini-apps</string>
+    <string name="BotWebViewToSLink">https://privatechat.local/tos/mini-apps</string>
     <string name="BotWebViewReloadPage">Reload page</string>
     <string name="BotWebViewDeleteBot">Delete bot</string>
     <string name="BotWebViewRequestAllow">Allow</string>
@@ -4060,12 +4060,12 @@
     <string name="ErrorSendRestrictedPrivacyVoiceMessages">Sorry, you can\'t send voice messages to this user because of their privacy settings.</string>
     <string name="ErrorSendRestrictedPrivacyVideoMessages">Sorry, you can\'t send video messages to this user because of their privacy settings.</string>
     <string name="UnableForward">Unable to forward</string>
-    <string name="TosDecline">We\'re very sorry, but this means you can\'t sign up for Telegram.\n\nUnlike others, we don\'t use your data for ad targeting or other commercial purposes. Telegram only stores the information it needs to function as a feature-rich cloud service. You can adjust how we use your data (e.g., delete synced contacts) in Privacy &amp; Security settings.\n\nBut if you\'re generally not OK with Telegram\'s modest requirements, it won\'t be possible for us to provide you with this service.</string>
+    <string name="TosDecline">We\'re very sorry, but this means you can\'t sign up for Private Chat.\n\nPrivate Chat is a private messaging service for our own server. You can adjust how we use your data (e.g., delete synced contacts) in Privacy &amp; Security settings.\n\nIf you\'re not comfortable with these requirements, it won\'t be possible for us to provide this service.</string>
     <string name="TosAgeTitle">Age Verification</string>
     <string name="PrivacyPolicyAndTerms">Privacy Policy and Terms of Service</string>
     <string name="TosAgeText">Tap Agree to confirm that you are %1$s or over.</string>
-    <string name="TosUpdateDecline">We\'re very sorry, but this means we must part ways here. Unlike others, we don\'t use your data for ad targeting or other commercial purposes. Telegram only stores the information it needs to function as a feature-rich cloud service. You can adjust how we use your data (e.g., delete synced contacts) in Privacy &amp; Security settings.\n\nBut if you\'re generally not OK with Telegram\'s modest needs, it won\'t be possible for us to provide this service. You can deactivate your account now — or look around some more and deactivate it later if you feel you\'re not happy with the way we use your data.</string>
-    <string name="TosDeclineDeleteAccount">Warning, this will irreversibly delete your Telegram account along with all the data you store in the Telegram cloud.\n\nImportant: You can Cancel now and export your data before deleting your account instead of losing it all. (To do this, open the latest version of Telegram Desktop and go to Settings &gt; Export Telegram Data.)</string>
+    <string name="TosUpdateDecline">We\'re very sorry, but this means we must part ways here. Private Chat is a private messaging service for our own server. You can adjust how we use your data (e.g., delete synced contacts) in Privacy &amp; Security settings.\n\nIf you\'re not comfortable with these requirements, it won\'t be possible for us to provide this service. You can deactivate your account now — or look around some more and deactivate it later if you feel you\'re not happy with the way we use your data.</string>
+    <string name="TosDeclineDeleteAccount">Warning, this will irreversibly delete your Private Chat account along with the data stored on our private chat server.\n\nExport any data you need before deleting your account.</string>
     <!--permissions-->
     <string name="PermissionStorageWithHint">**Private Chat** needs storage access so you can send and save photos, videos, music and other media. Tap Settings -> Permissions, and turn **Files and media** on.</string>
     <string name="PermissionNoAudioWithHint">**Private Chat** needs microphone access so that you can send voice messages. Tap Settings -> Permissions, and turn **Microphone** on.</string>
@@ -6418,7 +6418,7 @@
     <string name="WallpaperNotification">Set a new chat Wallpaper</string>
     <string name="WallpaperSameNotification">Set a same chat Wallpaper</string>
     <string name="BotWebViewStartPermission2">By launching this mini app, you agree to the **Terms of Service for Mini Apps**.</string>
-    <string name="BotWebViewStartPermissionLink">https://telegram.org/tos/mini-apps</string>
+    <string name="BotWebViewStartPermissionLink">https://privatechat.local/tos/mini-apps</string>
     <string name="MoreAboutThisBot">More about this bot</string>
     <string name="ChatThemeDaySwitchTooltip">Tap to view this theme in the day mode.</string>
     <string name="ChatThemeNightSwitchTooltip">Tap to view this theme in the night mode.</string>
@@ -7268,7 +7268,7 @@
     <string name="BoostingRemoveRestrictionsSuccessSubTitle">Now you can send messages in it.</string>
     <string name="BoostingRemoveRestrictionsSubtitle_one">Boost the group **%1$d** time to remove messaging restrictions. Your boosts will help **%2$s** to unlock new features.</string>
     <string name="BoostingRemoveRestrictionsSubtitle_other">Boost the group **%1$d** times to remove messaging restrictions. Your boosts will help **%2$s** to unlock new features.</string>
-    <string name="BotWebAppDisclaimerSubtitle">You are about to use a mini app operated by an independent party **not affiliated with Telegram**. You must agree to the Terms of Use of mini apps to continue.</string>
+    <string name="BotWebAppDisclaimerSubtitle">You are about to use a mini app operated by an independent party **not affiliated with Private Chat**. You must agree to the Terms of Use of mini apps to continue.</string>
     <string name="BotWebAppDisclaimerCheck">I agree to the **Terms of Use**</string>
     <string name="StoryPinnedToPostsDescription">Saved stories can be viewed by others on the channel’s profile until an admin removes them.</string>
     <string name="YouBoostedChannel">You boosted the channel</string>
@@ -8494,9 +8494,9 @@
     <string name="AppsTab">Apps</string>
     <string name="ProfileBotOpenApp">Open App</string>
     <string name="ProfileBotOpenAppInfo">By launching this mini app, you agree to the **Terms of Service for Mini Apps.**</string>
-    <string name="ProfileBotOpenAppInfoLink">https://telegram.org/tos/mini-apps</string>
-    <string name="ProfileBotOpenAppInfoOwner">By publishing this mini app, you agree to the **Telegram Terms of Service for Developers.**</string>
-    <string name="ProfileBotOpenAppInfoOwnerLink">https://telegram.org/tos/mini-apps</string>
+    <string name="ProfileBotOpenAppInfoLink">https://privatechat.local/tos/mini-apps</string>
+    <string name="ProfileBotOpenAppInfoOwner">By publishing this mini app, you agree to the **Private Chat Terms of Service for Developers.**</string>
+    <string name="ProfileBotOpenAppInfoOwnerLink">https://privatechat.local/tos/mini-apps</string>
     <string name="ProfileBotAffiliateProgram">Affiliate Program</string>
     <string name="ProfileBotAffiliateProgramInfo">Share a link to %1$s with your friends and earn %2$s of their spending there.</string>
     <string name="ProfileBotAffiliateProgramInfoOwner">Share a link to %1$s with other users and earn %2$s of their spending there.</string>
