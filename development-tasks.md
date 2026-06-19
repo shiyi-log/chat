@@ -78,17 +78,18 @@
 - [ ] 配置私有 `TDESKTOP_API_ID` / `TDESKTOP_API_HASH`。
 - [x] 替换应用显示名称和 Linux/Windows 用户可见安装信息。
 - [ ] 替换图标。
-- [ ] 替换 macOS Bundle/App ID 的完整发布配置。
+- [x] 替换 macOS Debug Bundle/App ID 和应用名生成配置。
+- [ ] 替换 macOS Bundle/App ID 的完整发布签名配置。
 - [ ] 禁用或替换上游官方更新、崩溃上报、支持链接。
-- [x] 构建 macOS 桌面端 Debug 版本：`out/Debug/Telegram.app` 已生成。
+- [x] 构建 macOS 桌面端 Debug 版本：`out/Debug/Private Chat.app` 已生成。
 - [ ] 按需构建 Windows / Linux 桌面端。
 - [x] 完成桌面端构建环境检查。
 - [x] 安装完整 Xcode 26.5 并确认 `xcode-select` 指向 `/Applications/Xcode.app/Contents/Developer`。
 - [x] 准备桌面端 Qt 6.11.1 和第三方库环境。
-- [x] 执行桌面端私有化静态配置验证：当前 `28/28` 项通过。
+- [x] 执行桌面端私有化静态配置验证：当前 `33/33` 项通过。
 - [x] 修复 macOS 依赖准备中 `libjxl` 的 `third_party/lcms` GitHub 下载中断问题。
 - [x] 修复 Desktop macOS 构建中 FFmpeg 根目录 include 污染导致 `<version>` 标准库头误命中的问题。
-- [x] 完成 Desktop macOS Debug 构建签名校验：`codesign --verify --deep --strict out/Debug/Telegram.app` 通过。
+- [x] 完成 Desktop macOS Debug 构建签名校验：`codesign --verify --deep --strict "out/Debug/Private Chat.app"` 通过。
 - [ ] 修复或切换 Linux Docker 构建镜像源后重新准备 `tdesktop:centos_env`。
 - [ ] 完成登录冒烟测试 / login smoke test。
 - [ ] 完成私聊消息收发测试。
@@ -249,9 +250,9 @@
 - Android 最新 APK 复测结果：两台模拟器均可启动 `LaunchActivity`，进程存活，日志中未发现 `FATAL EXCEPTION`。
 - Android 当前仍有 Firebase `FIS_AUTH_ERROR` / client blocked 日志，需要后续替换真实 Firebase 配置或禁用推送能力。
 - 服务端当前 Docker 镜像已完成重建并在线运行；后续生产部署仍需替换默认验证码、默认账号密码和公网/局域网固定入口。
-- Desktop 私有化静态配置验证当前 `28/28` 项通过；完整 Xcode 26.5、Qt 6.11.1 和第三方库依赖已完成准备。
-- Desktop macOS Debug 构建已通过，产物为 `desktop/out/Debug/Telegram.app`，并已通过本地 `codesign --verify --deep --strict` 校验。
-- Desktop 当前仍需继续处理 macOS Bundle ID、`CFBundleName`、图标、发布签名、官方更新/崩溃上报/支持链接，以及跨端登录和消息收发冒烟测试。
+- Desktop 私有化静态配置验证当前 `33/33` 项通过；完整 Xcode 26.5、Qt 6.11.1 和第三方库依赖已完成准备。
+- Desktop macOS Debug 构建已通过，产物为 `desktop/out/Debug/Private Chat.app`，生成产物 `CFBundleIdentifier = com.privatechat.desktop.debug`，`CFBundleName = Private Chat`，并已通过本地 `codesign --verify --deep --strict` 校验。
+- Desktop 当前仍需继续处理图标、发布签名、官方更新/崩溃上报/支持链接、协议 URL scheme，以及跨端登录和消息收发冒烟测试。
 - Desktop Linux Docker 构建环境被 EPEL 镜像源 SSL 连接失败阻塞。
 - iOS 私有化静态配置验证已扩展到默认英文 `PresentationStrings`、Widget 扩展和实际构建用主 App plist 片段，当前 `290/290` 项通过；Xcode 26.5 / iOS 26.5 Simulator 已完成工程生成、Debug 构建、安装和启动冒烟验证。
 - iOS 真机/发布构建仍需要真实 Apple Developer Team ID、签名证书、provisioning profile 和正式私有 `api_id` / `api_hash`。
