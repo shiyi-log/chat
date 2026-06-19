@@ -134,7 +134,7 @@ void SetCrashAnnotationsGL() {
 base::options::toggle OptionSkipUrlSchemeRegister({
 	.id = kOptionSkipUrlSchemeRegister,
 	.name = "Skip URL scheme register",
-	.description = "Don't re-register tg:// URL scheme on autoupdate.",
+	.description = "Don't re-register privatechat:// URL scheme on autoupdate.",
 });
 
 } // namespace
@@ -1912,9 +1912,9 @@ void Application::RegisterUrlScheme() {
 	base::Platform::RegisterUrlScheme(base::Platform::UrlSchemeDescriptor{
 		.executable = Platform::ExecutablePathForShortcuts(),
 		.arguments = arguments,
-		.protocol = u"tg"_q,
-		.protocolName = u"Telegram Link"_q,
-		.shortAppName = u"tdesktop"_q,
+		.protocol = u"privatechat"_q,
+		.protocolName = u"Private Chat Link"_q,
+		.shortAppName = u"privatechat"_q,
 		.longAppName = QCoreApplication::applicationName(),
 		.displayAppName = AppName.utf16(),
 		.displayAppDescription = AppName.utf16(),
@@ -1925,7 +1925,7 @@ void Application::RegisterUrlScheme() {
 		.arguments = arguments,
 		.protocol = u"tonsite"_q,
 		.protocolName = u"TonSite Link"_q,
-		.shortAppName = u"tdesktop"_q,
+		.shortAppName = u"privatechat"_q,
 		.longAppName = QCoreApplication::applicationName(),
 		.displayAppName = AppName.utf16(),
 		.displayAppDescription = AppName.utf16(),

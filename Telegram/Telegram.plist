@@ -37,7 +37,7 @@
 			<string>@bundle_identifier_plist@</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>tg</string>
+				<string>privatechat</string>
 				<string>tonsite</string>
 			</array>
 		</dict>

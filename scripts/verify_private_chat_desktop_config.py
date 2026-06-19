@@ -40,6 +40,9 @@ def main():
     plist_path = "Telegram/Telegram.plist"
     plist = read_plist(ROOT / plist_path)
     record(checks, plist.get("CFBundleGetInfoString") == "Private Chat Desktop messaging app", f"{plist_path}：CFBundleGetInfoString 应为 Private Chat Desktop")
+    url_schemes = plist.get("CFBundleURLTypes", [{}])[0].get("CFBundleURLSchemes", [])
+    record(checks, "privatechat" in url_schemes, f"{plist_path}：URL scheme 应注册 privatechat")
+    record(checks, "tg" not in url_schemes, f"{plist_path}：不应继续注册 tg URL scheme")
 
     cmake_path = "Telegram/CMakeLists.txt"
     cmake_text = read_text(cmake_path)
@@ -79,6 +82,7 @@ def main():
     ns = {
         "f": "http://schemas.microsoft.com/appx/manifest/foundation/windows10",
         "uap": "http://schemas.microsoft.com/appx/manifest/uap/windows10",
+        "uap3": "http://schemas.microsoft.com/appx/manifest/uap/windows10/3",
         "desktop": "http://schemas.microsoft.com/appx/manifest/desktop/windows10",
     }
     identity = appx_root.find("f:Identity", ns)
@@ -92,11 +96,16 @@ def main():
     record(checks, visual is not None and visual.get("DisplayName") == "Private Chat Desktop", f"{appx_path}：VisualElements DisplayName 应为 Private Chat Desktop")
     record(checks, startup is not None and startup.get("DisplayName") == "Private Chat Desktop", f"{appx_path}：StartupTask DisplayName 应为 Private Chat Desktop")
     record(checks, "Telegram Desktop official messenger" not in appx_text, f"{appx_path}：不应保留官方 UWP 描述")
+    protocol_names = [node.get("Name") for node in appx_root.findall(".//uap3:Protocol", ns)]
+    record(checks, "privatechat" in protocol_names, f"{appx_path}：UWP 协议应注册 privatechat")
+    record(checks, "tg" not in protocol_names, f"{appx_path}：UWP 协议不应继续注册 tg")
 
     desktop_path = "lib/xdg/org.telegram.desktop.desktop"
     desktop_text = read_text(desktop_path)
     record(checks, "Name=Private Chat" in desktop_text, f"{desktop_path}：Name 应为 Private Chat")
     record(checks, "Icon=com.privatechat.desktop" in desktop_text, f"{desktop_path}：Icon 应为 com.privatechat.desktop")
+    record(checks, "x-scheme-handler/privatechat" in desktop_text, f"{desktop_path}：Linux 协议应注册 privatechat")
+    record(checks, "x-scheme-handler/tg" not in desktop_text, f"{desktop_path}：Linux 协议不应继续注册 tg")
 
     metainfo_path = "lib/xdg/org.telegram.desktop.metainfo.xml"
     metainfo_text = read_text(metainfo_path)
@@ -115,6 +124,17 @@ def main():
     record(checks, "set(disable_autoupdate 1)" in variables_text, f"{variables_path}：默认应关闭自动更新")
     record(checks, 'option(DESKTOP_APP_DISABLE_AUTOUPDATE "Disable autoupdate." ${disable_autoupdate})' in variables_text, f"{variables_path}：自动更新开关应保留可显式覆盖入口")
     record(checks, 'option(DESKTOP_APP_DISABLE_CRASH_REPORTS "Disable crash report generation." ON)' in variables_text, f"{variables_path}：默认应关闭崩溃上报")
+
+    application_path = "Telegram/SourceFiles/core/application.cpp"
+    application_text = read_text(application_path)
+    record(checks, '.protocol = u"privatechat"_q' in application_text, f"{application_path}：运行时应注册 privatechat URL scheme")
+    record(checks, '.protocol = u"tg"_q' not in application_text, f"{application_path}：运行时不应继续注册 tg URL scheme")
+    record(checks, 'protocolName = u"Private Chat Link"_q' in application_text, f"{application_path}：运行时协议名称应为 Private Chat Link")
+
+    local_url_handlers_path = "Telegram/SourceFiles/core/local_url_handlers.cpp"
+    local_url_handlers_text = read_text(local_url_handlers_path)
+    record(checks, 'url.startsWith(u"privatechat://"_q, Qt::CaseInsensitive)' in local_url_handlers_text, f"{local_url_handlers_path}：应支持 privatechat:// 本地深链")
+    record(checks, 'return u"tg://"_q + url.mid(u"privatechat://"_q.size())' in local_url_handlers_text, f"{local_url_handlers_path}：privatechat:// 应映射到现有本地处理流程")
 
     readme_path = "README.md"
     readme_text = read_text(readme_path)

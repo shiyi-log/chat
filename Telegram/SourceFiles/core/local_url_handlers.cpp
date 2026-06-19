@@ -1882,6 +1882,9 @@ QString TryConvertUrlToLocal(QString url) {
 	if (url.size() > 8192) {
 		url = url.mid(0, 8192);
 	}
+	if (url.startsWith(u"privatechat://"_q, Qt::CaseInsensitive)) {
+		return u"tg://"_q + url.mid(u"privatechat://"_q.size());
+	}
 
 	using namespace qthelp;
 	auto matchOptions = RegExOption::CaseInsensitive;
