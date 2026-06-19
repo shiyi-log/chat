@@ -22,10 +22,34 @@ if (DESKTOP_APP_USE_PACKAGED OR LINUX)
 endif()
 
 set(ffmpeg_lib_loc ${libs_loc}/ffmpeg)
+set(ffmpeg_include_loc ${CMAKE_CURRENT_BINARY_DIR}/ffmpeg_include)
+
+file(MAKE_DIRECTORY ${ffmpeg_include_loc})
+
+foreach(include_entry
+        compat
+        libavcodec
+        libavdevice
+        libavfilter
+        libavformat
+        libavutil
+        libpostproc
+        libswresample
+        libswscale
+        config.h
+        config_components.h)
+    if (EXISTS ${ffmpeg_lib_loc}/${include_entry}
+            AND NOT EXISTS ${ffmpeg_include_loc}/${include_entry})
+        file(CREATE_LINK
+            ${ffmpeg_lib_loc}/${include_entry}
+            ${ffmpeg_include_loc}/${include_entry}
+            SYMBOLIC)
+    endif()
+endforeach()
 
 target_include_directories(external_ffmpeg SYSTEM
 INTERFACE
-    ${ffmpeg_lib_loc}
+    ${ffmpeg_include_loc}
 )
 
 target_link_libraries(external_ffmpeg
