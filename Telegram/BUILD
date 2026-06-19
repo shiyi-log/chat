@@ -440,38 +440,13 @@ plist_fragment(
     )
 )
 
-official_apple_pay_merchants = [
-    "merchant.ph.telegra.Telegraph",
-    "merchant.sberbank.ph.telegra.Telegraph",
-    "merchant.sberbank.test.ph.telegra.Telegraph",
-    "merchant.privatbank.test.telergramios",
-    "merchant.privatbank.prod.telergram",
-    "merchant.paymaster.test.telegramios",
-    "merchant.paymaster.prod.telegramios",
-    "merchant.smartglocal.prod.telegramios",
-    "merchant.smartglocal.test.telegramios",
-    "merchant.yoomoney.test.telegramios",
-    "merchant.yoomoney.prod.telegramios",
-    "merchant.org.telegram.Best2pay.test",
-    "merchant.psbank.test.telegramios",
-    "merchant.psbank.prod.telegramios",
-    "merchant.org.telegram.billinenet.test",
-    "merchant.org.telegram.billinenet.prod",
-    "merchant.org.telegram.portmone.test",
-    "merchant.org.telegram.portmone.prod",
-    "merchant.org.telegram.ecommpay.test",
-]
+official_apple_pay_merchants = []
 
-official_bundle_ids = [
-    "ph.telegra.Telegraph",
-    "org.telegram.Telegram-iOS",
-]
+official_bundle_ids = []
 
-store_bundle_ids = [
-    "ph.telegra.Telegraph",
-]
+store_bundle_ids = []
 
-apple_pay_merchants = official_apple_pay_merchants if telegram_bundle_id == "ph.telegra.Telegraph" else []
+apple_pay_merchants = official_apple_pay_merchants if telegram_bundle_id in official_bundle_ids else []
 
 apple_pay_merchants_fragment = "" if apple_pay_merchants == [] else """
 <key>com.apple.developer.in-app-payments</key>
@@ -557,7 +532,7 @@ official_notification_filtering_fragment = """
 <key>com.apple.developer.usernotifications.filtering</key>
 <true/>
 """
-notification_filtering_fragment = official_notification_filtering_fragment if telegram_bundle_id == "ph.telegra.Telegraph" else ""
+notification_filtering_fragment = official_notification_filtering_fragment if telegram_bundle_id in official_bundle_ids else ""
 
 store_signin_fragment = """
 <key>com.apple.developer.applesignin</key>
@@ -571,7 +546,7 @@ official_background_gpu_fragment = """
 <key>com.apple.developer.background-tasks.continued-processing.gpu</key>
 <true/>
 """
-background_gpu_fragment = official_background_gpu_fragment if telegram_bundle_id == "ph.telegra.Telegraph" else ""
+background_gpu_fragment = official_background_gpu_fragment if telegram_bundle_id in official_bundle_ids else ""
 
 plist_fragment(
     name = "TelegramEntitlements",
@@ -1054,7 +1029,7 @@ plist_fragment(
     <key>CFBundleIdentifier</key>
     <string>{telegram_bundle_id}.NotificationContent</string>
     <key>CFBundleName</key>
-    <string>Telegram</string>
+    <string>Private Chat</string>
     <key>CFBundlePackageType</key>
     <string>XPC!</string>
     <key>NSExtension</key>
@@ -1161,7 +1136,7 @@ plist_fragment(
     <key>CFBundleIdentifier</key>
     <string>{telegram_bundle_id}.Widget</string>
     <key>CFBundleName</key>
-    <string>Telegram</string>
+    <string>Private Chat</string>
     <key>CFBundlePackageType</key>
     <string>XPC!</string>
     <key>NSExtension</key>
@@ -1274,7 +1249,7 @@ plist_fragment(
     <key>CFBundleIdentifier</key>
     <string>{telegram_bundle_id}.SiriIntents</string>
     <key>CFBundleName</key>
-    <string>Telegram</string>
+    <string>Private Chat</string>
     <key>CFBundlePackageType</key>
     <string>XPC!</string>
     <key>NSExtension</key>
@@ -1405,7 +1380,7 @@ plist_fragment(
     <key>CFBundleIdentifier</key>
     <string>{telegram_bundle_id}.BroadcastUpload</string>
     <key>CFBundleName</key>
-    <string>Telegram</string>
+    <string>Private Chat</string>
     <key>CFBundlePackageType</key>
     <string>XPC!</string>
     <key>NSExtension</key>
@@ -1499,7 +1474,7 @@ plist_fragment(
     <key>CFBundleIdentifier</key>
     <string>{telegram_bundle_id}.NotificationService</string>
     <key>CFBundleName</key>
-    <string>Telegram</string>
+    <string>Private Chat</string>
     <key>CFBundlePackageType</key>
     <string>XPC!</string>
     <key>NSExtension</key>
@@ -1749,8 +1724,8 @@ apple_prebuilt_watchos_application(
     # Watch bundle id tracks the host config ("<host>.watchkitapp"). The rule passes it
     # to xcodebuild as PRODUCT_BUNDLE_IDENTIFIER (baked + signed); the watch Info.plist
     # derives WKCompanionAppBundleIdentifier from it via $(PRODUCT_BUNDLE_IDENTIFIER:base),
-    # so the embedded watch app is correct for any host (ph.telegra.Telegraph,
-    # org.telegram.TelegramInternal, ...) with no post-build plist patching.
+    # so the embedded watch app is correct for any private host bundle id
+    # with no post-build plist patching.
     bundle_id = "{telegram_bundle_id}.watchkitapp".format(
         telegram_bundle_id = telegram_bundle_id,
     ),
@@ -1877,7 +1852,7 @@ swift_library(
 
 ios_ui_test_suite(
     name = "iOSAppUITestSuite",
-    bundle_id = "org.telegram.Telegram-iOS-uitests",
+    bundle_id = "com.privatechat.ios.uitests",
     minimum_os_version = minimum_os_version,
     runners = [
         ":iPhone-17__26.2",

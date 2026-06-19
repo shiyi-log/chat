@@ -91,6 +91,31 @@ def main():
         record(checks, "686449807" not in release_config_text, f"{release_config_path}：不应继续使用上游 App Store ID")
         record(checks, "org.telegram.telegramPremium" not in release_config_text, f"{release_config_path}：不应继续使用上游 Premium IAP ID")
 
+    release_verify_path = "build-system/verify.sh"
+    release_verify_text = read_text(release_verify_path)
+    release_verify_expected_values = (
+        'export BUNDLE_ID="com.privatechat.ios"',
+        'export IS_INTERNAL_BUILD="true"',
+        'export IS_APPSTORE_BUILD="false"',
+        'export APPSTORE_ID="0"',
+        'export APP_SPECIFIC_URL_SCHEME="privatechat"',
+        'export PREMIUM_IAP_PRODUCT_ID=""',
+        "match Development com.privatechat.ios",
+        "match AppStore com.privatechat.ios",
+    )
+    for expected_value in release_verify_expected_values:
+        record(checks, expected_value in release_verify_text, f"{release_verify_path}：应包含私有发布占位配置 {expected_value}")
+    release_verify_forbidden_values = (
+        "Digital Fortress",
+        "C67CF9S4VU",
+        "ph.telegra.Telegraph",
+        "686449807",
+        "tgapp",
+        "org.telegram.telegramPremium",
+    )
+    for forbidden_value in release_verify_forbidden_values:
+        record(checks, forbidden_value not in release_verify_text, f"{release_verify_path}：不应继续包含上游发布身份 {forbidden_value}")
+
     xcconfig_path = "Telegram/Telegram-iOS/Config-Fork.xcconfig"
     xcconfig = parse_xcconfig(read_text(xcconfig_path))
     record(checks, xcconfig.get("APP_NAME") == "Private Chat", f"{xcconfig_path}：APP_NAME 应为 Private Chat")
@@ -127,6 +152,15 @@ def main():
     record(checks, "<string>Private Chat</string>" in build_text, f"{build_path}：实际构建用 Info.plist 片段应显示 Private Chat")
     record(checks, "<string>com.privatechat.ios.theme</string>" in build_text, f"{build_path}：实际构建用主题 UTI 应为 com.privatechat.ios.theme")
     record(checks, "Telegram stores your contacts" not in build_text, f"{build_path}：实际构建用权限说明不应继续显示 Telegram")
+    record(checks, "<string>Telegram</string>" not in build_text, f"{build_path}：扩展构建用 CFBundleName 不应继续显示 Telegram")
+    build_forbidden_release_values = (
+        "merchant.ph.telegra.Telegraph",
+        "org.telegram.Telegram-iOS",
+        "ph.telegra.Telegraph",
+        "merchant.org.telegram",
+    )
+    for forbidden_value in build_forbidden_release_values:
+        record(checks, forbidden_value not in build_text, f"{build_path}：不应继续包含上游发布身份 {forbidden_value}")
     main_plist_match = re.search(
         r'name\s*=\s*"TelegramInfoPlist".*?<key>CFBundleDisplayName</key>\s*<string>Private Chat</string>.*?<key>CFBundleName</key>\s*<string>Private Chat</string>',
         build_text,
@@ -332,6 +366,7 @@ def main():
     print("- README 已改为中文优先的 Private Chat iOS 私有快照说明")
     print("- 默认英文 PresentationStrings 与 Widget 扩展高可见入口已纳入品牌门禁")
     print("- App Store / AppCenter 发布配置已收敛为私有占位，默认英文条款、隐私和更新入口已纳入门禁")
+    print("- 旧发布校验脚本和扩展构建 plist 已收敛到私有占位身份")
     return 0
 
 
