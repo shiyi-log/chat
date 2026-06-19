@@ -80,13 +80,15 @@
 - [ ] 替换图标。
 - [ ] 替换 macOS Bundle/App ID 的完整发布配置。
 - [ ] 禁用或替换上游官方更新、崩溃上报、支持链接。
-- [ ] 构建 macOS 桌面端。
+- [x] 构建 macOS 桌面端 Debug 版本：`out/Debug/Telegram.app` 已生成。
 - [ ] 按需构建 Windows / Linux 桌面端。
 - [x] 完成桌面端构建环境检查。
 - [x] 安装完整 Xcode 26.5 并确认 `xcode-select` 指向 `/Applications/Xcode.app/Contents/Developer`。
-- [ ] 准备桌面端 Qt 6.11.1 和第三方库环境。
+- [x] 准备桌面端 Qt 6.11.1 和第三方库环境。
 - [x] 执行桌面端私有化静态配置验证：当前 `28/28` 项通过。
-- [ ] 修复 macOS 依赖准备中 `libjxl` 的 `third_party/lcms` GitHub 下载中断问题。
+- [x] 修复 macOS 依赖准备中 `libjxl` 的 `third_party/lcms` GitHub 下载中断问题。
+- [x] 修复 Desktop macOS 构建中 FFmpeg 根目录 include 污染导致 `<version>` 标准库头误命中的问题。
+- [x] 完成 Desktop macOS Debug 构建签名校验：`codesign --verify --deep --strict out/Debug/Telegram.app` 通过。
 - [ ] 修复或切换 Linux Docker 构建镜像源后重新准备 `tdesktop:centos_env`。
 - [ ] 完成登录冒烟测试 / login smoke test。
 - [ ] 完成私聊消息收发测试。
@@ -232,7 +234,7 @@
 - [x] 完成 Android 双模拟器私聊消息互发验证。
 - [x] 准备完整 Xcode 和 iOS 模拟器环境，并完成模拟器构建/启动验证。
 - [ ] 准备 iOS 签名证书和真机环境。
-- [ ] 准备桌面端 Qt 6.11.1 / 第三方库依赖并构建 macOS 版本。
+- [x] 准备桌面端 Qt 6.11.1 / 第三方库依赖并构建 macOS Debug 版本。
 - [x] 执行服务端入口短连接验证，覆盖 TCP `10443`、`5222`、`11443`。
 - [x] 新增可重复执行的服务端入口压测脚本：`server/scripts/local-dev/tcp_entry_stress.py`。
 - [x] 执行第一轮低并发入口连接测试，记录 CPU、内存、MySQL、Redis、Kafka、MinIO 指标快照。
@@ -247,8 +249,9 @@
 - Android 最新 APK 复测结果：两台模拟器均可启动 `LaunchActivity`，进程存活，日志中未发现 `FATAL EXCEPTION`。
 - Android 当前仍有 Firebase `FIS_AUTH_ERROR` / client blocked 日志，需要后续替换真实 Firebase 配置或禁用推送能力。
 - 服务端当前 Docker 镜像已完成重建并在线运行；后续生产部署仍需替换默认验证码、默认账号密码和公网/局域网固定入口。
-- Desktop 私有化静态配置验证当前 `28/28` 项通过；完整 Xcode 26.5 已安装，macOS 构建不再被 Xcode 阻塞。
-- Desktop macOS 构建当前被 Qt 6.11.1 准备阻塞；`configure.sh force` 已能进入 CMake/Xcode 探测但失败于 `Neither Qt6 nor Qt5 is found`，`prepare/mac.sh` 已推进到 `[23/26](Libraries/qt_6.11.1)`，`libjxl`、`libvpx`、`liblcms2`、`regex`、`ffmpeg`、`openal-soft`、`breakpad`、`crashpad` 已完成并缓存，当前正在拉取 Qt 必要模块源码。
+- Desktop 私有化静态配置验证当前 `28/28` 项通过；完整 Xcode 26.5、Qt 6.11.1 和第三方库依赖已完成准备。
+- Desktop macOS Debug 构建已通过，产物为 `desktop/out/Debug/Telegram.app`，并已通过本地 `codesign --verify --deep --strict` 校验。
+- Desktop 当前仍需继续处理 macOS Bundle ID、`CFBundleName`、图标、发布签名、官方更新/崩溃上报/支持链接，以及跨端登录和消息收发冒烟测试。
 - Desktop Linux Docker 构建环境被 EPEL 镜像源 SSL 连接失败阻塞。
 - iOS 私有化静态配置验证已扩展到默认英文 `PresentationStrings`、Widget 扩展和实际构建用主 App plist 片段，当前 `290/290` 项通过；Xcode 26.5 / iOS 26.5 Simulator 已完成工程生成、Debug 构建、安装和启动冒烟验证。
 - iOS 真机/发布构建仍需要真实 Apple Developer Team ID、签名证书、provisioning profile 和正式私有 `api_id` / `api_hash`。
@@ -257,6 +260,15 @@
 - 正式压力测试需要先完成可运行客户端包和稳定服务端入口地址。
 - Android 已完成账号/邀请/会话/版本更新和通用体验入口品牌补漏，私有化静态验证扩展到 `345/345` 项通过，最新 Debug APK 构建通过。
 - 品牌彻底清理仍需正式产品域名、图标、隐私政策、服务条款、崩溃上报、自动更新端点，以及 Premium、广告、Stories、Passport 等深层功能入口的产品策略。
+
+## 统一语言和品牌词入口策略
+
+- 产品层统一维护一份中文优先的语言与品牌词表，所有端按同一套中文命名、英文 fallback 和禁用词规则执行。
+- 代码层没有四端共享的单一语言文件，需要分端落地：
+  - Desktop：重点入口为 `Telegram/SourceFiles/lang`、`Telegram/Resources/langs` 和 `td_lang_lang` 代码生成流程。
+  - Android：重点入口为 `TMessagesProj/src/main/res/values*/strings.xml` 及现有 `LocaleController` 字符串加载流程。
+  - iOS：重点入口为 `Telegram/Telegram-iOS/*/Localizable.strings`、`PresentationStrings` 生成和各扩展资源。
+  - macOS Debug 包当前来自 Desktop 仓库，Bundle 层还需要继续替换 `Info.plist` 生成结果、图标和签名配置。
 
 ## 第一轮开发建议 / First Sprint
 
