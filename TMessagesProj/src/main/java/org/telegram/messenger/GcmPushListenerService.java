@@ -19,6 +19,12 @@ public class GcmPushListenerService extends FirebaseMessagingService {
 
     @Override
     public void onMessageReceived(RemoteMessage message) {
+        if (!BuildVars.PUSH_SERVICES_ENABLED) {
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("FCM message ignored because push services are disabled.");
+            }
+            return;
+        }
         String from = message.getFrom();
         Map<String, String> data = message.getData();
         long time = message.getSentTime();
@@ -32,6 +38,14 @@ public class GcmPushListenerService extends FirebaseMessagingService {
 
     @Override
     public void onNewToken(@NonNull String token) {
+        if (!BuildVars.PUSH_SERVICES_ENABLED) {
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("FCM token ignored because push services are disabled.");
+            }
+            SharedConfig.pushStringStatus = "__PRIVATE_PUSH_DISABLED__";
+            PushListenerController.sendRegistrationToServer(PushListenerController.PUSH_TYPE_FIREBASE, null);
+            return;
+        }
         AndroidUtilities.runOnUIThread(() -> {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("Refreshed FCM token: " + token);

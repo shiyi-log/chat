@@ -274,8 +274,39 @@ def main():
     buildvars = read_text(buildvars_path)
     record(checks, 'APP_ID = 25686376' in buildvars, f"{buildvars_path}：APP_ID 应保留当前私有基线值")
     record(checks, 'APP_HASH = "3e7e5e874a044e71575e3fd63e12290c"' in buildvars, f"{buildvars_path}：APP_HASH 应保留当前私有基线值")
+    record(checks, "PUSH_SERVICES_ENABLED = false" in buildvars, f"{buildvars_path}：私有构建默认应禁用第三方推送 token 获取")
     record(checks, '"com.privatechat.messenger.beta".equals' in buildvars, f"{buildvars_path}：Beta 包名判断应使用 com.privatechat.messenger.beta")
     record(checks, '"org.telegram.messenger.beta".equals' not in buildvars, f"{buildvars_path}：不应继续用旧 Beta 包名判断")
+
+    application_loader_path = "TMessagesProj/src/main/java/org/telegram/messenger/ApplicationLoader.java"
+    application_loader = read_text(application_loader_path)
+    record(checks, "__PRIVATE_PUSH_DISABLED__" in application_loader, f"{application_loader_path}：启动时应写入私有推送禁用状态")
+    record(checks, "!BuildVars.PUSH_SERVICES_ENABLED" in application_loader, f"{application_loader_path}：启动推送服务前应检查私有推送开关")
+    record(checks, "Push services are disabled for Private Chat build." in application_loader, f"{application_loader_path}：应记录私有构建跳过推送初始化")
+
+    push_controller_path = "TMessagesProj/src/main/java/org/telegram/messenger/PushListenerController.java"
+    push_controller = read_text(push_controller_path)
+    record(checks, "FCM token request skipped for Private Chat build." in push_controller, f"{push_controller_path}：FCM token 获取应可被私有开关跳过")
+    record(checks, "__PRIVATE_PUSH_DISABLED__" in push_controller, f"{push_controller_path}：FCM 跳过时应写入私有推送禁用状态")
+
+    gcm_service_path = "TMessagesProj/src/main/java/org/telegram/messenger/GcmPushListenerService.java"
+    gcm_service = read_text(gcm_service_path)
+    record(checks, "FCM message ignored because push services are disabled." in gcm_service, f"{gcm_service_path}：私有构建应忽略 FCM 消息回调")
+    record(checks, "FCM token ignored because push services are disabled." in gcm_service, f"{gcm_service_path}：私有构建应忽略 FCM token 回调")
+
+    huawei_loader_path = "TMessagesProj_AppHuawei/src/main/java/org/telegram/messenger/HuaweiApplicationLoader.java"
+    huawei_loader = read_text(huawei_loader_path)
+    record(checks, "HmsMessaging.getInstance(this).setAutoInitEnabled(false)" in huawei_loader, f"{huawei_loader_path}：私有构建应关闭 HMS 自动初始化")
+    record(checks, "FirebaseMessaging.getInstance().setAutoInitEnabled(false)" in huawei_loader, f"{huawei_loader_path}：私有构建应关闭 FCM 自动初始化")
+
+    huawei_provider_path = "TMessagesProj_AppHuawei/src/main/java/org/telegram/messenger/HuaweiPushListenerProvider.java"
+    huawei_provider = read_text(huawei_provider_path)
+    record(checks, "HMS token request skipped for Private Chat build." in huawei_provider, f"{huawei_provider_path}：HMS token 获取应可被私有开关跳过")
+
+    huawei_service_path = "TMessagesProj_AppHuawei/src/main/java/org/telegram/messenger/HuaweiPushListenerService.java"
+    huawei_service = read_text(huawei_service_path)
+    record(checks, "HCM message ignored because push services are disabled." in huawei_service, f"{huawei_service_path}：私有构建应忽略 HCM 消息回调")
+    record(checks, "HCM token ignored because push services are disabled." in huawei_service, f"{huawei_service_path}：私有构建应忽略 HCM token 回调")
 
     conn_path = "TMessagesProj/jni/tgnet/ConnectionsManager.cpp"
     conn = read_text(conn_path)
@@ -314,6 +345,7 @@ def main():
     print("- 默认英文权限、锁屏、存储、Passcode 和通话通知渠道说明已纳入系统入口品牌门禁")
     print("- 默认英文账号、邀请、会话和版本更新入口已纳入品牌门禁")
     print("- 默认英文通用体验、隐私安全、缓存、通话和导入入口已纳入品牌门禁")
+    print("- 私有构建默认禁用 Firebase/Huawei 推送 token 获取，避免未配置第三方服务时报错")
     print("- 库模块保留 org.telegram.messenger 内部构建匹配项，最终 App 模块不保留旧对外包名")
     print("- 模拟器私有 DC 已指向 10.0.2.2:10443，单 DC 防御逻辑存在")
     print("- 当前验证是静态配置验证；真机/公网测试仍需要替换服务端地址和发布证书")

@@ -37,6 +37,14 @@ public class HuaweiPushListenerProvider implements PushListenerController.IPushL
 
     @Override
     public void onRequestPushToken() {
+        if (!BuildVars.PUSH_SERVICES_ENABLED) {
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("HMS token request skipped for Private Chat build.");
+            }
+            SharedConfig.pushStringStatus = "__PRIVATE_PUSH_DISABLED__";
+            PushListenerController.sendRegistrationToServer(getPushType(), null);
+            return;
+        }
         Utilities.globalQueue.postRunnable(() -> {
             try {
                 String token = HmsInstanceId.getInstance(ApplicationLoader.applicationContext).getToken(BuildVars.HUAWEI_APP_ID, "HCM");

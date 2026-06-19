@@ -1682,6 +1682,14 @@ public class PushListenerController {
 
         @Override
         public void onRequestPushToken() {
+            if (!BuildVars.PUSH_SERVICES_ENABLED) {
+                if (BuildVars.LOGS_ENABLED) {
+                    FileLog.d("FCM token request skipped for Private Chat build.");
+                }
+                SharedConfig.pushStringStatus = "__PRIVATE_PUSH_DISABLED__";
+                PushListenerController.sendRegistrationToServer(getPushType(), null);
+                return;
+            }
             String currentPushString = SharedConfig.pushString;
             if (!TextUtils.isEmpty(currentPushString)) {
                 if (BuildVars.DEBUG_PRIVATE_VERSION && BuildVars.LOGS_ENABLED) {

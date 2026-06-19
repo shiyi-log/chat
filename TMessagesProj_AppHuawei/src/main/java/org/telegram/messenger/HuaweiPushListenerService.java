@@ -8,6 +8,12 @@ import java.util.Map;
 public class HuaweiPushListenerService extends HmsMessageService {
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
+        if (!BuildVars.PUSH_SERVICES_ENABLED) {
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("HCM message ignored because push services are disabled.");
+            }
+            return;
+        }
         Utilities.globalQueue.postRunnable(() -> {
             String from = remoteMessage.getFrom();
             String data = remoteMessage.getData();
@@ -23,6 +29,14 @@ public class HuaweiPushListenerService extends HmsMessageService {
 
     @Override
     public void onNewToken(String token) {
+        if (!BuildVars.PUSH_SERVICES_ENABLED) {
+            if (BuildVars.LOGS_ENABLED) {
+                FileLog.d("HCM token ignored because push services are disabled.");
+            }
+            SharedConfig.pushStringStatus = "__PRIVATE_PUSH_DISABLED__";
+            PushListenerController.sendRegistrationToServer(PushListenerController.PUSH_TYPE_HUAWEI, null);
+            return;
+        }
         AndroidUtilities.runOnUIThread(() -> {
             if (BuildVars.LOGS_ENABLED) {
                 FileLog.d("Refreshed HCM token: " + token);

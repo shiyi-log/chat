@@ -249,7 +249,9 @@ public class ApplicationLoader extends Application {
             UserConfig.getInstance(a).loadConfig();
             MessagesController.getInstance(a);
             if (a == 0) {
-                SharedConfig.pushStringStatus = "__FIREBASE_GENERATING_SINCE_" + ConnectionsManager.getInstance(a).getCurrentTime() + "__";
+                SharedConfig.pushStringStatus = BuildVars.PUSH_SERVICES_ENABLED
+                        ? "__FIREBASE_GENERATING_SINCE_" + ConnectionsManager.getInstance(a).getCurrentTime() + "__"
+                        : "__PRIVATE_PUSH_DISABLED__";
             } else {
                 ConnectionsManager.getInstance(a);
             }
@@ -380,6 +382,14 @@ public class ApplicationLoader extends Application {
 
     private void initPushServices() {
         AndroidUtilities.runOnUIThread(() -> {
+            if (!BuildVars.PUSH_SERVICES_ENABLED) {
+                if (BuildVars.LOGS_ENABLED) {
+                    FileLog.d("Push services are disabled for Private Chat build.");
+                }
+                SharedConfig.pushStringStatus = "__PRIVATE_PUSH_DISABLED__";
+                PushListenerController.sendRegistrationToServer(getPushProvider().getPushType(), null);
+                return;
+            }
             if (getPushProvider().hasServices()) {
                 getPushProvider().onRequestPushToken();
             } else {
