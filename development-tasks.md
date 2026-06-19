@@ -158,11 +158,12 @@
 - [x] 在构建配置中设置可生成工程的本地开发 `api_id` / `api_hash`。
 - [x] 替换 iOS fork 配置中的 Bundle ID、应用显示名和 URL Scheme。
 - [x] 替换 iOS 权限弹窗、分享扩展登录提示和主题文件类型中的用户可见品牌。
-- [x] 新增并运行 iOS 私有化静态配置验证脚本：`scripts/verify_private_chat_ios_config.py`，当前 `353/353` 项通过。
+- [x] 新增并运行 iOS 私有化静态配置验证脚本：`scripts/verify_private_chat_ios_config.py`，当前 `373/373` 项通过。
 - [x] iOS README 已改为中文优先的 `Private Chat iOS` 私有快照说明，并纳入验证脚本门禁。
 - [x] 修复 iOS 默认英文 `PresentationStrings`、Widget 扩展、登录、联系人、会话、权限、通话、邀请和缓存等高可见入口中的品牌漏项。
 - [ ] 替换图标和签名配置。
 - [x] 替换 iOS 默认英文条款、隐私、更新和 WebApp 免责声明入口为私有占位地址。
+- [x] 替换 iOS 默认英文登录验证码、联系人上下文菜单、通知音、浏览器和 Passport 复用帮助入口中的上游品牌漏项。
 - [x] 将 iOS App Store / AppCenter 发布配置收敛为私有占位配置。
 - [x] 将 iOS 旧发布校验脚本、扩展构建 plist、上游 merchant / Bundle ID 发布身份收敛为私有占位。
 - [ ] 接入正式自建分发、支持、上报、隐私政策和服务条款。
@@ -263,7 +264,7 @@
 - Desktop macOS Debug 构建已通过，产物为 `desktop/out/Debug/Private Chat.app`，生成产物 `CFBundleIdentifier = com.privatechat.desktop.debug`，`CFBundleName = Private Chat`，并已通过本地 `codesign --verify --deep --strict` 校验。
 - Desktop 已默认关闭上游自动更新和崩溃上报，已将对外系统 URL scheme 改为 `privatechat://`，并已将高可见支持/更新链接替换为私有占位地址；当前仍需继续处理图标、发布签名、正式自建更新/崩溃收集/隐私政策/服务条款，以及跨端登录和消息收发冒烟测试。
 - Desktop Linux Docker 构建环境被 EPEL 镜像源 SSL 连接失败阻塞。
-- iOS 私有化静态配置验证已扩展到默认英文 `PresentationStrings`、Widget 扩展、实际构建用主 App plist 片段、App Store / AppCenter 发布配置、旧发布校验脚本、扩展构建 plist，以及默认英文条款、隐私和更新入口，当前 `353/353` 项通过；Xcode 26.5 / iOS 26.5 Simulator 已完成工程读取、Debug 构建、安装和启动冒烟验证。
+- iOS 私有化静态配置验证已扩展到默认英文 `PresentationStrings`、Widget 扩展、实际构建用主 App plist 片段、App Store / AppCenter 发布配置、旧发布校验脚本、扩展构建 plist、默认英文条款、隐私、更新、登录验证码、联系人上下文菜单、通知音、浏览器和 Passport 复用帮助入口，当前 `373/373` 项通过；Xcode 26.5 / iOS 26.5 Simulator 已完成工程读取、Debug 构建、安装和启动冒烟验证。
 - iOS 发布配置当前已收敛为私有占位：App Store ID / AppCenter ID 为 `0`，Premium IAP 产品 ID 为空，Siri / iCloud 默认关闭，旧发布校验脚本和扩展构建 plist 不再使用上游发布身份；正式发布前仍需替换真实 Apple Developer Team ID、签名证书、provisioning profile、正式域名、隐私政策和服务条款。
 - iOS 真机/发布构建仍需要真实 Apple Developer Team ID、签名证书、provisioning profile 和正式私有 `api_id` / `api_hash`。
 - 真机和多端互通测试需要局域网固定 IP 或公网域名，不能继续使用本机回环地址。
