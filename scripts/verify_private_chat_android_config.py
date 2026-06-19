@@ -284,6 +284,11 @@ def main():
     record(checks, "!BuildVars.PUSH_SERVICES_ENABLED" in application_loader, f"{application_loader_path}：启动推送服务前应检查私有推送开关")
     record(checks, "Push services are disabled for Private Chat build." in application_loader, f"{application_loader_path}：应记录私有构建跳过推送初始化")
 
+    notifications_controller_path = "TMessagesProj/src/main/java/org/telegram/messenger/NotificationsController.java"
+    notifications_controller = read_text(notifications_controller_path)
+    record(checks, '"Private Chat internal notifications"' in notifications_controller, f"{notifications_controller_path}：内部通知渠道名应使用 Private Chat")
+    record(checks, '"Internal notifications"' not in notifications_controller, f"{notifications_controller_path}：内部通知渠道名不应继续使用通用默认名称")
+
     push_controller_path = "TMessagesProj/src/main/java/org/telegram/messenger/PushListenerController.java"
     push_controller = read_text(push_controller_path)
     record(checks, "FCM token request skipped for Private Chat build." in push_controller, f"{push_controller_path}：FCM token 获取应可被私有开关跳过")
