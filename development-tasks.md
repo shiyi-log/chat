@@ -84,6 +84,7 @@
 - [x] 替换 Desktop 高可见版本记录、主菜单和 Windows 更新器支持/更新链接为私有占位地址。
 - [x] 替换 Desktop 默认英文账号、安全、存储、代理、FAQ、会话、手机号隐私和 Bot 隐私入口中的通用品牌漏项。
 - [x] 替换 Desktop 默认英文普通运行入口第二批品牌漏项，覆盖主题、下载、通话、邀请、联系人、Bot、条款、导出、语言包、辅助功能、mini app、冻结账号、年龄验证和 Passport 普通入口。
+- [x] 替换 Desktop 默认英文剩余非商业化普通入口品牌漏项和上游链接示例。
 - [ ] 接入正式自建更新、崩溃收集、隐私政策、服务条款和支持链接。
 - [x] 将 Desktop 对外系统 URL scheme 改为 `privatechat://`，并保留内部 handler 兼容映射。
 - [x] 构建 macOS 桌面端 Debug 版本：`out/Debug/Private Chat.app` 已生成。
@@ -91,7 +92,7 @@
 - [x] 完成桌面端构建环境检查。
 - [x] 安装完整 Xcode 26.5 并确认 `xcode-select` 指向 `/Applications/Xcode.app/Contents/Developer`。
 - [x] 准备桌面端 Qt 6.11.1 和第三方库环境。
-- [x] 执行桌面端私有化静态配置验证：当前 `282/282` 项通过。
+- [x] 执行桌面端私有化静态配置验证：当前 `304/304` 项通过。
 - [x] 修复 macOS 依赖准备中 `libjxl` 的 `third_party/lcms` GitHub 下载中断问题。
 - [x] 修复 Desktop macOS 构建中 FFmpeg 根目录 include 污染导致 `<version>` 标准库头误命中的问题。
 - [x] 完成 Desktop macOS Debug 构建签名校验：`codesign --verify --deep --strict "out/Debug/Private Chat.app"` 通过。
@@ -262,9 +263,9 @@
 - Android 最新 APK 复测结果：两台模拟器均可启动 `LaunchActivity`，进程存活，日志中未发现 `FATAL EXCEPTION`。
 - Android 已默认禁用 Firebase / Huawei 第三方推送 token 获取，避免未配置第三方项目时继续触发 `FIS_AUTH_ERROR` / client blocked；生产推送仍需接入自建服务或正式第三方项目。
 - 服务端当前 Docker 镜像已完成重建并在线运行；后续生产部署仍需替换默认验证码、默认账号密码和公网/局域网固定入口。
-- Desktop 私有化静态配置验证当前 `282/282` 项通过；完整 Xcode 26.5、Qt 6.11.1 和第三方库依赖已完成准备。
+- Desktop 私有化静态配置验证当前 `304/304` 项通过；完整 Xcode 26.5、Qt 6.11.1 和第三方库依赖已完成准备。
 - Desktop macOS Debug 构建已通过，产物为 `desktop/out/Debug/Private Chat.app`，生成产物 `CFBundleIdentifier = com.privatechat.desktop.debug`，`CFBundleName = Private Chat`，并已通过本地 `codesign --verify --deep --strict` 校验。
-- Desktop 已默认关闭上游自动更新和崩溃上报，已将对外系统 URL scheme 改为 `privatechat://`，并已将高可见支持/更新链接、默认英文通用账号/安全/存储/代理/FAQ/会话/隐私入口，以及第二批普通运行入口替换为私有品牌或私有占位地址；当前仍需继续处理图标、发布签名、正式自建更新/崩溃收集/隐私政策/服务条款，以及跨端登录和消息收发冒烟测试。
+- Desktop 已默认关闭上游自动更新和崩溃上报，已将对外系统 URL scheme 改为 `privatechat://`，并已将高可见支持/更新链接、默认英文通用账号/安全/存储/代理/FAQ/会话/隐私入口、第二批普通运行入口，以及剩余非商业化普通链接示例替换为私有品牌或私有占位地址；当前剩余默认英文品牌命中集中在 Premium、Stars、广告、礼物、商业化、TON、Fragment 和 Cocoon 等深层策略功能，仍需继续处理图标、发布签名、正式自建更新/崩溃收集/隐私政策/服务条款，以及跨端登录和消息收发冒烟测试。
 - Desktop Linux Docker 构建环境被 EPEL 镜像源 SSL 连接失败阻塞。
 - iOS 私有化静态配置验证已扩展到默认英文 `PresentationStrings`、Widget 扩展、实际构建用主 App plist 片段、App Store / AppCenter 发布配置、旧发布校验脚本、扩展构建 plist、默认英文条款、隐私、更新、登录验证码、联系人上下文菜单、通知音、浏览器和 Passport 复用帮助入口，当前 `373/373` 项通过；Xcode 26.5 / iOS 26.5 Simulator 已完成工程读取、Debug 构建、安装和启动冒烟验证。
 - iOS 发布配置当前已收敛为私有占位：App Store ID / AppCenter ID 为 `0`，Premium IAP 产品 ID 为空，Siri / iCloud 默认关闭，旧发布校验脚本和扩展构建 plist 不再使用上游发布身份；正式发布前仍需替换真实 Apple Developer Team ID、签名证书、provisioning profile、正式域名、隐私政策和服务条款。
