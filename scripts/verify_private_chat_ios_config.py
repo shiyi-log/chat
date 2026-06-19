@@ -74,6 +74,23 @@ def main():
     record(checks, has_local_development_api_hash(template.get("api_hash")), f"{template_path}：api_hash 应为可生成工程的本地开发 32 位十六进制值")
     record(checks, has_local_development_team_id(template.get("team_id")), f"{template_path}：team_id 应为可生成工程的本地开发 10 位团队标识")
 
+    for release_config_path in (
+        "build-system/appstore-configuration.json",
+        "build-system/appcenter-configuration.json",
+    ):
+        release_config = json.loads(read_text(release_config_path))
+        record(checks, release_config.get("bundle_id") == "com.privatechat.ios", f"{release_config_path}：bundle_id 应为 com.privatechat.ios")
+        record(checks, release_config.get("app_specific_url_scheme") == "privatechat", f"{release_config_path}：URL Scheme 应为 privatechat")
+        record(checks, release_config.get("appstore_id") == "0", f"{release_config_path}：App Store ID 应为私有占位值 0")
+        record(checks, release_config.get("app_center_id") == "0", f"{release_config_path}：AppCenter ID 应为私有占位值 0")
+        record(checks, release_config.get("premium_iap_product_id") == "", f"{release_config_path}：Premium IAP 产品 ID 应为空")
+        record(checks, release_config.get("enable_siri") is False, f"{release_config_path}：未配置正式私有能力前应关闭 Siri")
+        record(checks, release_config.get("enable_icloud") is False, f"{release_config_path}：未配置正式私有能力前应关闭 iCloud")
+        release_config_text = read_text(release_config_path)
+        record(checks, "ph.telegra.Telegraph" not in release_config_text, f"{release_config_path}：不应继续使用上游 Bundle ID")
+        record(checks, "686449807" not in release_config_text, f"{release_config_path}：不应继续使用上游 App Store ID")
+        record(checks, "org.telegram.telegramPremium" not in release_config_text, f"{release_config_path}：不应继续使用上游 Premium IAP ID")
+
     xcconfig_path = "Telegram/Telegram-iOS/Config-Fork.xcconfig"
     xcconfig = parse_xcconfig(read_text(xcconfig_path))
     record(checks, xcconfig.get("APP_NAME") == "Private Chat", f"{xcconfig_path}：APP_NAME 应为 Private Chat")
@@ -261,6 +278,24 @@ def main():
         record(checks, "Private Chat" in value or "PrivateChat" in value or "privatechat.local" in value, f"{strings_path}：{key} 应包含 Private Chat、PrivateChat 或 privatechat.local")
         record(checks, "Telegram" not in value and "telegram.org" not in value and "t.me" not in value and "desktop.telegram.org" not in value and "web.telegram.org" not in value, f"{strings_path}：{key} 不应继续显示上游品牌或官方链接")
     record(checks, strings.get("Settings.FAQ_URL") == "https://privatechat.local/faq", f"{strings_path}：Settings.FAQ_URL 应指向 privatechat.local")
+    default_english_policy_update_keys = (
+        "Login.TermsOfServiceSignupDecline",
+        "PrivacyPolicy.DeclineMessage",
+        "PrivacyPolicy.DeclineLastWarning",
+        "Update.Title",
+        "Update.AppVersion",
+        "Update.UpdateApp",
+        "Conversation.UnsupportedMediaPlaceholder",
+        "Conversation.UpdateTelegram",
+        "Settings.Terms_URL",
+        "Settings.PrivacyPolicy_URL",
+        "WebApp.DisclaimerText",
+        "WebApp.Disclaimer_URL",
+    )
+    for key in default_english_policy_update_keys:
+        value = strings.get(key, "")
+        record(checks, "Private Chat" in value or "privatechat.local" in value or "UPDATE PRIVATE CHAT" in value, f"{strings_path}：{key} 应指向 Private Chat 或 privatechat.local")
+        record(checks, "Telegram" not in value and "telegram.org" not in value, f"{strings_path}：{key} 不应继续显示 Telegram 或官方条款链接")
 
     widget_strings_path = "Telegram/WidgetKitWidget/en.lproj/Localizable.strings"
     widget_strings = parse_strings_file(read_text(widget_strings_path))
@@ -296,6 +331,7 @@ def main():
     print("- iOS 网络 seed DC 1 已指向 127.0.0.1:10443，本地模拟器可用于后续连接验证")
     print("- README 已改为中文优先的 Private Chat iOS 私有快照说明")
     print("- 默认英文 PresentationStrings 与 Widget 扩展高可见入口已纳入品牌门禁")
+    print("- App Store / AppCenter 发布配置已收敛为私有占位，默认英文条款、隐私和更新入口已纳入门禁")
     return 0
 
 

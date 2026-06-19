@@ -3329,7 +3329,7 @@ Unused sets are archived when you add more.";
 
 "Login.TermsOfService.ProceedBot" = "Please agree and proceed to %@.";
 
-"Login.TermsOfServiceSignupDecline" = "We're very sorry, but this means you can't sign up for Telegram.\n\nUnlike others, we don't use your data for ad targeting or other commercial purposes. Telegram only stores the information it needs to function as a feature-rich cloud service. You can adjust how we use your data (e.g., delete synced contacts) in Privacy & Security settings.\n\nBut if you're generally not OK with Telegram's modest needs, it won't be possible for us to provide this service.";
+"Login.TermsOfServiceSignupDecline" = "We're very sorry, but this means you can't sign up for Private Chat.\n\nPrivate Chat is a private messaging service for our own server. You can adjust how we use your data (e.g., delete synced contacts) in Privacy & Security settings.\n\nIf you're not comfortable with these requirements, it won't be possible for us to provide this service.";
 
 "UserInfo.BotPrivacy" = "Privacy Policy";
 
@@ -3342,10 +3342,10 @@ Unused sets are archived when you add more.";
 "PrivacyPolicy.AgeVerificationAgree" = "Agree";
 
 "PrivacyPolicy.DeclineTitle" = "Decline";
-"PrivacyPolicy.DeclineMessage" = "We're very sorry, but this means we must part ways here. Unlike others, we don't use your data for ad targeting or other commercial purposes. Telegram only stores the information it needs to function as a feature-rich cloud service. You can adjust how we use your data (e.g., delete synced contacts) in Privacy & Security settings.\n\nBut if you're generally not OK with Telegram's modest needs, it won't be possible for us to provide this service.";
+"PrivacyPolicy.DeclineMessage" = "We're very sorry, but this means we must part ways here. Private Chat is a private messaging service for our own server. You can adjust how we use your data (e.g., delete synced contacts) in Privacy & Security settings.\n\nIf you're not comfortable with these requirements, it won't be possible for us to provide this service.";
 "PrivacyPolicy.DeclineDeclineAndDelete" = "Decline and Delete";
 
-"PrivacyPolicy.DeclineLastWarning" = "Warning, this will irreversibly delete your Telegram account along with all the data you store in the Telegram cloud.\n\nWe will provide a tool to download your data before June, 23 – so you may want to wait a little before deleting.";
+"PrivacyPolicy.DeclineLastWarning" = "Warning, this will irreversibly delete your Private Chat account along with the data stored on our private chat server.\n\nExport any data you need before deleting your account.";
 "PrivacyPolicy.DeclineDeleteNow" = "Delete Now";
 
 "Settings.Passport" = "Telegram Passport";
@@ -3588,9 +3588,9 @@ Unused sets are archived when you add more.";
 
 "Passport.NotLoggedInMessage" = "Please log in to your account to use Telegram Passport";
 
-"Update.Title" = "Telegram Update";
-"Update.AppVersion" = "Telegram %@";
-"Update.UpdateApp" = "Update Telegram";
+"Update.Title" = "Private Chat Update";
+"Update.AppVersion" = "Private Chat %@";
+"Update.UpdateApp" = "Update Private Chat";
 "Update.Skip" = "Skip";
 
 "ReportPeer.ReasonCopyright" = "Copyright";
@@ -3995,8 +3995,8 @@ Unused sets are archived when you add more.";
 
 "AttachmentMenu.WebSearch" = "Web Search";
 
-"Conversation.UnsupportedMediaPlaceholder" = "This message is not supported on your version of Telegram. Please update to the latest version.";
-"Conversation.UpdateTelegram" = "UPDATE TELEGRAM";
+"Conversation.UnsupportedMediaPlaceholder" = "This message is not supported on your version of Private Chat. Please update to the latest version.";
+"Conversation.UpdateTelegram" = "UPDATE PRIVATE CHAT";
 
 "Cache.LowDiskSpaceText" = "Your phone has run out of available storage. Please free some space to download or upload media.";
 
@@ -7778,8 +7778,8 @@ Sorry for the inconvenience.";
 "Conversation.CopyProtectionSavingDisabledSecret" = "Saving is restricted";
 "Conversation.CopyProtectionForwardingDisabledSecret" = "Forwarding is restricted";
 
-"Settings.Terms_URL" = "https://telegram.org/tos";
-"Settings.PrivacyPolicy_URL" = "https://telegram.org/privacy";
+"Settings.Terms_URL" = "https://privatechat.local/terms";
+"Settings.PrivacyPolicy_URL" = "https://privatechat.local/privacy";
 
 "Stickers.PremiumPackInfoText" = "This pack contains premium stickers like this one.";
 "Stickers.PremiumPackView" = "View";
@@ -9957,10 +9957,10 @@ Sorry for the inconvenience.";
 "Gallery.ViewOnceVideoTooltip" = "This video can only be viewed once.";
 
 "WebApp.DisclaimerTitle" = "Terms of Use";
-"WebApp.DisclaimerText" = "You are about to use a mini app operated by an independent party not affiliated with Telegram. You must agree to the Terms of Use of mini apps to continue.";
+"WebApp.DisclaimerText" = "You are about to use a mini app operated by an independent party not affiliated with Private Chat. You must agree to the Terms of Use of mini apps to continue.";
 "WebApp.DisclaimerAgree" = "I agree to the [Terms of Use]()";
 "WebApp.DisclaimerContinue" = "Continue";
-"WebApp.Disclaimer_URL" = "https://telegram.org/tos/mini-apps";
+"WebApp.Disclaimer_URL" = "https://privatechat.local/terms/mini-apps";
 
 "WebApp.ShortcutsAdded" = "**%@** shortcut added in attachment menu.";
 "WebApp.ShortcutsSettingsAdded" = "**%@** shortcut added in attachment menu and Settings.";
