@@ -1480,7 +1480,7 @@
     <string name="GroupEmptyTitle2">Groups can have:</string>
     <string name="GroupDescription1">Up to 200,000 members</string>
     <string name="GroupDescription2">Persistent chat history</string>
-    <string name="GroupDescription3">Public links such as t.me/title</string>
+    <string name="GroupDescription3">Public links such as privatechat.local/title</string>
     <string name="GroupDescription4">Admins with different rights</string>
     <string name="ChatYourSelfDescription1">Forward messages here to save them</string>
     <string name="ChatYourSelfDescription2">Send media and files to store them</string>
@@ -1557,7 +1557,7 @@
     <string name="URL">URL</string>
     <string name="MapPreviewProvider">Map Preview Provider</string>
     <string name="MapPreviewProviderTitle">Map preview provider</string>
-    <string name="MapPreviewProviderTelegram">Telegram</string>
+    <string name="MapPreviewProviderTelegram">Private Chat</string>
     <string name="MapPreviewProviderGoogle">Google</string>
     <string name="MapPreviewProviderYandex">Yandex</string>
     <string name="MapPreviewProviderNobody">No previews</string>
@@ -2156,8 +2156,8 @@
     <string name="NoReactionsFound">No reactions found</string>
     <string name="NoEffectsFound">No effects found</string>
     <string name="EmojiSuggestions">Emoji suggestions</string>
-    <string name="EmojiSuggestionsInfo">**Telegram** lets you find emoji by thousands of keywords, but there is always something missing. If you want to suggest a new emoji replacement, you can help us by visiting:</string>
-    <string name="EmojiSuggestionsUrl">https://translations.telegram.org/%1$s/emoji</string>
+    <string name="EmojiSuggestionsInfo">**Private Chat** lets you find emoji by thousands of keywords, but there is always something missing. If you want to suggest a new emoji replacement, you can help us by visiting:</string>
+    <string name="EmojiSuggestionsUrl">https://privatechat.local/translations/%1$s/emoji</string>
     <string name="Masks">Masks</string>
     <string name="MasksInfo">You can add masks to photos you send. To do this, open the photo editor before sending a photo.</string>
     <string name="FeaturedStickers">Trending Stickers</string>
@@ -2815,17 +2815,17 @@
     <string name="KeepMediaInfoPart">Photos, videos and other files from cloud chats that you have **not accessed** during this period will be removed from this device to save disk space.</string>
     <string name="KeepMediaForever">Forever</string>
     <!--passport view-->
-    <string name="TelegramPassport">Telegram Passport</string>
+    <string name="TelegramPassport">Private Chat Passport</string>
     <string name="PassportRequestedInformation">Requested Information</string>
     <string name="PassportProvidedInformation">Provided Information</string>
-    <string name="PassportInfoTitle">What is Telegram Passport?</string>
-    <string name="PassportInfo2">With Telegram Passport you can easily sign up for websites and services that require identity verification.\n\nYour information, personal data, and documents are protected by end-to-end encryption. Nobody, including Telegram, can access them without your permission.\n\nYou can visit our *FAQ* to learn more.</string>
-    <string name="PassportInfoUrl">https://telegram.org/faq#passport</string>
-    <string name="TelegramPassportCreatePasswordInfo">Please create a password to secure your personal data with end-to-end encryption.\n\nThis password will also be required whenever you log in to Telegram on a new device.</string>
+    <string name="PassportInfoTitle">What is Private Chat Passport?</string>
+    <string name="PassportInfo2">With Private Chat Passport you can easily sign up for websites and services that require identity verification.\n\nYour information, personal data, and documents are protected by end-to-end encryption. Nobody, including Private Chat, can access them without your permission.\n\nYou can visit our *FAQ* to learn more.</string>
+    <string name="PassportInfoUrl">https://privatechat.local/faq#passport</string>
+    <string name="TelegramPassportCreatePasswordInfo">Please create a password to secure your personal data with end-to-end encryption.\n\nThis password will also be required whenever you log in to Private Chat on a new device.</string>
     <string name="TelegramPassportCreatePassword">CREATE A PASSWORD</string>
-    <string name="TelegramPassportDelete">Delete Telegram Passport</string>
-    <string name="TelegramPassportDeleteTitle">Delete Telegram passport</string>
-    <string name="TelegramPassportDeleteAlert">Are you sure you want to delete your Telegram Passport?</string>
+    <string name="TelegramPassportDelete">Delete Private Chat Passport</string>
+    <string name="TelegramPassportDeleteTitle">Delete Private Chat passport</string>
+    <string name="TelegramPassportDeleteAlert">Are you sure you want to delete your Private Chat Passport?</string>
     <string name="PassportUseLatinOnly">Please use latin characters only.</string>
     <string name="PassportAddPassportInfo">Upload scans of a certified English translation of your passport.</string>
     <string name="PassportAddInternalPassportInfo">Upload scans of a certified English translation of your internal passport.</string>
@@ -2861,8 +2861,8 @@
     <string name="PassportDeletePhoneAlert">Delete phone number?</string>
     <string name="PassportPhoneInfo">Enter your phone number</string>
     <string name="PassportPhoneUseSame">Use %1$s</string>
-    <string name="PassportPhoneUseSameInfo">Use the same phone number as on Telegram.</string>
-    <string name="PassportPhoneUseSameEmailInfo">Use the same email as on Telegram.</string>
+    <string name="PassportPhoneUseSameInfo">Use the same phone number as on Private Chat.</string>
+    <string name="PassportPhoneUseSameEmailInfo">Use the same email as on Private Chat.</string>
     <string name="PassportPhoneUseOther">Or enter a new phone number</string>
     <string name="PassportPhoneUploadInfo">Note: You will receive a confirmation code on the phone number you provide.</string>
     <string name="PassportEmail">Email</string>
@@ -2873,7 +2873,7 @@
     <string name="PassportEmailVerifyInfo">Please enter the confirmation code we\'ve just sent to %1$s.</string>
     <string name="PassportSelfRequest">Please enter your password to access your personal data.</string>
     <string name="PassportRequest">**%1$s** requests access to your personal data to sign you up for their services.</string>
-    <string name="PassportRequestPasswordInfo">Please enter your Telegram Password to decrypt your data.</string>
+    <string name="PassportRequestPasswordInfo">Please enter your Private Chat Password to decrypt your data.</string>
     <string name="PassportPolicy">You accept the *%1$s Privacy Policy* and allow their @%2$s to send you messages.</string>
     <string name="PassportNoPolicy">You are sending your documents directly to %1$s and allowing their @%2$s to send you messages.</string>
     <string name="PassportAuthorize">AUTHORIZE</string>
@@ -3468,7 +3468,7 @@
     <string name="CancelPasswordResetNo">NO</string>
     <string name="CancelReset">Cancel reset</string>
     <string name="CancelEmailQuestionTitle">Abort setup</string>
-    <string name="TurnPasswordOffPassport">Warning! All data saved in your Telegram Passport will be lost!</string>
+    <string name="TurnPasswordOffPassport">Warning! All data saved in your Private Chat Passport will be lost!</string>
     <string name="PasswordHint">Password Hint</string>
     <string name="PasswordHintDescription">You can create an optional hint for your password.</string>
     <string name="PasswordHintPlaceholder">Hint</string>
@@ -3916,7 +3916,7 @@
     <string name="UpdateTelegram">Update Private Chat</string>
     <string name="UpdateAppAlert">Sorry, your Private Chat app is out of date and can\'t handle this request. Please update Private Chat.</string>
     <string name="InvalidPhoneNumber">Invalid phone number. Please check the number and try again.</string>
-    <string name="PleaseLoginPassport">Please log in to your Telegram account to use Telegram Passport.</string>
+    <string name="PleaseLoginPassport">Please log in to your Private Chat account to use Private Chat Passport.</string>
     <string name="BannedPhoneNumber">This phone number is banned.</string>
     <string name="CodeExpired">Code expired, please retry login.</string>
     <string name="WrongCodeTitle">Wrong code</string>
@@ -4541,8 +4541,8 @@
     <string name="VoipNoiseCancellationEnabled">Enabled</string>
     <string name="VoipNoiseCancellationDisabled">Disabled</string>
     <string name="VoipVideoNotAvailable">Video is only available\nfor the first %1$s</string>
-    <string name="VoipVideoNotAvailableAdmin">The video chat has over %1$s.\nNew participants must use the latest version of Telegram to view video.</string>
-    <string name="VoipChannelVideoNotAvailableAdmin">The live stream is over %1$s.\nNew participants must use the latest version of Telegram to view video.</string>
+    <string name="VoipVideoNotAvailableAdmin">The video chat has over %1$s.\nNew participants must use the latest version of Private Chat to view video.</string>
+    <string name="VoipChannelVideoNotAvailableAdmin">The live stream is over %1$s.\nNew participants must use the latest version of Private Chat to view video.</string>
     <string name="VoipRecordAudio">AUDIO ONLY</string>
     <string name="VoipRecordPortrait">PORTRAIT VIDEO</string>
     <string name="VoipRecordLandscape">LANDSCAPE VIDEO</string>
@@ -4557,8 +4557,8 @@
     <string name="VoipWeakNetwork">Weak network signal</string>
     <string name="VoipHideEmoji">Hide Emoji</string>
     <string name="VoipMyMicrophoneState">Your microphone is turned off</string>
-    <string name="NoRtmpStreamFromAppOwner">**Oops!** Telegram doesn\'t see any stream coming from your streaming app.\n\nPlease make sure you entered the right Server URL and Stream Key in your app.</string>
-    <string name="NoRtmpStreamFromAppViewer">%1$s is currently not broadcasting live stream data to Telegram.</string>
+    <string name="NoRtmpStreamFromAppOwner">**Oops!** Private Chat doesn\'t see any stream coming from your streaming app.\n\nPlease make sure you entered the right Server URL and Stream Key in your app.</string>
+    <string name="NoRtmpStreamFromAppViewer">%1$s is currently not broadcasting live stream data to Private Chat.</string>
     <!--invite links-->
     <string name="ManageInviteLinks">Manage Invite Links</string>
     <string name="ManageLinksInfoHelp">You can create additional invite links that have a limited time or number of uses.</string>
@@ -5656,7 +5656,7 @@
     <string name="PinChatsLimitTitle">Pinned Chats</string>
     <string name="PinChatsLimitSubtitle">Pin up to %d chats in your main chat list</string>
     <string name="PublicLinksLimitTitle">Public Links</string>
-    <string name="PublicLinksLimitSubtitle">Reserve up to %d t.me/name links</string>
+    <string name="PublicLinksLimitSubtitle">Reserve up to %d privatechat.local/name links</string>
     <string name="SavedGifsLimitTitle">Saved GIFs</string>
     <string name="SavedGifsLimitSubtitle">Save up to %d GIFs in your Favorite GIFs</string>
     <string name="FavoriteStickersLimitTitle">Favorite Stickers</string>
@@ -6083,7 +6083,7 @@
     <string name="DeleteAllProxies">Delete All Proxies</string>
     <string name="DeleteAllProxiesConfirm">Are you sure you want to delete all proxies?</string>
     <string name="AccDescrSendAs">Send as %1$s</string>
-    <string name="SessionsSettingsInfo">Review the list of devices where you are logged into your Telegram account.</string>
+    <string name="SessionsSettingsInfo">Review the list of devices where you are logged into your Private Chat account.</string>
     <string name="SendMediaPermissionPhotos">Photos</string>
     <string name="TapAndHoldToDeleteReaction">Tap and hold to delete reaction.</string>
     <string name="PollV2YouCanAddXCountriesOnly">You can add **%d** countries only</string>
@@ -6253,7 +6253,7 @@
     <string name="LoginEmailResetInSinglePattern">%1$s</string>
     <string name="LoginEmailResetInDoublePattern">%1$s and %2$s</string>
     <string name="LoginEmailResetTitle">Reset Email</string>
-    <string name="LoginEmailResetMessage">You can change your login email if you are logged into Telegram from another device. Otherwise, if you don\'t have access to email %1$s, you can reset this email with an **SMS** code in **%2$s**.</string>
+    <string name="LoginEmailResetMessage">You can change your login email if you are logged into Private Chat from another device. Otherwise, if you don\'t have access to email %1$s, you can reset this email with an **SMS** code in **%2$s**.</string>
     <string name="LoginEmailResetButton">Reset Login Email</string>
     <string name="LoginEmailResetPremiumRequiredTitle">Telegram Premium Required</string>
     <string name="LoginEmailResetPremiumRequiredMessage">Due to the high cost of SMS in your country, you need a **Telegram Premium** account to immediately reset this email via an SMS code.\n\nYou can ask a friend to gift a Premium subscription for your account **%1$s**</string>
@@ -6262,10 +6262,10 @@
     <string name="BlockBot">Block bot</string>
     <string name="AreYouSureDeleteThisChatWithBotWithCheckmark">Are you sure you want to delete the chat with **%1$s**?</string>
     <string name="DecreaseSpeed">Decrease speed</string>
-    <string name="SdCardAlert">Storing on SD card will make Telegram slow. Proceed anyway?</string>
+    <string name="SdCardAlert">Storing on SD card will make Private Chat slow. Proceed anyway?</string>
     <string name="Proceed">Proceed</string>
     <string name="SdCardError">SD Card Error</string>
-    <string name="SdCardErrorDescription">Telegram is unable to save data on your SD card.</string>
+    <string name="SdCardErrorDescription">Private Chat is unable to save data on your SD card.</string>
     <string name="DoNotUseSDCard">Do not use SD card</string>
     <string name="NextMediaTap">Show next media on Tap</string>
     <string name="NextMediaTapInfo">Tap near the edge of the screen while viewing media to navigate between photos</string>
@@ -6610,7 +6610,7 @@
     <string name="ViewStory">View Story</string>
     <string name="StoryPeriodPremium_one">Subscribe to **Telegram Premium** to make your stories disappear after %d hour.</string>
     <string name="StoryPeriodPremium_other">Subscribe to **Telegram Premium** to make your stories disappear after %d hours.</string>
-    <string name="StoryUnsupported">This story is not supported by your version of Telegram.</string>
+    <string name="StoryUnsupported">This story is not supported by your version of Private Chat.</string>
     <string name="StoryReplyDisabled">You can’t reply to this story</string>
     <string name="StorySharedTo">Story forwarded to **%s**.</string>
     <string name="StorySharedToSavedMessages">Story forwarded to **Saved Messages**</string>
@@ -7241,7 +7241,7 @@
     <string name="UnconfirmedAuthDeniedTitle_other">New Logins Prevented</string>
     <string name="UnconfirmedAuthDeniedMessageSingle">We have terminated the login attempt from %s.</string>
     <string name="UnconfirmedAuthDeniedMessageMultiple">We have terminated the login attempts from: %s</string>
-    <string name="UnconfirmedAuthDeniedWarning">Never send your login code to anyone or you can lose your Telegram account!</string>
+    <string name="UnconfirmedAuthDeniedWarning">Never send your login code to anyone or you can lose your Private Chat account!</string>
     <string name="UnconfirmedAuthConfirmed">New Login Allowed</string>
     <string name="UnconfirmedAuthConfirmedMessage">You can check the list of your active logins in **Settings > Devices**.</string>
     <string name="ChannelManageMessages">Manage Messages</string>
@@ -8204,7 +8204,7 @@
     <string name="ReturnEnteringWord">Return to entering the word ></string>
     <string name="ReturnEnteringPhrase">Return to entering the word ></string>
     <string name="SmsAvailableIn2">You can request another\nSMS in %1$d:%2$02d</string>
-    <string name="CallAvailableIn2">Telegram can call you in %1$d:%2$02d</string>
+    <string name="CallAvailableIn2">Private Chat can call you in %1$d:%2$02d</string>
     <string name="ForwardedFrom">Forwarded from</string>
     <string name="RestrictedParticipantSending">Restricted **%s** from sending any messages</string>
     <string name="EventLogExpandMore_one">Show %d More Message</string>
@@ -8489,7 +8489,7 @@
     <string name="WebRecentClearTitle">Clear recent searches?</string>
     <string name="WebRecentClearText">Do you want to clear your recent search queries?</string>
     <string name="SearchEngine">Search Engine</string>
-    <string name="OpenInTelegramBrowser">Open in Telegram</string>
+    <string name="OpenInTelegramBrowser">Open in Private Chat</string>
     <string name="OpenInSystemBrowser">Open in...</string>
     <string name="AppsTab">Apps</string>
     <string name="ProfileBotOpenApp">Open App</string>
@@ -8572,15 +8572,15 @@
     <string name="BrowserSettingsTitle">Web Browser</string>
     <string name="BrowserSettingsEnable">Enable In-App Browser</string>
     <string name="BrowserSettingsCustomTabsTitle">Open external links in</string>
-    <string name="BrowserSettingsCustomTabs">New Pages within Telegram</string>
+    <string name="BrowserSettingsCustomTabs">New Pages within Private Chat</string>
     <string name="BrowserSettingsNoCustomTabs">New Tabs in External Browser</string>
-    <string name="BrowserSettingsNoCustomTabsInfo">You can choose to open external link without leaving Telegram.</string>
-    <string name="BrowserSettingsEnableInfo">Open links inside Telegram without starting an external browser.</string>
+    <string name="BrowserSettingsNoCustomTabsInfo">You can choose to open external link without leaving Private Chat.</string>
+    <string name="BrowserSettingsEnableInfo">Open links inside Private Chat without starting an external browser.</string>
     <string name="BrowserSettingsCacheClear">Clear Cache</string>
     <string name="BrowserSettingsCookiesClear">Clear Cookies</string>
     <string name="BrowserSettingsCacheClearText">Are you sure you want to clear browser cache%s?</string>
     <string name="BrowserSettingsCookiesClearText">Are you sure you want to clear browser cookies%s?\n\nThis might log you out from website account sessions.</string>
-    <string name="BrowserSettingsCookiesInfo">Delete all cookies and cache from the Telegram in-app browser and miniapps.</string>
+    <string name="BrowserSettingsCookiesInfo">Delete all cookies and cache from the Private Chat in-app browser and miniapps.</string>
     <string name="BrowserSettingsHistoryShow">View History</string>
     <string name="BrowserSettingsHistoryClear">Clear History</string>
     <string name="BrowserSettingsHistoryPages_one">%d page</string>
@@ -8589,7 +8589,7 @@
     <string name="BrowserSettingsNeverOpenInTitle">Never open in the in-app browser</string>
     <string name="BrowserSettingsNeverOpenInAdd">Add Website</string>
     <string name="BrowserSettingsNeverOpenInClearList">Clear List</string>
-    <string name="BrowserSettingsNeverOpenInInfo">Telegram will always open links from these websites in the external browser.</string>
+    <string name="BrowserSettingsNeverOpenInInfo">Private Chat will always open links from these websites in the external browser.</string>
     <string name="BrowserSettingsAddTitle">Add Website</string>
     <string name="BrowserSettingsAddText">Enter a domain that you don’t want to be opened in the in-app browser.</string>
     <string name="BrowserSettingsAddHint">Enter URL</string>
@@ -8600,12 +8600,12 @@
     <string name="BrowserExternalTitle">Open in Browser</string>
     <string name="BrowserExternalText">Do you want to open this link in your default browser?</string>
     <string name="BrowserExternalCheck">Always open links from **%s** in browser</string>
-    <string name="BrowserExternalRestricted">Telegram will now open links from this website in the external browser. You can change this in **Settings.**</string>
+    <string name="BrowserExternalRestricted">Private Chat will now open links from this website in the external browser. You can change this in **Settings.**</string>
     <string name="StoryEditCover">Edit Cover</string>
     <string name="StoryEditCoverInfo">Choose a frame from the story to show in your Profile.</string>
     <string name="StoryEditCoverMenu">Edit Cover</string>
     <string name="StoryCoverSave">Save Cover</string>
-    <string name="ProfileUnofficialSecurityRisk">%s uses an unofficial Telegram client — messages to this user may be less secure.</string>
+    <string name="ProfileUnofficialSecurityRisk">%s uses an unofficial Private Chat client - messages to this user may be less secure.</string>
     <string name="WebBookmarks">Bookmarks</string>
     <string name="WebHistory">History</string>
     <string name="WebNoHistory">No history yet</string>
@@ -8740,7 +8740,7 @@
     <string name="StarMySubscriptionsExpand">Show More</string>
     <string name="StarsTopupLinkEnough">You have enough stars at the moment.</string>
     <string name="StarsTopupLinkTopupAnyway">Topup Anyway</string>
-    <string name="BotDefaultPrivacyPolicy">https://telegram.org/privacy-tpa</string>
+    <string name="BotDefaultPrivacyPolicy">https://privatechat.local/privacy-tpa</string>
     <string name="PeopleSubscriptionExpired_one">%d expired subscription</string>
     <string name="PeopleSubscriptionExpired_other">%d expired subscriptions</string>
     <string name="StarsSubscriptionCancelledToast">Subscription cancelled</string>
@@ -9047,7 +9047,7 @@
     <string name="Report2CommentInfoGroup">Please help us by telling what is wrong with the group you have selected.</string>
     <string name="Report2CommentInfoChannel">Please help us by telling what is wrong with the channel you have selected.</string>
     <string name="Report2Send">Send Report</string>
-    <string name="Reported2">Telegram moderators will review your report. Thank you!</string>
+    <string name="Reported2">Private Chat moderators will review your report. Thank you!</string>
     <string name="Gift2TransactionRefundedAuctionBid">Refunded Auction Bid</string>
     <string name="Gift2TransactionRefundedSent">Refunded Sent Gift</string>
     <string name="Gift2TransactionRefundedUpgrade">Refunded Gift Upgrade</string>
@@ -9153,7 +9153,7 @@
     <string name="BotProfilePermissionEmojiStatus">Emoji Status</string>
     <string name="BotProfilePermissionBiometry">Biometry</string>
     <string name="BotLocationPermissionRequestGranted">**%s** can now have access to your location</string>
-    <string name="BotLocationPermissionRequestDeniedApp">**%s** can\'t have access to your location since you restricted Telegram from accessing it.</string>
+    <string name="BotLocationPermissionRequestDeniedApp">**%s** can\'t have access to your location since you restricted Private Chat from accessing it.</string>
     <string name="BotLocationPermissionRequestDeniedAppSettings">Change in Settings \></string>
     <string name="BotEmojiStatusPermissionRequestGranted">**%s** can now set your emoji status anytime.</string>
     <string name="BotEmojiStatusUpdated">Your emoji status is updated.</string>
@@ -9548,7 +9548,7 @@
     <string name="AccountFrozenBottomSubtitle">Tap to view details</string>
     <string name="AccountFrozenTitle">Your Account is Frozen</string>
     <string name="AccountFrozen1Title">Violation of Terms</string>
-    <string name="AccountFrozen1Text">Your account was frozen for breaking Telegram’s Terms and Conditions.</string>
+    <string name="AccountFrozen1Text">Your account was frozen for breaking Private Chat’s Terms and Conditions.</string>
     <string name="AccountFrozen2Title">Read-Only Mode</string>
     <string name="AccountFrozen2Text">You can access your account but can’t send messages or take actions.</string>
     <string name="AccountFrozen3Title">Appeal Before Deactivation</string>
@@ -9557,10 +9557,10 @@
     <string name="AccountFrozenButtonUnderstood">Understood</string>
     <string name="SMSFeeTitle">SMS Fee</string>
     <string name="SMSFee1Title">High SMS Costs</string>
-    <string name="SMSFee1Text">Telecom providers in your country charge Telegram very high prices for SMS.</string>
-    <string name="SMSFee1TextCountry">Telecom providers in your country (%s) charge Telegram very high prices for SMS.</string>
+    <string name="SMSFee1Text">Telecom providers in your country charge Private Chat very high prices for SMS.</string>
+    <string name="SMSFee1TextCountry">Telecom providers in your country (%s) charge Private Chat very high prices for SMS.</string>
     <string name="SMSFee2Title">Verification Required</string>
-    <string name="SMSFee2Text">Telegram needs to send you an SMS with a verification code to confirm your phone number.</string>
+    <string name="SMSFee2Text">Private Chat needs to send you an SMS with a verification code to confirm your phone number.</string>
     <string name="SMSFee3Title">Support via **Telegram Premium >**</string>
     <string name="SMSFee3Text">Sign up for 1-week Telegram Premium subscription to help cover the SMS costs.</string>
     <string name="SMSFee3TextDays_one">Sign up for %d day of Telegram Premium subscription to help cover the SMS costs.</string>
@@ -9606,7 +9606,7 @@
     <string name="JoinCall">Join Call</string>
     <string name="ViewCollection">VIEW COLLECTION</string>
     <string name="GroupCallLinkTitle">Group Call</string>
-    <string name="GroupCallLinkText">You are invited to join a Telegram call.</string>
+    <string name="GroupCallLinkText">You are invited to join a Private Chat call.</string>
     <string name="GroupCallLinkText2One">**%1$s** already joined this call.</string>
     <string name="GroupCallLinkText2Two">**%1$s** and **%2$s** already joined this call.</string>
     <string name="GroupCallLinkText2Many_one">**%2$s**, **%3$s** and **%1$d** more person already joined this call.</string>
@@ -9627,7 +9627,7 @@
     <string name="GroupCallCreateInfo_other">You can add up to %d participants to a call.</string>
     <string name="GroupCallCreateLink">Create Call Link</string>
     <string name="GroupCallCreatedLinkTitle">Call Link</string>
-    <string name="GroupCallCreatedLinkText">Anyone on Telegram can join your call by following the link below.</string>
+    <string name="GroupCallCreatedLinkText">Anyone on Private Chat can join your call by following the link below.</string>
     <string name="GroupCallCreatedLinkCopy">Copy</string>
     <string name="GroupCallCreatedLinkShare">Share</string>
     <string name="GroupCallCreatedLinkJoinOr">or</string>
@@ -9644,7 +9644,7 @@
     <string name="GroupCallStopCallingInvite">Stop Calling</string>
     <string name="GroupCallDiscardInvite">Cancel Invite</string>
     <string name="BotRestoreStorageTitle">Import Data</string>
-    <string name="BotRestoreStorageText">**%s** is requesting permission to import data from a previous Telegram account used on device.</string>
+    <string name="BotRestoreStorageText">**%s** is requesting permission to import data from a previous Private Chat account used on device.</string>
     <string name="BotRestoreStorageHeader">Account to import data from</string>
     <string name="BotRestoreStorageButton">Import</string>
     <string name="BotRestoreStorageCreatedAt">created on %s</string>
@@ -9957,12 +9957,12 @@
     <string name="Gift2CollectionAll">All Gifts</string>
     <string name="ProfileGiftsAdd">Add Gifts</string>
     <string name="AgeVerificationTitle">Age Verification</string>
-    <string name="AgeVerificationTextGB">To access such content, you must confirm that you are at least **18** years old as required by UK law.\n\nThis is a one-time process using your phone\'s camera. Your selfie will not be stored by Telegram.</string>
+    <string name="AgeVerificationTextGB">To access such content, you must confirm that you are at least **18** years old as required by UK law.\n\nThis is a one-time process using your phone\'s camera. Your selfie will not be stored by Private Chat.</string>
     <string name="AgeVerificationButton">Verify My Age</string>
     <string name="AgeVerificationFailedTitle">Age Check Failed</string>
     <string name="AgeVerificationFailedText">Sorry, you can\'t view 18+ content.</string>
     <string name="AgeVerificationPassedTitle">Age Check Passed</string>
-    <string name="AgeVerificationNeedCameraPermission">Telegram needs access to your camera so that you can confirm your age.</string>
+    <string name="AgeVerificationNeedCameraPermission">Private Chat needs access to your camera so that you can confirm your age.</string>
     <string name="StoriesForwardTitle">Your Stories</string>
     <string name="StoriesForwardText">Forward to stories</string>
     <string name="Gift2CollectionEmptyTitle">Organize Your Gifts</string>
@@ -10018,8 +10018,8 @@
     <string name="StarRatingFuturePendingPointsAndLevel2_other">Level %d are pending.</string>
     <string name="StarRatingFuturePendingPointsPreview">**Preview >**</string>
     <string name="StarRatingFuturePendingPointsPreviewBack">**Back >**</string>
-    <string name="StarRatingDescription">This rating reflects **%s\'s** activity\non Telegram. What affects it:</string>
-    <string name="StarRatingSelfDescription">This rating reflects your activity\non Telegram. What affects it:</string>
+    <string name="StarRatingDescription">This rating reflects **%s\'s** activity\non Private Chat. What affects it:</string>
+    <string name="StarRatingSelfDescription">This rating reflects your activity\non Private Chat. What affects it:</string>
     <string name="StarRatingTitle1">Gifts from Telegram</string>
     <string name="StarRatingDescription1">%s 100% of the Stars spent on gifts purchased from Telegram.</string>
     <string name="StarRatingTitle2">Gifts and Posts from Users</string>
@@ -10072,7 +10072,7 @@
     <string name="SearchPostsNotFoundText">No Posts found with \"%s\" query.</string>
     <string name="SearchPostsButtonPremium">Subscribe to Premium</string>
     <string name="SearchPostsPremium">Global search is a Premium feature.</string>
-    <string name="SearchPostsHeaderNews">Telegram News</string>
+    <string name="SearchPostsHeaderNews">Private Chat News</string>
     <string name="SearchPostsHeaderFound">Public Posts</string>
     <string name="SearchPosts">Posts</string>
     <string name="SearchPaidStars_one">**%d Star** spent on extra search.</string>

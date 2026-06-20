@@ -248,6 +248,53 @@ def main():
         "DownloadedFilesMessage",
         "CreatePasscodeInfoPIN",
         "CreatePasscodeInfoPassword",
+        "MapPreviewProviderTelegram",
+        "TelegramPassport",
+        "PassportInfoTitle",
+        "PassportInfo2",
+        "TelegramPassportCreatePasswordInfo",
+        "TelegramPassportDelete",
+        "TelegramPassportDeleteTitle",
+        "TelegramPassportDeleteAlert",
+        "PassportPhoneUseSameInfo",
+        "PassportPhoneUseSameEmailInfo",
+        "PassportRequestPasswordInfo",
+        "TurnPasswordOffPassport",
+        "PleaseLoginPassport",
+        "VoipVideoNotAvailableAdmin",
+        "VoipChannelVideoNotAvailableAdmin",
+        "NoRtmpStreamFromAppOwner",
+        "NoRtmpStreamFromAppViewer",
+        "SessionsSettingsInfo",
+        "LoginEmailResetMessage",
+        "SdCardAlert",
+        "SdCardErrorDescription",
+        "StoryUnsupported",
+        "UnconfirmedAuthDeniedWarning",
+        "CallAvailableIn2",
+        "OpenInTelegramBrowser",
+        "BrowserSettingsCustomTabs",
+        "BrowserSettingsNoCustomTabsInfo",
+        "BrowserSettingsEnableInfo",
+        "BrowserSettingsCookiesInfo",
+        "BrowserSettingsNeverOpenInInfo",
+        "BrowserExternalRestricted",
+        "ProfileUnofficialSecurityRisk",
+        "Reported2",
+        "BotLocationPermissionRequestDeniedApp",
+        "AccountFrozen1Text",
+        "SMSFee1Text",
+        "SMSFee1TextCountry",
+        "SMSFee2Text",
+        "GroupCallLinkText",
+        "GroupCallCreatedLinkText",
+        "BotRestoreStorageText",
+        "AgeVerificationTextGB",
+        "AgeVerificationNeedCameraPermission",
+        "SearchPostsHeaderNews",
+        "EmojiSuggestionsInfo",
+        "StarRatingDescription",
+        "StarRatingSelfDescription",
     )
     for key in general_experience_private_keys:
         value = get_string_value(strings_text, key)
@@ -267,11 +314,22 @@ def main():
         "AuthAnotherWebClientUrl",
         "CheckPhoneNumberLearnMoreUrl",
         "EncryptionKeyLink",
+        "PassportInfoUrl",
+        "BotDefaultPrivacyPolicy",
+        "EmojiSuggestionsUrl",
     )
     for key in private_url_keys:
         value = get_string_value(strings_text, key)
         record(checks, value.startswith("https://privatechat.local/"), f"{strings_path}：{key} 应指向 privatechat.local 占位域名")
         record(checks, "telegram.org" not in value and "t.me" not in value, f"{strings_path}：{key} 不应继续指向官方域名")
+    private_link_example_keys = (
+        "GroupDescription3",
+        "PublicLinksLimitSubtitle",
+    )
+    for key in private_link_example_keys:
+        value = get_string_value(strings_text, key)
+        record(checks, "privatechat.local" in value, f"{strings_path}：{key} 应使用 privatechat.local 链接示例")
+        record(checks, "t.me" not in value, f"{strings_path}：{key} 不应继续使用 t.me 链接示例")
     record(checks, get_string_value(strings_text, "NoChats") == "Welcome to Private Chat", f"{strings_path}：NoChats 应为 Welcome to Private Chat")
     policy_webapp_private_keys = (
         "TosDecline",
