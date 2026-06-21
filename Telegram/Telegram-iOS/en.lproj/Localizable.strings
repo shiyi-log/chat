@@ -50,7 +50,7 @@
 "PUSH_MESSAGE_STICKER" = "%1$@|sent you a %2$@sticker";
 "PUSH_CHAT_MESSAGE_STICKER" = "%2$@|%1$@ sent a %3$@sticker";
 
-"PUSH_CONTACT_JOINED" = "%1$@|joined Telegram!";
+"PUSH_CONTACT_JOINED" = "%1$@|joined Private Chat!";
 
 "PUSH_CHANNEL_MESSAGE_TEXT" = "%1$@|%2$@";
 "PUSH_CHANNEL_MESSAGE_NOTEXT" = "%1$@|posted a message";
@@ -205,7 +205,7 @@
 "PUSH_PINNED_GIF" = "%1$@|pinned a GIF";
 "PUSH_PINNED_PAID_MEDIA" = "%1$@|pinned a paid post for %2$@";
 
-"PUSH_CONTACT_JOINED" = "%1$@|joined Telegram!";
+"PUSH_CONTACT_JOINED" = "%1$@|joined Private Chat!";
 
 "PUSH_AUTH_UNKNOWN" = "New login|from unrecognized device %1$@";
 "PUSH_AUTH_REGION" = "New login|from unrecognized device %1$@, location: %2$@";
@@ -1573,7 +1573,7 @@
 
 "Login.PhoneNumberHelp" = "Help";
 "Login.EmailPhoneSubject" = "Invalid number %@";
-"Login.EmailPhoneBody" = "I'm trying to use my mobile phone number: %@\nBut Telegram says it's invalid. Please help.\nAdditional Info: %@, %@.";
+"Login.EmailPhoneBody" = "I'm trying to use my mobile phone number: %@\nBut Private Chat says it's invalid. Please help.\nAdditional Info: %@, %@.";
 
 "SharedMedia.TitleLink" = "Shared Links";
 "SharedMedia.EmptyLinksText" = "All links shared in this chat will appear here.";
@@ -1600,8 +1600,8 @@
 "Channel.Edit.LinkItem" = "Link";
 
 "Channel.Username.Title" = "Link";
-"Channel.Username.Help" = "You can choose a channel name on **Telegram**. If you do, other people will be able to find your channel by this name.\n\nYou can use **a-z**, **0-9** and underscores. Minimum length is **5** characters.";
-"Channel.Username.LinkHint" = "This link opens your channel in Telegram:[\nhttps://t.me/%@]";
+"Channel.Username.Help" = "You can choose a channel name on **Private Chat**. If you do, other people will be able to find your channel by this name.\n\nYou can use **a-z**, **0-9** and underscores. Minimum length is **5** characters.";
+"Channel.Username.LinkHint" = "This link opens your channel in Private Chat:[\nhttps://privatechat.local/%@]";
 "Channel.Username.InvalidTooShort" = "Channel names must have at least 5 characters.";
 "Channel.Username.InvalidStartsWithNumber" = "Channel names can't start with a number.";
 "Channel.Username.InvalidCharacters" = "Sorry, this name is invalid.";
@@ -1646,7 +1646,7 @@
 
 "Channel.Setup.Title" = "Channel";
 
-"Channel.Username.CreatePublicLinkHelp" = "People can share this link with others and find your channel using Telegram search.";
+"Channel.Username.CreatePublicLinkHelp" = "People can share this link with others and find your channel using Private Chat search.";
 "Channel.Username.CreatePrivateLinkHelp" = "People can join your channel by following this link. You can revoke the link at any time.";
 
 "Channel.Setup.PublicNoLink" = "Please choose a link for your public channel, so that people can find it in search and share with others.\n\nIf you're not interested, we suggest creating a private channel instead.";
@@ -1870,7 +1870,7 @@
 "Cache.ClearProgress" = "Please Wait...";
 "Cache.ClearEmpty" = "Empty";
 "Cache.ByPeerHeader" = "CHATS";
-"Cache.Indexing" = "Telegram is calculating current cache size.\nThis can take a few minutes.";
+"Cache.Indexing" = "Private Chat is calculating current cache size.\nThis can take a few minutes.";
 
 "ExplicitContent.AlertTitle" = "Sorry";
 "ExplicitContent.AlertChannel" = "You can't access this channel because it violates App Store rules.";
@@ -2044,7 +2044,7 @@
 "Group.Setup.TypePublicHelp" = "Public groups can be found in search, chat history is available to everyone and anyone can join.";
 "Group.Setup.TypePrivateHelp" = "Private groups can only be joined if you were invited or have an invite link.";
 
-"Group.Username.CreatePublicLinkHelp" = "People can share this link with others and find your group using Telegram search.";
+"Group.Username.CreatePublicLinkHelp" = "People can share this link with others and find your group using Private Chat search.";
 "Group.Username.CreatePrivateLinkHelp" = "People can join your group by following this link. You can revoke the link at any time.";
 
 "Conversation.PinMessageAlertGroup" = "Pin this message and notify all members of the group?";
@@ -3069,12 +3069,12 @@ Unused sets are archived when you add more.";
 
 "NotificationSettings.ContactJoined" = "New Contacts";
 
-"AccessDenied.LocationAlwaysDenied" = "If you'd like to share your Live Location with friends, Telegram needs location access when the app is in the background.\n\nPlease go to Settings > Privacy > Location Services and set Telegram to Always.";
+"AccessDenied.LocationAlwaysDenied" = "If you'd like to share your Live Location with friends, Private Chat needs location access when the app is in the background.\n\nPlease go to Settings > Privacy > Location Services and set Private Chat to Always.";
 
 "UserInfo.UnblockConfirmation" = "Unblock %@?";
 
 "Login.BannedPhoneSubject" = "Banned phone number: %@";
-"Login.BannedPhoneBody" = "I'm trying to use my mobile phone number: %@\nBut Telegram says it's banned. Please help.";
+"Login.BannedPhoneBody" = "I'm trying to use my mobile phone number: %@\nBut Private Chat says it's banned. Please help.";
 
 "Conversation.StopLiveLocation" = "Stop Sharing";
 
@@ -3145,7 +3145,7 @@ Unused sets are archived when you add more.";
 "Channel.Setup.TypePrivateHelp" = "Private channels can only be joined if you were invited or have an invite link.";
 "Group.Username.InvalidTooShort" = "Group names must have at least 5 characters.";
 "Group.Username.InvalidStartsWithNumber" = "Group names can't start with a number.";
-"Group.Username.CreatePublicLinkHelp" = "People can share this link with others and find your group using Telegram search.";
+"Group.Username.CreatePublicLinkHelp" = "People can share this link with others and find your group using Private Chat search.";
 "Channel.TypeSetup.Title" = "Channel Type";
 
 "Group.Setup.TypePrivate" = "Private";
@@ -3210,10 +3210,10 @@ Unused sets are archived when you add more.";
 "Channel.AdminLogFilter.EventsNewSubscribers" = "New Subscribers";
 "Channel.AdminLogFilter.EventsLeavingSubscribers" = "Subscribers Removed";
 
-"Conversation.ClearPrivateHistory" = "This will delete all messages and media in this chat from your Telegram cloud. Your chat partner will still have them.";
-"Conversation.ClearGroupHistory" = "This will delete all messages and media in this chat from your Telegram cloud. Other members of the group will still have them.";
+"Conversation.ClearPrivateHistory" = "This will delete all messages and media in this chat from your Private Chat cloud. Your chat partner will still have them.";
+"Conversation.ClearGroupHistory" = "This will delete all messages and media in this chat from your Private Chat cloud. Other members of the group will still have them.";
 "Conversation.ClearSecretHistory" = "This will delete all messages and media in this chat for both you and your chat partner.";
-"Conversation.ClearSelfHistory" = "This will delete all messages and media in this chat from your Telegram cloud.";
+"Conversation.ClearSelfHistory" = "This will delete all messages and media in this chat from your Private Chat cloud.";
 
 "MediaPicker.LivePhotoDescription" = "The live photo will be sent as a GIF.";
 
@@ -3257,7 +3257,7 @@ Unused sets are archived when you add more.";
 "AuthSessions.Sessions" = "Sessions";
 "AuthSessions.LoggedIn" = "Websites";
 "AuthSessions.LogOutApplications" = "Disconnect All Websites";
-"AuthSessions.LogOutApplicationsHelp" = "You can log in on websites that support signing in with Telegram.";
+"AuthSessions.LogOutApplicationsHelp" = "You can log in on websites that support signing in with Private Chat.";
 "AuthSessions.LoggedInWithTelegram" = "CONNECTED WEBSITES";
 "AuthSessions.LogOut" = "Disconnect";
 "AuthSessions.Message" = "You allowed this bot to message you when you logged in on %@.";
@@ -3316,13 +3316,13 @@ Unused sets are archived when you add more.";
 
 "Privacy.SecretChatsTitle" = "SECRET CHATS";
 "Privacy.SecretChatsLinkPreviews" = "Link Previews";
-"Privacy.SecretChatsLinkPreviewsHelp" = "Link previews will be generated on Telegram servers. We do not store data about the links you send.";
+"Privacy.SecretChatsLinkPreviewsHelp" = "Link previews will be generated on Private Chat servers. We do not store data about the links you send.";
 
 "Privacy.ContactsTitle" = "CONTACTS";
 "Privacy.ContactsSync" = "Sync Contacts";
 "Privacy.ContactsSyncHelp" = "Turn on to continuously sync contacts from this device with your account.";
 "Privacy.ContactsReset" = "Delete Synced Contacts";
-"Privacy.ContactsResetConfirmation" = "This will remove your contacts from the Telegram servers.\nIf 'Sync Contacts' is enabled, contacts will be re-synced.";
+"Privacy.ContactsResetConfirmation" = "This will remove your contacts from the Private Chat servers.\nIf 'Sync Contacts' is enabled, contacts will be re-synced.";
 
 "Login.TermsOfServiceDecline" = "Decline";
 "Login.TermsOfServiceAgree" = "Agree & Continue";
@@ -3348,16 +3348,16 @@ Unused sets are archived when you add more.";
 "PrivacyPolicy.DeclineLastWarning" = "Warning, this will irreversibly delete your Private Chat account along with the data stored on our private chat server.\n\nExport any data you need before deleting your account.";
 "PrivacyPolicy.DeclineDeleteNow" = "Delete Now";
 
-"Settings.Passport" = "Telegram Passport";
+"Settings.Passport" = "Private Chat Passport";
 
 "Passport.Title" = "Passport";
 
 "Passport.RequestHeader" = "%@ requests access to your personal data to sign you up for their services.";
 
-"Passport.InfoTitle" = "What is Telegram Passport?";
-"Passport.InfoText" = "With **Telegram Passport** you can easily sign up for websites and services that require identity verification.\n\nYour information, personal data, and documents are protected by end-to-end encryption. Nobody, including Telegram, can access them without your permission.";
+"Passport.InfoTitle" = "What is Private Chat Passport?";
+"Passport.InfoText" = "With **Private Chat Passport** you can easily sign up for websites and services that require identity verification.\n\nYour information, personal data, and documents are protected by end-to-end encryption. Nobody, including Private Chat, can access them without your permission.";
 "Passport.InfoLearnMore" = "Learn More";
-"Passport.InfoFAQ_URL" = "https://telegram.org/faq#passport";
+"Passport.InfoFAQ_URL" = "https://privatechat.local/faq#passport";
 
 "Passport.PassportInformation" = "PASSPORT INFORMATION";
 "Passport.RequestedInformation" = "REQUESTED INFORMATION";
@@ -3376,19 +3376,19 @@ Unused sets are archived when you add more.";
 "Passport.AcceptHelp" = "You are sending your documents directly to %1$@ and allowing their @%2$@ to send you messages.";
 "Passport.Authorize" = "Authorize";
 
-"Passport.DeletePassport" = "Delete Telegram Passport";
-"Passport.DeletePassportConfirmation" = "Are you sure you want to delete your Telegram Passport? All details will be lost.";
+"Passport.DeletePassport" = "Delete Private Chat Passport";
+"Passport.DeletePassportConfirmation" = "Are you sure you want to delete your Private Chat Passport? All details will be lost.";
 
-"Passport.PasswordHelp" = "Please enter your Telegram Password\nto decrypt your data";
+"Passport.PasswordHelp" = "Please enter your Private Chat Password\nto decrypt your data";
 "Passport.PasswordPlaceholder" = "Enter your password";
 "Passport.InvalidPasswordError" = "Invalid password. Please try again.";
 "Passport.FloodError" = "Limit exceeded. Please try again later.";
-"Passport.UpdateRequiredError" = "Sorry, your Telegram app is out of date and can’t handle this request. Please update Telegram.";
+"Passport.UpdateRequiredError" = "Sorry, your Private Chat app is out of date and can’t handle this request. Please update Private Chat.";
 
 "Passport.ForgottenPassword" = "Forgotten Password";
-"Passport.PasswordReset" = "All documents uploaded to your Telegram Passport will be lost. You will be able to upload new documents.";
+"Passport.PasswordReset" = "All documents uploaded to your Private Chat Passport will be lost. You will be able to upload new documents.";
 
-"Passport.PasswordDescription" = "Please create a password to secure your personal data with end-to-end encryption.\n\nThis password will also be required whenever you log in to Telegram on a new device.";
+"Passport.PasswordDescription" = "Please create a password to secure your personal data with end-to-end encryption.\n\nThis password will also be required whenever you log in to Private Chat on a new device.";
 "Passport.PasswordCreate" = "Create a Password";
 "Passport.PasswordCompleteSetup" = "Complete Password Setup";
 "Passport.PasswordNext" = "Next";
@@ -3541,7 +3541,7 @@ Unused sets are archived when you add more.";
 "Passport.ScanPassport" = "Scan Your Passport";
 "Passport.ScanPassportHelp" = "Scan your passport or identity card with machine-readable zone to fill personal details automatically.";
 
-"TwoStepAuth.PasswordRemovePassportConfirmation" = "Are you sure you want to disable your password?\n\nWarning! All data saved in your Telegram Passport will be lost!";
+"TwoStepAuth.PasswordRemovePassportConfirmation" = "Are you sure you want to disable your password?\n\nWarning! All data saved in your Private Chat Passport will be lost!";
 
 "Application.Update" = "Update";
 
@@ -3586,7 +3586,7 @@ Unused sets are archived when you add more.";
 
 "Passport.CorrectErrors" = "Tap to correct errors";
 
-"Passport.NotLoggedInMessage" = "Please log in to your account to use Telegram Passport";
+"Passport.NotLoggedInMessage" = "Please log in to your account to use Private Chat Passport";
 
 "Update.Title" = "Private Chat Update";
 "Update.AppVersion" = "Private Chat %@";
@@ -3596,7 +3596,7 @@ Unused sets are archived when you add more.";
 "ReportPeer.ReasonCopyright" = "Copyright";
 
 "PrivacySettings.DataSettings" = "Data Settings";
-"PrivacySettings.DataSettingsHelp" = "Control which of your data is stored in the cloud and used by Telegram to enable advanced features.";
+"PrivacySettings.DataSettingsHelp" = "Control which of your data is stored in the cloud and used by Private Chat to enable advanced features.";
 
 "PrivateDataSettings.Title" = "Data Settings";
 "Privacy.ChatsTitle" = "CHATS";
@@ -3781,8 +3781,8 @@ Unused sets are archived when you add more.";
 
 "SocksProxySetup.PasteFromClipboard" = "Paste From Clipboard";
 
-"Share.AuthTitle" = "Log in to Telegram";
-"Share.AuthDescription" = "Open Telegram and log in to share.";
+"Share.AuthTitle" = "Log in to Private Chat";
+"Share.AuthDescription" = "Open Private Chat and log in to share.";
 
 "Notifications.DisplayNamesOnLockScreen" = "Names on lock-screen";
 "Notifications.DisplayNamesOnLockScreenInfoWithLink" = "Display names in notifications when the device is locked. To disable, make sure that \"Show Previews\" is also set to \"When Unlocked\" or \"Never\" in [iOS Settings]";
@@ -3828,7 +3828,7 @@ Unused sets are archived when you add more.";
 "ApplyLanguage.ChangeLanguageAction" = "Change";
 "ApplyLanguage.ApplyLanguageAction" = "Change";
 "ApplyLanguage.UnsufficientDataTitle" = "Insufficient Data";
-"ApplyLanguage.UnsufficientDataText" = "Unfortunately, this custom language pack (%1$@) doesn't contain data for Telegram iOS. You can contribute to this language pack using the [translations platform]()";
+"ApplyLanguage.UnsufficientDataText" = "Unfortunately, this custom language pack (%1$@) doesn't contain data for Private Chat iOS. You can contribute to this language pack using the [translations platform]()";
 "ApplyLanguage.LanguageNotSupportedError" = "Sorry, this language doesn't seem to exist.";
 "ApplyLanguage.ApplySuccess" = "Language changed";
 
@@ -3869,8 +3869,8 @@ Unused sets are archived when you add more.";
 "InstantPage.TapToOpenLink" = "Tap to open the link:";
 "InstantPage.RelatedArticleAuthorAndDateTitle" = "%1$@ • %2$@";
 
-"AuthCode.Alert" = "Your login code is %@. Enter it in the Telegram app where you are trying to log in.\n\nDo not give this code to anyone.";
-"Login.CheckOtherSessionMessages" = "Check your Telegram messages";
+"AuthCode.Alert" = "Your login code is %@. Enter it in the Private Chat app where you are trying to log in.\n\nDo not give this code to anyone.";
+"Login.CheckOtherSessionMessages" = "Check your Private Chat messages";
 "Login.SendCodeViaSms" = "Get the code via SMS";
 "Login.SendCodeViaCall" = "Call me to dictate the code";
 "Login.SendCodeViaFlashCall" = "Get the code via phone call";
@@ -3880,7 +3880,7 @@ Unused sets are archived when you add more.";
 "Login.CodeExpired" = "Code expired, please login again.";
 "Login.CancelSignUpConfirmation" = "Do you want to stop the registration process?";
 
-"Passcode.AppLockedAlert" = "Telegram\nLocked";
+"Passcode.AppLockedAlert" = "Private Chat\nLocked";
 
 "ChatList.ReadAll" = "Read All";
 "ChatList.Read" = "Read";
@@ -3900,7 +3900,7 @@ Unused sets are archived when you add more.";
 "Permissions.Skip" = "Skip";
 
 "Permissions.ContactsTitle.v0" = "Sync Your Contacts";
-"Permissions.ContactsText.v0" = "See who's on Telegram and switch seamlessly, without having to \"add\" your friends.";
+"Permissions.ContactsText.v0" = "See who's on Private Chat and switch seamlessly, without having to \"add\" your friends.";
 "Permissions.ContactsAllow.v0" = "Allow Access";
 "Permissions.ContactsAllowInSettings.v0" = "Allow in Settings";
 
@@ -3911,7 +3911,7 @@ Unused sets are archived when you add more.";
 "Permissions.NotificationsAllowInSettings.v0" = "Turn ON in Settings";
 
 "Permissions.CellularDataTitle.v0" = "Enable Cellular Data";
-"Permissions.CellularDataText.v0" = "Don't worry, Telegram keeps network usage to a minimum. You can further control this in Settings > Data and Storage.";
+"Permissions.CellularDataText.v0" = "Don't worry, Private Chat keeps network usage to a minimum. You can further control this in Settings > Data and Storage.";
 "Permissions.CellularDataAllowInSettings.v0" = "Turn ON in Settings";
 
 "Permissions.SiriTitle.v0" = "Turn ON Siri";
@@ -3922,11 +3922,11 @@ Unused sets are archived when you add more.";
 "Permissions.PrivacyPolicy" = "Privacy Policy";
 
 "Contacts.PermissionsTitle" = "Access to Contacts";
-"Contacts.PermissionsText" = "Please allow Telegram access to your phonebook to seamlessly find all your friends.";
+"Contacts.PermissionsText" = "Please allow Private Chat access to your phonebook to seamlessly find all your friends.";
 "Contacts.PermissionsAllow" = "Allow Access";
 "Contacts.PermissionsAllowInSettings" = "Allow in Settings";
 "Contacts.PermissionsSuppressWarningTitle" = "Keep contacts disabled?";
-"Contacts.PermissionsSuppressWarningText" = "You won't know when your friends join Telegram and become available to chat. We recommend enabling access to contacts in Settings.";
+"Contacts.PermissionsSuppressWarningText" = "You won't know when your friends join Private Chat and become available to chat. We recommend enabling access to contacts in Settings.";
 "Contacts.PermissionsKeepDisabled" = "Keep Disabled";
 "Contacts.PermissionsEnable" = "Enable";
 
@@ -3938,7 +3938,7 @@ Unused sets are archived when you add more.";
 "Notifications.PermissionsAllowInSettings" = "Turn ON in Settings";
 "Notifications.PermissionsOpenSettings" = "Open Settings";
 "Notifications.PermissionsSuppressWarningTitle" = "Keep notifications disabled?";
-"Notifications.PermissionsSuppressWarningText" = "You may miss important messages on Telegram due to your current settings.\n\nFor better results, enable alerts or banners and try muting certain chats or chat types in Telegram settings.";
+"Notifications.PermissionsSuppressWarningText" = "You may miss important messages on Private Chat due to your current settings.\n\nFor better results, enable alerts or banners and try muting certain chats or chat types in Private Chat settings.";
 "Notifications.PermissionsKeepDisabled" = "Keep Disabled";
 "Notifications.PermissionsEnable" = "Enable";
 
@@ -4006,7 +4006,7 @@ Unused sets are archived when you add more.";
 "Contacts.SortedByName" = "Sorted by Name";
 "Contacts.SortedByPresence" = "Sorted by Last Seen Time";
 
-"NotificationSettings.ContactJoinedInfo" = "Receive push notifications when one of your contacts becomes available on Telegram.";
+"NotificationSettings.ContactJoinedInfo" = "Receive push notifications when one of your contacts becomes available on Private Chat.";
 
 "GroupInfo.Permissions" = "Permissions";
 "GroupInfo.Permissions.Title" = "Permissions";
@@ -4061,7 +4061,7 @@ Unused sets are archived when you add more.";
 "EmptyGroupInfo.Subtitle" = "Groups can have:";
 "EmptyGroupInfo.Line1" = "Up to %@ members";
 "EmptyGroupInfo.Line2" = "Persistent chat history";
-"EmptyGroupInfo.Line3" = "Public links such as t.me/title";
+"EmptyGroupInfo.Line3" = "Public links such as privatechat.local/title";
 "EmptyGroupInfo.Line4" = "Admins with different rights";
 
 "WallpaperPreview.Title" = "Background Preview";
@@ -4133,7 +4133,7 @@ Unused sets are archived when you add more.";
 "Undo.DeletedChannel" = "Deleted channel";
 "Undo.DeletedGroup" = "Deleted group";
 
-"AccessDenied.Wallpapers" = "Telegram needs access to your photo library to set a custom chat background.\n\nPlease go to Settings > Privacy > Photos and set Telegram to ON.";
+"AccessDenied.Wallpapers" = "Private Chat needs access to your photo library to set a custom chat background.\n\nPlease go to Settings > Privacy > Photos and set Private Chat to ON.";
 
 "Conversation.ChatBackground" = "Chat Background";
 "Conversation.ViewBackground" = "VIEW BACKGROUND";
