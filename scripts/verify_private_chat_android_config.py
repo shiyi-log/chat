@@ -345,8 +345,6 @@ def main():
 
     buildvars_path = "TMessagesProj/src/main/java/org/telegram/messenger/BuildVars.java"
     buildvars = read_text(buildvars_path)
-    record(checks, 'APP_ID = 25686376' in buildvars, f"{buildvars_path}：APP_ID 应保留当前私有基线值")
-    record(checks, 'APP_HASH = "3e7e5e874a044e71575e3fd63e12290c"' in buildvars, f"{buildvars_path}：APP_HASH 应保留当前私有基线值")
     record(checks, "PUSH_SERVICES_ENABLED = false" in buildvars, f"{buildvars_path}：私有构建默认应禁用第三方推送 token 获取")
     record(checks, '"com.privatechat.messenger.beta".equals' in buildvars, f"{buildvars_path}：Beta 包名判断应使用 com.privatechat.messenger.beta")
     record(checks, '"org.telegram.messenger.beta".equals' not in buildvars, f"{buildvars_path}：不应继续用旧 Beta 包名判断")

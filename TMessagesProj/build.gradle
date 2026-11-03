@@ -1,6 +1,9 @@
 import org.gradle.nativeplatform.platform.internal.DefaultNativePlatform
 
 apply plugin: 'com.android.library'
+apply from: rootProject.file('gradle/private-chat-api.gradle')
+
+def privateChatApi = privateChatApiConfig()
 
 repositories {
     mavenCentral()
@@ -107,6 +110,9 @@ android {
 
 
     defaultConfig {
+        buildConfigField 'int', 'PRIVATE_CHAT_API_ID', privateChatApi.apiId.toString()
+        buildConfigField 'String', 'PRIVATE_CHAT_API_HASH', '"' + privateChatApi.apiHash + '"'
+
         minSdkVersion 21
         targetSdkVersion 35
 
