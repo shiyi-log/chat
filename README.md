@@ -29,6 +29,17 @@ python3 scripts/verify_private_chat_android_config.py
 
 ## 本地构建
 
+构建前需要自行配置由你管理、与目标服务端匹配的应用 API 参数。连接 Telegram 官方平台时应自行申请应用身份，不要复用上游或其他开发者的参数。
+
+可在已经被 Git 忽略的根目录 `local.properties` 中填写：
+
+```properties
+PRIVATE_CHAT_API_ID=<你的正整数 API ID>
+PRIVATE_CHAT_API_HASH=<你的 32 位十六进制 API hash>
+```
+
+也可以通过同名环境变量提供，环境变量优先。未配置或格式无效时 Gradle 会停止构建，仅显示缺失或无效的参数名，不输出参数值。不要提交 `local.properties` 或实际参数。
+
 当前本机可用的调试包构建命令：
 
 ```sh
@@ -40,6 +51,14 @@ JAVA_HOME='/Applications/IntelliJ IDEA CE.app/Contents/jbr/Contents/Home' ./grad
 ```text
 TMessagesProj_App/build/outputs/apk/afat/debug/app.apk
 ```
+
+不需要 Android SDK 的应用参数配置测试：
+
+```sh
+python3 scripts/tests/test_private_chat_api_config.py
+```
+
+测试会在临时 Gradle 项目中运行实际参数加载脚本，使用虚构参数检查环境变量、本地配置、优先级和无效输入。默认使用本仓库 `gradlew`；也可通过 `PRIVATE_CHAT_GRADLE=/absolute/path/to/gradle` 指定已安装的 Gradle。
 
 ## 后续测试要求
 
