@@ -1,5 +1,19 @@
 # 私有聊天系统开发任务 / Private Chat Development Tasks
 
+## 当前发行状态（2026-11-03）
+
+以下阶段清单及测试结果保留为此前开发的历史快照。当前服务端源码预览 `v0.1.15-preview.1` 已关闭 `none` 验证器，不再返回验证码或接受固定验证码；接入并审查真实提供方前，默认配置不能完成登录。下文记录的 `12345`、旧测试号及消息互发结果不适用于当前发行配置。
+
+- 套件由 `private-chat-server`、`private-chat-desktop`、`private-chat-android`、`private-chat-ios`、`private-chat-docs` 五个仓库组成。macOS 包含在 desktop；目前没有独立 Web 聊天客户端。
+- 当前服务端 Compose 要求操作者设置独立的 MySQL、MinIO 和 Grafana 密码，发布端口默认绑定 `127.0.0.1`。
+- 客户端默认地址仍为本地开发地址：Desktop / iOS 使用 `127.0.0.1:10443`，Android 模拟器使用 `10.0.2.2:10443`。跨设备联调需要修改地址并匹配 MTProto 公钥。
+- 服务端定向验证已覆盖禁用验证码提供方、配置替换、Compose 配置和镜像构建；完整 Go 测试仍有 KV 接口不兼容及缺少 FFmpeg 的失败。
+- 历史客户端构建和 Android 双模拟器消息验证不能替代当前预览版的完整多端测试。Desktop / Android / iOS 全套登录、消息和文件上传联调，以及正式签名和分发配置仍需完成。
+- 源码许可按仓库分别适用，详见本仓库 README 的套件索引；iOS 根许可证缺项应在完整开源发行前补齐。
+
+## 历史开发清单
+
+
 本文档用于管理五个本地仓库的开发任务：
 
 - 服务端 / Server：`server`
