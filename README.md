@@ -80,3 +80,7 @@ xcodebuild -project Telegram/Telegram.xcodeproj \
 ## English Summary
 
 This repository is a private iOS client snapshot for `Private Chat`, configured for a self-hosted `private-chat-server`. It is not an official Telegram iOS distribution and should not be shipped with Telegram branding.
+
+## 开源许可与上游署名
+
+本项目基于 [Telegram for iOS](https://github.com/TelegramMessenger/Telegram-iOS) 进行私有服务端适配。Telegram 派生应用代码及本项目相应改动按 **GPL-2.0-or-later**（GNU GPL 第 2 版或后续版本）提供；依据为 Telegram [官方源码说明](https://telegram.org/apps#source-code)。完整条款见 [LICENSE](LICENSE)，许可范围与上游署名见 [LICENSE.md](LICENSE.md)。第三方组件保留各自的许可证和版权声明。
