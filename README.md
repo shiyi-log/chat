@@ -9,7 +9,7 @@
 | [private-chat-server](https://github.com/shiyi-log/private-chat-server) | 基于 Teamgram 的 Go / MTProto 服务端 | Apache-2.0 |
 | [private-chat-desktop](https://github.com/shiyi-log/private-chat-desktop) | Windows、Linux、macOS 桌面客户端 | GPL-3.0，保留 OpenSSL 链接例外；见该仓库 `LICENSE` |
 | [private-chat-android](https://github.com/shiyi-log/private-chat-android) | Android 客户端 | GPL-2.0；见该仓库 `LICENSE` |
-| [private-chat-ios](https://github.com/shiyi-log/private-chat-ios) | iOS 客户端 | 当前源码快照根目录缺少许可证文件；完整开源发行前须补齐对应上游许可及署名 |
+| [private-chat-ios](https://github.com/shiyi-log/private-chat-ios) | iOS 客户端 | GPL-2.0-or-later；保留上游及第三方许可声明 |
 | [private-chat-docs](https://github.com/shiyi-log/private-chat-docs) | 架构、任务与历史版本记录 | 本仓库原创文档采用 Apache-2.0；见 `LICENSE` |
 
 macOS 端由 `private-chat-desktop` 覆盖。目前这五个仓库没有独立 Web 聊天客户端。服务端的 WebSocket 网关不等于浏览器聊天界面。
