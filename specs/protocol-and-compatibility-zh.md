@@ -26,7 +26,7 @@ Teamgram 实现 [MTProto 2.0](https://core.telegram.org/mtproto)，支持以下�
 | [iOS (teamgram-ios)](../clients/teamgram-ios.md) | 配置连接自建服务器 |
 | [桌面端 (teamgram-tdesktop)](../clients/teamgram-tdesktop.md) | 配置连接自建服务器 |
 
-**重要**：默认登录验证码为 **12345**（仅开发用；生产环境请修改）。
+**账号登录状态：** 社区版的 `none` 短信验证码实现已关闭，不会返回验证码，并拒绝所有验证码校验。项目未包含生产可用的短信服务；管理员接入并审查短信服务前，账号登录不可用。
 
 ## 部署说明
 

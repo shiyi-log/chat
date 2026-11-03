@@ -1,10 +1,14 @@
-# Teamgram Server
+# Private Chat Server (Teamgram-based)
 
 [中文](README-zh.md) | **English**
 
 ---
 
 Unofficial open-source [MTProto](https://core.telegram.org/mtproto) server implementation in Go. Compatible with Telegram clients; supports self-hosted deployment.
+
+This repository is based on [Teamgram Server](https://github.com/teamgram/teamgram-server). Teamgram contributors retain their original attribution under Apache-2.0. This project is not affiliated with Telegram or the Teamgram upstream maintainers.
+
+> **Preview status:** this repository contains the server only. It does not include a first-party chat client or a production SMS verification provider. The default SMS verifier is disabled and rejects sign-in attempts; configure and review a real provider before enabling account login. Full client-to-server login, messaging, and upload tests have not been completed. Do not treat this preview as a production-ready private messaging service.
 
 ## Features
 
@@ -18,7 +22,6 @@ Unofficial open-source [MTProto](https://core.telegram.org/mtproto) server imple
   - **private chat**
   - **basic group**
   - **contacts**
-  - **web**
 
 ## Architecture
 
@@ -61,8 +64,13 @@ For running the full stack with Docker. **No manual data initialization:** the d
 ### 1. Clone
 
 ```bash
-git clone https://github.com/teamgram/teamgram-server.git
-cd teamgram-server
+git clone https://github.com/shiyi-log/private-chat-server.git
+cd private-chat-server
+cp .env.example .env
+# Set distinct random values for MYSQL_ROOT_PASSWORD, MYSQL_PASSWORD,
+# MINIO_ROOT_PASSWORD, and GRAFANA_ADMIN_PASSWORD in .env.
+# Run this command separately for each password.
+openssl rand -hex 32
 ```
 
 ### 2. Start dependency stack
@@ -93,13 +101,15 @@ docker compose up -d
 
 ## Compatible clients
 
-**Default sign-in verification code:** `12345` (change for production.)
+No default sign-in code is shipped. The community build disables SMS verification by default and has no production SMS provider; authentication remains unavailable until a reviewed provider is configured.
 
 | Platform | Repository | Patch Link |
 |----------|------------|------------|
 | Android | [https://github.com/teamgram/teamgram-android](https://github.com/teamgram/teamgram-android) | [teamgram-android](clients/teamgram-android.md) |
 | iOS | [https://github.com/teamgram/teamgram-ios](https://github.com/teamgram/teamgram-ios) | [teamgram-ios](clients/teamgram-ios.md) |
 | Desktop (TDesktop) | [https://github.com/teamgram/teamgram-tdesktop](https://github.com/teamgram/teamgram-tdesktop) | [teamgram-tdesktop](clients/teamgram-tdesktop.md) |
+
+The table links upstream client projects and local patch notes, not ready-to-install binaries. The default Docker Compose setup binds only the client-facing gateway ports to `127.0.0.1`; internal RPC and observability ports are not published. For LAN access, set `TEAMGRAM_HOST_BIND_ADDRESS` in `.env` to the server's private interface address and restrict firewall access to the gateway ports only.
 
 ---
 

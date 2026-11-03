@@ -1,129 +1,58 @@
-# High-Performance Components Environment (docker-compose-env2)
+# Local Docker Compose Environment
 
-A self-contained environment stack based on `docker-compose-env2.yaml`, independent of `docker-compose-env.yaml`. It includes monitoring, logging, message queue, storage, and related components.
+`docker-compose-env.yaml` provides MySQL, Redis, etcd, Kafka, MinIO, and optional logging and monitoring services. It is intended for local development and evaluation, not production: Elasticsearch authentication is disabled, and infrastructure and monitoring ports bind to the local loopback address only.
 
-## Components
+The server does not include a production SMS verification provider. Its default verifier rejects sign-in code requests, so clients cannot sign in until a real provider is integrated and reviewed.
 
-| Component | Description |
-|-----------|-------------|
-| kafka | Message queue (KRaft mode, no Zookeeper) |
-| etcd | Configuration and discovery |
-| redis | Cache |
-| mysql | Relational database (MySQL 8.0) |
-| minio / minio-mc | Object storage and bucket initialization |
-| jaeger | Distributed tracing |
-| prometheus | Metrics collection |
-| node-exporter | Host metrics export |
-| grafana | Visualization and dashboards |
-| elasticsearch | Search and log storage |
-| kibana | Log/data visualization |
-| filebeat | Log collection |
-| go-stash | Log pipeline (Kafka → Elasticsearch) |
+## Start
 
-## Prerequisites
-
-- Docker and Docker Compose (Compose V2: `docker compose`)
-- For Elasticsearch, ensure `vm.max_map_count` ≥ 262144 on Linux: `sysctl -w vm.max_map_count=262144`
-
-## Environment Variables
-
-- Template: `.env.example`
-- Usage: copy to `.env` and adjust as needed (change secrets in production).
+Docker Engine and Docker Compose V2 are required. Create `.env` before starting, and generate a different random value for each password:
 
 ```bash
 cp .env.example .env
-# Edit .env for MYSQL_*, MINIO_*, GRAFANA_*, etc.
+openssl rand -hex 32
 ```
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| MYSQL_ROOT_PASSWORD | root | MySQL root password |
-| MYSQL_DATABASE | teamgram | Default database name |
-| MYSQL_USER | teamgram | Application DB user |
-| MYSQL_PASSWORD | teamgram | Application DB password |
-| MINIO_ROOT_USER | minio | MinIO username |
-| MINIO_ROOT_PASSWORD | miniostorage | MinIO password |
-| GRAFANA_ADMIN_USER | admin | Grafana admin username |
-| GRAFANA_ADMIN_PASSWORD | admin | Grafana admin password |
-| GRAFANA_ROOT_URL | http://localhost:3000 | Grafana root URL |
-
-## Start and Stop
+Use separate outputs for `MYSQL_ROOT_PASSWORD`, `MYSQL_PASSWORD`, `MINIO_ROOT_PASSWORD`, and `GRAFANA_ADMIN_PASSWORD`. The default `TEAMGRAM_HOST_BIND_ADDRESS=127.0.0.1` keeps client gateway access local to this machine.
 
 ```bash
-# Start all services (detached)
-docker compose -f docker-compose-env2.yaml up -d
-
-# Check status
-docker compose -f docker-compose-env2.yaml ps
-
-# Stop
-docker compose -f docker-compose-env2.yaml down
-
-# Stop (data under ./data/ is kept)
-docker compose -f docker-compose-env2.yaml down
+docker compose -f docker-compose-env.yaml config --quiet
+docker compose -f docker-compose-env.yaml up -d
+docker compose up -d
+docker compose ps
 ```
 
-Compose reads `.env` from the current directory; if absent, the defaults above are used.
+Stop containers while preserving data:
 
-## Ports and Access URLs
-
-All services bind to `127.0.0.1` only (local access).
-
-| Service | Port | URL |
-|---------|------|-----|
-| Jaeger UI | 16686 | http://127.0.0.1:16686 |
-| Prometheus | 9090 | http://127.0.0.1:9090 |
-| Grafana | 3000 | http://127.0.0.1:3000 |
-| Kibana | 5601 | http://127.0.0.1:5601 |
-| MinIO API | 9000 | http://127.0.0.1:9000 |
-| MinIO Console | 9001 | http://127.0.0.1:9001 |
-| MySQL | 3306 | 127.0.0.1:3306 |
-| Redis | 6379 | 127.0.0.1:6379 |
-| etcd | 2379 | http://127.0.0.1:2379 |
-| Kafka | 9092 | 127.0.0.1:9092 |
-| Elasticsearch | 9200 | http://127.0.0.1:9200 |
-| Node Exporter | 9100 | http://127.0.0.1:9100 |
-
-## Configuration
-
-These services rely on config files under `teamgramd/deploy/`; the files must exist and be valid:
-
-- **Prometheus**: `teamgramd/deploy/prometheus/prometheus.yml` (scrapes Prometheus and node-exporter)
-- **Filebeat**: `teamgramd/deploy/filebeat/filebeat.yml`
-- **Go-Stash**: `teamgramd/deploy/go-stash/config.yaml` (configure Kafka topics and Elasticsearch index for your use case)
-
-To run project SQL init for MySQL, add a volume to the `mysql` service in `docker-compose-env2.yaml`, for example:
-
-```yaml
-volumes:
-  - ./data/mysql:/var/lib/mysql
-  - ./teamgramd/sql:/docker-entrypoint-initdb.d:ro
+```bash
+docker compose down
+docker compose -f docker-compose-env.yaml down
 ```
 
-## Network
+Data is stored under `./data/`. `down` preserves it; back up the data before removing volumes or directories.
 
-- Name: `teamgram_net`
-- Driver: bridge
-- Subnet: `172.20.0.0/16`
+## Local Ports
 
-## Data Persistence
+All host mappings bind to `127.0.0.1` by default. The dependency stack also binds Jaeger, Node Exporter, Prometheus, Grafana, Elasticsearch, and Kibana ports locally.
 
-Data is stored in **local directories** under the project `data/` folder:
+| Service | Host port | Address |
+|---------|-----------|---------|
+| Client gateway (TCP MTProto) | 10443 | `127.0.0.1:10443` |
+| Client gateway (WebSocket) | 11443 | `127.0.0.1:11443` |
+| Client gateway (TCP) | 5222 | `127.0.0.1:5222` |
+| MySQL | 13306 | `127.0.0.1:13306` |
+| Redis | 16380 | `127.0.0.1:16380` |
+| etcd | 12379, 12380 | `127.0.0.1:12379`, `127.0.0.1:12380` |
+| Kafka | 19092, 19094 | `127.0.0.1:19092`, `127.0.0.1:19094` |
+| MinIO API / Console | 19000, 19001 | `http://127.0.0.1:19000`, `http://127.0.0.1:19001` |
+| Jaeger UI | 16686 | `http://127.0.0.1:16686` |
+| Prometheus | 9090 | `http://127.0.0.1:9090` |
+| Grafana | 13001 | `http://127.0.0.1:13001` |
+| Elasticsearch | 9200, 9300 | `127.0.0.1:9200`, `127.0.0.1:9300` |
+| Kibana | 5601 | `http://127.0.0.1:5601` |
 
-| Service | Host path |
-|---------|-----------|
-| kafka | `./data/kafka` |
-| etcd | `./data/etcd` |
-| redis | `./data/redis` |
-| mysql | `./data/mysql` |
-| minio | `./data/minio` |
-| prometheus | `./data/prometheus` |
-| grafana | `./data/grafana` |
-| elasticsearch | `./data/elasticsearch` |
+## LAN Clients
 
-Docker Compose creates these directories on first run. Running `down` does not remove them; back up or migrate by copying the `data/` directory.
+To connect from another device, set `TEAMGRAM_HOST_BIND_ADDRESS` in `.env` to the server's private interface IP and allow only the required client gateway ports through the firewall. Do not publish internal RPC, database, cache, object storage, or monitoring ports, and never expose Elasticsearch directly to the internet.
 
-## Notes
-
-- **Go-Stash**: If the image `kevwan/go-stash` is not available, use your own or another image and keep `teamgramd/deploy/go-stash/config.yaml` in sync with the runtime.
-- **Grafana**: First login uses `GRAFANA_ADMIN_USER` / `GRAFANA_ADMIN_PASSWORD` from `.env`. Add Prometheus, Elasticsearch, etc. as data sources in Grafana to view metrics and logs.
+Client binaries and a first-party chat interface are not included in this repository. Configuration patches for upstream clients are documented under [`clients/`](clients/); build and validate each client separately.

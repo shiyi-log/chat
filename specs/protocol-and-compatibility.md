@@ -26,7 +26,7 @@ Clients connect to gnetway over TCP or WebSocket and use one of the above for ha
 | [iOS (teamgram-ios)](../clients/teamgram-ios.md) | Configure to point to your server |
 | [Desktop (teamgram-tdesktop)](../clients/teamgram-tdesktop.md) | Configure to point to your server |
 
-**Important:** Default sign-in verification code is **12345** (development only; change for production).
+**Authentication status:** The community `none` SMS verifier is disabled. It does not disclose a code and rejects all verification attempts. No production SMS provider is included; account login is unavailable until an operator integrates and reviews one.
 
 ## Deployment notes
 

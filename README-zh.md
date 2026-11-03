@@ -1,10 +1,14 @@
-# Teamgram Server
+# 私有聊天服务端（基于 Teamgram）
 
 **中文** | [English](README.md)
 
 ---
 
 基于 Go 实现的开源 [MTProto](https://core.telegram.org/mtproto) 服务端，非官方实现。兼容 Telegram 客户端，支持私有化部署。
+
+本仓库基于 [Teamgram Server](https://github.com/teamgram/teamgram-server)，并按 Apache-2.0 保留 Teamgram 贡献者的原有署名。本项目与 Telegram 及 Teamgram 上游维护者没有关联。
+
+> **预览版状态：** 本仓库仅包含服务端，不包含自研聊天客户端，也未提供可用于生产的短信验证码服务。默认验证码实现已关闭，登录请求会被拒绝；接入并审查真实短信服务后才能启用账号登录。完整客户端登录、消息收发和文件上传联调尚未完成。请勿将此预览版视为可直接投入生产的私有消息平台。
 
 ## 功能特性
 
@@ -18,7 +22,6 @@
   - **private chat**
   - **basic group**
   - **contacts**
-  - **web**
 
 ## 架构
 
@@ -46,8 +49,6 @@
 - [手动安装（Linux）](docs/install-manual-linux-zh.md)
 - [手动安装（macOS）](docs/install-manual-macos-zh.md)
 
-**Docker 部署：** [install-docker.md](docs/install-docker.md)（docker-compose 完整栈）。
-
 **一键环境（Docker）：** 使用 [docker-compose-env.yaml](docker-compose-env.yaml)，详见 [README-env-cn.md](README-env-cn.md) / [README-env-en.md](README-env-en.md)。
 
 ---
@@ -70,8 +71,13 @@
 ### 1. 克隆仓库
 
 ```bash
-git clone https://github.com/teamgram/teamgram-server.git
-cd teamgram-server
+git clone https://github.com/shiyi-log/private-chat-server.git
+cd private-chat-server
+cp .env.example .env
+# 为 MYSQL_ROOT_PASSWORD、MYSQL_PASSWORD、MINIO_ROOT_PASSWORD 和
+# GRAFANA_ADMIN_PASSWORD 分别生成不同的随机值并写入 .env。
+# 每个密码都单独运行一次此命令。
+openssl rand -hex 32
 ```
 
 ### 2. 启动依赖栈
@@ -102,13 +108,15 @@ docker compose up -d
 
 ## 兼容客户端
 
-**默认登录验证码：** `12345`（生产环境请修改。）
+社区版不提供默认登录验证码，也没有生产可用的短信服务。默认验证码实现已关闭；完成短信服务接入和审查前，账号登录不可用。
 
 | Platform | Repository | Patch Link |
 |----------|------------|------------|
 | Android | [https://github.com/teamgram/teamgram-android](https://github.com/teamgram/teamgram-android) | [teamgram-android](clients/teamgram-android.md) |
 | iOS | [https://github.com/teamgram/teamgram-ios](https://github.com/teamgram/teamgram-ios) | [teamgram-ios](clients/teamgram-ios.md) |
 | Desktop (TDesktop) | [https://github.com/teamgram/teamgram-tdesktop](https://github.com/teamgram/teamgram-tdesktop) | [teamgram-tdesktop](clients/teamgram-tdesktop.md) |
+
+上表链接的是上游客户端项目和本仓库的补丁说明，不是可直接安装的二进制包。Docker Compose 默认仅将客户端网关端口绑定到 `127.0.0.1`，不会发布内部 RPC 和监控端口。如需局域网访问，在 `.env` 中将 `TEAMGRAM_HOST_BIND_ADDRESS` 设为服务器的内网网卡地址，并仅允许网关所需端口通过防火墙。
 
 ---
 

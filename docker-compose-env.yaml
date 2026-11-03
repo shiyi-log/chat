@@ -84,10 +84,10 @@ services:
     image: mysql:8.0
     container_name: private-chat-mysql
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?Set MYSQL_ROOT_PASSWORD in .env}
       MYSQL_DATABASE: ${MYSQL_DATABASE:-teamgram}
       MYSQL_USER: ${MYSQL_USER:-teamgram}
-      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-teamgram}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:?Set MYSQL_PASSWORD in .env}
     ports:
       - "127.0.0.1:13306:3306"
     volumes:
@@ -116,7 +116,7 @@ services:
       - "127.0.0.1:19001:9001"
     environment:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minio}
-      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-miniostorage}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:?Set MINIO_ROOT_PASSWORD in .env}
     command: server /data --console-address ":9001"
     volumes:
       - ./data/minio:/data
@@ -131,14 +131,14 @@ services:
     command:
       - |
         sleep 10
-        mc alias set myminio http://minio:9000 $${MINIO_ROOT_USER:-minio} $${MINIO_ROOT_PASSWORD:-miniostorage}
+        mc alias set myminio http://minio:9000 "$${MINIO_ROOT_USER}" "$${MINIO_ROOT_PASSWORD}"
         mc mb myminio/documents --ignore-existing
         mc mb myminio/encryptedfiles --ignore-existing
         mc mb myminio/photos --ignore-existing
         mc mb myminio/videos --ignore-existing
     environment:
       MINIO_ROOT_USER: ${MINIO_ROOT_USER:-minio}
-      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:-miniostorage}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:?Set MINIO_ROOT_PASSWORD in .env}
     depends_on:
       - minio
     networks:
@@ -151,13 +151,13 @@ services:
     container_name: private-chat-jaeger
     restart: always
     ports:
-      - "5775:5775/udp"
-      - "6831:6831/udp"
-      - "6832:6832/udp"
-      - "5778:5778"
-      - "16686:16686"
-      - "14268:14268"
-      - "9411:9411"
+      - "127.0.0.1:5775:5775/udp"
+      - "127.0.0.1:6831:6831/udp"
+      - "127.0.0.1:6832:6832/udp"
+      - "127.0.0.1:5778:5778"
+      - "127.0.0.1:16686:16686"
+      - "127.0.0.1:14268:14268"
+      - "127.0.0.1:9411:9411"
     environment:
       - SPAN_STORAGE_TYPE=elasticsearch
       - ES_SERVER_URLS=http://elasticsearch:9200
@@ -172,7 +172,7 @@ services:
     image: prom/node-exporter:v1.7.0
     container_name: private-chat-node-exporter
     ports:
-      - "9100:9100"
+      - "127.0.0.1:9100:9100"
     volumes:
       - /proc:/host/proc:ro
       - /sys:/host/sys:ro
@@ -202,7 +202,7 @@ services:
     restart: always
     user: root
     ports:
-      - 9090:9090
+      - "127.0.0.1:9090:9090"
     networks:
       - teamgram_net
 
@@ -216,7 +216,7 @@ services:
       TZ: Asia/Shanghai
       # 首次启动时生效；若已有数据卷则需在容器内用 grafana-cli 重置 - Only used on first run; reset via grafana-cli if volume exists
       GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
-      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:?Set GRAFANA_ADMIN_PASSWORD in .env}
     restart: always
     volumes:
       - ./data/grafana/data:/var/lib/grafana
@@ -236,8 +236,8 @@ services:
       - "discovery.type=single-node"
       - "xpack.security.enabled=false"
     ports:
-      - "9200:9200"
-      - "9300:9300"
+      - "127.0.0.1:9200:9200"
+      - "127.0.0.1:9300:9300"
     volumes:
       # Named volumes avoid bind-mount permission errors (node.lock AccessDeniedException
       # when ./data/es/* is root-owned from sudo compose).
@@ -256,7 +256,7 @@ services:
       - "ELASTICSEARCH_HOSTS=http://elasticsearch:9200"
       - "XPACK_SECURITY_ENABLED=false"
     ports:
-      - "5601:5601"
+      - "127.0.0.1:5601:5601"
     networks:
       - teamgram_net
     depends_on:

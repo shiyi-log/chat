@@ -14,12 +14,14 @@
 // limitations under the License.
 //
 // Author: teamgramio (teamgram.io@gmail.com)
+// Modified in the private-chat-server fork: the development-only verifier fails closed.
 //
 
 package none
 
 import (
 	"context"
+	"errors"
 
 	"github.com/teamgram/proto/mtproto"
 	"github.com/teamgram/teamgram-server/pkg/code/conf"
@@ -36,12 +38,9 @@ type noneVerifyCode struct {
 }
 
 func (m *noneVerifyCode) SendSmsVerifyCode(ctx context.Context, phoneNumber, code, codeHash string) (string, error) {
-	return code, nil
+	return "", errors.New("SMS verification provider is not configured")
 }
 
 func (m *noneVerifyCode) VerifySmsCode(ctx context.Context, codeHash, code, extraData string) error {
-	if code != "12345" {
-		return mtproto.ErrPhoneCodeInvalid
-	}
-	return nil
+	return mtproto.ErrPhoneCodeInvalid
 }
