@@ -284,6 +284,69 @@ print(InitialLocalization.code(for: [\"en-US\"], existingLanguageCode: \"fr\"))
             self.assertIn(f'"Tour.Title1" = "{title}";', contents)
             self.assertIn(f'"Tour.StartButton" = "{button}";', contents)
 
+    def test_simplified_chinese_covers_the_initial_authentication_flow(self):
+        required_keys = {
+            "Common.Cancel",
+            "Common.Next",
+            "Common.OK",
+            "Common.Paste",
+            "Common.Search",
+            "Login.PhoneAndCountryHelp",
+            "Login.PhoneNumberConfirmation",
+            "Login.PhonePlaceholder",
+            "Login.NewNumber",
+            "Login.PhoneTitle",
+            "Login.SelectCountry",
+            "Login.Continue",
+            "Login.Edit",
+            "Login.Yes",
+            "Login.EnterCodeSMSTitle",
+            "Login.EnterCodeSMSText",
+            "Login.EnterCodeTelegramTitle",
+            "Login.EnterCodeTelegramText",
+            "Login.CodeExpired",
+            "Login.InvalidCodeError",
+            "Login.NetworkError",
+            "Login.InfoTitle",
+            "Login.TermsOfServiceLabel",
+            "Login.TermsOfServiceHeader",
+            "Login.TermsOfServiceAgree",
+            "Login.TermsOfServiceDecline",
+            "UserInfo.FirstNamePlaceholder",
+            "UserInfo.LastNamePlaceholder",
+            "LoginPassword.Title",
+            "LoginPassword.InvalidPasswordError",
+            "LoginPassword.ResetAccount",
+            "TwoStepAuth.EnterPasswordHelp",
+            "TwoStepAuth.EnterPasswordForgot",
+            "TwoStepAuth.RecoveryTitle",
+            "TwoStepAuth.RecoveryCodeHelp",
+        }
+        english = parse_strings_file(
+            (IOS_APP / "en.lproj/Localizable.strings").read_text(encoding="utf-8")
+        )
+        chinese = parse_strings_file(
+            (IOS_APP / "zh-Hans.lproj/Localizable.strings").read_text(encoding="utf-8")
+        )
+
+        self.assertEqual(set(), required_keys - english.keys())
+        self.assertEqual(
+            set(),
+            required_keys - chinese.keys(),
+            "the Simplified Chinese authentication strings are incomplete",
+        )
+
+        placeholder_pattern = re.compile(r"%(?:\d+\$)?(?:@|d|f|s)")
+        for key in sorted(required_keys):
+            with self.subTest(key=key):
+                self.assertTrue(chinese[key].strip())
+                self.assertNotEqual(english[key], chinese[key], f"{key} is still untranslated")
+                self.assertEqual(
+                    sorted(placeholder_pattern.findall(english[key])),
+                    sorted(placeholder_pattern.findall(chinese[key])),
+                    f"{key} must preserve its formatting placeholders",
+                )
+
     def test_app_localizations_do_not_show_upstream_brand_or_links(self):
         resource_paths = (
             IOS_APP / "en.lproj/Localizable.strings",
