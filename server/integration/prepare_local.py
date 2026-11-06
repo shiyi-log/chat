@@ -1,3 +1,4 @@
+import hashlib
 import json
 import os
 import re
@@ -118,6 +119,60 @@ def _generate_runtime_key(path):
     path.chmod(0o600)
 
 
+def _read_der_value(data, offset, expected_tag):
+    if offset + 2 > len(data) or data[offset] != expected_tag:
+        raise RuntimeError("unable to read the local runtime RSA public key")
+    offset += 1
+    first_length = data[offset]
+    offset += 1
+    if first_length & 0x80:
+        length_size = first_length & 0x7f
+        if length_size == 0 or offset + length_size > len(data):
+            raise RuntimeError("unable to read the local runtime RSA public key")
+        length = int.from_bytes(data[offset : offset + length_size], "big")
+        offset += length_size
+    else:
+        length = first_length
+    end = offset + length
+    if end > len(data):
+        raise RuntimeError("unable to read the local runtime RSA public key")
+    return data[offset:end], end
+
+
+def _tl_bytes(value):
+    if len(value) < 254:
+        encoded = bytes((len(value),)) + value
+    else:
+        if len(value) > 0xffffff:
+            raise RuntimeError("local runtime RSA public key is too large")
+        encoded = b"\xfe" + len(value).to_bytes(3, "little") + value
+    return encoded + b"\0" * (-len(encoded) % 4)
+
+
+def _runtime_key_fingerprint(path):
+    try:
+        result = subprocess.run(
+            ["openssl", "rsa", "-in", str(path), "-RSAPublicKey_out", "-outform", "DER"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.DEVNULL,
+        )
+    except OSError as exc:
+        raise RuntimeError("OpenSSL is required to read the local runtime RSA key") from exc
+    if result.returncode != 0:
+        raise RuntimeError("unable to read the local runtime RSA public key")
+
+    sequence, sequence_end = _read_der_value(result.stdout, 0, 0x30)
+    if sequence_end != len(result.stdout):
+        raise RuntimeError("unable to read the local runtime RSA public key")
+    modulus, offset = _read_der_value(sequence, 0, 0x02)
+    exponent, offset = _read_der_value(sequence, offset, 0x02)
+    if offset != len(sequence):
+        raise RuntimeError("unable to read the local runtime RSA public key")
+    modulus = modulus.lstrip(b"\0")
+    digest = hashlib.sha1(_tl_bytes(modulus) + _tl_bytes(exponent)).digest()
+    return str(int.from_bytes(digest[-8:], "little"))
+
+
 def _quoted(value):
     return json.dumps(value, ensure_ascii=True)
 
@@ -145,7 +200,7 @@ def _replace_once(text, old, new, description):
     return text.replace(old, new, 1)
 
 
-def _render_service_config(name, source_path, runtime_root, credentials, ports):
+def _render_service_config(name, source_path, runtime_root, credentials, ports, rsa_fingerprint=None):
     text = source_path.read_text(encoding="utf-8")
     old_port = {
         "bff": 20010,
@@ -222,10 +277,19 @@ def _render_service_config(name, source_path, runtime_root, credentials, ports):
         )
 
     if name == "gnetway":
+        if not rsa_fingerprint:
+            raise RuntimeError("local runtime gateway RSA fingerprint is unavailable")
         key_path = os.path.abspath(runtime_root / "server_pkcs1.key")
         text = text.replace('"./server_pkcs1.key"', _quoted(key_path))
         if text.count(key_path) != 2:
             raise RuntimeError("unexpected gateway RSA key references in source configuration")
+        text, fingerprint_count = re.subn(
+            r'(?m)^(\s*KeyFingerprint: )"[^"\n]+"$',
+            lambda match: f'{match.group(1)}"{rsa_fingerprint}"',
+            text,
+        )
+        if fingerprint_count != 2:
+            raise RuntimeError("unexpected gateway RSA fingerprint fields in source configuration")
         text = _replace_once(text, "0.0.0.0:10443", f"127.0.0.1:{ports['tcp']}", "gateway TCP listener")
         text = _replace_once(text, "        - 0.0.0.0:5222\n", f"        - \"[::1]:{ports['tcp']}\"\n", "gateway IPv6 loopback TCP listener")
         text = _replace_once(text, "0.0.0.0:11443", f"127.0.0.1:{ports['websocket']}", "gateway WebSocket listener")
@@ -270,8 +334,19 @@ def prepare_runtime(server_root, runtime_root, env_path):
     if missing:
         raise RuntimeError("local runtime source files are incomplete")
 
+    _ensure_private_dir(runtime_root)
+    runtime_key = runtime_root / "server_pkcs1.key"
+    _generate_runtime_key(runtime_key)
+    rsa_fingerprint = _runtime_key_fingerprint(runtime_key)
     rendered = {
-        name: _render_service_config(name, source, runtime_root, credentials, ports)
+        name: _render_service_config(
+            name,
+            source,
+            runtime_root,
+            credentials,
+            ports,
+            rsa_fingerprint if name == "gnetway" else None,
+        )
         for name, source in source_configs.items()
     }
     client_config = _render_client_config(client_config_source, ports)
@@ -283,7 +358,6 @@ def prepare_runtime(server_root, runtime_root, env_path):
     for name, contents in rendered.items():
         _write_private_file(etc_dir / f"{name}.yaml", contents)
     _write_private_file(runtime_root / "config.json", client_config)
-    _generate_runtime_key(runtime_root / "server_pkcs1.key")
     outbox_dir.chmod(0o700)
     return [etc_dir / f"{name}.yaml" for name in DEFAULT_SERVICE_PORTS]
 

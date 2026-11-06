@@ -1,3 +1,4 @@
+import hashlib
 import json
 import os
 import shutil
@@ -28,6 +29,43 @@ SERVICE_PORTS = {
     "session": 30120,
     "gnetway": 30110,
 }
+
+
+def _der_value(data, offset, tag):
+    if data[offset] != tag:
+        raise AssertionError(f"unexpected DER tag: {data[offset]}")
+    offset += 1
+    first_length = data[offset]
+    offset += 1
+    if first_length & 0x80:
+        length_size = first_length & 0x7f
+        length = int.from_bytes(data[offset : offset + length_size], "big")
+        offset += length_size
+    else:
+        length = first_length
+    return data[offset : offset + length], offset + length
+
+
+def _expected_mtproto_fingerprint(private_key):
+    public_key = subprocess.run(
+        ["openssl", "rsa", "-in", str(private_key), "-RSAPublicKey_out", "-outform", "DER"],
+        check=True,
+        capture_output=True,
+    ).stdout
+    sequence, _ = _der_value(public_key, 0, 0x30)
+    modulus, offset = _der_value(sequence, 0, 0x02)
+    exponent, _ = _der_value(sequence, offset, 0x02)
+    modulus = modulus.lstrip(b"\0")
+
+    def tl_bytes(value):
+        if len(value) < 254:
+            encoded = bytes([len(value)]) + value
+        else:
+            encoded = b"\xfe" + len(value).to_bytes(3, "little") + value
+        return encoded + b"\0" * (-len(encoded) % 4)
+
+    digest = hashlib.sha1(tl_bytes(modulus) + tl_bytes(exponent)).digest()
+    return str(int.from_bytes(digest[-8:], "little"))
 
 
 class PrepareRuntimeTests(unittest.TestCase):
@@ -109,6 +147,19 @@ class PrepareRuntimeTests(unittest.TestCase):
         self.assertEqual(source_before, {path.name: path.read_bytes() for path in self.etc.glob("*.yaml")})
         self.assertEqual(self.runtime.stat().st_mode & 0o777, 0o700)
         self.assertEqual((self.runtime / "outbox").stat().st_mode & 0o777, 0o700)
+
+    def test_gateway_fingerprints_match_generated_runtime_key(self):
+        prepare_local.prepare_runtime(self.server, self.runtime, self.env_path)
+
+        expected = _expected_mtproto_fingerprint(self.runtime / "server_pkcs1.key")
+        gnetway = (self.runtime / "etc/gnetway.yaml").read_text(encoding="utf-8")
+        configured = [
+            line.split(":", 1)[1].strip().strip('"')
+            for line in gnetway.splitlines()
+            if "KeyFingerprint:" in line
+        ]
+
+        self.assertEqual(configured, [expected, expected])
 
     def test_missing_credentials_fail_without_echoing_secret_values(self):
         secret = "sensitive-value-must-not-appear"

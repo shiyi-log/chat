@@ -122,6 +122,49 @@ jobs:
           if-no-files-found: error
           retention-days: 14
 
+  web-build-preview:
+    name: Web client checks and preview build
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: clients/web/package-lock.json
+
+      - name: Install Web client dependencies
+        working-directory: clients/web
+        run: npm ci
+
+      - name: Verify protocol layer
+        working-directory: clients/web
+        run: npm run verify:protocol
+
+      - name: Run Web client tests
+        working-directory: clients/web
+        run: npm test
+
+      - name: Build Web client
+        working-directory: clients/web
+        run: npm run build
+
+      - name: Upload Web preview
+        uses: actions/upload-artifact@v7
+        with:
+          name: chat-web-preview
+          path: clients/web/dist/
+          if-no-files-found: error
+          retention-days: 14
+
   android-compile:
     name: Android afatDebug APK preview
     runs-on: ubuntu-24.04
