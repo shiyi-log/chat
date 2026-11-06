@@ -74,6 +74,31 @@ class CiWorkflowContractTest(unittest.TestCase):
         self.assertNotIn("signingConfig", commands)
         self.assertEqual(android["permissions"], {"contents": "read"})
 
+    def test_ios_simulator_build_uses_the_unsigned_local_configuration(self):
+        ios = self.workflow["jobs"]["ios-simulator-build"]
+        commands = "\n".join(step.get("run", "") for step in ios["steps"])
+
+        self.assertEqual("macos-26", ios["runs-on"])
+        self.assertIn("generateProject", commands)
+        self.assertIn("xcodebuild", commands)
+        self.assertIn("-sdk iphonesimulator", commands)
+        self.assertIn("CODE_SIGNING_ALLOWED=NO", commands)
+        self.assertIn("build-system/template_minimal_development_configuration.json", commands)
+        self.assertIn("build-system/fake-codesigning", commands)
+        self.assertIn("--noOpen", commands)
+        self.assertIn("test_make_project_generation.py", commands)
+        self.assertNotIn("TELEGRAM_CODESIGNING_GIT_PASSWORD", commands)
+        self.assertNotIn("--gitCodesigningRepository", commands)
+
+    def test_desktop_packaging_metadata_runs_on_each_native_desktop_host(self):
+        desktop = self.workflow["jobs"]["desktop-packaging-metadata"]
+        platforms = desktop["strategy"]["matrix"]["os"]
+        commands = "\n".join(step.get("run", "") for step in desktop["steps"])
+
+        self.assertEqual(["ubuntu-24.04", "windows-2025", "macos-26"], platforms)
+        self.assertIn("verify_private_chat_desktop_config.py", commands)
+        self.assertIn("test_chat_desktop_branding.py", commands)
+
 
 if __name__ == "__main__":
     unittest.main()

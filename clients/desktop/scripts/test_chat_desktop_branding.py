@@ -109,6 +109,65 @@ def ico_png_images(data):
 
 
 class ChatDesktopBrandingTests(unittest.TestCase):
+    def test_language_share_uses_the_chat_deep_link(self):
+        source = read_text("Telegram/SourceFiles/boxes/language_box.cpp")
+        share = re.search(
+            r"void Rows::share\(.*?(?=\n}\n\nvoid Rows::remove)",
+            source,
+            re.DOTALL,
+        )
+        self.assertIsNotNone(share)
+        self.assertIn('u"privatechat://setlanguage/"_q', share.group())
+        self.assertNotRegex(share.group(), re.compile(r"t\.me|telegram", re.IGNORECASE))
+
+    def test_crash_report_copy_is_localized_and_uses_chat_branding(self):
+        source = read_text("Telegram/SourceFiles/core/crash_report_window.cpp")
+        self.assertNotRegex(
+            source,
+            re.compile(r'u"[^\"]*(?:\bTelegram\b|telegram\.org|telegramcrash)[^\"]*"', re.IGNORECASE),
+        )
+        self.assertIn("https://github.com/shiyi-log/chat/releases", source)
+
+        base = read_strings("Telegram/Resources/langs/lang.strings")
+        chinese = read_strings("Telegram/Resources/langs/zh-Hans.strings")
+        required = {
+            "lng_crash_report_last_closed",
+            "lng_crash_report_last_crashed",
+            "lng_crash_report_get_latest",
+            "lng_crash_report_file_title",
+            "lng_crash_report_file_filter",
+            "lng_crash_report_local_copy",
+            "lng_crash_report_save_button",
+            "lng_crash_report_continue",
+        }
+        self.assertTrue(required <= base.keys())
+        self.assertTrue(required <= chinese.keys())
+        for key in required:
+            self.assertEqual(
+                sorted(PLACEHOLDER_PATTERN.findall(base[key])),
+                sorted(PLACEHOLDER_PATTERN.findall(chinese[key])),
+                key,
+            )
+
+    def test_crash_reports_are_saved_locally_without_uploading_to_upstream(self):
+        source = read_text("Telegram/SourceFiles/core/crash_report_window.cpp")
+        header = read_text("Telegram/SourceFiles/core/crash_report_window.h")
+        self.assertNotIn("tdesktop.com/crash.php", source)
+        self.assertNotIn("sendReport()", source)
+        self.assertNotIn("QNetworkAccessManager", header)
+        self.assertIn(
+            "connect(&_send, &QPushButton::clicked, [=] { saveReport(); });",
+            source,
+        )
+        self.assertIn("file.write(getCrashReportRaw());", source)
+
+    def test_new_install_defaults_to_simplified_chinese_without_overriding_saved_language(self):
+        language = read_text("Telegram/SourceFiles/lang/lang_keys.cpp")
+        application = read_text("Telegram/SourceFiles/core/application.cpp")
+        self.assertIn('kDefaultLanguage = "zh-Hans"_cs', language)
+        self.assertIn("if (langpack().id().isEmpty())", application)
+        self.assertIn("langpack().switchToId(Lang::BundledChineseLanguage())", application)
+
     def test_runtime_language_packs_do_not_expose_telegram_brand_or_links(self):
         brand_pattern = re.compile(r"\btelegram\b|telegram\.(?:org|me)|t\.me", re.IGNORECASE)
         for path in (

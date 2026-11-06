@@ -113,3 +113,80 @@ jobs:
           PRIVATE_CHAT_API_ID: "123456"
           PRIVATE_CHAT_API_HASH: "0123456789abcdef0123456789abcdef"
         run: ./gradlew :TMessagesProj_App:compileAfatDebugJavaWithJavac --no-daemon
+
+  ios-simulator-build:
+    name: iOS simulator build (unsigned)
+    runs-on: macos-26
+    timeout-minutes: 180
+    permissions:
+      contents: read
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Python for the iOS build generator
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Test headless Xcode project generation
+        working-directory: clients/ios
+        run: python3 scripts/tests/test_make_project_generation.py
+
+      - name: Generate unsigned simulator project
+        working-directory: clients/ios
+        run: |
+          python3 build-system/Make/Make.py \
+            --overrideXcodeVersion \
+            --cacheDir="${RUNNER_TEMP}/private-chat-ios-bazel-cache" \
+            generateProject \
+            --configurationPath=build-system/template_minimal_development_configuration.json \
+            --codesigningInformationPath=build-system/fake-codesigning \
+            --disableProvisioningProfiles \
+            --disableExtensions \
+            --noOpen
+
+      - name: Build iOS simulator app without signing
+        working-directory: clients/ios
+        run: |
+          xcodebuild \
+            -project Telegram/Telegram.xcodeproj \
+            -scheme Telegram \
+            -configuration Debug \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            -derivedDataPath "${RUNNER_TEMP}/private-chat-ios-derived-data" \
+            CODE_SIGNING_ALLOWED=NO \
+            build
+
+  desktop-packaging-metadata:
+    name: Desktop packaging metadata (${{ matrix.os }})
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    strategy:
+      fail-fast: false
+      matrix:
+        os:
+          - ubuntu-24.04
+          - windows-2025
+          - macos-26
+    permissions:
+      contents: read
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Check desktop client configuration
+        run: python clients/desktop/scripts/verify_private_chat_desktop_config.py
+
+      - name: Check desktop branding and packaging metadata
+        run: python clients/desktop/scripts/test_chat_desktop_branding.py

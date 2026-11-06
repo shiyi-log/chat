@@ -583,8 +583,6 @@ def generate_project(bazel, arguments):
     if arguments.target is not None:
         target_name = arguments.target
     
-    call_executable(['killall', 'Xcode'], check_result=False)
-
     xcodeproj_path = generate(
         build_environment=bazel_command_line.build_environment,
         disable_extensions=disable_extensions,
@@ -609,7 +607,8 @@ def generate_project(bazel, arguments):
             'Telegram/Telegram.LSP.json'
         ], check_result=True)
 
-    call_executable(['open', xcodeproj_path])
+    if not arguments.noOpen:
+        call_executable(['open', xcodeproj_path])
 
 
 def resolve_watch_provisioning_profile(arguments, base_path):
@@ -1021,6 +1020,13 @@ if __name__ == '__main__':
         help='''
             This improves profiling experinence by generating DSYM files. Keep disabled for better build performance.
             '''
+    )
+
+    generateProjectParser.add_argument(
+        '--noOpen',
+        action='store_true',
+        default=False,
+        help='Generate the Xcode project without opening it in Xcode.',
     )
 
     generateProjectParser.add_argument(
