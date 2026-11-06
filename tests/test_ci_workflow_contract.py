@@ -71,6 +71,12 @@ class CiWorkflowContractTest(unittest.TestCase):
         self.assertIn("./app/interface/session/internal/sess", commands)
         self.assertNotIn("go test ./...", commands)
 
+    def test_server_job_runs_local_runtime_configuration_tests(self):
+        steps = self.workflow["jobs"]["server"]["steps"]
+        commands = "\n".join(step.get("run", "") for step in steps)
+
+        self.assertIn("python -m unittest server.integration.test_local_runtime server.integration.test_run_local -v", commands)
+
     def test_server_preview_job_builds_and_uploads_all_service_binaries(self):
         server_build = self.workflow["jobs"]["server-build-preview"]
         commands = "\n".join(step.get("run", "") for step in server_build["steps"])
