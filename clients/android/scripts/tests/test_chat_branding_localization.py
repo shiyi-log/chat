@@ -293,6 +293,12 @@ class ChatBrandingLocalizationTests(unittest.TestCase):
         self.assertNotIn("R.drawable.intro_tg_plane", intro)
         self.assertTrue((RES / "mipmap-anydpi-v26/chat_launcher.xml").is_file())
         self.assertTrue((RES / "drawable/chat_logo.xml").is_file())
+        for launcher in ("mipmap-anydpi-v26/ic_launcher.xml", "mipmap-anydpi-v26/ic_launcher_round.xml"):
+            contents = (RES / launcher).read_text(encoding="utf-8")
+            with self.subTest(launcher=launcher):
+                self.assertIn("@drawable/chat_logo_monochrome", contents)
+                self.assertNotIn("@drawable/icon_plane", contents)
+        self.assertFalse((RES / "drawable/icon_plane.xml").exists())
 
     def test_account_contacts_and_call_surfaces_use_chat_assets(self):
         auth = (RES / "xml/auth.xml").read_text(encoding="utf-8")
