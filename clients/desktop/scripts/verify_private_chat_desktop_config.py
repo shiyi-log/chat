@@ -35,6 +35,11 @@ def read_plist(path):
         return plistlib.load(handle)
 
 
+def configure_console_output():
+    if hasattr(sys.stdout, "reconfigure"):
+        sys.stdout.reconfigure(errors="backslashreplace")
+
+
 def main():
     checks = []
 
@@ -330,4 +335,5 @@ def main():
 
 
 if __name__ == "__main__":
+    configure_console_output()
     sys.exit(main())

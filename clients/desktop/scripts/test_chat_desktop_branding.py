@@ -219,7 +219,7 @@ class ChatDesktopBrandingTests(unittest.TestCase):
             )
 
     def test_runtime_language_packs_do_not_expose_telegram_brand_or_links(self):
-        brand_pattern = re.compile(r"\btelegram\b|telegram\.(?:org|me)|t\.me", re.IGNORECASE)
+        brand_pattern = re.compile(r"telegram|t\.me", re.IGNORECASE)
         for path in (
             "Telegram/Resources/langs/lang.strings",
             "Telegram/Resources/langs/cloud_lang.strings",
@@ -302,6 +302,22 @@ class ChatDesktopBrandingTests(unittest.TestCase):
         )
         self.assertTrue(ico_images, "Windows app icon must contain a PNG image")
         self.assertTrue(any(CHAT_ICON_COLORS <= png_colors(image) for image in ico_images))
+
+    def test_uwp_application_icons_use_chat_art(self):
+        assets = ROOT / "Telegram/Resources/uwp/AppX/Assets"
+        icon_paths = sorted(assets.rglob("*.png"))
+        self.assertTrue(icon_paths)
+
+        for path in icon_paths:
+            colors = png_colors(path.read_bytes())
+            with self.subTest(path=path.relative_to(ROOT)):
+                if "_altform-unplated" in path.name:
+                    self.assertIn((255, 255, 255), colors)
+                    self.assertTrue(
+                        (20, 91, 87) not in colors and (244, 162, 97) not in colors
+                    )
+                else:
+                    self.assertTrue(CHAT_ICON_COLORS <= colors)
 
     def test_active_tray_icon_uses_the_chat_bubble_vector(self):
         tray_path = ROOT / "Telegram/Resources/icons/tray_monochrome.svg"

@@ -88,6 +88,20 @@ class ChatBrandingLocalizationTests(unittest.TestCase):
         self.assertEqual("聊天", self.chinese["Chats"])
         self.assertEqual("设置", self.chinese["Settings"])
 
+    def test_login_activity_resources_are_local_and_format_compatible(self):
+        login_activity = ROOT / "TMessagesProj/src/main/java/org/telegram/ui/LoginActivity.java"
+        source = login_activity.read_text(encoding="utf-8")
+        keys = set(re.findall(r"R[.]string[.]([A-Za-z0-9_]+)", source))
+        missing = keys - self.chinese.keys()
+        self.assertFalse(missing, f"missing LoginActivity Chinese strings: {sorted(missing)}")
+        for key in keys:
+            with self.subTest(key=key):
+                self.assertEqual(
+                    sorted(FORMATS.findall(self.english[key])),
+                    sorted(FORMATS.findall(self.chinese[key])),
+                    f"format placeholders differ for {key}",
+                )
+
     def test_default_install_uses_chat_brand_while_preserving_upstream_domain_names(self):
         self.assertEqual("Chat", self.english["AppName"])
         self.assertEqual("Chat Beta", self.english["AppNameBeta"])
@@ -116,6 +130,7 @@ class ChatBrandingLocalizationTests(unittest.TestCase):
 
     def test_cocoon_footer_uses_chat_feature_link_and_has_simplified_chinese_copy(self):
         footer = self.english["CocoonFooter"]
+        self.assertIn(r"Chat\'s feature page", footer)
         self.assertNotRegex(footer, re.compile(r"t\.me|telegram", re.IGNORECASE))
         self.assertEqual("https://privatechat.local/features", self.english["CocoonFooterLink"])
         self.assertIn("CocoonFooter", self.chinese)

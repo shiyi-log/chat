@@ -58,6 +58,7 @@ jobs:
       - name: Run desktop configuration checks
         run: |
           python clients/desktop/scripts/verify_private_chat_desktop_config.py
+          python clients/desktop/scripts/test_verify_private_chat_desktop_config.py
           python clients/desktop/scripts/test_chat_desktop_branding.py
 
   server:
