@@ -83,6 +83,45 @@ jobs:
         working-directory: server
         run: go test ./pkg/hashx ./pkg/phonenumber ./pkg/mention ./pkg/code/none ./pkg/code/localfile ./app/interface/session/internal/sess
 
+  server-build-preview:
+    name: Linux server preview binaries
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    permissions:
+      contents: read
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Go
+        uses: actions/setup-go@v7
+        with:
+          go-version-file: server/go.mod
+          cache-dependency-path: server/go.sum
+
+      - name: Build server services
+        working-directory: server
+        run: make all
+
+      - name: Verify and archive server binaries
+        run: |
+          for binary in idgen status dfs media authsession biz msg sync bff session gnetway; do
+            test -x "server/teamgramd/bin/${binary}"
+          done
+          tar -czf "${RUNNER_TEMP}/chat-server-linux-preview.tar.gz" \
+            -C server/teamgramd/bin \
+            idgen status dfs media authsession biz msg sync bff session gnetway
+
+      - name: Upload Linux server preview
+        uses: actions/upload-artifact@v7
+        with:
+          name: chat-server-linux-preview
+          path: ${{ runner.temp }}/chat-server-linux-preview.tar.gz
+          if-no-files-found: error
+          retention-days: 14
+
   android-compile:
     name: Android afatDebug APK preview
     runs-on: ubuntu-24.04

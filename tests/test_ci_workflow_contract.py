@@ -71,6 +71,52 @@ class CiWorkflowContractTest(unittest.TestCase):
         self.assertIn("./app/interface/session/internal/sess", commands)
         self.assertNotIn("go test ./...", commands)
 
+    def test_server_preview_job_builds_and_uploads_all_service_binaries(self):
+        server_build = self.workflow["jobs"]["server-build-preview"]
+        commands = "\n".join(step.get("run", "") for step in server_build["steps"])
+        archive = next(
+            step
+            for step in server_build["steps"]
+            if step.get("name") == "Verify and archive server binaries"
+        )
+        artifact = next(
+            step
+            for step in server_build["steps"]
+            if step.get("name") == "Upload Linux server preview"
+        )
+
+        self.assertEqual("ubuntu-24.04", server_build["runs-on"])
+        build = next(step for step in server_build["steps"] if step.get("name") == "Build server services")
+        self.assertEqual("server", build.get("working-directory"))
+        self.assertIn("make all", commands)
+        for binary in (
+            "idgen",
+            "status",
+            "dfs",
+            "media",
+            "authsession",
+            "biz",
+            "msg",
+            "sync",
+            "bff",
+            "session",
+            "gnetway",
+        ):
+            self.assertIn(binary, commands)
+
+        self.assertEqual("actions/upload-artifact@v7", artifact.get("uses"))
+        self.assertEqual("chat-server-linux-preview", artifact["with"]["name"])
+        self.assertEqual("${{ runner.temp }}/chat-server-linux-preview.tar.gz", artifact["with"]["path"])
+        self.assertEqual(14, artifact["with"]["retention-days"])
+        self.assertEqual("error", artifact["with"]["if-no-files-found"])
+        self.assertEqual({"contents": "read"}, server_build["permissions"])
+        archive_command = " ".join(archive["run"].replace("\\\n", " ").split())
+        self.assertIn(
+            "-C server/teamgramd/bin idgen status dfs media authsession biz msg sync bff session gnetway",
+            archive_command,
+        )
+        self.assertNotIn("-C server/teamgramd/bin .", archive_command)
+
     def test_android_debug_apk_job_builds_and_uploads_only_debug_artifacts(self):
         android = self.workflow["jobs"]["android-compile"]
         commands = "\n".join(step.get("run", "") for step in android["steps"])
