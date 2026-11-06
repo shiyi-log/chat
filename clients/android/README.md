@@ -7,7 +7,7 @@
 - 对外包名前缀已改为 `com.privatechat.messenger`。
 - Debug/Beta 包名为 `com.privatechat.messenger.beta`。
 - 默认应用显示名为 `Private Chat`，Beta 显示名为 `Private Chat Beta`。
-- Android 模拟器默认连接宿主机私有服务端：`10.0.2.2:10443`。
+- Android 模拟器默认连接宿主机本地运行时：`10.0.2.2:25222`。
 - MTProto 握手公钥和 simple config 解密公钥已替换为当前私有服务端公钥。
 - 当前已完成本机 `afatDebug` APK 构建，并在两台 Android 模拟器完成启动稳定性验证。
 
@@ -63,7 +63,8 @@ python3 scripts/tests/test_private_chat_api_config.py
 ## 后续测试要求
 
 - 真机测试需要把 `10.0.2.2` 改为局域网 IP 或公网域名，并确保服务端端口、防火墙和证书可访问。
-- 正式发布需要替换 release keystore、Google/Firebase/Huawei 配置和推送证书。
+- 发布变体需要从外部提供 `RELEASE_STORE_FILE`、`RELEASE_STORE_PASSWORD`、`RELEASE_KEY_ALIAS` 和 `RELEASE_KEY_PASSWORD`；这些值可通过 CI secret 注入，不能放进仓库里的 Gradle 属性文件。没有完整签名配置时，发行 APK 构建会失败。
+- 正式发布还需要配置 Google/Firebase/Huawei 服务和推送证书。
 - 当前还有深层 Premium、广告、Passport、故事等文案和功能入口需要继续按私有产品策略清理或隐藏。
 
 ## English Summary

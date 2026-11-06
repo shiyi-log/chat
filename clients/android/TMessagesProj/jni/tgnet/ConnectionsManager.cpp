@@ -1816,13 +1816,13 @@ void ConnectionsManager::initDatacenters() {
     if (!testBackend) {
         if (datacenters.find(1) == datacenters.end()) {
             datacenter = new Datacenter(instanceNum, 1);
-            datacenter->addAddressAndPort("10.0.2.2", 10443, 0, "");
+            datacenter->addAddressAndPort("10.0.2.2", 25222, 0, "");
             datacenters[1] = datacenter;
         }
     } else {
         if (datacenters.find(1) == datacenters.end()) {
             datacenter = new Datacenter(instanceNum, 1);
-            datacenter->addAddressAndPort("10.0.2.2", 10443, 0, "");
+            datacenter->addAddressAndPort("10.0.2.2", 25222, 0, "");
             datacenters[1] = datacenter;
         }
     }

@@ -1,0 +1,11 @@
+"CFBundleDisplayName" = "Chat";
+"NSContactsUsageDescription" = "Chat 需要存取通訊錄，以便你在私人聊天服務中尋找聯絡人。";
+"NSLocationWhenInUseUsageDescription" = "Chat 需要存取位置，以便你在聊天中分享位置。";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Chat 需要在背景存取位置，以便在你選擇的即時位置分享期間持續更新。";
+"NSLocationAlwaysUsageDescription" = "Chat 需要在背景存取位置，以便更新你分享的即時位置。";
+"NSCameraUsageDescription" = "Chat 需要存取相機，以便拍攝照片、影片和進行視訊通話。";
+"NSPhotoLibraryUsageDescription" = "Chat 需要存取照片圖庫，以便分享照片和影片。";
+"NSPhotoLibraryAddUsageDescription" = "Chat 需要將照片和影片儲存到你的圖庫。";
+"NSMicrophoneUsageDescription" = "Chat 需要存取麥克風，以便錄製語音、影片和進行通話。";
+"NSSiriUsageDescription" = "你可以使用 Siri 傳送 Chat 訊息。";
+"NSFaceIDUsageDescription" = "你可以使用 Face ID 解鎖 Chat。";

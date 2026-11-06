@@ -118,7 +118,7 @@ def main():
 
     xcconfig_path = "Telegram/Telegram-iOS/Config-Fork.xcconfig"
     xcconfig = parse_xcconfig(read_text(xcconfig_path))
-    record(checks, xcconfig.get("APP_NAME") == "Private Chat", f"{xcconfig_path}：APP_NAME 应为 Private Chat")
+    record(checks, xcconfig.get("APP_NAME") == "Chat", f"{xcconfig_path}：APP_NAME 应为 Chat")
     record(checks, xcconfig.get("APP_BUNDLE_ID") == "com.privatechat.ios", f"{xcconfig_path}：APP_BUNDLE_ID 应为 com.privatechat.ios")
     record(checks, xcconfig.get("APP_SPECIFIC_URL_SCHEME") == "privatechat", f"{xcconfig_path}：APP_SPECIFIC_URL_SCHEME 应为 privatechat")
 
@@ -149,7 +149,7 @@ def main():
 
     build_path = "Telegram/BUILD"
     build_text = read_text(build_path)
-    record(checks, "<string>Private Chat</string>" in build_text, f"{build_path}：实际构建用 Info.plist 片段应显示 Private Chat")
+    record(checks, "<string>Chat</string>" in build_text, f"{build_path}：实际构建用 Info.plist 片段应显示 Chat")
     record(checks, "<string>com.privatechat.ios.theme</string>" in build_text, f"{build_path}：实际构建用主题 UTI 应为 com.privatechat.ios.theme")
     record(checks, "Telegram stores your contacts" not in build_text, f"{build_path}：实际构建用权限说明不应继续显示 Telegram")
     record(checks, "<string>Telegram</string>" not in build_text, f"{build_path}：扩展构建用 CFBundleName 不应继续显示 Telegram")
@@ -162,11 +162,11 @@ def main():
     for forbidden_value in build_forbidden_release_values:
         record(checks, forbidden_value not in build_text, f"{build_path}：不应继续包含上游发布身份 {forbidden_value}")
     main_plist_match = re.search(
-        r'name\s*=\s*"TelegramInfoPlist".*?<key>CFBundleDisplayName</key>\s*<string>Private Chat</string>.*?<key>CFBundleName</key>\s*<string>Private Chat</string>',
+        r'name\s*=\s*"TelegramInfoPlist".*?<key>CFBundleDisplayName</key>\s*<string>Chat</string>.*?<key>CFBundleName</key>\s*<string>Chat</string>',
         build_text,
         re.S,
     )
-    record(checks, main_plist_match is not None, f"{build_path}：主 App 产物显示名应为 Private Chat")
+    record(checks, main_plist_match is not None, f"{build_path}：主 App 产物显示名应为 Chat")
 
     share_path = "Telegram/Share/en.lproj/Localizable.strings"
     share_text = read_text(share_path)
@@ -390,10 +390,10 @@ def main():
     network_path = "submodules/TelegramCore/Sources/Network/Network.swift"
     network_text = read_text(network_path)
     has_private_dc = bool(re.search(r"1:\s*\[\s*\"127\.0\.0\.1\"\s*\]", network_text))
-    has_private_port = "port: 10443" in network_text
+    has_private_port = "port: 25222" in network_text
     official_dc_pattern = re.compile(r"\b(149\.154|91\.108)\.\d+\.\d+\b")
     record(checks, has_private_dc, f"{network_path}：DC 1 seed 地址应指向 127.0.0.1")
-    record(checks, has_private_port, f"{network_path}：DC 端口应为 10443")
+    record(checks, has_private_port, f"{network_path}：DC 端口应为 25222")
     record(checks, official_dc_pattern.search(network_text) is None, f"{network_path}：不应保留官方 DC IP")
 
     readme_path = "README.md"
@@ -412,9 +412,9 @@ def main():
         return 1
 
     print(f"iOS 私有化配置验证通过：{passed_count}/{len(checks)} 项通过")
-    print("- Bundle ID、应用名和 URL Scheme 已指向 Private Chat 私有配置")
+    print("- 应用显示名为 Chat，Bundle ID 与 URL Scheme 使用 Private Chat 私有配置")
     print("- 本地模板已使用可生成工程的开发凭据格式，生产发布前必须替换为私有正式凭据")
-    print("- iOS 网络 seed DC 1 已指向 127.0.0.1:10443，本地模拟器可用于后续连接验证")
+    print("- iOS 网络 seed DC 1 已指向 127.0.0.1:25222，本地模拟器可用于后续连接验证")
     print("- README 已改为中文优先的 Private Chat iOS 私有快照说明")
     print("- 默认英文 PresentationStrings 与 Widget 扩展高可见入口已纳入品牌门禁")
     print("- App Store / AppCenter 发布配置已收敛为私有占位，默认英文条款、隐私和更新入口已纳入门禁")

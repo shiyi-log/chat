@@ -2148,11 +2148,11 @@
 "Login.CodeSentCall" = "We are calling your phone to dictate a code.";
 
 "Login.WillSendSms" = "You can request an SMS in %@";
-"Login.SmsRequestState2" = "Requesting an SMS from Telegram...";
-"Login.SmsRequestState3" = "Telegram sent you an SMS\n[Didn't get the code?]";
+"Login.SmsRequestState2" = "Requesting an SMS from Chat...";
+"Login.SmsRequestState3" = "Chat sent you an SMS\n[Didn't get the code?]";
 
 "CancelResetAccount.Title" = "Cancel Account Reset";
-"CancelResetAccount.TextSMS" = "Somebody with access to your phone number %@ has requested to delete your Telegram account and reset your 2-Step Verification password.\n\nIf it wasn't you, please enter the code we've just sent you via SMS to your number.";
+"CancelResetAccount.TextSMS" = "Somebody with access to your phone number %@ has requested to delete your Chat account and reset your 2-Step Verification password.\n\nIf it wasn't you, please enter the code we've just sent you via SMS to your number.";
 
 "CancelResetAccount.Success" = "The deletion process was cancelled for your account %@.";
 "MediaPicker.MomentsDateRangeSameMonthYearFormat" = "{month} {day1} – {day2}, {year}";
@@ -3310,7 +3310,7 @@ Unused sets are archived when you add more.";
 
 "DialogList.AdLabel" = "Proxy Sponsor";
 "DialogList.AdNoticeAlert" = "The proxy you are using displays a sponsored channel in your chat list.";
-"SocksProxySetup.AdNoticeHelp" = "This proxy may display a sponsored channel in your chat list. This doesn't reveal your Telegram traffic.";
+"SocksProxySetup.AdNoticeHelp" = "This proxy may display a sponsored channel in your chat list. This doesn't reveal your Chat traffic.";
 
 "SocksProxySetup.ShareProxyList" = "Share Proxy List";
 
@@ -4432,14 +4432,14 @@ Unused sets are archived when you add more.";
 "ChatList.ClearChatConfirmation" = "Are you sure you want to delete all\nmessages in the chat with %@?";
 
 "Settings.CheckPhoneNumberTitle" = "Is %@ still your number?";
-"Settings.CheckPhoneNumberText" = "Keep your number up to date to ensure you can always log in to Telegram. [Learn more]()";
+"Settings.CheckPhoneNumberText" = "Keep your number up to date to ensure you can always log in to Chat. [Learn more]()";
 "Settings.KeepPhoneNumber" = "Keep %@";
 "Settings.ChangePhoneNumber" = "Change Number";
 "Settings.CheckPhoneNumberFAQAnchor" = "q-i-have-a-new-phone-number-what-do-i-do";
 
 "Undo.ChatDeletedForBothSides" = "Chat deleted for both sides";
 
-"AppUpgrade.Running" = "Optimizing Telegram...
+"AppUpgrade.Running" = "Optimizing Chat...
 This may take a while, depending on the size of the database. Please keep the app open until the process is finished.
 
 Sorry for the inconvenience.";
@@ -4503,8 +4503,8 @@ Sorry for the inconvenience.";
 
 "Privacy.AddNewPeer" = "Add Users or Groups";
 "PrivacyPhoneNumberSettings.WhoCanSeeMyPhoneNumber" = "WHO CAN SEE MY PHONE NUMBER";
-"PrivacyPhoneNumberSettings.CustomHelp" = "Users who already have your number saved in the contacts will also see it on Telegram.";
-"PrivacyPhoneNumberSettings.CustomDisabledHelp" = "Users who add your number to their contacts will see it on Telegram only if they are your contacts.";
+"PrivacyPhoneNumberSettings.CustomHelp" = "Users who already have your number saved in the contacts will also see it on Chat.";
+"PrivacyPhoneNumberSettings.CustomDisabledHelp" = "Users who add your number to their contacts will see it on Chat only if they are your contacts.";
 
 "PrivacyPhoneNumberSettings.DiscoveryHeader" = "WHO CAN FIND ME BY MY NUMBER";
 
@@ -4515,7 +4515,7 @@ Sorry for the inconvenience.";
 "PrivacySettings.PasscodeOff" = "Off";
 "PrivacySettings.PasscodeOn" = "On";
 
-"UserInfo.BlockConfirmationTitle" = "Do you want to block %@ from messaging and calling you on Telegram?";
+"UserInfo.BlockConfirmationTitle" = "Do you want to block %@ from messaging and calling you on Chat?";
 "UserInfo.BlockActionTitle" = "Block %@";
 "ReportSpam.DeleteThisChat" = "Delete this Chat";
 
@@ -4680,7 +4680,7 @@ Sorry for the inconvenience.";
 
 "Group.PublicLink.Title" = "Public Link";
 "Group.PublicLink.Placeholder" = "link";
-"Group.PublicLink.Info" = "People can share this link with others and find your group using Telegram search.\n\nYou can use **a-z**, **0-9** and underscores. Minimum length is **5** characters.";
+"Group.PublicLink.Info" = "People can share this link with others and find your group using Chat search.\n\nYou can use **a-z**, **0-9** and underscores. Minimum length is **5** characters.";
 
 "CreateGroup.ErrorLocatedGroupsTooMuch" = "Sorry, you have too many location-based groups already. Please delete one of your existing ones first.";
 
@@ -5020,12 +5020,12 @@ Sorry for the inconvenience.";
 "TwoFactorSetup.Password.Action" = "Create Password";
 
 "TwoFactorSetup.Email.Title" = "Recovery Email";
-"TwoFactorSetup.Email.Text" = "You can set a recovery email to be able to reset you password and restore access to your Telegram account.";
+"TwoFactorSetup.Email.Text" = "You can set a recovery email to be able to reset you password and restore access to your Chat account.";
 "TwoFactorSetup.Email.Placeholder" = "Your email address";
 "TwoFactorSetup.Email.Action" = "Continue";
 "TwoFactorSetup.Email.SkipAction" = "Skip setting email";
 "TwoFactorSetup.Email.SkipConfirmationTitle" = "No, seriously.";
-"TwoFactorSetup.Email.SkipConfirmationText" = "If you forget your password, you will lose access to your Telegram account. There will be no way to restore it.";
+"TwoFactorSetup.Email.SkipConfirmationText" = "If you forget your password, you will lose access to your Chat account. There will be no way to restore it.";
 "TwoFactorSetup.Email.SkipConfirmationSkip" = "Skip";
 
 "TwoFactorSetup.EmailVerification.Title" = "Recovery Email";
@@ -5443,11 +5443,11 @@ Sorry for the inconvenience.";
 "FeaturedStickers.OtherSection" = "OTHER STICKERS";
 
 "ChatList.GenericPsaAlert" = "This provides public service announcements in your chat list.";
-"ChatList.PsaAlert.covid" = "This message provides you with a public service announcement in relation to the undergoing pandemics. Learn more about this initiative at https://telegram.org/blog/coronavirus";
+"ChatList.PsaAlert.covid" = "This message provides you with a public service announcement in relation to the undergoing pandemics. Learn more about this initiative";
 "ChatList.GenericPsaLabel" = "PSA";
 "ChatList.PsaLabel.covid" = "Covid-19";
 "Chat.GenericPsaTooltip" = "This is a public service announcement";
-"Chat.PsaTooltip.covid" = "This message provides you with a public service announcement in relation to the undergoing pandemics. Learn more about this initiative at https://telegram.org/blog/coronavirus";
+"Chat.PsaTooltip.covid" = "This message provides you with a public service announcement in relation to the undergoing pandemics. Learn more about this initiative";
 
 "Message.GenericForwardedPsa" = "Public Service Announcement\nFrom: %@";
 "Message.ForwardedPsa.covid" = "Covid-19 Notification\nFrom: %@";
@@ -5663,7 +5663,7 @@ Sorry for the inconvenience.";
 
 "Cache.MaximumCacheSize" = "Maximum Cache Size";
 "Cache.NoLimit" = "No Limit";
-"Cache.MaximumCacheSizeHelp" = "If your cache size exceeds this limit, the oldest media will be deleted.\n\nAll media will stay in the Telegram cloud and can be re-downloaded if you need it again.";
+"Cache.MaximumCacheSizeHelp" = "If your cache size exceeds this limit, the oldest media will be deleted.\n\nAll media will stay in the Private Chat cloud and can be re-downloaded if you need it again.";
 
 "Stats.MessageTitle" = "Message Statistics";
 "Stats.MessageOverview" = "Overview";
@@ -5684,9 +5684,9 @@ Sorry for the inconvenience.";
 "Call.Audio" = "audio";
 "Call.AudioRouteMute" = "Mute Yourself";
 
-"AccessDenied.VideoCallCamera" = "Telegram needs access to your camera to make video calls.\n\nPlease go to Settings > Privacy > Camera and set Telegram to ON.";
+"AccessDenied.VideoCallCamera" = "Chat needs access to your camera to make video calls.\n\nPlease go to Settings > Privacy > Camera and set Chat to ON.";
 
-"Call.AccountIsLoggedOnCurrentDevice" = "Sorry, you can't call %@ because that account is logged in to Telegram on the device you're using for the call.";
+"Call.AccountIsLoggedOnCurrentDevice" = "Sorry, you can't call %@ because that account is logged in to Chat on the device you're using for the call.";
 
 "ChatList.Search.FilterChats" = "Chats";
 "ChatList.Search.FilterMedia" = "Media";
@@ -5838,7 +5838,7 @@ Sorry for the inconvenience.";
 "Conversation.EditingPhotoPanelTitle" = "Edit Photo";
 
 "Media.LimitedAccessTitle" = "Limited Access to Media";
-"Media.LimitedAccessText" = "You've given Telegram access only to select number of photos.";
+"Media.LimitedAccessText" = "You've given Chat access only to select number of photos.";
 "Media.LimitedAccessManage" = "Manage";
 "Media.LimitedAccessSelectMore" = "Select More Photos...";
 "Media.LimitedAccessChangeSettings" = "Change Settings";
@@ -6941,9 +6941,9 @@ Sorry for the inconvenience.";
 
 "SponsoredMessageMenu.Info" = "What are sponsored\nmessages?";
 "SponsoredMessageInfoScreen.Title" = "What are sponsored messages?";
-"SponsoredMessageInfoScreen.MarkdownText" = "Unlike other apps, Telegram never uses your private data to target ads. [Learn more in the Privacy Policy](https://telegram.org/privacy#5-6-no-ads-based-on-user-data)\nYou are seeing this message only because someone chose this public one-to many channel as a space to promote their messages. This means that no user data is mined or analyzed to display ads, and every user viewing a channel on Telegram sees the same sponsored message.\n\nUnline other apps, Telegram doesn't track whether you tapped on a sponsored message and doesn't profile you based on your activity. We also prevent external links in sponsored messages to ensure that third parties can't spy on our users. We believe that everyone has the right to privacy, and technological platforms should respect that.\n\nTelegram offers free and unlimited service to hundreds of millions of users, which involves significant server and traffic costs. In order to remain independent and stay true to its values, Telegram developed a paid tool to promote messages with user privacy in mind. We welcome responsible adverticers at:\n[url]\nAds should no longer be synonymous with abuse of user privacy. Let us redefine how a tech compony should operate — together.";
+"SponsoredMessageInfoScreen.MarkdownText" = "Unlike other apps, Chat never uses your private data to target ads. [Learn more in the Privacy Policy]()\nYou are seeing this message only because someone chose this public one-to many channel as a space to promote their messages. This means that no user data is mined or analyzed to display ads, and every user viewing a channel on Chat sees the same sponsored message.\n\nUnline other apps, Chat doesn't track whether you tapped on a sponsored message and doesn't profile you based on your activity. We also prevent external links in sponsored messages to ensure that third parties can't spy on our users. We believe that everyone has the right to privacy, and technological platforms should respect that.\n\nChat offers free and unlimited service to hundreds of millions of users, which involves significant server and traffic costs. In order to remain independent and stay true to its values, Chat developed a paid tool to promote messages with user privacy in mind. We welcome responsible adverticers at:\n[url]\nAds should no longer be synonymous with abuse of user privacy. Let us redefine how a tech compony should operate — together.";
 "SponsoredMessageInfo.Action" = "Learn More";
-"SponsoredMessageInfo.Url" = "https://telegram.org/ads";
+"SponsoredMessageInfo.Url" = "";
 
 "Chat.NavigationNoChannels" = "You have no unread channels";
 
@@ -7424,8 +7424,8 @@ Sorry for the inconvenience.";
 "Attachment.MediaAccessText" = "Share an unlimited number of photos and videos of up to 2 GB each.";
 "Attachment.MediaAccessStoryText" = "Share an unlimited number of photos and videos of up to 2 GB each.";
 
-"Attachment.LimitedMediaAccessText" = "You have limited Telegram from accessing all of your photos.";
-"Attachment.CameraAccessText" = "Telegram needs camera access so that you can take photos and videos.";
+"Attachment.LimitedMediaAccessText" = "You have limited Chat from accessing all of your photos.";
+"Attachment.CameraAccessText" = "Chat needs camera access so that you can take photos and videos.";
 "Attachment.Manage" = "Manage";
 
 "Attachment.OpenSettings" = "Go to Settings";
@@ -7469,8 +7469,8 @@ Sorry for the inconvenience.";
 "LiveStream.ViewerCount_any" = "%@ viewers";
 "LiveStream.Watching" = "watching";
 
-"LiveStream.NoSignalAdminText" = "Oops! Telegram doesn't see any stream\ncoming from your streaming app.\n\nPlease make sure you entered the right Server\nURL and Stream Key in your app.";
-"LiveStream.NoSignalUserText" = "%@ is currently not broadcasting live\nstream data to Telegram.";
+"LiveStream.NoSignalAdminText" = "Oops! Chat doesn't see any stream\ncoming from your streaming app.\n\nPlease make sure you entered the right Server\nURL and Stream Key in your app.";
+"LiveStream.NoSignalUserText" = "%@ is currently not broadcasting live\nstream data to Chat.";
 
 "LiveStream.ViewCredentials" = "View Stream Key";
 
@@ -7559,7 +7559,7 @@ Sorry for the inconvenience.";
 "Notifications.UploadError.TooLong.Title" = "%@ is too long.";
 "Notifications.UploadError.TooLong.Text" = "Duration must be less than %@.";
 "Notifications.UploadSuccess.Title" = "Sound Added";
-"Notifications.UploadSuccess.Text" = "The sound **%@** was added to your Telegram tones.";
+"Notifications.UploadSuccess.Text" = "The sound **%@** was added to your Chat tones.";
 "Notifications.SaveSuccess.Text" = "You can now use this sound as a notification tone in your [custom notification settings]().";
 
 "Conversation.DeleteTimer.SetupTitle" = "Auto-Delete After...";
@@ -7649,31 +7649,31 @@ Sorry for the inconvenience.";
 "Channel.AddUserKickedError" = "Sorry, you can't add this user because they are on the list of Removed Users and you can't unban them.";
 "Channel.AddAdminKickedError" = "Sorry, you can't add this user as an admin because they are in the Removed Users list and you can't unban them.";
 
-"Premium.Stickers.Description" = "Unlock this sticker and many more by subscribing to Telegram Premium.";
+"Premium.Stickers.Description" = "Unlock this sticker and many more by subscribing to Chat Premium.";
 "Premium.Stickers.Proceed" = "Unlock Premium Stickers";
 
 "Premium.Reactions.Proceed" = "Unlock Premium Reactions";
 "Premium.AppIcons.Proceed" = "Unlock Premium Icons";
-"Premium.NoAds.Proceed" = "About Telegram Premium";
+"Premium.NoAds.Proceed" = "About Chat Premium";
 
-"AccessDenied.LocationPreciseDenied" = "To share your specific location in this chat, please go to Settings > Privacy > Location Services > Telegram and set Precise Location to On.";
+"AccessDenied.LocationPreciseDenied" = "To share your specific location in this chat, please go to Settings > Privacy > Location Services > Chat and set Precise Location to On.";
 
 "Chat.MultipleTypingPair" = "%@ and %@";
 "Chat.MultipleTypingMore" = "%@ and %@ others";
 
-"Group.Username.RemoveExistingUsernamesOrExtendInfo" = "You have reserved too many public links. Try revoking a link from an older group or channel, or upgrade to **Telegram Premium** to double the limit to **%@** public links.";
+"Group.Username.RemoveExistingUsernamesOrExtendInfo" = "You have reserved too many public links. Try revoking a link from an older group or channel, or upgrade to **Chat Premium** to double the limit to **%@** public links.";
 "Group.Username.RemoveExistingUsernamesNoPremiumInfo" = "You have reserved too many public links. Try revoking the link from an older group or channel. We are working to let you increase this limit in the future.";
 "Group.Username.RemoveExistingUsernamesFinalInfo" = "You have reserved too many public links. Try revoking the link from an older group or channel, or create a private one instead.";
 
-"OldChannels.TooManyCommunitiesText" = "You are a member of **%@** groups and channels. Please leave some before joining a new one or upgrade to **Telegram Premium** to double the limit to **%@** groups and channels.";
+"OldChannels.TooManyCommunitiesText" = "You are a member of **%@** groups and channels. Please leave some before joining a new one or upgrade to **Chat Premium** to double the limit to **%@** groups and channels.";
 "OldChannels.TooManyCommunitiesNoPremiumText" = "You are a member of **%@** groups and channels. Please leave some before joining a new one. We are working to let you increase this limit in the future.";
 "OldChannels.TooManyCommunitiesFinalText" = "You are a member of **%@** groups and channels. Please leave some before joining a new one.";
 
-"OldChannels.TooManyCommunitiesCreateText" = "You are a member of **%@** groups and channels. Please leave some before creating a new one or upgrade to **Telegram Premium** to double the limit to **%@** groups and channels.";
+"OldChannels.TooManyCommunitiesCreateText" = "You are a member of **%@** groups and channels. Please leave some before creating a new one or upgrade to **Chat Premium** to double the limit to **%@** groups and channels.";
 "OldChannels.TooManyCommunitiesCreateNoPremiumText" = "You are a member of **%@** groups and channels. Please leave some before creating a new one. We are working to let you increase this limit in the future.";
 "OldChannels.TooManyCommunitiesCreateFinalText" = "You are a member of **%@** groups and channels. Please leave some before creating a new one.";
 
-"OldChannels.TooManyCommunitiesUpgradeText" = "You are a member of **%@** groups and channels. For technical reasons, you need to leave some first before changing this setting in your groups or upgrade to **Telegram Premium** to double the limit to **%@** groups and channels.";
+"OldChannels.TooManyCommunitiesUpgradeText" = "You are a member of **%@** groups and channels. For technical reasons, you need to leave some first before changing this setting in your groups or upgrade to **Chat Premium** to double the limit to **%@** groups and channels.";
 "OldChannels.TooManyCommunitiesUpgradeNoPremiumText" = "You are a member of **%@** groups and channels. For technical reasons, you need to leave some first before changing this setting in your groups. We are working to let you increase this limit in the future.";
 "OldChannels.TooManyCommunitiesUpgradeFinalText" = "You are a member of **%@** groups and channels. For technical reasons, you need to leave some first before changing this setting in your groups.";
 
@@ -7684,19 +7684,19 @@ Sorry for the inconvenience.";
 "Premium.LimitReached" = "Limit Reached";
 "Premium.IncreaseLimit" = "Increase Limit";
 
-"Premium.MaxFoldersCountText" = "You have reached the limit of **%1$@** folders. You can double the limit to **%2$@** folders by subscribing to **Telegram Premium**.";
+"Premium.MaxFoldersCountText" = "You have reached the limit of **%1$@** folders. You can double the limit to **%2$@** folders by subscribing to **Chat Premium**.";
 "Premium.MaxFoldersCountNoPremiumText" = "You have reached the limit of **%1$@** folders. We are working to let you increase this limit in the future.";
 "Premium.MaxFoldersCountFinalText" = "Sorry, you can't create more than **%1$@** folders.";
 
-"Premium.MaxChatsInFolderText" = "Sorry, you can't add more than **%1$@** chats to a folder. You can increase this limit to **%2$@** by upgrading to **Telegram Premium**.";
+"Premium.MaxChatsInFolderText" = "Sorry, you can't add more than **%1$@** chats to a folder. You can increase this limit to **%2$@** by upgrading to **Chat Premium**.";
 "Premium.MaxChatsInFolderNoPremiumText" = "Sorry, you can't add more than **%1$@** chats to a folder. We are working to let you increase this limit in the future.";
 "Premium.MaxChatsInFolderFinalText" = "Sorry, you can't add more than **%@** chats to a folder.";
 
-"Premium.MaxFileSizeText" = "Double this limit to %@ per file by subscribing to **Telegram Premium**.";
+"Premium.MaxFileSizeText" = "Double this limit to %@ per file by subscribing to **Chat Premium**.";
 "Premium.MaxFileSizeNoPremiumText" = "The document can't be sent, because it is larger than **%@**. We are working to let you increase this limit in the future.";
 "Premium.MaxFileSizeFinalText" = "The document can't be sent, because it is larger than **%@**.";
 
-"Premium.MaxPinsText" = "Sorry, you can't pin more than **%1$@** chats to the top. Unpin some that are currently pinned or subscribe to **Telegram Premium** to double the limit to **%2$@** chats.";
+"Premium.MaxPinsText" = "Sorry, you can't pin more than **%1$@** chats to the top. Unpin some that are currently pinned or subscribe to **Chat Premium** to double the limit to **%2$@** chats.";
 "Premium.MaxPinsNoPremiumText" = "Sorry, you can't pin more than **%@** chats to the top. Unpin some that are currently pinned.";
 "Premium.MaxPinsFinalText" = "Sorry, you can't pin more than **%@** chats to the top. Unpin some that are currently pinned.";
 
@@ -7708,21 +7708,21 @@ Sorry for the inconvenience.";
 "Premium.MaxSavedGifsText" = "An older GIF was replaced with this one. You can [increase the limit]() to %@ GIFS.";
 "Premium.MaxSavedGifsFinalText" = "An older GIF was replaced with this one.";
 
-"Premium.MaxAccountsText" = "You have reached the limit of **%@** connected accounts. You can add more by subscribing to **Telegram Premium**.";
+"Premium.MaxAccountsText" = "You have reached the limit of **%@** connected accounts. You can add more by subscribing to **Chat Premium**.";
 "Premium.MaxAccountsNoPremiumText" = "You have reached the limit of **%@** connected accounts.";
 "Premium.MaxAccountsFinalText" = "You have reached the limit of **%@** connected accounts.";
 
 "Premium.Free" = "Free";
 "Premium.Premium" = "Premium";
 
-"Premium.Title" = "Telegram Premium";
-"Premium.Description" = "Go **beyond the limits**, get **exclusive features** and support us by subscribing to **Telegram Premium**.";
+"Premium.Title" = "Chat Premium";
+"Premium.Description" = "Go **beyond the limits**, get **exclusive features** and support us by subscribing to **Chat Premium**.";
 
-"Premium.PersonalTitle" = "[%@]() is a subscriber\nof Telegram Premium";
-"Premium.PersonalDescription" = "Owners of **Telegram Premium** accounts have exclusive access to multiple additional features.";
+"Premium.PersonalTitle" = "[%@]() is a subscriber\nof Chat Premium";
+"Premium.PersonalDescription" = "Owners of **Chat Premium** accounts have exclusive access to multiple additional features.";
 
 "Premium.SubscribedTitle" = "You are all set!";
-"Premium.SubscribedDescription" = "Thank you for subsribing to **Telegram Premium**. Here's what is now unlocked.";
+"Premium.SubscribedDescription" = "Thank you for subsribing to **Chat Premium**. Here's what is now unlocked.";
 
 "Premium.DoubledLimits" = "Doubled Limits";
 "Premium.DoubledLimitsInfo" = "Up to 1000 channels, 20 folders, 10 pins, 20 public links, 4 accounts and more.";
@@ -7732,48 +7732,48 @@ Sorry for the inconvenience.";
 
 "Premium.FasterSpeed" = "Faster Download Speed";
 "Premium.FasterSpeedInfo" = "No more limits on the speed with which media and documents are downloaded.";
-"Premium.FasterSpeedStandaloneInfo" = "Subscribe to **Telegram Premium** to download media and files at the fastest possible speed.";
+"Premium.FasterSpeedStandaloneInfo" = "Subscribe to **Chat Premium** to download media and files at the fastest possible speed.";
 
 "Premium.VoiceToText" = "Voice-to-Text Conversion";
 "Premium.VoiceToTextInfo" = "Ability to read the transcript of any incoming voice message.";
-"Premium.VoiceToTextStandaloneInfo" = "Subscribe to **Telegram Premium** to be able to convert voice and video messages to text.";
+"Premium.VoiceToTextStandaloneInfo" = "Subscribe to **Chat Premium** to be able to convert voice and video messages to text.";
 
 "Premium.NoAds" = "No Ads";
-"Premium.NoAdsInfo" = "No more ads in public channels where Telegram sometimes shows ads.";
-"Premium.NoAdsStandaloneInfo" = "Remove ads such as this one by subscribing to **Telegram Premium**.";
+"Premium.NoAdsInfo" = "No more ads in public channels where Chat sometimes shows ads.";
+"Premium.NoAdsStandaloneInfo" = "Remove ads such as this one by subscribing to **Chat Premium**.";
 
 "Premium.Reactions" = "Unique Reactions";
 "Premium.ReactionsInfo" = "Additional animated reactions on messages, available only to Premium subscribers.";
 
 "Premium.ReactionsStandalone" = "Additional Reactions";
-"Premium.ReactionsStandaloneInfo" = "Unlock a wider range of reactions on messages by subscribing to **Telegram Premium**.";
+"Premium.ReactionsStandaloneInfo" = "Unlock a wider range of reactions on messages by subscribing to **Chat Premium**.";
 
 "Premium.Stickers" = "Premium Stickers";
 "Premium.StickersInfo" = "Exclusive enlarged stickers featuring additional effects, updated monthly.";
 
 "Premium.ChatManagement" = "Advanced Chat Management";
 "Premium.ChatManagementInfo" = "Tools to set the default folder, auto-archive and hide new chats from non-contacts.";
-"Premium.ChatManagementStandaloneInfo" = "Subscribers of **Telegram Premium** can set the default folder, auto-archive and hide new chats from non-contacts.";
+"Premium.ChatManagementStandaloneInfo" = "Subscribers of **Chat Premium** can set the default folder, auto-archive and hide new chats from non-contacts.";
 
 "Premium.Badge" = "Profile Badge";
-"Premium.BadgeInfo" = "A badge next to your name showing that you are helping support Telegram.";
+"Premium.BadgeInfo" = "A badge next to your name showing that you are helping support Chat.";
 
 "Premium.Avatar" = "Animated Profile Pictures";
 "Premium.AvatarInfo" = "Video avatars animated in chat lists and chats to allow for additional self-expression.";
 
-"Premium.AppIcon" = "Telegram App Icon";
-"Premium.AppIconInfo" = "Choose from a selection of Telegram app icons for your homescreen.";
+"Premium.AppIcon" = "Chat App Icon";
+"Premium.AppIconInfo" = "Choose from a selection of Chat app icons for your homescreen.";
 
 "Premium.AppIconStandalone" = "Additional App Icons";
-"Premium.AppIconStandaloneInfo" = "Unlock a wider range of app icons by subscribing to **Telegram Premium**.";
+"Premium.AppIconStandaloneInfo" = "Unlock a wider range of app icons by subscribing to **Chat Premium**.";
 
 "Premium.SubscribeFor" = "Subscribe for %@ / month";
 "Premium.SubscribeForAnnual" = "Subscribe for %@ / year";
 
-"Premium.AboutTitle" = "ABOUT TELEGRAM PREMIUM";
-"Premium.AboutText" = "While the free version of Telegram already gives its users more than any other messaging application, **Telegram Premium** pushes its capabilities even further.\n\n**Telegram Premium** is a paid option, because most Premium Features require additional expenses from Telegram to third parties such as data center providers and server manufacturers. Contributions from **Telegram Premium** users allow us to cover such costs and also help Telegram stay free for everyone.";
+"Premium.AboutTitle" = "ABOUT CHAT PREMIUM";
+"Premium.AboutText" = "While the free version of Chat already gives its users more than any other messaging application, **Chat Premium** pushes its capabilities even further.\n\n**Chat Premium** is a paid option, because most Premium Features require additional expenses from Chat to third parties such as data center providers and server manufacturers. Contributions from **Chat Premium** users allow us to cover such costs and also help Chat stay free for everyone.";
 
-"Premium.Terms" = "By purchasing a Premium subscription, you agree to the Telegram [Terms of Service](terms) and [Privacy Policy](privacy).";
+"Premium.Terms" = "By purchasing a Premium subscription, you agree to the Chat [Terms of Service](terms) and [Privacy Policy](privacy).";
 
 "Conversation.CopyProtectionSavingDisabledSecret" = "Saving is restricted";
 "Conversation.CopyProtectionForwardingDisabledSecret" = "Forwarding is restricted";
@@ -7804,7 +7804,7 @@ Sorry for the inconvenience.";
 
 "Premium.Limits.GroupsAndChannelsInfo" = "Join up to 1000 channels and large groups";
 "Premium.Limits.PinnedChatsInfo" = "Pin up to 10 chats in your main chat list";
-"Premium.Limits.PublicLinksInfo" = "Reserve up to 20 [t.me/name]() links";
+"Premium.Limits.PublicLinksInfo" = "Reserve up to 20 public links";
 "Premium.Limits.SavedGifsInfo" = "Save up to 400 GIFs in your Favorite GIFs";
 "Premium.Limits.FavedStickersInfo" = "Save up to 10 stickers in your Favorite stickers";
 "Premium.Limits.BioInfo" = "Add more symbols and use links in your bio";
@@ -7834,7 +7834,7 @@ Sorry for the inconvenience.";
 "Premium.Restore.Success" = "Done";
 "Premium.Restore.ErrorUnknown" = "An error occurred. Please try again.";
 
-"Settings.Premium" = "Telegram Premium";
+"Settings.Premium" = "Chat Premium";
 
 "Settings.AddAnotherAccount.PremiumHelp" = "You can add up to four accounts with different phone numbers.";
 
@@ -7894,7 +7894,7 @@ Sorry for the inconvenience.";
 "DeleteAccount.MessageHistoryTitle" = "Your Message History";
 "DeleteAccount.MessageHistoryText" = "Your chat partners will keep their message history with you, including the messages you shared in secret chats.\n\nYou can remove any messages for both sides at any time, but this will not be possible if you delete your account.";
 
-"DeleteAccount.DeleteMessagesURL" = "https://telegram.org/faq#q-can-i-delete-my-messages";
+"DeleteAccount.DeleteMessagesURL" = "";
 
 "DeleteAccount.EnterPhoneNumber" = "Enter Your Phone Number";
 "DeleteAccount.InvalidPhoneNumberError" = "Invalid phone number. Please try again.";
@@ -7910,9 +7910,9 @@ Sorry for the inconvenience.";
 
 "PeerInfo.GiftPremium" = "Gift Premium";
 
-"Premium.Gift.Title" = "Gift Telegram Premium";
-"Premium.Gift.Description" = "Let **%@** enjoy exclusive features of Telegram with **Telegram Premium**.";
-"Premium.Gift.Info" = "You can review the list of features and terms of use for Telegram Premium [here]().";
+"Premium.Gift.Title" = "Gift Chat Premium";
+"Premium.Gift.Description" = "Let **%@** enjoy exclusive features of Chat with **Chat Premium**.";
+"Premium.Gift.Info" = "You can review the list of features and terms of use for Chat Premium [here]().";
 "Premium.Gift.GiftSubscription" = "Gift Subscription for %@";
 
 "Premium.Gift.Months_1" = "%@ Month";
@@ -7921,16 +7921,16 @@ Sorry for the inconvenience.";
 "Premium.Gift.Years_1" = "%@ Year";
 "Premium.Gift.Years_any" = "%@ Years";
 
-"Premium.GiftedTitle" = "Telegram Premium";
+"Premium.GiftedTitle" = "Chat Premium";
 
-"Premium.GiftedTitle.3Month" = "[%@]() has gifted you a 3-month subscription for Telegram Premium";
-"Premium.GiftedTitle.6Month" = "[%@]() has gifted you a 6-month subscription for Telegram Premium";
-"Premium.GiftedTitle.12Month" = "[%@]() has gifted you a 12-month subscription for Telegram Premium";
+"Premium.GiftedTitle.3Month" = "[%@]() has gifted you a 3-month subscription for Chat Premium";
+"Premium.GiftedTitle.6Month" = "[%@]() has gifted you a 6-month subscription for Chat Premium";
+"Premium.GiftedTitle.12Month" = "[%@]() has gifted you a 12-month subscription for Chat Premium";
 "Premium.GiftedDescription" = "You now have access to additional features.";
 
-"Premium.GiftedTitleYou.3Month" = "You gifted [%@]() a 3-month subscription for Telegram Premium";
-"Premium.GiftedTitleYou.6Month" = "You gifted [%@]() a 6-month subscription for Telegram Premium";
-"Premium.GiftedTitleYou.12Month" = "You gifted [%@]() a 12-month subscription for Telegram Premium";
+"Premium.GiftedTitleYou.3Month" = "You gifted [%@]() a 3-month subscription for Chat Premium";
+"Premium.GiftedTitleYou.6Month" = "You gifted [%@]() a 6-month subscription for Chat Premium";
+"Premium.GiftedTitleYou.12Month" = "You gifted [%@]() a 12-month subscription for Chat Premium";
 "Premium.GiftedDescriptionYou" = "They now have access to additional features.";
 
 "SettingsSearch.DeleteAccount.DeleteMyAccount" = " ";
@@ -7941,7 +7941,7 @@ Sorry for the inconvenience.";
 "Notification.PremiumGift.Months_1" = "%@ month";
 "Notification.PremiumGift.Months_any" = "%@ months";
 
-"Notification.PremiumGift.Title" = "Telegram Premium";
+"Notification.PremiumGift.Title" = "Chat Premium";
 "Notification.PremiumGift.Subtitle" = "for %@";
 "Notification.PremiumGift.View" = "View";
 "Notification.PremiumGift.UseGift" = "Use Gift";
@@ -7966,7 +7966,7 @@ Sorry for the inconvenience.";
 
 "Privacy.VoiceMessages" = "Voice Messages";
 
-"Privacy.VoiceMessages.Tooltip" = "Only subscribers of [Telegram Premium]() can restrict receiving voice messages.";
+"Privacy.VoiceMessages.Tooltip" = "Only subscribers of [Chat Premium]() can restrict receiving voice messages.";
 
 "Privacy.VoiceMessages.WhoCanSend" = "WHO CAN SEND ME VOICE MESSAGES";
 "Privacy.VoiceMessages.CustomHelp" = "You can restrict who can send you voice messages with granular precision.";
@@ -8048,7 +8048,7 @@ Sorry for the inconvenience.";
 "EmojiInput.SectionTitleFavoriteStickers" = "Favorite Stickers";
 "EmojiInput.SectionTitlePremiumStickers" = "Premium Stickers";
 
-"EmojiInput.PremiumEmojiToast.Text" = "Subscribe to Telegram Premium to unlock premium emoji.";
+"EmojiInput.PremiumEmojiToast.Text" = "Subscribe to Chat Premium to unlock premium emoji.";
 "EmojiInput.PremiumEmojiToast.Action" = "More";
 
 "EmojiInput.PremiumEmojiToast.TryText" = "Try sending these emojis in **Saved Messages** for free to test.";
@@ -8079,13 +8079,13 @@ Sorry for the inconvenience.";
 "Login.Edit" = "Edit";
 "Login.Yes" = "Yes";
 
-"Checkout.PaymentLiabilityBothAlert" = "Telegram will not have access to your credit card information. Credit card details will be handled only by the payment system, {target}.\n\nPayments will go directly to the developer of {target}. Telegram cannot provide any guarantees, so proceed at your own risk. In case of problems, please contact the developer of {target} or your bank.";
+"Checkout.PaymentLiabilityBothAlert" = "Chat will not have access to your credit card information. Credit card details will be handled only by the payment system, {target}.\n\nPayments will go directly to the developer of {target}. Chat cannot provide any guarantees, so proceed at your own risk. In case of problems, please contact the developer of {target} or your bank.";
 
 "Settings.ChangeProfilePhoto" = "Change Profile Photo";
 
 "Premium.EmojiStatusShortTitle" = "This is %1$@'s current status.";
 "Premium.EmojiStatusTitle" = "This is %1$@'s current status from #[%2$@]().";
-"Premium.EmojiStatusText" = "Emoji status is a premium feature.\n Other features included in **Telegram Premium**:";
+"Premium.EmojiStatusText" = "Emoji status is a premium feature.\n Other features included in **Chat Premium**:";
 
 "Login.SelectCountry" = "Country";
 
@@ -8110,9 +8110,9 @@ Sorry for the inconvenience.";
 "Login.WrongCodeError" = "Wrong code, please try again.";
 
 "PrivacySettings.LoginEmail" = "Login Email";
-"PrivacySettings.LoginEmailInfo" = "Change your email address for Telegram login codes.";
+"PrivacySettings.LoginEmailInfo" = "Change your email address for Chat login codes.";
 "Login.EmailChanged" = "Your email has been changed.";
-"PrivacySettings.LoginEmailAlertText" = "This email address will be used every time you login to your Telegram account from a new device.";
+"PrivacySettings.LoginEmailAlertText" = "This email address will be used every time you login to your Chat account from a new device.";
 "PrivacySettings.LoginEmailAlertChange" = "Change Email";
 
 "Login.InvalidEmailAddressError" = "An error occurred. Please try again.";
@@ -8127,7 +8127,7 @@ Sorry for the inconvenience.";
 "Premium.PricePerMonth" = "%@/month";
 "Premium.PricePerYear" = "%@/year";
 
-"Conversation.SendMesageAsPremiumInfo" = "Subscribe to **Telegram Premium** to be able to comment on behalf your channels in group chats.";
+"Conversation.SendMesageAsPremiumInfo" = "Subscribe to **Chat Premium** to be able to comment on behalf your channels in group chats.";
 
 "SetTimeoutFor.Minutes_1" = "Set for 1 minute";
 "SetTimeoutFor.Minutes_any" = "Set for %@ minutes";
@@ -8145,7 +8145,7 @@ Sorry for the inconvenience.";
 "PeerStatusExpiration.TomorrowAt" = "Your status expires tomorrow at %@";
 "PeerStatusExpiration.AtDate" = "Your status expires on %@";
 
-"Chat.PanelCustomStatusInfo" = "This account uses %@ as a custom status next to its name. Such emoji statuses are available to all subscribers of Telegram Premium.";
+"Chat.PanelCustomStatusInfo" = "This account uses %@ as a custom status next to its name. Such emoji statuses are available to all subscribers of Chat Premium.";
 
 "Login.CancelEmailVerification" = "Do you want to stop the email verification process?";
 "Login.CancelEmailVerificationStop" = "Stop";
@@ -8158,7 +8158,7 @@ Sorry for the inconvenience.";
 "Premium.EmojiStatusInfo" = "Add any of thousands emojis next to your name to display current activity.";
 
 "PeerStatusSetup.NoTimerTitle" = "Long tap to set a timer";
-"Chat.PremiumReactionToastTitle" = "Subscribe to **Telegram Premium** to unlock this reaction.";
+"Chat.PremiumReactionToastTitle" = "Subscribe to **Chat Premium** to unlock this reaction.";
 "Chat.PremiumReactionToastAction" = "More";
 
 "Chat.ClearReactionsAlertText" = "Do you want to clear your recent reaction emoji from suggestions?";
@@ -8239,7 +8239,7 @@ Sorry for the inconvenience.";
 "ChatList.Search.FilterTopics" = "Topics";
 "DialogList.SearchSectionTopics" = "Topics";
 
-"ChatListFolderSettings.SubscribeToMoveAll" = "Subscribe to **Telegram Premium** to move the \"All Chats\" folder.";
+"ChatListFolderSettings.SubscribeToMoveAll" = "Subscribe to **Chat Premium** to move the \"All Chats\" folder.";
 "ChatListFolderSettings.SubscribeToMoveAllAction" = "More";
 
 "Channel.AdminLog.MessageChangedGroupUsernames" = "%@ changed group links:";
@@ -8257,7 +8257,7 @@ Sorry for the inconvenience.";
 "ChatList.EmptyTopicsCreate" = "Create Topic";
 "ChatList.EmptyTopicsShowAsMessages" = "Show as Messages";
 
-"Message.AudioTranscription.SubscribeToPremium" = "Subscribe to **Telegram Premium** to convert voice to text.";
+"Message.AudioTranscription.SubscribeToPremium" = "Subscribe to **Chat Premium** to convert voice to text.";
 "Message.AudioTranscription.SubscribeToPremiumAction" = "More";
 
 "PeerInfo.PrivateShareLinkInfo" = "This link will work only for group members.";
@@ -8350,8 +8350,8 @@ Sorry for the inconvenience.";
 "DownloadList.IncreaseSpeed" = "Increase Speed";
 "Conversation.IncreaseSpeed" = "Increase Speed";
 
-"Premium.ChatManagement.Proceed" = "About Telegram Premium";
-"Premium.FasterSpeed.Proceed" = "About Telegram Premium";
+"Premium.ChatManagement.Proceed" = "About Chat Premium";
+"Premium.FasterSpeed.Proceed" = "About Chat Premium";
 
 "OwnershipTransfer.EnterPassword" = "Enter Password";
 "OwnershipTransfer.EnterPasswordText" = "Please enter your 2-Step Verification password to confirm the action.";
@@ -8359,10 +8359,10 @@ Sorry for the inconvenience.";
 "Navigation.AllChats" = "All Chats";
 
 "Group.Management.AntiSpam" = "Aggressive Anti-Spam";
-"Group.Management.AntiSpamInfo" = "Telegram will filter more spam but may occasionally affect ordinary messages. You can report false positives in Recent Actions.";
+"Group.Management.AntiSpamInfo" = "Chat will filter more spam but may occasionally affect ordinary messages. You can report false positives in Recent Actions.";
 
 "Group.Management.AntiSpamMagic" = "magic";
-"Group.AdminLog.AntiSpamTitle" = "Telegram Anti-Spam";
+"Group.AdminLog.AntiSpamTitle" = "Chat Anti-Spam";
 "Group.AdminLog.AntiSpamText" = "You can manage anti-spam settings in Group Info > [Administrators]().";
 
 "ChatList.ThreadHideAction" = "Hide";
@@ -8386,7 +8386,7 @@ Sorry for the inconvenience.";
 "DialogList.SearchSectionMessagesIn" = "Messages in %@";
 
 "Conversation.ContextMenuReportFalsePositive" = "Report False Positive";
-"Group.AdminLog.AntiSpamFalsePositiveReportedText" = "Telegram moderators will review your report. Thank you!";
+"Group.AdminLog.AntiSpamFalsePositiveReportedText" = "Chat moderators will review your report. Thank you!";
 
 "ChatList.EmptyTopicsDescription" = "Older messages from this group have been moved to \"General\".";
 
@@ -8549,7 +8549,7 @@ Sorry for the inconvenience.";
 
 "Conversation.SuggestedPhotoTitle" = "Suggested Photo";
 "Conversation.SuggestedPhotoText" = "**%@** suggests you to use this profile photo.";
-"Conversation.SuggestedPhotoTextExpanded" = "%@ suggests you to use this profile photo for your Telegram account.";
+"Conversation.SuggestedPhotoTextExpanded" = "%@ suggests you to use this profile photo for your Chat account.";
 "Conversation.SuggestedPhotoTextYou" = "You suggested **%@** to use this profile photo.";
 "Conversation.SuggestedPhotoView" = "View Photo";
 "Conversation.SuggestedPhotoSuccess" = "Photo updated";
@@ -8557,7 +8557,7 @@ Sorry for the inconvenience.";
 
 "Conversation.SuggestedVideoTitle" = "Suggested Video";
 "Conversation.SuggestedVideoText" = "**%@** suggests you to use this profile video.";
-"Conversation.SuggestedVideoTextExpanded" = "%@ suggests you to use this profile video for your Telegram account.";
+"Conversation.SuggestedVideoTextExpanded" = "%@ suggests you to use this profile video for your Chat account.";
 "Conversation.SuggestedVideoTextYou" = "You suggested **%@** to use this profile video.";
 "Conversation.SuggestedVideoView" = "View Video";
 "Conversation.SuggestedVideoSuccess" = "Video updated";
@@ -8638,9 +8638,9 @@ Sorry for the inconvenience.";
 "StorageManagement.Title" = "Storage Usage";
 "StorageManagement.TitleCleared" = "Storage Cleared";
 
-"StorageManagement.DescriptionCleared" = "All media can be re-downloaded from the Telegram cloud if you need it again.";
-"StorageManagement.DescriptionChatUsage" = "This chat uses %1$@% of your Telegram cache.";
-"StorageManagement.DescriptionAppUsage" = "Telegram uses %1$@% of your free disk space.";
+"StorageManagement.DescriptionCleared" = "All media can be re-downloaded from the Private Chat cloud if you need it again.";
+"StorageManagement.DescriptionChatUsage" = "This chat uses %1$@% of your Chat cache.";
+"StorageManagement.DescriptionAppUsage" = "Chat uses %1$@% of your free disk space.";
 
 "StorageManagement.ClearAll" = "Clear Entire Cache";
 "StorageManagement.ClearSelected" = "Clear Selected";
@@ -8654,7 +8654,7 @@ Sorry for the inconvenience.";
 "StorageManagement.SectionAvatars" = "Avatars";
 "StorageManagement.SectionMiscellaneous" = "Misc";
 
-"StorageManagement.SectionsDescription" = "All media will stay in the Telegram cloud and can be re-downloaded if you need it again.";
+"StorageManagement.SectionsDescription" = "All media will stay in the Private Chat cloud and can be re-downloaded if you need it again.";
 
 "StorageManagement.AutoremoveHeader" = "AUTO-REMOVE CACHED MEDIA";
 "StorageManagement.AutoremoveDescription" = "Photos, videos and other files from cloud chats that you have **not accessed** during this period will be removed from this device to save disk space.";
@@ -8791,26 +8791,26 @@ Sorry for the inconvenience.";
 "AvatarEditor.Set" = "Set";
 "AvatarEditor.Suggest" = "Suggest";
 
-"Premium.UpgradeDescription" = "Your current **Telegram Premium** plan can be upgraded at a **discount**.";
+"Premium.UpgradeDescription" = "Your current **Chat Premium** plan can be upgraded at a **discount**.";
 "Premium.CurrentPlan" = "your current plan";
 "Premium.UpgradeFor" = "Upgrade for %@ / month";
 "Premium.UpgradeForAnnual" = "Upgrade for %@ / year";
 "Premium.UpgradeForBiannual" = "Upgrade for %@ / 2 years";
 
-"ChatList.PremiumAnnualDiscountTitle" = "Telegram Premium with a discount of %@";
-"ChatList.PremiumAnnualDiscountText" = "Sign up for the annual payment plan for Telegram Premium now to get the discount.";
+"ChatList.PremiumAnnualDiscountTitle" = "Chat Premium with a discount of %@";
+"ChatList.PremiumAnnualDiscountText" = "Sign up for the annual payment plan for Chat Premium now to get the discount.";
 "ChatList.PremiumAnnualUpgradeTitle" = "Save on your subscription up to %@";
-"ChatList.PremiumAnnualUpgradeText" = "Upgrade to the annual payment plan for Telegram Premium to enjoy the discount.";
+"ChatList.PremiumAnnualUpgradeText" = "Upgrade to the annual payment plan for Chat Premium to enjoy the discount.";
 
-"Premium.Emoji.Description" = "Unlock this emoji and many more by subscribing to Telegram Premium.";
+"Premium.Emoji.Description" = "Unlock this emoji and many more by subscribing to Chat Premium.";
 "Premium.Emoji.Proceed" = "Unlock Premium Emoji";
 
 "Localization.TranslateEntireChat" = "Translate Entire Chat";
 
 "Premium.Translation" = "Real-Time Translation";
 "Premium.TranslationInfo" = "Real-time translation of channels and chats into other languages.";
-"Premium.TranslationStandaloneInfo" = "Subscribe to **Telegram Premium** to be able to translate all messages in a chat at once.";
-"Premium.Translation.Proceed" = "About Telegram Premium";
+"Premium.TranslationStandaloneInfo" = "Subscribe to **Chat Premium** to be able to translate all messages in a chat at once.";
+"Premium.Translation.Proceed" = "About Chat Premium";
 
 "Settings.PauseMusicOnRecording" = "Pause Music While Recoding";
 
@@ -8958,7 +8958,7 @@ Sorry for the inconvenience.";
 
 "Login.CodeSentCallText" = "Calling **%@** to dictate the code.";
 
-"Premium.Purchase.OnlyOneSubscriptionAllowed" = "You have already purchased Telegram Premium for another account. You can only have one Telegram Premium subscription on one Apple ID.";
+"Premium.Purchase.OnlyOneSubscriptionAllowed" = "You have already purchased Chat Premium for another account. You can only have one Chat Premium subscription on one Apple ID.";
 
 "Call.VoiceOver.Minimize" = "Minimize Call";
 
@@ -9047,7 +9047,7 @@ Sorry for the inconvenience.";
 "PowerSavingScreen.OptionAutoplayEmojiText" = "Loop animated emoji in messages, reactions, statuses.";
 
 "PowerSavingScreen.OptionAutoplayEffectsTitle" = "Interface Effects";
-"PowerSavingScreen.OptionAutoplayEffectsText" = "Various effects and animations that make Telegram look amazing.";
+"PowerSavingScreen.OptionAutoplayEffectsText" = "Various effects and animations that make Chat look amazing.";
 
 "PowerSavingScreen.OptionBackgroundTitle" = "Extended Background Time";
 "PowerSavingScreen.OptionBackgroundText" = "Update chats faster when switching between apps.";
@@ -9106,18 +9106,18 @@ Sorry for the inconvenience.";
 
 "Attachment.Gift" = "Gift";
 
-"Premium.Gift.TitleShort" = "Telegram Premium";
+"Premium.Gift.TitleShort" = "Chat Premium";
 
-"VoiceOver.GiftPremium" = "Gift Telegram Premium";
+"VoiceOver.GiftPremium" = "Gift Chat Premium";
 
 "Login.Email.CantAccess" = "Can't access this email?";
 "Login.Email.ResetTitle" = "Reset Email";
-"Login.Email.ResetText" = "You can change your login email if you are logged into Telegram from another device. Otherwise, if you don't have access to email %1$@, you can reset this email with an **SMS** code **%2$@**.";
+"Login.Email.ResetText" = "You can change your login email if you are logged into Chat from another device. Otherwise, if you don't have access to email %1$@, you can reset this email with an **SMS** code **%2$@**.";
 "Login.Email.Reset" = "Reset";
 "Login.Email.ResetNowViaSMS" = "Reset now via SMS";
 "Login.Email.WillBeResetIn" = "Email will be reset %@";
-"Login.Email.PremiumRequiredTitle" = "Telegram Premium Required";
-"Login.Email.PremiumRequiredText" = "Due to high cost of SMS in your country, you need to have a **Telegram Premium** account to reset this email via an SMS code.\n\nYou can ask a friend to gift a Premium subscription for your account\n**%@**";
+"Login.Email.PremiumRequiredTitle" = "Chat Premium Required";
+"Login.Email.PremiumRequiredText" = "Due to high cost of SMS in your country, you need to have a **Chat Premium** account to reset this email via an SMS code.\n\nYou can ask a friend to gift a Premium subscription for your account\n**%@**";
 "Login.Email.ElapsedTime" = "in %@";
 "Login.Email.ResetingNow" = "Please wait...";
 
@@ -9167,11 +9167,11 @@ Sorry for the inconvenience.";
 "Wallpaper.ApplyForAll" = "Apply For All Chats";
 "Wallpaper.ApplyForChat" = "Apply For This Chat";
 
-"Premium.MaxSharedFolderMembershipText" = "You can only add **%1$@** shareable folders. Upgrade to **Telegram Premium** to increase this limit up to **%2$@**.";
+"Premium.MaxSharedFolderMembershipText" = "You can only add **%1$@** shareable folders. Upgrade to **Chat Premium** to increase this limit up to **%2$@**.";
 "Premium.MaxSharedFolderMembershipNoPremiumText" = "You can only add **%1$@** shareable folders. We are working to let you increase this limit in the future.";
 "Premium.MaxSharedFolderMembershipFinalText" = "Sorry, you can only add **%1$@** shareable folders.";
 
-"Premium.MaxSharedFolderLinksText" = "You can only create **%1$@** invite links. Upgrade to **Telegram Premium** to increase the links limit to **%2$@**.";
+"Premium.MaxSharedFolderLinksText" = "You can only create **%1$@** invite links. Upgrade to **Chat Premium** to increase the links limit to **%2$@**.";
 "Premium.MaxSharedFolderLinksNoPremiumText" = "You can only create **%1$@** invite links. We are working to let you increase this limit in the future.";
 "Premium.MaxSharedFolderLinksFinalText" = "Sorry, you can only create **%1$@** invite links";
 
@@ -9189,7 +9189,7 @@ Sorry for the inconvenience.";
 
 "Conversation.OpenChatFolder" = "VIEW CHAT LIST";
 
-"Premium.MaxChannelsText" = "You can only join **%1$@** groups and channels. Upgrade to **Telegram Premium** to increase the links limit to **%2$@**.";
+"Premium.MaxChannelsText" = "You can only join **%1$@** groups and channels. Upgrade to **Chat Premium** to increase the links limit to **%2$@**.";
 "Premium.MaxChannelsNoPremiumText" = "You can only join **%1$@** groups and channels. We are working to let you increase this limit in the future.";
 "Premium.MaxChannelsFinalText" = "Sorry, you can only join **%1$@** groups and channels";
 
@@ -9224,7 +9224,7 @@ Sorry for the inconvenience.";
 "WebApp.LaunchMoreInfo" = "More about this bot";
 "WebApp.LaunchConfirmation" = "To launch this web app, you will connect to its website.";
 "WebApp.LaunchTermsConfirmation" = "By launching this mini app, you agree to the [Terms of Service for Mini Apps]().";
-"WebApp.LaunchTermsConfirmation_URL" = "https://telegram.org/tos/mini-apps";
+"WebApp.LaunchTermsConfirmation_URL" = "";
 "WebApp.LaunchOpenApp" = "Open App";
 
 "WallpaperPreview.PreviewInNightMode" = "Preview this wallpaper in night mode.";
@@ -9321,7 +9321,7 @@ Sorry for the inconvenience.";
 "ChatListFilter.LinkActionDelete" = "Delete";
 
 "InviteLink.QRCodeFolder.Title" = "Invite by QR Code";
-"InviteLink.QRCodeFolder.Text" = "Everyone on Telegram can scan this code to add this folder and join the chats included in this invite link.";
+"InviteLink.QRCodeFolder.Text" = "Everyone on Chat can scan this code to add this folder and join the chats included in this invite link.";
 
 "FolderLinkPreview.IconTabLeft" = "All Chats";
 "FolderLinkPreview.IconTabRight" = "Personal";
@@ -9388,7 +9388,7 @@ Sorry for the inconvenience.";
 "Conversation.Theme.PreviewDarkShort" = "Tap to view this theme in the night mode.";
 "Conversation.Theme.PreviewLightShort" = "Tap to view this theme in the day mode.";
 
-"ChatList.EmptyListContactsHeader" = "YOUR CONTACTS ON TELEGRAM";
+"ChatList.EmptyListContactsHeader" = "YOUR CONTACTS ON Chat";
 "ChatList.EmptyListContactsHeaderHide" = "hide";
 "ChatList.EmptyListTooltip" = "Send a message or\nstart a group here.";
 
@@ -9399,16 +9399,16 @@ Sorry for the inconvenience.";
 "UserInfo.BotNamePlaceholder" = "Bot Name";
 
 "ChatList.PremiumRestoreDiscountTitle" = "Get Premium back with up to %@ off";
-"ChatList.PremiumRestoreDiscountText" = "Your Telegram Premium has recently expired. Tap here to extend it.";
+"ChatList.PremiumRestoreDiscountText" = "Your Chat Premium has recently expired. Tap here to extend it.";
 
 "Notification.LockScreenReactionPlaceholder" = "Reaction";
 
 "UserInfo.BotNamePlaceholder" = "Bot Name";
 
 "ChatList.PremiumRestoreDiscountTitle" = "Get Premium back with up to %@ off";
-"ChatList.PremiumRestoreDiscountText" = "Your Telegram Premium has recently expired. Tap here to extend it.";
+"ChatList.PremiumRestoreDiscountText" = "Your Chat Premium has recently expired. Tap here to extend it.";
 
-"Login.ErrorAppOutdated" = "Please update Telegram to the latest version to log in.";
+"Login.ErrorAppOutdated" = "Please update Chat to the latest version to log in.";
 
 "Login.GetCodeViaFragment" = "Get a code via Fragment";
 
@@ -9459,8 +9459,8 @@ Sorry for the inconvenience.";
 "ChatList.Archive.ContextInfo" = "How Does It Work?";
 "ChatList.ContextSelectChats" = "Select Chats";
 
-"StoryFeed.TooltipPremiumPosting" = "Posting stories is currently available only\nto subscribers of [Telegram Premium]().";
-"StoryFeed.TooltipPremiumPostingLimited" = "This month, posting stories is only available to subscribers of [Telegram Premium]().";
+"StoryFeed.TooltipPremiumPosting" = "Posting stories is currently available only\nto subscribers of [Chat Premium]().";
+"StoryFeed.TooltipPremiumPostingLimited" = "This month, posting stories is only available to subscribers of [Chat Premium]().";
 "StoryFeed.TooltipStoryLimitValue_1" = "1 story";
 "StoryFeed.TooltipStoryLimitValue_any" = "%d stories";
 "StoryFeed.TooltipStoryLimit" = "You can't post more than **%@** stories in **24 hours**.";
@@ -9498,7 +9498,7 @@ Sorry for the inconvenience.";
 
 "ArchiveSettings.KeepArchived" = "Always Keep Archived";
 "ArchiveSettings.AutomaticallyArchive" = "Automatically Archive";
-"ArchiveSettings.TooltipPremiumRequired" = "This setting is available only to the subscribers of [Telegram Premium]().";
+"ArchiveSettings.TooltipPremiumRequired" = "This setting is available only to the subscribers of [Chat Premium]().";
 
 "NotificationSettings.Stories.ShowAll" = "Show All Notifications";
 "NotificationSettings.Stories.ShowImportant" = "Show Important Notifications";
@@ -9577,8 +9577,8 @@ Sorry for the inconvenience.";
 "Story.HeaderEdited" = "edited";
 "Story.CaptionShowMore" = "Show more";
 
-"Story.UnsupportedText" = "This story is not supported by\nyour version of Telegram.";
-"Story.UnsupportedAction" = "Update Telegram";
+"Story.UnsupportedText" = "This story is not supported by\nyour version of Chat.";
+"Story.UnsupportedAction" = "Update Chat";
 
 "Story.ScreenshotBlockedTitle" = "Screenshot Blocked";
 "Story.ScreenshotBlockedText" = "The story you tried to take a\nscreenshot of is protected from\ncopying by its creator.";
@@ -9653,7 +9653,7 @@ Sorry for the inconvenience.";
 "Story.Camera.SwipeLeftRelease" = "Release to lock";
 "Story.Camera.SwipeRightToFlip" = "Swipe right to flip";
 
-"Story.Camera.AccessPlaceholderTitle" = "Allow Telegram to access your camera and microphone";
+"Story.Camera.AccessPlaceholderTitle" = "Allow Chat to access your camera and microphone";
 "Story.Camera.AccessPlaceholderText" = "This lets you share photos and record videos.";
 "Story.Camera.AccessOpenSettings" = "Open Settings";
 
@@ -9671,7 +9671,7 @@ Sorry for the inconvenience.";
 "Story.Editor.ExpirationValue_1" = "1 Hour";
 "Story.Editor.ExpirationValue_any" = "%d Hours";
 
-"Story.Editor.TooltipPremiumExpiration" = "Subscribe to [Telegram Premium]() to make your stories disappear after 6, 12 or 48 hours.";
+"Story.Editor.TooltipPremiumExpiration" = "Subscribe to [Chat Premium]() to make your stories disappear after 6, 12 or 48 hours.";
 
 "Story.Editor.InputPlaceholderAddCaption" = "Add a caption...";
 
@@ -9771,11 +9771,11 @@ Sorry for the inconvenience.";
 "Chat.OpenStory" = "OPEN STORY";
 
 "Story.Editor.TooltipPremiumCaptionLimitTitle" = "Maximum Length Reached";
-"Story.Editor.TooltipPremiumCaptionLimitText" = "Increase this limit 10 times to 2048 symbols by subscribing to [Telegram Premium]().";
+"Story.Editor.TooltipPremiumCaptionLimitText" = "Increase this limit 10 times to 2048 symbols by subscribing to [Chat Premium]().";
 
-"Story.Editor.TooltipPremiumCaptionEntities" = "Subscribe to [Telegram Premium]() to add links and formatting in captions to your stories.";
+"Story.Editor.TooltipPremiumCaptionEntities" = "Subscribe to [Chat Premium]() to add links and formatting in captions to your stories.";
 
-"Story.Context.TooltipPremiumSaveStories" = "Subscribe to [Telegram Premium]() to save other people's unprotected stories to your Gallery.";
+"Story.Context.TooltipPremiumSaveStories" = "Subscribe to [Chat Premium]() to save other people's unprotected stories to your Gallery.";
 
 "Story.Privacy.GroupTooLarge" = "Group Too Large";
 "Story.Privacy.GroupParticipantsLimit" = "You can select groups that are up to 200 members.";
@@ -9836,11 +9836,11 @@ Sorry for the inconvenience.";
 "Premium.Stories.Format.Title" = "Links and Formatting";
 "Premium.Stories.Format.Text" = "Add links and formatting in captions to your stories.";
 
-"Premium.MaxStoriesWeeklyText" = "You can post **%@** stories in a week. Upgrade to **Telegram Premium** to increase this limit to **%@**.";
+"Premium.MaxStoriesWeeklyText" = "You can post **%@** stories in a week. Upgrade to **Chat Premium** to increase this limit to **%@**.";
 "Premium.MaxStoriesWeeklyNoPremiumText" = "You have reached the limit of **%@** stories per week.";
 "Premium.MaxStoriesWeeklyFinalText" = "You have reached the limit of **%@** stories per week.";
 
-"Premium.MaxStoriesMonthlyText" = "You can post **%@** stories in a month. Upgrade to **Telegram Premium** to increase this limit to **%@**.";
+"Premium.MaxStoriesMonthlyText" = "You can post **%@** stories in a month. Upgrade to **Chat Premium** to increase this limit to **%@**.";
 "Premium.MaxStoriesMonthlyNoPremiumText" = "You have reached the limit of **%@** stories per month.";
 "Premium.MaxStoriesMonthlyFinalText" = "You have reached the limit of **%@** stories per month.";
 
@@ -9856,7 +9856,7 @@ Sorry for the inconvenience.";
 "Story.ContextDeleteContact" = "Delete Contact";
 "Story.ToastDeletedContact" = "**%@** has been removed from your contacts.";
 "Story.ToastUserBlocked" = "**%@** has been blocked.";
-"Story.ToastPremiumSaveToGallery" = "Subscribe to [Telegram Premium]() to save other people's unprotected stories to your Gallery.";
+"Story.ToastPremiumSaveToGallery" = "Subscribe to [Chat Premium]() to save other people's unprotected stories to your Gallery.";
 "Story.PremiumUpgradeStoriesButton" = "Upgrade Stories";
 "Story.ContextStealthMode" = "Stealth Mode";
 "Story.AlertStealthModeActiveTitle" = "You are in Stealth Mode now";
@@ -9867,9 +9867,9 @@ Sorry for the inconvenience.";
 "Story.ToastStealthModeActivatedTitle" = "Stealth Mode On";
 "Story.ToastStealthModeActivatedText" = "The creators of stories you viewed in the last **%1$@** or will view in the next **%2$@** won’t see you in the viewers’ lists.";
 
-"Story.ViewList.PremiumUpgradeText" = "List of viewers isn't available after 24 hours of story expiration.\n\nTo unlock viewers' lists for expired and saved stories, subscribe to [Telegram Premium]().";
+"Story.ViewList.PremiumUpgradeText" = "List of viewers isn't available after 24 hours of story expiration.\n\nTo unlock viewers' lists for expired and saved stories, subscribe to [Chat Premium]().";
 "Story.ViewList.PremiumUpgradeAction" = "Learn More";
-"Story.ViewList.PremiumUpgradeInlineText" = "To unlock viewers' lists for expired and saved stories, subscribe to [Telegram Premium]().";
+"Story.ViewList.PremiumUpgradeInlineText" = "To unlock viewers' lists for expired and saved stories, subscribe to [Chat Premium]().";
 "Story.ViewList.NotFullyRecorded" = "Information about the other viewers wasn’t recorded.";
 "Story.ViewList.EmptyTextSearch" = "No views found";
 "Story.ViewList.EmptyTextContacts" = "None of your contacts viewed this story.";
@@ -9885,7 +9885,7 @@ Sorry for the inconvenience.";
 "Story.Footer.ViewCount_any" = "|%d| Views";
 "Story.StealthMode.Title" = "Stealth Mode";
 "Story.StealthMode.ControlText" = "Turn Stealth Mode on to hide the fact that you viewed peoples' stories from them.";
-"Story.StealthMode.UpgradeText" = "Subscribe to Telegram Premium to hide the fact that you viewed peoples' stories from them.";
+"Story.StealthMode.UpgradeText" = "Subscribe to Chat Premium to hide the fact that you viewed peoples' stories from them.";
 "Story.StealthMode.RecentTitle" = "Hide Recent Views";
 "Story.StealthMode.RecentText" = "Hide my views in the last **%@**.";
 "Story.StealthMode.NextTitle" = "Hide Next Views";
@@ -9913,7 +9913,7 @@ Sorry for the inconvenience.";
 "Story.Privacy.KeepOnChannelPage" = "Post to Channel Profile";
 "Story.Privacy.KeepOnChannelPageInfo" = "Keep this story on channel profile even after it expires in %@.";
 
-"Story.Editor.TooltipPremiumReaction" = "Subscribe to [Telegram Premium]() to use this reaction.";
+"Story.Editor.TooltipPremiumReaction" = "Subscribe to [Chat Premium]() to use this reaction.";
 
 "Story.Privacy.TooltipStoryArchivedChannel" = "Users will see this story on the channel page even after it expires.";
 
@@ -9938,7 +9938,7 @@ Sorry for the inconvenience.";
 "MediaPicker.Timer.Video.KeepTooltip" = "Video will be kept in chat.";
 
 "WebApp.AllowWriteTitle" = "Allow Sending Messages?";
-"WebApp.AllowWriteConfirmation" = "This will allow the bot **%@** to message you on Telegram.";
+"WebApp.AllowWriteConfirmation" = "This will allow the bot **%@** to message you on Chat.";
 
 "WebApp.SharePhoneTitle" = "Share Phone Number?";
 "WebApp.SharePhoneConfirmation" = "**%@** will know your phone number. This can be useful for integration with other services.";
@@ -9948,7 +9948,7 @@ Sorry for the inconvenience.";
 "Story.Editor.TooltipPremiumReactionLimitValue_any" = "**%@** reactions tags";
 
 "Story.Editor.TooltipPremiumReactionLimitTitle" = "Increase Limit";
-"Story.Editor.TooltipPremiumReactionLimitText" = "Upgrade to [Telegram Premium]() to add up to %@ to a story.";
+"Story.Editor.TooltipPremiumReactionLimitText" = "Upgrade to [Chat Premium]() to add up to %@ to a story.";
 
 "Story.Editor.TooltipReachedReactionLimitTitle" = "Limit Reached";
 "Story.Editor.TooltipReachedReactionLimitText" = "You can't add up more than %@ to a story.";
@@ -9966,7 +9966,7 @@ Sorry for the inconvenience.";
 "WebApp.ShortcutsSettingsAdded" = "**%@** shortcut added in attachment menu and Settings.";
 
 "WebApp.AllowWriteTitle" = "Allow Sending Messages?";
-"WebApp.AllowWriteConfirmation" = "This will allow the bot **%@** to message you on Telegram.";
+"WebApp.AllowWriteConfirmation" = "This will allow the bot **%@** to message you on Chat.";
 
 "AuthSessions.MessageApp" = "You allowed this bot to message you when you opened %@.";
 
@@ -10005,7 +10005,7 @@ Sorry for the inconvenience.";
 "ChatList.SessionReview.PanelConfirm" = "Yes, it's me";
 "ChatList.SessionReview.PanelReject" = "No, it's not me!";
 
-"SessionReview.NoticeText" = "Never send your login code to anyone or you can lose your Telegram account!";
+"SessionReview.NoticeText" = "Never send your login code to anyone or you can lose your Chat account!";
 "SessionReview.Title" = "New Login Prevented";
 "SessionReview.Text" = "We have terminated the login attempt from **%1$@**, **%2$@**";
 "SessionReview.OkAction" = "Got it";
@@ -10112,9 +10112,9 @@ Sorry for the inconvenience.";
 "ChannelBoost.Error.BoostTooOftenTitle" = "Can't Boost Too Often";
 "ChannelBoost.Error.BoostTooOftenText" = "You can change the channel you boost only once a day. Next time you can boost is in **%@**.";
 "ChannelBoost.Error.PremiumNeededTitle" = "Premium Needed";
-"ChannelBoost.Error.PremiumNeededText" = "Only **Telegram Premium** subscribers can boost channels. Do you want to subscribe to **Telegram Premium**?";
+"ChannelBoost.Error.PremiumNeededText" = "Only **Chat Premium** subscribers can boost channels. Do you want to subscribe to **Chat Premium**?";
 "ChannelBoost.Error.GiftedPremiumNotAllowedTitle" = "Can't Boost with Gifted Premium";
-"ChannelBoost.Error.GiftedPremiumNotAllowedText" = "Because your **Telegram Premium** subscription was gifted to you, you can't use it to boost channels.";
+"ChannelBoost.Error.GiftedPremiumNotAllowedText" = "Because your **Chat Premium** subscription was gifted to you, you can't use it to boost channels.";
 
 "Chat.ErrorFolderLinkExpired" = "The folder link has expired.";
 
@@ -10148,7 +10148,7 @@ Sorry for the inconvenience.";
 
 "Notification.GiftLink" = "You received a gift";
 
-"MESSAGE_GIFTCODE" = "%1$@ sent you a Gift Code for %2$@ months of Telegram Premium";
+"MESSAGE_GIFTCODE" = "%1$@ sent you a Gift Code for %2$@ months of Chat Premium";
 "MESSAGE_GIVEAWAY" = "%1$@ sent you a giveaway of %2$@x %3$@mo Premium subscriptions";
 "CHANNEL_MESSAGE_GIVEAWAY" = "%1$@ posted a giveaway of %2$@x %3$@mo Premium subscriptions";
 "CHAT_MESSAGE_GIVEAWAY" = "%1$@ sent a giveaway of %3$@x %4$@mo Premium subscriptions to the group %2$@";
@@ -10156,7 +10156,7 @@ Sorry for the inconvenience.";
 "REACT_GIVEAWAY" = "%1$@ reacted %2$@ to your giveaway";
 "CHAT_REACT_GIVEAWAY" = "%1$@ reacted %3$@ in group %2$@ to your giveaway";
 
-"Notification.GiveawayStarted" = "%1$@ just started a giveaway of Telegram Premium subscriptions for its followers.";
+"Notification.GiveawayStarted" = "%1$@ just started a giveaway of Chat Premium subscriptions for its followers.";
 
 "Appearance.NameColor" = "Your Name Color";
 
@@ -10168,7 +10168,7 @@ Sorry for the inconvenience.";
 "NameColor.ChatPreview.ReplyText.Channel" = "Reply to your channel message";
 "NameColor.ChatPreview.MessageText.Account" = "Your name and replies to your messages will be shown in the selected color.";
 "NameColor.ChatPreview.MessageText.Channel" = "The name of your channek and replies to its messages will be shown in the selected color.";
-"NameColor.ChatPreview.LinkSite" = "Telegram";
+"NameColor.ChatPreview.LinkSite" = "Chat";
 "NameColor.ChatPreview.LinkTitle" = "Link Preview";
 "NameColor.ChatPreview.LinkText" = "Your selected color will also tint the link preview.";
 "NameColor.ChatPreview.Description.Account" = "You can choose an individual color to tint your name, the links you send, and replies to your messages.";
@@ -10177,7 +10177,7 @@ Sorry for the inconvenience.";
 "NameColor.ApplyColor" = "Apply Color";
 "NameColor.ApplyColorAndBackgroundEmoji" = "Apply Color and Icon";
 
-"NameColor.TooltipPremium.Account" = "Subscribe to [Telegram Premium]() to choose a custom color for your name.";
+"NameColor.TooltipPremium.Account" = "Subscribe to [Chat Premium]() to choose a custom color for your name.";
 
 "NameColor.BackgroundEmoji.Title" = "ADD ICONS TO REPLIES";
 "NameColor.BackgroundEmoji.Remove" = "REMOVE ICON";
@@ -10194,8 +10194,8 @@ Sorry for the inconvenience.";
 "Chat.ErrorQuoteOutdatedText" = "**%@** updated the message you are quoting. Edit your quote to make it up-to-date.";
 "Chat.ErrorQuoteOutdatedActionEdit" = "Edit";
 
-"Premium.BoostByGiftDescription" = "Boost your channel by gifting your subscribers Telegram Premium. [Get boosts >]()";
-"Premium.BoostByGiftDescription2" = "Boost your channel by gifting your subscribers Telegram Premium. [Get boosts >]()";
+"Premium.BoostByGiftDescription" = "Boost your channel by gifting your subscribers Chat Premium. [Get boosts >]()";
+"Premium.BoostByGiftDescription2" = "Boost your channel by gifting your subscribers Chat Premium. [Get boosts >]()";
 
 "ChatContextMenu.QuoteSelectionTip" = "Hold on a word, then move cursor to select more| text to quote.";
 
@@ -10246,11 +10246,11 @@ Sorry for the inconvenience.";
 "Stats.Boosts.ShowMoreBoosts_any" = "Show %@ More Boosts";
 
 "ReassignBoost.Title" = "Reassign Boosts";
-"ReassignBoost.Description" = "To boost **%1$@**, reassign a previous boost or gift **Telegram Premium** to a friend to get **%2$@** additional boosts.";
+"ReassignBoost.Description" = "To boost **%1$@**, reassign a previous boost or gift **Chat Premium** to a friend to get **%2$@** additional boosts.";
 "ReassignBoost.ReassignBoosts" = "Reassign Boosts";
 "ReassignBoost.AvailableIn" = "Available in %@";
 "ReassignBoost.ExpiresOn" = "Boost expires on %@";
-"ReassignBoost.WaitForCooldown" = "Wait until the boost is available or get **%1$@** more boosts by gifting a **Telegram Premium** subscription.";
+"ReassignBoost.WaitForCooldown" = "Wait until the boost is available or get **%1$@** more boosts by gifting a **Chat Premium** subscription.";
 
 "ReassignBoost.Success" = "%1$@ from %2$@.";
 "ReassignBoost.Boosts_1" = "%@ boost is reassigned";
@@ -10263,14 +10263,14 @@ Sorry for the inconvenience.";
 "ReassignBoost.OtherGroupsAndChannels_any" = "%@ other groups and channels";
 
 "ChannelBoost.MoreBoosts.Title" = "More Boosts Needed";
-"ChannelBoost.MoreBoosts.Text" = "To boost **%1$@** again, gift **Telegram Premium** to a friend and get **%2$@** additional boosts.";
+"ChannelBoost.MoreBoosts.Text" = "To boost **%1$@** again, gift **Chat Premium** to a friend and get **%2$@** additional boosts.";
 "ChannelBoost.MoreBoosts.Gift" = "Gift Premium";
 
 "BoostGift.Title" = "Boosts via Gifts";
 "BoostGift.Description" = "Get more boosts for your channel by gifting\nPremium to your subscribers.";
 "BoostGift.PrepaidGiveawayTitle" = "PREPAID GIVEAWAY";
-"BoostGift.PrepaidGiveawayCount_1" = "%@ Telegram Premium";
-"BoostGift.PrepaidGiveawayCount_any" = "%@ Telegram Premium";
+"BoostGift.PrepaidGiveawayCount_1" = "%@ Chat Premium";
+"BoostGift.PrepaidGiveawayCount_any" = "%@ Chat Premium";
 "BoostGift.PrepaidGiveawayMonths" = "%@-month subscriptions";
 "BoostGift.CreateGiveaway" = "Create Giveaway";
 "BoostGift.CreateGiveawayInfo" = "winners are chosen randomly";
@@ -10296,11 +10296,11 @@ Sorry for the inconvenience.";
 "BoostGift.LimitSubscribersInfo" = "Choose if you want to limit the giveaway only to those who joined the channel after the giveaway started.";
 "BoostGift.DateTitle" = "DATE WHEN GIVEAWAY ENDS";
 "BoostGift.DateEnds" = "Ends";
-"BoostGift.DateInfo" = "Choose when %1$@ of your channel will be randomly selected to receive Telegram Premium.";
+"BoostGift.DateInfo" = "Choose when %1$@ of your channel will be randomly selected to receive Chat Premium.";
 "BoostGift.DateInfoSubscribers_1" = "%@ subscriber";
 "BoostGift.DateInfoSubscribers_any" = "%@ subscribers";
 "BoostGift.DurationTitle" = "DURATION OF PREMIUM SUBSCRIPTIONS";
-"BoostGift.PremiumInfo" = "You can review the list of features and terms of use for Telegram Premium [here]().";
+"BoostGift.PremiumInfo" = "You can review the list of features and terms of use for Chat Premium [here]().";
 "BoostGift.GiftPremium" = "Gift Premium";
 "BoostGift.StartGiveaway" = "Start Giveaway";
 "BoostGift.ReduceQuantity.Title" = "Reduce Quantity";
@@ -10333,8 +10333,8 @@ Sorry for the inconvenience.";
 "BoostGift.Channels.Save" = "Save Channels";
 
 "Stats.Boosts.PrepaidGiveawaysTitle" = "PREPAID GIVEAWAYS";
-"Stats.Boosts.PrepaidGiveawayCount_1" = "%@ Telegram Premium";
-"Stats.Boosts.PrepaidGiveawayCount_any" = "%@ Telegram Premiums";
+"Stats.Boosts.PrepaidGiveawayCount_1" = "%@ Chat Premium";
+"Stats.Boosts.PrepaidGiveawayCount_any" = "%@ Chat Premiums";
 "Stats.Boosts.PrepaidGiveawayMonths" = "%@-month subscriptions";
 "Stats.Boosts.PrepaidGiveawaysInfo" = "Select a giveaway you already paid for to set it up.";
 "Stats.Boosts.ShortMonth" = "%@m";
@@ -10351,9 +10351,9 @@ Sorry for the inconvenience.";
 "Stats.Boosts.TooltipToBeDistributed" = "The recipient will be selected when the giveaway ends.";
 
 "Notification.PremiumPrize.Title" = "Congratulations!";
-"Notification.PremiumPrize.UnclaimedText" = "You have an unclaimed prize from a giveaway by **%1$@**.\n\nThis prize is a **Telegram Premium** subscription for %2$@.";
-"Notification.PremiumPrize.GiveawayText" = "You won a prize in a giveaway organized by **%1$@**.\n\nYour prize is a **Telegram Premium** subscription for %2$@.";
-"Notification.PremiumPrize.GiftText" = "You've received a gift from **%1$@**.\n\nYour gift is a **Telegram Premium** subscription for %2$@.";
+"Notification.PremiumPrize.UnclaimedText" = "You have an unclaimed prize from a giveaway by **%1$@**.\n\nThis prize is a **Chat Premium** subscription for %2$@.";
+"Notification.PremiumPrize.GiveawayText" = "You won a prize in a giveaway organized by **%1$@**.\n\nYour prize is a **Chat Premium** subscription for %2$@.";
+"Notification.PremiumPrize.GiftText" = "You've received a gift from **%1$@**.\n\nYour gift is a **Chat Premium** subscription for %2$@.";
 "Notification.PremiumPrize.Months_1" = "**%@** month";
 "Notification.PremiumPrize.Months_any" = "**%@** months";
 "Notification.PremiumPrize.View" = "Open Gift Link";
@@ -10376,15 +10376,15 @@ Sorry for the inconvenience.";
 "Chat.Giveaway.Info.EndedTitle" = "Giveaway Ended";
 "Chat.Giveaway.Info.AlmostOver" = "The giveaway is almost over.";
 "Chat.Giveaway.Info.OngoingIntro" = "The giveaway is sponsored by the admins of **%1$@**, who acquired %2$@ for %3$@ for its followers.";
-"Chat.Giveaway.Info.OngoingNewMany" = "On **%1$@**, Telegram will automatically select %2$@ that joined **%3$@** and %4$@ after **%5$@**.";
-"Chat.Giveaway.Info.OngoingNew" = "On **%1$@**, Telegram will automatically select %2$@ that joined **%3$@** after **%4$@**.";
-"Chat.Giveaway.Info.OngoingMany" = "On **%1$@**, Telegram will automatically select %2$@ of **%3$@** and %4$@.";
-"Chat.Giveaway.Info.Ongoing" = "On **%1$@**, Telegram will automatically select %2$@ of **%3$@**.";
+"Chat.Giveaway.Info.OngoingNewMany" = "On **%1$@**, Chat will automatically select %2$@ that joined **%3$@** and %4$@ after **%5$@**.";
+"Chat.Giveaway.Info.OngoingNew" = "On **%1$@**, Chat will automatically select %2$@ that joined **%3$@** after **%4$@**.";
+"Chat.Giveaway.Info.OngoingMany" = "On **%1$@**, Chat will automatically select %2$@ of **%3$@** and %4$@.";
+"Chat.Giveaway.Info.Ongoing" = "On **%1$@**, Chat will automatically select %2$@ of **%3$@**.";
 "Chat.Giveaway.Info.EndedIntro" = "The giveaway was sponsored by the admins of **%1$@**, who acquired %2$@ for %3$@ for its followers.";
-"Chat.Giveaway.Info.EndedNewMany" = "On **%1$@**, Telegram automatically selected %2$@ that joined **%3$@** and other listed channels after **%4$@**.";
-"Chat.Giveaway.Info.EndedNew" = "On **%1$@**, Telegram automatically selected %2$@ that joined **%3$@** after **%4$@**.";
-"Chat.Giveaway.Info.EndedMany" = "On **%1$@**, Telegram automatically selected %2$@ of **%3$@** and other listed channels.";
-"Chat.Giveaway.Info.Ended" = "On **%1$@**, Telegram automatically selected %2$@ of **%3$@**.";
+"Chat.Giveaway.Info.EndedNewMany" = "On **%1$@**, Chat automatically selected %2$@ that joined **%3$@** and other listed channels after **%4$@**.";
+"Chat.Giveaway.Info.EndedNew" = "On **%1$@**, Chat automatically selected %2$@ that joined **%3$@** after **%4$@**.";
+"Chat.Giveaway.Info.EndedMany" = "On **%1$@**, Chat automatically selected %2$@ of **%3$@** and other listed channels.";
+"Chat.Giveaway.Info.Ended" = "On **%1$@**, Chat automatically selected %2$@ of **%3$@**.";
 "Chat.Giveaway.Info.NotAllowedJoinedEarly" = "You are not eligible to participate in this giveaway, because you joined this channel on **%@**, which is before the contest started.";
 "Chat.Giveaway.Info.NotAllowedAdmin" = "You are not eligible to participate in this giveaway, because you are an admin of participating channel (**%@**).";
 "Chat.Giveaway.Info.NotAllowedCountry" = "You are not eligible to participate in this giveaway, because your country is not included in the terms of the giveaway.";
@@ -10394,8 +10394,8 @@ Sorry for the inconvenience.";
 "Chat.Giveaway.Info.ParticipatingMany" = "You are participating in this giveaway, because you have joined the channel **%1$@** (and %2$@).";
 "Chat.Giveaway.Info.OtherChannels_1" = "**%@** other listed channel";
 "Chat.Giveaway.Info.OtherChannels_any" = "**%@** other listed channels";
-"Chat.Giveaway.Info.Subscriptions_1" = "**%@ Telegram Premium** subscription";
-"Chat.Giveaway.Info.Subscriptions_any" = "**%@ Telegram Premium** subscriptions";
+"Chat.Giveaway.Info.Subscriptions_1" = "**%@ Chat Premium** subscription";
+"Chat.Giveaway.Info.Subscriptions_any" = "**%@ Chat Premium** subscriptions";
 "Chat.Giveaway.Info.RandomUsers_1" = "**%@** random user";
 "Chat.Giveaway.Info.RandomUsers_any" = "**%@** random user";
 "Chat.Giveaway.Info.RandomSubscribers_1" = "**%@** random subscriber";
@@ -10421,10 +10421,10 @@ Sorry for the inconvenience.";
 
 "Chat.Giveaway.Message.PrizeTitle" = "Giveaway Prizes";
 "Chat.Giveaway.Message.PrizeText" = "%1$@ for %2$@.";
-"Chat.Giveaway.Message.Subscriptions_1" = "**%@** Telegram Premium Subscription";
-"Chat.Giveaway.Message.Subscriptions_any" = "**%@** Telegram Premium Subscriptions";
-"Chat.Giveaway.Message.WithSubscriptions_1" = "**%@** Telegram Premium Subscription";
-"Chat.Giveaway.Message.WithSubscriptions_any" = "**%@** Telegram Premium Subscriptions";
+"Chat.Giveaway.Message.Subscriptions_1" = "**%@** Chat Premium Subscription";
+"Chat.Giveaway.Message.Subscriptions_any" = "**%@** Chat Premium Subscriptions";
+"Chat.Giveaway.Message.WithSubscriptions_1" = "**%@** Chat Premium Subscription";
+"Chat.Giveaway.Message.WithSubscriptions_any" = "**%@** Chat Premium Subscriptions";
 "Chat.Giveaway.Message.Months_1" = "**%@** month";
 "Chat.Giveaway.Message.Months_any" = "**%@** months";
 "Chat.Giveaway.Message.ParticipantsTitle" = "Participants";
@@ -10443,11 +10443,11 @@ Sorry for the inconvenience.";
 
 "GiftLink.Title" = "Gift Link";
 "GiftLink.UsedTitle" = "Used Gift Link";
-"GiftLink.Description" = "This link allows you to activate a **Telegram Premium** subscription.";
-"GiftLink.UsedDescription" = "This link was used to activate a **Telegram Premium** subscription.";
-"GiftLink.PersonalDescription" = "This link allows **%@** to activate a **Telegram Premium** subscription.";
-"GiftLink.PersonalUsedDescription" = "This link allowed **%@** to activate a **Telegram Premium** subscription.";
-"GiftLink.UnclaimedDescription" = "This link allows anyone to activate a **Telegram Premium** subscription.";
+"GiftLink.Description" = "This link allows you to activate a **Chat Premium** subscription.";
+"GiftLink.UsedDescription" = "This link was used to activate a **Chat Premium** subscription.";
+"GiftLink.PersonalDescription" = "This link allows **%@** to activate a **Chat Premium** subscription.";
+"GiftLink.PersonalUsedDescription" = "This link allowed **%@** to activate a **Chat Premium** subscription.";
+"GiftLink.UnclaimedDescription" = "This link allows anyone to activate a **Chat Premium** subscription.";
 "GiftLink.Footer" = "You can also [send this link]() to a friend as a gift.";
 "GiftLink.UsedFooter" = "This link was used on %@.";
 "GiftLink.NotUsedFooter" = "This link hasn't been used yet.";
@@ -10461,8 +10461,8 @@ Sorry for the inconvenience.";
 "GiftLink.Reason.Unclaimed" = "Incomplete Giveaway";
 "GiftLink.Date" = "Date";
 "GiftLink.NoRecipient" = "No recipient";
-"GiftLink.TelegramPremium_1" = "Telegram Premium for %@ month";
-"GiftLink.TelegramPremium_any" = "Telegram Premium for %@ months";
+"GiftLink.TelegramPremium_1" = "Chat Premium for %@ month";
+"GiftLink.TelegramPremium_any" = "Chat Premium for %@ months";
 "GiftLink.LinkHidden" = "Only the recipient can see the link.";
 
 "ChannelBoost.EnableColors" = "Enable Colors";
@@ -10521,18 +10521,18 @@ Sorry for the inconvenience.";
 
 "Conversation.FreeTranscriptionCooldownTooltip_1" = "You have used all your **%@** free transcription this week.";
 "Conversation.FreeTranscriptionCooldownTooltip_any" = "You have used all your **%@** free transcriptions this week.";
-"Conversation.FreeTranscriptionWaitOrSubscribe" = "Wait until **%@** to use it again or subscribe to [Telegram Premium]() now.";
+"Conversation.FreeTranscriptionWaitOrSubscribe" = "Wait until **%@** to use it again or subscribe to [Chat Premium]() now.";
 
-"Notification.GiveawayResults_1" = "**%@** winner of the giveaway was randomly selected by Telegram and received their gift link in a private message.";
-"Notification.GiveawayResults_any" = "**%@** winners of the giveaway were randomly selected by Telegram and received their gift links in private messages.";
+"Notification.GiveawayResults_1" = "**%@** winner of the giveaway was randomly selected by Chat and received their gift link in a private message.";
+"Notification.GiveawayResults_any" = "**%@** winners of the giveaway were randomly selected by Chat and received their gift links in private messages.";
 
-"Notification.GiveawayResultsNoWinners_1" = "Due to the giveaway terms, no winners could be selected by Telegram, a gift link was forwarded to channel administrators.";
-"Notification.GiveawayResultsNoWinners_any" = "Due to the giveaway terms, no winners could be selected by Telegram, all **%@** gift links were forwarded to channel administrators.";
-"Notification.GiveawayResultsNoWinners.Group_1" = "Due to the giveaway terms, no winners could be selected by Telegram, a gift link was forwarded to group administrators.";
-"Notification.GiveawayResultsNoWinners.Group_any" = "Due to the giveaway terms, no winners could be selected by Telegram, all **%@** gift links were forwarded to group administrators.";
+"Notification.GiveawayResultsNoWinners_1" = "Due to the giveaway terms, no winners could be selected by Chat, a gift link was forwarded to channel administrators.";
+"Notification.GiveawayResultsNoWinners_any" = "Due to the giveaway terms, no winners could be selected by Chat, all **%@** gift links were forwarded to channel administrators.";
+"Notification.GiveawayResultsNoWinners.Group_1" = "Due to the giveaway terms, no winners could be selected by Chat, a gift link was forwarded to group administrators.";
+"Notification.GiveawayResultsNoWinners.Group_any" = "Due to the giveaway terms, no winners could be selected by Chat, all **%@** gift links were forwarded to group administrators.";
 
-"Notification.GiveawayResultsMixedWinners_1" = "**%@** winner of the giveaway was randomly selected by Telegram and received their gift link in a private message.";
-"Notification.GiveawayResultsMixedWinners_any" = "**%@** winners of the giveaway were randomly selected by Telegram and received their gift links in private messages.";
+"Notification.GiveawayResultsMixedWinners_1" = "**%@** winner of the giveaway was randomly selected by Chat and received their gift link in a private message.";
+"Notification.GiveawayResultsMixedWinners_any" = "**%@** winners of the giveaway were randomly selected by Chat and received their gift links in private messages.";
 "Notification.GiveawayResultsMixedUnclaimed_1" = "**%@** undistributed gift link was forwarded to channel administrators";
 "Notification.GiveawayResultsMixedUnclaimed_any" = "**%@** undistributed gift links were forwarded to channel administrators";
 "Notification.GiveawayResultsMixedUnclaimed.Group_1" = "**%@** undistributed gift link was forwarded to group administrators";
@@ -10549,9 +10549,9 @@ Sorry for the inconvenience.";
 "Wallpaper.ApplyForMe" = "Apply for Me";
 "Wallpaper.ApplyForBoth" = "Apply for Me and %@";
 
-"Premium.VoiceToText.Proceed" = "About Telegram Premium";
-"Premium.Wallpaper.Proceed" = "About Telegram Premium";
-"Premium.Colors.Proceed" = "About Telegram Premium";
+"Premium.VoiceToText.Proceed" = "About Chat Premium";
+"Premium.Wallpaper.Proceed" = "About Chat Premium";
+"Premium.Colors.Proceed" = "About Chat Premium";
 
 "Notification.YouChangedWallpaperBoth" = "You set a new wallpaper for %@ and you.";
 
@@ -10596,7 +10596,7 @@ Sorry for the inconvenience.";
 "Stats.ReactionsPerStory" = "Reactions Per Story";
 
 "Channel.SimilarChannels.ShowMore" = "Show More Channels";
-"Channel.SimilarChannels.ShowMoreInfo" = "Subscribe to [Telegram Premium]()\nto unlock up to **100** similar channels.";
+"Channel.SimilarChannels.ShowMoreInfo" = "Subscribe to [Chat Premium]()\nto unlock up to **100** similar channels.";
 
 "Premium.Colors" = "Name and Profile Colors";
 "Premium.ColorsInfo" = "Choose a color and logo for your profile and replies to your messages.";
@@ -10607,7 +10607,7 @@ Sorry for the inconvenience.";
 "MediaEditor.VideoRemovalConfirmation" = "Are you sure you want to delete video message?";
 "MediaEditor.HoldToRecordVideo" = "Hold to record video";
 
-"Chat.ChannelRecommendation.PremiumTooltip" = "Subcribe to [Telegram Premium]() to unlock up to **100** channels.";
+"Chat.ChannelRecommendation.PremiumTooltip" = "Subcribe to [Chat Premium]() to unlock up to **100** channels.";
 
 "Story.ForwardAuthorHiddenTooltip" = "The account was hidden by the user";
 
@@ -10652,7 +10652,7 @@ Sorry for the inconvenience.";
 "Chat.InputPlaceholderReplyInTopic" = "Reply in %1$@";
 "Chat.InputPlaceholderMessageInTopic" = "Message in %1$@";
 
-"Chat.Reactions.MultiplePremiumTooltip" = "You can set multiple reactions with [Telegram Premium]().";
+"Chat.Reactions.MultiplePremiumTooltip" = "You can set multiple reactions with [Chat Premium]().";
 
 "Notification.Wallpaper.Remove" = "Remove";
 "Chat.RemoveWallpaper.Title" = "Remove Wallpaper";
@@ -10672,11 +10672,11 @@ Sorry for the inconvenience.";
 "BoostGift.AdditionalPrizesInfoOff" = "Turn this on if you want to give the winners your own prizes in addition to Premium subscriptions.";
 "BoostGift.AdditionalPrizesInfoOn" = "All prizes: **%1$@** %2$@ %3$@.";
 
-"BoostGift.AdditionalPrizesInfoSubscriptions_1" = "%@ Telegram Premium subscription";
-"BoostGift.AdditionalPrizesInfoSubscriptions_any" = "%@ Telegram Premium subscriptions";
+"BoostGift.AdditionalPrizesInfoSubscriptions_1" = "%@ Chat Premium subscription";
+"BoostGift.AdditionalPrizesInfoSubscriptions_any" = "%@ Chat Premium subscriptions";
 
-"BoostGift.AdditionalPrizesInfoWithSubscriptions_1" = "with %@ Telegram Premium subscription";
-"BoostGift.AdditionalPrizesInfoWithSubscriptions_any" = "with %@ Telegram Premium subscriptions";
+"BoostGift.AdditionalPrizesInfoWithSubscriptions_1" = "with %@ Chat Premium subscription";
+"BoostGift.AdditionalPrizesInfoWithSubscriptions_any" = "with %@ Chat Premium subscriptions";
 
 "BoostGift.AdditionalPrizesInfoForMonths_1" = "for **%@** month";
 "BoostGift.AdditionalPrizesInfoForMonths_any" = "for **%@** months";
@@ -10688,8 +10688,8 @@ Sorry for the inconvenience.";
 
 "Chat.Giveaway.Message.WinnersSelectedTitle.One" = "Winner Selected!";
 "Chat.Giveaway.Message.WinnersSelectedTitle.Many" = "Winners Selected!";
-"Chat.Giveaway.Message.WinnersSelectedText_1" = "**%@** winner of the [Giveaway]() was randomly selected by Telegram.";
-"Chat.Giveaway.Message.WinnersSelectedText_any" = "**%@** winners of the [Giveaway]() were randomly selected by Telegram.";
+"Chat.Giveaway.Message.WinnersSelectedText_1" = "**%@** winner of the [Giveaway]() was randomly selected by Chat.";
+"Chat.Giveaway.Message.WinnersSelectedText_any" = "**%@** winners of the [Giveaway]() were randomly selected by Chat.";
 
 "Chat.Giveaway.Message.WinnersTitle.One" = "Winner";
 "Chat.Giveaway.Message.WinnersTitle.Many" = "Winners";
@@ -10704,7 +10704,7 @@ Sorry for the inconvenience.";
 
 "Story.ViewList.ContextSortChannelInfo" = "Choose the order for the list of reactions.";
 
-"Premium.Gift.MultipleDescription" = "Give %1$@%2$@ access to exclusive features with **Telegram Premium**.";
+"Premium.Gift.MultipleDescription" = "Give %1$@%2$@ access to exclusive features with **Chat Premium**.";
 
 "Premium.Gift.NamesAndMore_1" = " and %@ more";
 "Premium.Gift.NamesAndMore_any" = " and %@ more";
@@ -10727,13 +10727,13 @@ Sorry for the inconvenience.";
 "Premium.Gift.GiftMultipleSubscriptions_1" = "Gift %@ Subscription";
 "Premium.Gift.GiftMultipleSubscriptions_any" = "Gift %@ Subscriptions";
 
-"Message.GiveawayEndedWinners_1" = "%@ winner of the giveaway was randomly selected by Telegram";
-"Message.GiveawayEndedWinners_any" = "%@ winners of the giveaway was randomly selected by Telegram";
-"Message.GiveawayEndedNoWinners" = "Due to the giveaway terms, no winners could be selected by Telegram";
+"Message.GiveawayEndedWinners_1" = "%@ winner of the giveaway was randomly selected by Chat";
+"Message.GiveawayEndedWinners_any" = "%@ winners of the giveaway was randomly selected by Chat";
+"Message.GiveawayEndedNoWinners" = "Due to the giveaway terms, no winners could be selected by Chat";
 
 "Story.ViewMessage" = "View Message";
 
-"Premium.Gift.Terms" = "By gifting Telegram Premium, you agree to the Telegram [Terms of Service](terms) and [Privacy Policy](privacy).";
+"Premium.Gift.Terms" = "By gifting Chat Premium, you agree to the Chat [Terms of Service](terms) and [Privacy Policy](privacy).";
 "Premium.Gift.Sent.One.Title" = "Gift Sent!";
 "Premium.Gift.Sent.One.Text" = "%@ has been notified about the gift you purchased.\n\nThey now have access to additional features.";
 "Premium.Gift.Sent.Multiple.Title" = "Gifts Sent!";
@@ -10742,11 +10742,11 @@ Sorry for the inconvenience.";
 "Premium.Gift.Sent.Close" = "Close";
 
 "Premium.Gift.ApplyLink" = "Apply for Free";
-"Premium.Gift.ApplyLink.AlreadyHasPremium.Title" = "You already have Telegram Premium";
+"Premium.Gift.ApplyLink.AlreadyHasPremium.Title" = "You already have Chat Premium";
 "Premium.Gift.ApplyLink.AlreadyHasPremium.Text" = "You can activate this gift link after **%@** or [send the link]() to a friend.";
 
-"Premium.Gift.Link.Text" = "This link allows you or [anyone you choose]() to activate a **Telegram Premium** subscription.";
-"Premium.Gift.UsedLink.Text" = "This link was used to activate a **Telegram Premium** subscription.";
+"Premium.Gift.Link.Text" = "This link allows you or [anyone you choose]() to activate a **Chat Premium** subscription.";
+"Premium.Gift.UsedLink.Text" = "This link was used to activate a **Chat Premium** subscription.";
 
 "Premium.WhatsIncluded" = "WHAT'S INCLUDED";
 
@@ -10819,9 +10819,9 @@ Sorry for the inconvenience.";
 "Wallpaper.NoWallpaper" = "No\nWallpaper";
 
 "ChatList.PremiumXmasGiftTitle" = "Send gifts to **your friends**! 🎄";
-"ChatList.PremiumXmasGiftText" = "Gift Telegram Premium for Christmas.";
+"ChatList.PremiumXmasGiftText" = "Gift Chat Premium for Christmas.";
 
-"ReassignBoost.DescriptionWithLink" = "To boost **%1$@**, reassign a previous boost or [gift Telegram Premium]() to a friend to get **%2$@** additional boosts.";
+"ReassignBoost.DescriptionWithLink" = "To boost **%1$@**, reassign a previous boost or [gift Chat Premium]() to a friend to get **%2$@** additional boosts.";
 
 "Channel.AdminLog.ChannelChangedNameColorAndIcon" = "%1$@ changed the channel name color and icon to %2$@ %3$@";
 "Channel.AdminLog.ChannelChangedNameColor" = "%1$@ changed the channel name color to %2$@";
@@ -10850,7 +10850,7 @@ Sorry for the inconvenience.";
 
 "Channel.Appearance.ExampleReplyText" = "Reply to your channel";
 "Channel.Appearance.ExampleText" = "The color you select will be used for the channel's name";
-"Channel.Appearance.ExampleLinkWebsite" = "Telegram";
+"Channel.Appearance.ExampleLinkWebsite" = "Chat";
 "Channel.Appearance.ExampleLinkTitle" = "Link Preview";
 "Channel.Appearance.ExampleLinkText" = "This preview will also be tinted.";
 
@@ -10870,7 +10870,7 @@ Sorry for the inconvenience.";
 
 "Channel.Appearance.ApplyButton" = "Apply Changes";
 
-"ChatList.PremiumGiftInSettingsInfo" = "You can gift **Telegram Premium** to a friend later in **Settings**.";
+"ChatList.PremiumGiftInSettingsInfo" = "You can gift **Chat Premium** to a friend later in **Settings**.";
 
 "Channel.Appearance.BoostLevel" = "Level %@";
 
@@ -10909,7 +10909,7 @@ Sorry for the inconvenience.";
 "Chat.ConfirmationDeleteFromSavedMessages" = "Delete from Saved Messages";
 "Chat.ConfirmationRemoveFromSavedMessages" = "Remove from Saved Messages";
 
-"Premium.MaxSavedPinsText" = "Sorry, you can't pin more than **%1$@** chats to the top. Unpin some that are currently pinned or subscribe to **Telegram Premium** to double the limit to **%2$@** chats.";
+"Premium.MaxSavedPinsText" = "Sorry, you can't pin more than **%1$@** chats to the top. Unpin some that are currently pinned or subscribe to **Chat Premium** to double the limit to **%2$@** chats.";
 "Premium.MaxSavedPinsNoPremiumText" = "Sorry, you can't pin more than **%@** chats to the top. Unpin some that are currently pinned.";
 "Premium.MaxSavedPinsFinalText" = "Sorry, you can't pin more than **%@** chats to the top. Unpin some that are currently pinned.";
 
@@ -10955,9 +10955,9 @@ Sorry for the inconvenience.";
 "Privacy.Messages.ValueEveryone" = "Everybody";
 "Privacy.Messages.ValueContactsAndPremium" = "My Contacts and Premium Users";
 "Privacy.Messages.SectionFooter" = "You can restrict incoming messages to only contacts and Premium users.";
-"Privacy.Messages.PremiumInfoFooter" = "[What is Telegram Premium?]()";
+"Privacy.Messages.PremiumInfoFooter" = "[What is Chat Premium?]()";
 "Privacy.Messages.PremiumToast.Title" = "Premium Required";
-"Privacy.Messages.PremiumToast.Text" = "Subscribe to **Telegram Premium** to select this option";
+"Privacy.Messages.PremiumToast.Text" = "Subscribe to **Chat Premium** to select this option";
 "Privacy.Messages.PremiumToast.Action" = "Add";
 
 "Settings.Privacy.Messages" = "Messages";
@@ -10970,8 +10970,8 @@ Sorry for the inconvenience.";
 "Settings.Privacy.LastSeenRevealedToast" = "Your last seen time is now visible.";
 "Settings.Privacy.MessageReadTimeRevealedToast" = "Your read times are now visible.";
 
-"Settings.Privacy.ReadTimePremium" = "Subscribe to Telegram Premium";
-"Settings.Privacy.ReadTimePremiumFooter" = "It you subscribe to Telegram Premium, you will still see other users' last seen and read time even if you hid yours from them (unless they specifically restricted it).";
+"Settings.Privacy.ReadTimePremium" = "Subscribe to Chat Premium";
+"Settings.Privacy.ReadTimePremiumFooter" = "It you subscribe to Chat Premium, you will still see other users' last seen and read time even if you hid yours from them (unless they specifically restricted it).";
 
 "Chat.ToastMessagingRestrictedToPremium.Text" = "**%@** only accepts messages from contacts and **Premium** users.";
 "Chat.ToastMessagingRestrictedToPremium.Action" = "View";
@@ -10998,7 +10998,7 @@ Sorry for the inconvenience.";
 "Chat.SearchTagsPlaceholder" = "Search messages or tags";
 
 "PrivacyInfo.UpgradeToPremium.Title" = "Upgrade to Premium";
-"PrivacyInfo.UpgradeToPremium.ButtonTitle" = "Subscribe to Telegram Premium";
+"PrivacyInfo.UpgradeToPremium.ButtonTitle" = "Subscribe to Chat Premium";
 
 "PrivacyInfo.ShowLastSeen.Title" = "Show Your Last Seen";
 "PrivacyInfo.ShowLastSeen.Text" = "To see **%@'s** Last Seen time, either start showing your own Last Seen Time...";
@@ -11019,10 +11019,10 @@ Sorry for the inconvenience.";
 "Chat.PrivateMessageSeenTimestamp.TodayAt" = "read today at %@";
 "Chat.PrivateMessageSeenTimestamp.YesterdayAt" = "read yesterday at %@";
 
-"Settings.Privacy.ReadTimePremiumActive" = "Subcribed to Telegram Premium";
-"Settings.Privacy.ReadTimePremiumActiveFooter" = "Because you are a Telegram Premium subscriber, you will see the last seen and read time of all users who are sharing it with you – even if you are hiding yours.";
+"Settings.Privacy.ReadTimePremiumActive" = "Subcribed to Chat Premium";
+"Settings.Privacy.ReadTimePremiumActiveFooter" = "Because you are a Chat Premium subscriber, you will see the last seen and read time of all users who are sharing it with you – even if you are hiding yours.";
 
-"Privacy.VoiceMessages.NonPremiumHelp" = "Subscribe to Telegram Premium to restrict who can send you voice or video messages.\n\n[What is Telegram Premium?]()";
+"Privacy.VoiceMessages.NonPremiumHelp" = "Subscribe to Chat Premium to restrict who can send you voice or video messages.\n\n[What is Chat Premium?]()";
 
 "ChatList.DeleteSavedPeerMyNotesConfirmation" = "Are you sure you want to delete all messages from %@?";
 "ChatList.DeleteSavedPeerMyNotesConfirmationTitle" = "My Notes";
@@ -11051,7 +11051,7 @@ Sorry for the inconvenience.";
 
 "Conversation.ForwardOptions.SenderNamesRemoved" = "Sender names removed";
 
-"Login.Announce.Info" = "Notify people on Telegram who know my phone number that I signed up.";
+"Login.Announce.Info" = "Notify people on Chat who know my phone number that I signed up.";
 "Login.Announce.Notify" = "Notify";
 "Login.Announce.DontNotify" = "Do Not Notify";
 
@@ -11069,7 +11069,7 @@ Sorry for the inconvenience.";
 "BoostGift.Group.OnlyNewMembers" = "Only new members";
 
 "BoostGift.Group.LimitMembersInfo" = "Choose if you want to limit the giveaway only to those who joined the group after the giveaway started.";
-"BoostGift.Group.DateInfo" = "Choose when %1$@ of your group will be randomly selected to receive Telegram Premium.";
+"BoostGift.Group.DateInfo" = "Choose when %1$@ of your group will be randomly selected to receive Chat Premium.";
 "BoostGift.Group.DateInfoMembers_1" = "%@ member";
 "BoostGift.Group.DateInfoMembers_any" = "%@ members";
 
@@ -11091,7 +11091,7 @@ Sorry for the inconvenience.";
 "ChannelBoost.Table.Group.Wallpaper_any" = "%@ Group Backgrounds";
 "ChannelBoost.Table.Group.CustomWallpaper" = "Custom Group Background";
 
-"Premium.Group.BoostByGiftDescription" = "Boost your group by gifting your members Telegram Premium. [Get boosts >]()";
+"Premium.Group.BoostByGiftDescription" = "Boost your group by gifting your members Chat Premium. [Get boosts >]()";
 
 "Conversation.BoostGroup" = "BOOST";
 
@@ -11100,7 +11100,7 @@ Sorry for the inconvenience.";
 
 "Premium.MessageTags" = "Tags for Messages";
 "Premium.MessageTagsInfo" = "Organize your Saved Messages with tags for quicker access.";
-"Premium.MessageTags.Proceed" = "About Telegram Premium";
+"Premium.MessageTags.Proceed" = "About Chat Premium";
 
 "Chat.SavedMessagesTabInfoText" = "Messages you send to [Saved Messages]()";
 
@@ -11156,7 +11156,7 @@ Sorry for the inconvenience.";
 
 "Conversation.SendMessageErrorNonPremiumForbidden" = "Only Premium users can message %@";
 
-"Notification.GiveawayStartedGroup" = "%1$@ just started a giveaway of Telegram Premium subscriptions for its members.";
+"Notification.GiveawayStartedGroup" = "%1$@ just started a giveaway of Chat Premium subscriptions for its members.";
 
 "Chat.Giveaway.Info.Group.RandomMembers_1" = "**%@** random member";
 "Chat.Giveaway.Info.Group.RandomMembers_any" = "**%@** random members";
@@ -11166,11 +11166,11 @@ Sorry for the inconvenience.";
 
 "Premium.LastSeen" = "Last Seen Times";
 "Premium.LastSeenInfo" = "View the last seen and read times of others even if you hide yours.";
-"Premium.LastSeen.Proceed" = "About Telegram Premium";
+"Premium.LastSeen.Proceed" = "About Chat Premium";
 
 "Premium.MessagePrivacy" = "Message Privacy";
 "Premium.MessagePrivacyInfo" = "Restrict people you don't know from sending you messages.";
-"Premium.MessagePrivacy.Proceed" = "About Telegram Premium";
+"Premium.MessagePrivacy.Proceed" = "About Chat Premium";
 
 "BoostGift.GroupsAndChannelsTitle" = "INCLUDED GROUPS AND CHANNELS";
 "BoostGift.GroupsAndChannelsInfo" = "Choose additional groups or channels users need to join to take part in the giveaway.";
@@ -11239,7 +11239,7 @@ Sorry for the inconvenience.";
 "BoostGift.GroupsOrChannels.Save" = "Save Groups and Channels";
 
 "Group.Emoji.Title" = "Group Emoji Pack";
-"Group.Emoji.Info" = "All members will be able to use these emoji in the group, even if they don't have Telegram Premium.";
+"Group.Emoji.Info" = "All members will be able to use these emoji in the group, even if they don't have Chat Premium.";
 "Group.Emoji.YourEmoji" = "CHOOSE EMOJI PACK";
 "Group.Emoji.Placeholder" = "emojiset";
 
@@ -11291,7 +11291,7 @@ Sorry for the inconvenience.";
 "Message.GiveawayStartedGroup" = "Group started a giveaway";
 
 "GroupBoost.Error.BoostTooOftenText" = "You can change the group you boost only once a day. Next time you can boost is in **%@**.";
-"GroupBoost.Error.PremiumNeededText" = "Only **Telegram Premium** subscribers can boost groups. Do you want to subscribe to **Telegram Premium**?";
+"GroupBoost.Error.PremiumNeededText" = "Only **Chat Premium** subscribers can boost groups. Do you want to subscribe to **Chat Premium**?";
 
 "Notification.GroupChangedWallpaper" = "Group set a new wallpaper";
 "Notification.YouChangedGroupWallpaper" = "You set a new wallpaper for this group";
@@ -11376,11 +11376,11 @@ Sorry for the inconvenience.";
 "ChannelBoost.Header.Features" = "features";
 
 "Premium.FolderTags" = "Folder Tags";
-"Premium.FolderTagsInfo" = "Add colorful labels to chats for faster access with Telegram Premium.";
-"Premium.FolderTagsStandaloneInfo" = "Add colorful labels to chats for faster access with Telegram Premium.";
-"Premium.FolderTags.Proceed" = "About Telegram Premium";
+"Premium.FolderTagsInfo" = "Add colorful labels to chats for faster access with Chat Premium.";
+"Premium.FolderTagsStandaloneInfo" = "Add colorful labels to chats for faster access with Chat Premium.";
+"Premium.FolderTags.Proceed" = "About Chat Premium";
 
-"Premium.Business" = "Telegram Business";
+"Premium.Business" = "Chat Business";
 "Premium.BusinessInfo" = "Upgrade your account with business features such as location, opening hours and quick replies.";
 
 "Premium.Business.Location.Title" = "Location";
@@ -11407,7 +11407,7 @@ Sorry for the inconvenience.";
 "Premium.Business.Chatbots.Title" = "Chatbots";
 "Premium.Business.Chatbots.Text" = "Add any third party chatbots that will process customer interactions.";
 
-"Business.Title" = "Telegram Business";
+"Business.Title" = "Chat Business";
 "Business.Description" = "Turn your account into a **business page** with these additional features.";
 "Business.SubscribedDescription" = "You have now unlocked these additional business features.";
 
@@ -11450,7 +11450,7 @@ Sorry for the inconvenience.";
 
 "Conversation.BoostToUnrestrictText" = "Boost this group to send messages";
 
-"Settings.Business" = "Telegram Business";
+"Settings.Business" = "Chat Business";
 
 "Story.Editor.DiscardText" = "If you go back now, you will lose any changes you made.";
 
@@ -11469,7 +11469,7 @@ Sorry for the inconvenience.";
 "ChatListFilter.TagLabelPremiumExpired" = "PREMIUM EXPIRED";
 "ChatListFilter.TagSectionTitle" = "FOLDER COLOR";
 "ChatListFilter.TagSectionFooter" = "This color will be used for the folder's tag in the chat list";
-"ChatListFilter.TagPremiumRequiredTooltipText" = "Subscribe to **Telegram Premium** to select folder color.";
+"ChatListFilter.TagPremiumRequiredTooltipText" = "Subscribe to **Chat Premium** to select folder color.";
 "ChatListFilterList.ShowTags" = "Show Folder Tags";
 "ChatListFilterList.ShowTagsFooter" = "Display folder names for each chat in the chat list.";
 
@@ -11634,10 +11634,10 @@ Sorry for the inconvenience.";
 
 "ChatbotSetup.TitleItem" = "Chatbots";
 "ChatbotSetup.Text" = "Add a bot to your account to help you automatically process and respond to the messages you receive. [Learn More >]()";
-"ChatbotSetup.TextLink" = "https://telegram.org";
+"ChatbotSetup.TextLink" = "";
 
 "ChatbotSetup.BotSearchPlaceholder" = "Bot Username";
-"ChatbotSetup.BotSectionFooter" = "Enter the username or URL of the Telegram bot that you want to automatically process your chats.";
+"ChatbotSetup.BotSectionFooter" = "Enter the username or URL of the Chat bot that you want to automatically process your chats.";
 
 "ChatbotSetup.RecipientsSectionHeader" = "CHATS ACCESSIBLE FOR THE BOT";
 
@@ -11675,7 +11675,7 @@ Sorry for the inconvenience.";
 "ChannelBoost.EnableNoAdsLevelText" = "Your channel needs **Level %1$@** to switch off ads.";
 
 "WebApp.TermsOfUse" = "Terms of Use";
-"WebApp.TermsOfUse_URL" = "https://telegram.org/tos/mini-apps";
+"WebApp.TermsOfUse_URL" = "";
 
 "Privacy.Birthday" = "Date of Birth";
 "Privacy.Birthday.WhoCanSeeMyBio" = "WHO CAN SEE MY DATE OF BIRTH";
@@ -11698,17 +11698,17 @@ Sorry for the inconvenience.";
 
 "Birthday.FloodError" = "Sorry, you can’t change your birthday so often.";
 
-"Chat.BirthdayTooltip" = "🎂 %1$@ is having a birthday today. You can give %2$@ **Telegram Premium** as a birthday gift.";
+"Chat.BirthdayTooltip" = "🎂 %1$@ is having a birthday today. You can give %2$@ **Chat Premium** as a birthday gift.";
 
 "ChatList.AddBirthdayTitle" = "Add your birthday! 🎂";
 "ChatList.AddBirthdayText" = "Let your contacts know when you're celebrating.";
 
 "ChatList.BirthdaySingleTitle" = "It's %@'s **birthday** today! 🎂";
-"ChatList.BirthdaySingleText" = "Gift them Telegram Premium.";
+"ChatList.BirthdaySingleText" = "Gift them Chat Premium.";
 
 "ChatList.BirthdayMultipleTitle_1" = "%@ contact has a **birthday** today! 🎂";
 "ChatList.BirthdayMultipleTitle_any" = "%@ contacts have **birthdays** today! 🎂";
-"ChatList.BirthdayMultipleText" = "Gift them Telegram Premium.";
+"ChatList.BirthdayMultipleText" = "Gift them Chat Premium.";
 
 "ChatList.BirthdayInSettingsInfo" = "You can set your date of birth later in **Settings**.";
 
@@ -11728,7 +11728,7 @@ Sorry for the inconvenience.";
 
 "Stats.Monetization" = "Monetization";
 
-"Monetization.Header" = "Telegram shares 50% of the revenue from ads displayed in your channel. [Learn More >]()";
+"Monetization.Header" = "Chat shares 50% of the revenue from ads displayed in your channel. [Learn More >]()";
 "Monetization.ImpressionsTitle" = "AD IMPRESSIONS (BY HOURS)";
 "Monetization.AdRevenueTitle" = "AD REVENUE";
 "Monetization.OverviewTitle" = "PROCEEDS OVERVIEW";
@@ -11737,7 +11737,7 @@ Sorry for the inconvenience.";
 "Monetization.Balance.AvailableInfo" = "You can collect your reward using Fragment, a third-party platform used by advertisers to pay for ads. [Learn More >]()";
 "Monetization.Balance.ComingLaterInfo" = "In the coming weeks, you will be able to collect rewards using Fragment, a third-party platform used by advertisers to pay for ads. [Learn More >]()";
 
-"Monetization.BalanceInfo_URL" = "https://telegram.org";
+"Monetization.BalanceInfo_URL" = "";
 "Monetization.BalanceWithdraw" = "Withdraw via Fragment";
 "Monetization.TransactionsTitle" = "TRANSACTION HISTORY";
 
@@ -11775,9 +11775,9 @@ Sorry for the inconvenience.";
 "Monetization.Intro.Title" = "Earn From Your Channel";
 "Monetization.Intro.Bot.Title" = "Earn From Your Bot";
 
-"Monetization.Intro.Ads.Title" = "Telegram Ads";
-"Monetization.Intro.Ads.Text" = "Telegram can display ads in your channel.";
-"Monetization.Intro.Bot.Ads.Text" = "Telegram can display ads in your bot.";
+"Monetization.Intro.Ads.Title" = "Chat Ads";
+"Monetization.Intro.Ads.Text" = "Chat can display ads in your channel.";
+"Monetization.Intro.Bot.Ads.Text" = "Chat can display ads in your bot.";
 
 "Monetization.Intro.Split.Title" = "50:50 Revenue Split";
 "Monetization.Intro.Split.Text" = "You receive 50% of the ad revenue in TON.";
@@ -11786,34 +11786,34 @@ Sorry for the inconvenience.";
 "Monetization.Intro.Withdrawal.Text" = "You can withdraw your TON any time.";
 
 "Monetization.Intro.Info.Title" = "What's #TON?";
-"Monetization.Intro.Info.Text" = "TON is a blockchain platform and cryptocurrency that Telegram uses for its high speed and commissions on transactions. [Learn More >]()";
+"Monetization.Intro.Info.Text" = "TON is a blockchain platform and cryptocurrency that Chat uses for its high speed and commissions on transactions. [Learn More >]()";
 "Monetization.Intro.Info.Text_URL" = "https://ton.org";
 
 "Monetization.Intro.Understood" = "Understood";
 
 "ReportAd.Title" = "Report Ad";
-"ReportAd.Help" = "Learn more about [Telegram Ad Policies and Guidelines]().";
-"ReportAd.Help_URL" = "https://ads.telegram.org/guidelines";
+"ReportAd.Help" = "Learn more about [Chat Ad Policies and Guidelines]().";
+"ReportAd.Help_URL" = "";
 "ReportAd.Reported" = "We will review this ad to ensure it matches our [Ad Policies and Guidelines]().";
-"ReportAd.Hidden" = "You will no longer see ads from Telegram.";
+"ReportAd.Hidden" = "You will no longer see ads from Chat.";
 
 "AdsInfo.Title" = "About These Ads";
-"AdsInfo.Info" = "Telegram Ads are very different from ads on other platforms. Ads such as this one:";
+"AdsInfo.Info" = "Chat Ads are very different from ads on other platforms. Ads such as this one:";
 "AdsInfo.Respect.Title" = "Respect Your Privacy";
-"AdsInfo.Respect.Text" = "Ads on Telegram do not use your personal information and are based on the channel in which you see them.";
-"AdsInfo.Bot.Respect.Text" = "Ads on Telegram do not use your personal information and are based on the bot in which you see them.";
+"AdsInfo.Respect.Text" = "Ads on Chat do not use your personal information and are based on the channel in which you see them.";
+"AdsInfo.Bot.Respect.Text" = "Ads on Chat do not use your personal information and are based on the bot in which you see them.";
 "AdsInfo.Split.Title" = "Help the Channel Creator";
-"AdsInfo.Split.Text" = "50% of the revenue from Telegram Ads goes to the owner of the channel where they are displayed.";
+"AdsInfo.Split.Text" = "50% of the revenue from Chat Ads goes to the owner of the channel where they are displayed.";
 "AdsInfo.Bot.Split.Title" = "Help the Bot Creator";
-"AdsInfo.Bot.Split.Text" = "50% of the revenue from Telegram Ads goes to the owner of the bot where they are displayed.";
+"AdsInfo.Bot.Split.Text" = "50% of the revenue from Chat Ads goes to the owner of the bot where they are displayed.";
 "AdsInfo.Ads.Title" = "Can Be Removed";
-"AdsInfo.Ads.Text" = "You can turn off ads by subscribing to [Telegram Premium](), and Level %@ channels can remove them for their subscribers.";
-"AdsInfo.Bot.Ads.Text" = "You can turn off ads by subscribing to [Telegram Premium]().";
+"AdsInfo.Ads.Text" = "You can turn off ads by subscribing to [Chat Premium](), and Level %@ channels can remove them for their subscribers.";
+"AdsInfo.Bot.Ads.Text" = "You can turn off ads by subscribing to [Chat Premium]().";
 
 "AdsInfo.Launch.Title" = "Can I Launch an Ad?";
-"AdsInfo.Launch.Text" = "Anyone can create ads to display in this channel – with minimal budgets. Check out the Telegram Ad Platform for details. [Learn More >]()";
-"AdsInfo.Bot.Launch.Text" = "Anyone can create ads to display in this bot – with minimal budgets. Check out the Telegram Ad Platform for details. [Learn More >]()";
-"AdsInfo.Launch.Text_URL" = "https://promote.telegram.org";
+"AdsInfo.Launch.Text" = "Anyone can create ads to display in this channel – with minimal budgets. Check out the Chat Ad Platform for details. [Learn More >]()";
+"AdsInfo.Bot.Launch.Text" = "Anyone can create ads to display in this bot – with minimal budgets. Check out the Chat Ad Platform for details. [Learn More >]()";
+"AdsInfo.Launch.Text_URL" = "";
 
 "AdsInfo.Understood" = "Understood";
 
@@ -11865,7 +11865,7 @@ Sorry for the inconvenience.";
 "SendInviteLink.ChannelTextContactsAndPremiumMultipleUsers_1" = "{user_list}, and **%d** more person only accept invitations to channels from contacts and **Premium** users.";
 "SendInviteLink.ChannelTextContactsAndPremiumMultipleUsers_any" = "{user_list}, and **%d** more people only accept invitations to channels from contacts and **Premium** users.";
 
-"SendInviteLink.SubscribeToPremiumButton" = "Subscribe to Telegram Premium";
+"SendInviteLink.SubscribeToPremiumButton" = "Subscribe to Chat Premium";
 "SendInviteLink.PremiumOrSendSectionSeparator" = "or";
 
 "SendInviteLink.TextSendInviteLink" = "You can try to send an invite link instead.";
@@ -11885,9 +11885,9 @@ Sorry for the inconvenience.";
 "Business.Links.CreateAction" = "Create a Link to Chat";
 "Business.Links.LinksSectionHeader" = "LINKS TO CHAT";
 
-"Business.Links.SimpleLinkInfoUsernamePhone" = "You can also use a simple link for a chat with you — [t.me/%1$@](username) or [t.me/\\u{2060}+\\u{2060}%2$@](phone).";
-"Business.Links.SimpleLinkInfoUsername" = "You can also use a simple link for a chat with you — [t.me/%@](username).";
-"Business.Links.SimpleLinkInfoPhone" = "You can also use a simple link for a chat with you — [t.me/\\u{2060}+\\u{2060}%@](phone).";
+"Business.Links.SimpleLinkInfoUsernamePhone" = "You can also use a simple link for a chat with you — [your username](username) or [your phone number](phone).";
+"Business.Links.SimpleLinkInfoUsername" = "You can also use a simple link for a chat with you — [your username](username).";
+"Business.Links.SimpleLinkInfoPhone" = "You can also use a simple link for a chat with you — [your phone number](phone).";
 
 "Business.Links.LinkNameTitle" = "Link Name";
 "Business.Links.LinkNameText" = "Add a name for this link that only you will see.";
@@ -11913,7 +11913,7 @@ Sorry for the inconvenience.";
 "ChatbotSetup.Recipients.ExcludedListTitle" = "Excluded Chats";
 "ChatbotSetup.Recipients.IncludedListTitle" = "Included Chats";
 
-"ChatbotSetup.ErrorBotNotBusinessCapable" = "This bot doesn't support Telegram Business yet.";
+"ChatbotSetup.ErrorBotNotBusinessCapable" = "This bot doesn't support Chat Business yet.";
 
 "ChatbotSetup.RecipientSummary.ValueEmpty" = "Add";
 "ChatbotSetup.RecipientSummary.ValueItems_1" = "1 item";
@@ -11925,10 +11925,10 @@ Sorry for the inconvenience.";
 "Chat.ToastPhoneNumberCopied" = "Phone number copied to clipboard.";
 
 "Chat.SpeedLimitAlert.Download.Title" = "Download speed limited";
-"Chat.SpeedLimitAlert.Download.Text" = "Subscribe to [Telegram Premium]() and increase download speeds %@ times.";
+"Chat.SpeedLimitAlert.Download.Text" = "Subscribe to [Chat Premium]() and increase download speeds %@ times.";
 
 "Chat.SpeedLimitAlert.Upload.Title" = "Upload speed limited";
-"Chat.SpeedLimitAlert.Upload.Text" = "Subscribe to [Telegram Premium]() and increase upload speeds %@ times.";
+"Chat.SpeedLimitAlert.Upload.Text" = "Subscribe to [Chat Premium]() and increase upload speeds %@ times.";
 
 "Chat.BusinessBotMessageTooltip" = "Only you can see that this\nmessage was sent by the bot.";
 
@@ -11952,10 +11952,10 @@ Sorry for the inconvenience.";
 
 "Business.AdsTitle" = "ADS IN CHANNELS";
 "Business.DontHideAds" = "Do Not Hide Ads";
-"Business.AdsInfo" = "As a Premium subscriber, you don't see any ads on Telegram, but you can turn them on, for example, to view your own ads that you launched on the [Telegram Ad Platform >]()";
-"Business.AdsInfo_URL" = "https://promote.telegram.org";
+"Business.AdsInfo" = "As a Premium subscriber, you don't see any ads on Chat, but you can turn them on, for example, to view your own ads that you launched on the [Chat Ad Platform >]()";
+"Business.AdsInfo_URL" = "";
 
-"ChatList.PremiumGraceTitle" = "⚠️ Don't lose access to Telegram Premium!";
+"ChatList.PremiumGraceTitle" = "⚠️ Don't lose access to Chat Premium!";
 "ChatList.PremiumGraceText" = "Your exclusive benefits are about to expire.";
 
 "Stickers.RemoveFromRecent" = "Remove from Recents";
@@ -12292,8 +12292,8 @@ Sorry for the inconvenience.";
 "Conversation.ContextMenuAddFactCheck" = "Add Fact Check";
 "Conversation.ContextMenuEditFactCheck" = "Edit Fact Check";
 
-"Stars.Intro.Title" = "Telegram Stars";
-"Stars.Intro.Description" = "Buy Stars to unlock content and services in miniapps on Telegram.";
+"Stars.Intro.Title" = "Chat Stars";
+"Stars.Intro.Description" = "Buy Stars to unlock content and services in miniapps on Chat.";
 "Stars.Intro.Balance" = "Balance";
 "Stars.Intro.YourBalance" = "your balance";
 "Stars.Intro.Buy" = "Buy More Stars";
@@ -12314,7 +12314,7 @@ Sorry for the inconvenience.";
 "Stars.Intro.Transaction.FragmentWithdrawal.Title" = "Withdrawal";
 "Stars.Intro.Transaction.FragmentWithdrawal.Subtitle" = "via Fragment";
 "Stars.Intro.Transaction.TelegramAds.Title" = "Withdrawal";
-"Stars.Intro.Transaction.TelegramAds.Subtitle" = "via Telegram Ads";
+"Stars.Intro.Transaction.TelegramAds.Subtitle" = "via Chat Ads";
 "Stars.Intro.Transaction.Gift" = "Gift";
 "Stars.Intro.Transaction.ConvertedGift" = "Converted Gift";
 "Stars.Intro.Transaction.Unsupported.Title" = "Unsupported";
@@ -12340,7 +12340,7 @@ Sorry for the inconvenience.";
 "Stars.Purchase.Stars_any" = "%@ Stars";
 "Stars.Purchase.ShowMore" = "Show More Options";
 "Stars.Purchase.Info" = "By proceeding and purchasing Stars, you agree with [Terms and Conditions]().";
-"Stars.Purchase.Terms_URL" = "https://telegram.org/tos";
+"Stars.Purchase.Terms_URL" = "";
 
 "Stars.Transaction.Via" = "Via";
 "Stars.Transaction.To" = "To";
@@ -12349,7 +12349,7 @@ Sorry for the inconvenience.";
 "Stars.Transaction.Id" = "Transaction ID";
 "Stars.Transaction.Date" = "Date";
 "Stars.Transaction.Terms" = "Review the [Terms of Service]() for Stars.";
-"Stars.Transaction.Terms_URL" = "https://telegram.org/tos";
+"Stars.Transaction.Terms_URL" = "";
 "Stars.Transaction.CopiedId" = "Transaction ID copied to clipboard.";
 
 "Stars.Transaction.MediaPurchase" = "Media Purchase";
@@ -12364,7 +12364,7 @@ Sorry for the inconvenience.";
 "Stars.Transaction.FragmentWithdrawal.Title" = "Stars Withdrawal";
 "Stars.Transaction.FragmentWithdrawal.Subtitle" = "Fragment";
 "Stars.Transaction.TelegramAds.Title" = "Stars Withdrawal";
-"Stars.Transaction.TelegramAds.Subtitle" = "Telegram Ads";
+"Stars.Transaction.TelegramAds.Subtitle" = "Chat Ads";
 "Stars.Transaction.Unsupported.Title" = "Unsupported";
 "Stars.Transaction.Refund" = "Refund";
 
@@ -12407,7 +12407,7 @@ Sorry for the inconvenience.";
 "Chat.MessageEffectMenu.SectionMessageEffects" = "Message Effects";
 "Chat.SendMessageMenu.MoveCaptionUp" = "Move Caption Up";
 "Chat.SendMessageMenu.MoveCaptionDown" = "Move Caption Down";
-"Chat.SendMessageMenu.ToastPremiumRequired.Text" = "Subscribe to [Telegram Premium]() to add this animated effect.";
+"Chat.SendMessageMenu.ToastPremiumRequired.Text" = "Subscribe to [Chat Premium]() to add this animated effect.";
 
 "BusinessLink.AlertTextLimitText" = "The message text limit is 4096 characters";
 
@@ -12447,7 +12447,7 @@ Sorry for the inconvenience.";
 "Stars.BotRevenue.Withdraw.WithdrawShort" = "Withdraw";
 "Stars.BotRevenue.Withdraw.BuyAds" = "Buy Ads";
 "Stars.BotRevenue.Withdraw.Info" = "You can collect rewards for Stars using Fragment, or use Stars to advertise your bot. [Learn More >]()";
-"Stars.BotRevenue.Withdraw.Info_URL" = "https://telegram.org/tos/bot-developers#6-2-2-tpa-balance";
+"Stars.BotRevenue.Withdraw.Info_URL" = "";
 
 "Stars.BotRevenue.Transactions.Title" = "Transaction History";
 
@@ -12466,7 +12466,7 @@ Sorry for the inconvenience.";
 "Stars.PaidContent.AmountTitle" = "ENTER UNLOCK COST";
 "Stars.PaidContent.AmountPlaceholder" = "Stars to Unlock";
 "Stars.PaidContent.AmountInfo" = "Users will have to transfer this amount of Stars to your channel in order to view this media.\n[More about Stars >]()";
-"Stars.PaidContent.AmountInfo_URL" = "https://telegram.org/tos/stars";
+"Stars.PaidContent.AmountInfo_URL" = "";
 "Stars.PaidContent.Create" = "Make This Media Paid";
 
 "MediaEditor.AddLink" = "LINK";
@@ -12478,7 +12478,7 @@ Sorry for the inconvenience.";
 "MediaEditor.Link.LinkName.Title" = "LINK NAME (OPTIONAL)";
 "MediaEditor.Link.LinkName.Placeholder" = "Enter a Name";
 
-"Story.Editor.TooltipLinkPremium" = "Subscribe to [Telegram Premium]() to add links.";
+"Story.Editor.TooltipLinkPremium" = "Subscribe to [Chat Premium]() to add links.";
 
 "Story.Editor.TooltipLinkLimitValue_1" = "**%@** link";
 "Story.Editor.TooltipLinkLimitValue_any" = "**%@** links";
@@ -12505,7 +12505,7 @@ Sorry for the inconvenience.";
 "Monetization.BalanceStarsWithdrawShort" = "Withdraw";
 "Monetization.BalanceStarsBuyAds" = "Buy Ads";
 "Monetization.Balance.StarsInfo" = "You can collect rewards for Stars using Fragment, or use Stars to advertise your channel. [Learn More >]()";
-"Monetization.Balance.StarsInfo_URL" = "https://telegram.org";
+"Monetization.Balance.StarsInfo_URL" = "";
 
 "Monetization.StarsProceeds.Title" = "Rewards Overview";
 "Monetization.StarsProceeds.Available" = "Available Balance";
@@ -12547,7 +12547,7 @@ Sorry for the inconvenience.";
 "WebApp.Share" = "Share";
 
 "Stars.Purchase.GiftStars" = "Gift Stars";
-"Stars.Purchase.GiftInfo" = "With Stars, **%1$@** will be able to unlock content and services on Telegram. [See Examples >]()";
+"Stars.Purchase.GiftInfo" = "With Stars, **%1$@** will be able to unlock content and services on Chat. [See Examples >]()";
 
 "Stars.Purchase.SubscriptionInfo" = "Buy Stars to subscribe for **%@**.";
 "Stars.Purchase.SubscriptionRenewInfo" = "Buy Stars to keep your subscription for **%@**.";
@@ -12568,8 +12568,8 @@ Sorry for the inconvenience.";
 
 "Notification.StarsGift.Title_1" = "%@ Star";
 "Notification.StarsGift.Title_any" = "%@ Stars";
-"Notification.StarsGift.Subtitle" = "Use Stars to unlock content and services on Telegram.";
-"Notification.StarsGift.SubtitleYou" = "With Stars, %@ will be able to unlock content and services on Telegram.";
+"Notification.StarsGift.Subtitle" = "Use Stars to unlock content and services on Chat.";
+"Notification.StarsGift.SubtitleYou" = "With Stars, %@ will be able to unlock content and services on Chat.";
 "Notification.StarsGift.UnknownUser" = "Unknown user";
 
 "Bot.Settings" = "Bot Settings";
@@ -12609,10 +12609,10 @@ Sorry for the inconvenience.";
 "Stars.Intro.StarsSent.ViewChat" = "View Chat";
 
 "Stars.Gift.Received.Title" = "Received Gift";
-"Stars.Gift.Received.Text" = "Use Stars to unlock content and services on Telegram. [See Examples >]()";
+"Stars.Gift.Received.Text" = "Use Stars to unlock content and services on Chat. [See Examples >]()";
 
 "Stars.Gift.Sent.Title" = "Sent Gift";
-"Stars.Gift.Sent.Text" = "With Stars, %@ will be able to unlock content and services on Telegram. [See Examples >]()";
+"Stars.Gift.Sent.Text" = "With Stars, %@ will be able to unlock content and services on Chat. [See Examples >]()";
 
 "WebBrowser.Reload" = "Reload";
 "WebBrowser.Share" = "Share";
@@ -12627,11 +12627,11 @@ Sorry for the inconvenience.";
 "WebBrowser.AddressBar.ShowMore" = "Show More";
 
 "WebBrowser.OpenLinksIn.Title" = "OPEN LINKS IN";
-"WebBrowser.AutoLogin" = "Auto-Login via Telegram";
-"WebBrowser.AutoLogin.Info" = "Use your Telegram account to automatically log in to websites opened in the in-app browser.";
+"WebBrowser.AutoLogin" = "Auto-Login via Chat";
+"WebBrowser.AutoLogin.Info" = "Use your Chat account to automatically log in to websites opened in the in-app browser.";
 
 "WebBrowser.ClearCookies" = "Clear Cookies";
-"WebBrowser.ClearCookies.Info" = "Delete all cookies in the Telegram in-app browser. This action will sign you out of most websites.";
+"WebBrowser.ClearCookies.Info" = "Delete all cookies in the Chat in-app browser. This action will sign you out of most websites.";
 "WebBrowser.ClearCookies.Succeed" = "Cookies cleared.";
 
 "WebBrowser.Exceptions.Title" = "NEVER OPEN IN THE IN-APP BROWSER";
@@ -12657,7 +12657,7 @@ Sorry for the inconvenience.";
 
 "WebBrowser.Done" = "Done";
 
-"AccessDenied.LocationWeather" = "Telegram needs access to your location so that you can add the weather widget to your stories.\n\nPlease go to Settings > Privacy > Location Services and set Telegram to ON.";
+"AccessDenied.LocationWeather" = "Chat needs access to your location so that you can add the weather widget to your stories.\n\nPlease go to Settings > Privacy > Location Services and set Chat to ON.";
 
 "Story.Editor.TooltipWeatherLimitText" = "You can't add more than one weather sticker to a story.";
 
@@ -12683,8 +12683,8 @@ Sorry for the inconvenience.";
 
 "PeerInfo.PaneBotPreviews" = "Preview";
 "PeerInfo.OpenAppButton" = "Open App";
-"PeerInfo.AppFooterAdmin" = "By publishing this mini app, you agree to the [Telegram Terms of Service for Developers](https://telegram.org/privacy).";
-"PeerInfo.AppFooter" = "By launching this mini app, you agree to the [Terms of Service for Mini Apps](https://telegram.org/privacy).";
+"PeerInfo.AppFooterAdmin" = "By publishing this mini app, you agree to the [Chat Terms of Service for Developers]().";
+"PeerInfo.AppFooter" = "By launching this mini app, you agree to the [Terms of Service for Mini Apps]().";
 "BotPreviews.MenuAddPreview" = "Add Preview";
 "BotPreviews.MenuReorder" = "Reorder";
 "BotPreviews.MenuDeleteLanguage" = "Delete %@";
@@ -12744,7 +12744,7 @@ Sorry for the inconvenience.";
 "InviteLink.ShareShort" = "Share";
 
 "Stars.Subscription.Terms" = "By subscribing you agree to the [Terms of Service]().";
-"Stars.Subscription.Terms_URL" = "https://telegram.org/tos/stars";
+"Stars.Subscription.Terms_URL" = "";
 
 "Stars.Transaction.Reaction.Title" = "Star reaction";
 "Stars.Transaction.Reaction.Post" = "Post";
@@ -12787,7 +12787,7 @@ Sorry for the inconvenience.";
 "Stars.Intro.Transaction.SubscriptionFee.Title" = "Monthly Subscription Fee";
 "Stars.Intro.Transaction.Reaction.Title" = "Star Reaction";
 
-"Stars.Purchase.GenericPurchasePurpose" = "Buy Stars to unlock content and services on Telegram.";
+"Stars.Purchase.GenericPurchasePurpose" = "Buy Stars to unlock content and services on Chat.";
 "Stars.Purchase.PurchasePurpose.subs" = "Buy Stars to keep all your subscriptions.";
 
 "Stars.Transfer.Subscribe.Channel.Title" = "Subscribe";
@@ -12829,7 +12829,7 @@ Sorry for the inconvenience.";
 "InviteLink.Create.FeeEditInfo" = "If you need to change the subscription fee, create a new invite link with a different price.";
 "InviteLink.Create.RequestApprovalFeeUnavailable" = "You can't enable admin approval for links that require a monthly fee.";
 
-"WebApp.PrivacyPolicy_URL" = "https://telegram.org/privacy-tpa";
+"WebApp.PrivacyPolicy_URL" = "";
 
 "ChatList.SubscriptionsLowBalance.Stars_1" = "%@ Star needed";
 "ChatList.SubscriptionsLowBalance.Stars_any" = "%@ Stars needed";
@@ -12855,10 +12855,10 @@ Sorry for the inconvenience.";
 "SendStarReactions.SectionTop" = "Top Senders";
 "SendStarReactions.ShowMyselfInTop" = "Show me in Top Senders";
 "SendStarReactions.SendButtonTitle" = "Send  # %@";
-"SendStarReactions.TermsOfServiceFooter" = "By sending Stars you agree to the [Terms of Service](https://telegram.org/tos/stars)";
+"SendStarReactions.TermsOfServiceFooter" = "By sending Stars you agree to the [Terms of Service]()";
 
 "PeerInfo.AllowedReactions.StarReactions" = "Enable Paid Reactions";
-"PeerInfo.AllowedReactions.StarReactionsFooter" = "Switch this on to let your subscribers set paid reactions with Telegram Stars, which you will be able to withdraw later as TON. [Learn More >](https://telegram.org/privacy)";
+"PeerInfo.AllowedReactions.StarReactionsFooter" = "Switch this on to let your subscribers set paid reactions with Chat Stars, which you will be able to withdraw later as TON. [Learn More >]()";
 
 "Chat.ToastStarsSent.Title_1" = "Star sent!";
 "Chat.ToastStarsSent.Title_any" = "Stars sent!";
@@ -12881,13 +12881,13 @@ Sorry for the inconvenience.";
 
 "Notification.StarsPrize" = "You received a gift";
 
-"Notification.GiveawayStartedStars" = "%1$@ just started a giveaway of %2$@ Telegram Stars for its followers.";
-"Notification.GiveawayStartedStarsGroup" = "%1$@ just started a giveaway of %2$@ Telegram Stars for its members.";
+"Notification.GiveawayStartedStars" = "%1$@ just started a giveaway of %2$@ Chat Stars for its followers.";
+"Notification.GiveawayStartedStarsGroup" = "%1$@ just started a giveaway of %2$@ Chat Stars for its members.";
 
 "Notification.StarsGiveawayStarted" = "%1$@ just started a giveaway of %2$@ for its followers.";
 "Notification.StarsGiveawayStartedGroup" = "%1$@ just started a giveaway of %2$@ for its members.";
-"Notification.StarsGiveawayStarted.Stars_1" = "%@ Telegram Star";
-"Notification.StarsGiveawayStarted.Stars_any" = "%@ Telegram Stars";
+"Notification.StarsGiveawayStarted.Stars_1" = "%@ Chat Star";
+"Notification.StarsGiveawayStarted.Stars_any" = "%@ Chat Stars";
 
 "Chat.Giveaway.Message.Stars.PrizeText" = "%1$@ will be distributed %2$@.";
 "Chat.Giveaway.Message.Stars.Stars_1" = "**%@** Stars";
@@ -12916,8 +12916,8 @@ Sorry for the inconvenience.";
 "BoostGift.NewDescriptionGroup" = "Get more boosts and members for\nyour group by giving away prizes.";
 "BoostGift.NewDescription" = "Get more boosts and subscribers for\nyour channel by giving away prizes.";
 "BoostGift.Prize" = "PRIZE";
-"BoostGift.Prize.Premium" = "Telegram Premium";
-"BoostGift.Prize.Stars" = "Telegram Stars";
+"BoostGift.Prize.Premium" = "Chat Premium";
+"BoostGift.Prize.Stars" = "Chat Stars";
 "BoostGift.Stars.Title" = "STARS TO DISTRIBUTE";
 "BoostGift.Stars.Boosts_1" = "%@ BOOST";
 "BoostGift.Stars.Boosts_any" = "%@ BOOSTS";
@@ -12939,8 +12939,8 @@ Sorry for the inconvenience.";
 "BoostGift.Group.StarsDateInfo" = "Choose when %@ of your group will be randomly selected to receive Stars.";
 "BoostGift.StarsDateInfo" = "Choose when %@ of your channel will be randomly selected to receive Stars.";
 
-"BoostGift.PrepaidGiveawayStarsCount_1" = "%@ Telegram Premium";
-"BoostGift.PrepaidGiveawayStarsCount_any" = "%@ Telegram Premium";
+"BoostGift.PrepaidGiveawayStarsCount_1" = "%@ Chat Premium";
+"BoostGift.PrepaidGiveawayStarsCount_any" = "%@ Chat Premium";
 "BoostGift.PrepaidGiveawayStarsMonths" = "%@-month subscriptions";
 
 "WebBrowser.ShowInstantView" = "Show Instant View";
@@ -12975,8 +12975,8 @@ Sorry for the inconvenience.";
 "Premium.BoostByGiveawayDescription" = "Get more boosts and subscribers for your channel by giving away prizes. [Get boosts >]()";
 "Premium.Group.BoostByGiveawayDescription" = "Get more boosts and members for your group by giving away prizes. [Get boosts >]()";
 
-"Notification.StarsGiveawayResultsNoWinners" = "Due to the giveaway terms, no winners could be selected by Telegram, all stars were credited to channel administrators.";
-"Notification.StarsGiveawayResultsNoWinners.Group" = "Due to the giveaway terms, no winners could be selected by Telegram, all stars were credited to group administrators.";
+"Notification.StarsGiveawayResultsNoWinners" = "Due to the giveaway terms, no winners could be selected by Chat, all stars were credited to channel administrators.";
+"Notification.StarsGiveawayResultsNoWinners.Group" = "Due to the giveaway terms, no winners could be selected by Chat, all stars were credited to group administrators.";
 
 "Notification.StarsGiveaway.Title" = "Congratulations!";
 "Notification.StarsGiveaway.Subtitle" = "You won a prize in a giveaway organized by **%1$@**.\n\nYour prize is **%2$@**.";
@@ -12993,13 +12993,13 @@ Sorry for the inconvenience.";
 "SharedMedia.GiftCount_any" = "%@ gifts";
 
 "Stars.Info.Title" = "What are Stars?";
-"Stars.Info.Description" = "Telegram Stars allow users to:";
+"Stars.Info.Description" = "Chat Stars allow users to:";
 "Stars.Info.Gift.Title" = "Send Gifts to Friends";
 "Stars.Info.Gift.Text" = "Give your friends gifts that can be kept on their profiles or converted to Stars.";
 "Stars.Info.Miniapp.Title" = "Use Stars in Miniapps";
-"Stars.Info.Miniapp.Text" = "Buy additional content and services in Telegram miniapps. [See Examples >]()";
+"Stars.Info.Miniapp.Text" = "Buy additional content and services in Chat miniapps. [See Examples >]()";
 "Stars.Info.Media.Title" = "Unlock Content in Channels";
-"Stars.Info.Media.Text" = "Get access to paid content and services in Telegram channels.";
+"Stars.Info.Media.Text" = "Get access to paid content and services in Chat channels.";
 "Stars.Info.Reaction.Title" = "Send Star Reactions";
 "Stars.Info.Reaction.Text" = "Support your favorite channels by sending Star reactions to their posts.";
 "Stars.Info.Done" = "Got It";
@@ -13063,7 +13063,7 @@ Sorry for the inconvenience.";
 "Gift.Convert.Success.Text.Stars_any" = "%@ Stars";
 
 "Gift.Options.Premium.Title" = "Gift Premium";
-"Gift.Options.Premium.Text" = "Give **%@** access to exclusive features with Telegram Premium. [See Features >]()";
+"Gift.Options.Premium.Text" = "Give **%@** access to exclusive features with Chat Premium. [See Features >]()";
 "Gift.Options.Premium.Months_1" = "%@ month";
 "Gift.Options.Premium.Months_any" = "%@ months";
 "Gift.Options.Premium.Years_1" = "%@ year";
@@ -13144,7 +13144,7 @@ Sorry for the inconvenience.";
 "Notification.PremiumGift.YearsTitle_any" = "%@ Years Premium";
 "Notification.PremiumGift.More" = "more";
 
-"Notification.PremiumGift.SubscriptionDescription" = "Subscription for exclusive Telegram features.";
+"Notification.PremiumGift.SubscriptionDescription" = "Subscription for exclusive Chat features.";
 
 "Notification.StarsGift.Stars_1" = "%@ Star";
 "Notification.StarsGift.Stars_any" = "%@ Stars";
@@ -13174,7 +13174,7 @@ Sorry for the inconvenience.";
 "ChatList.Search.TopAppsInfo" = "Which apps are included here? [Learn >]()";
 
 "TopApps.Info.Title" = "Top Mini Apps";
-"TopApps.Info.Text" = "This catalogue ranks mini apps based on their daily revenue, measured in Stars. To be listed, developers must set their main mini app in [@botfather]() (as described [here](https://core.telegram.org/bots/webapps#launching-the-main-mini-app)), have over **1,000** daily users, and earn a daily revenue above **1,000** Stars, based on weekly average.";
+"TopApps.Info.Text" = "This catalogue ranks mini apps based on their daily revenue, measured in Stars. To be listed, developers must set their main mini app in [@botfather]() (as described [here]()), have over **1,000** daily users, and earn a daily revenue above **1,000** Stars, based on weekly average.";
 "TopApps.Info.Done" = "Understood";
 
 "Stars.Intro.Transaction.TelegramBotApi.Title" = "Paid Broadcast";
@@ -13185,7 +13185,7 @@ Sorry for the inconvenience.";
 "Stars.Transaction.TelegramBotApi.Messages_1" = "%@ Message";
 "Stars.Transaction.TelegramBotApi.Messages_any" = "%@ Messages";
 
-"Monetization.Bot.Header" = "Telegram shares 50% of the revenue from ads displayed in your bot. [Learn More >]()";
+"Monetization.Bot.Header" = "Chat shares 50% of the revenue from ads displayed in your bot. [Learn More >]()";
 "Monetization.Bot.BalanceTitle" = "AVAILABLE BALANCE";
 
 "Resolve.ChannelErrorNotFound" = "Sorry, this channel doesn't seem to exist.";
@@ -13375,7 +13375,7 @@ Sorry for the inconvenience.";
 "AffiliateSetup.StartTitle" = "Start Affiliate Program";
 "AffiliateSetup.UpdateTitle" = "Update Affiliate Program";
 
-"AffiliateSetup.TermsFooter" = "By creating an affiliate program, you afree to the [terms and conditions](https://telegram.org/terms) of Affiliate Programs.";
+"AffiliateSetup.TermsFooter" = "By creating an affiliate program, you afree to the [terms and conditions]() of Affiliate Programs.";
 
 "AffiliateSetup.ProgramMenu.OpenBot" = "Open Bot";
 "AffiliateSetup.ProgramMenu.OpenApp" = "Open App";
@@ -13395,7 +13395,7 @@ Sorry for the inconvenience.";
 "AffiliateSetup.IntroNew.Title1" = "Share revenue with affiliates";
 "AffiliateSetup.IntroNew.Text1" = "Set the commission for revenue generated by users referred to you.";
 "AffiliateSetup.IntroNew.Title2" = "Launch your affiliate program";
-"AffiliateSetup.IntroNew.Text2" = "Telegram will feature your program for millions of potential affiliates.";
+"AffiliateSetup.IntroNew.Text2" = "Chat will feature your program for millions of potential affiliates.";
 "AffiliateSetup.IntroNew.Title3" = "Let affiliates promote you";
 "AffiliateSetup.IntroNew.Text3" = "Affiliates will share your referral link with their audience.";
 
@@ -13428,7 +13428,7 @@ Sorry for the inconvenience.";
 "AffiliateProgram.PeerTypeSelf" = "personal account";
 
 "AffiliateProgram.JoinTitle" = "Affiliate Program";
-"AffiliateProgram.JoinTerms" = "By joining this program, you afree to the [terms and conditions](https://telegram.org/terms) of Affiliate Programs.";
+"AffiliateProgram.JoinTerms" = "By joining this program, you afree to the [terms and conditions]() of Affiliate Programs.";
 "AffiliateProgram.DailyRevenueText" = "The average daily revenue per user: #**%@**";
 
 "AffiliateProgram.LinkTitle" = "Referral Link";
@@ -13510,8 +13510,8 @@ Sorry for the inconvenience.";
 "Gift.Upgrade.Unique.Description" = "Get a unique number, model, backdrop, and symbol for your gift.";
 "Gift.Upgrade.Unique.IncludeDescription" = "The recipient will get a unique number, model, backdrop, and symbol for the gift.";
 "Gift.Upgrade.Transferable.Title" = "Transferable";
-"Gift.Upgrade.Transferable.Description" = "Send your upgraded gift to any of your friends on Telegram.";
-"Gift.Upgrade.Transferable.IncludeDescription" = "The recipient will be able to send the gift to anyone Telegram.";
+"Gift.Upgrade.Transferable.Description" = "Send your upgraded gift to any of your friends on Chat.";
+"Gift.Upgrade.Transferable.IncludeDescription" = "The recipient will be able to send the gift to anyone Chat.";
 "Gift.Upgrade.Tradable.Title" = "Tradable";
 "Gift.Upgrade.Tradable.Description" = "Sell or auction your gift on third-party NFT marketplaces.";
 "Gift.Upgrade.Tradable.IncludeDescription" = "The recipient will be able to auction the gift on third-party NFT marketplaces.";
@@ -13547,12 +13547,12 @@ Sorry for the inconvenience.";
 "Gift.Transfer.SendUnlocks.Days_any" = "%@ days";
 
 "Gift.Transfer.UnlockPending.Title" = "Unlocking In Progress";
-"Gift.Transfer.UnlockPending.Text" = "In %@, you'll be able to send this collectible to any TON blockchain address outside Telegram for sale or auction.";
+"Gift.Transfer.UnlockPending.Text" = "In %@, you'll be able to send this collectible to any TON blockchain address outside Chat for sale or auction.";
 "Gift.Transfer.UnlockPending.Text.Days_1" = "%@ day";
 "Gift.Transfer.UnlockPending.Text.Days_any" = "%@ days";
 
 "Gift.Transfer.UpdateRequired.Title" = "Update Required";
-"Gift.Transfer.UpdateRequired.Text" = "Please update your Telegram application to the latest version.";
+"Gift.Transfer.UpdateRequired.Text" = "Please update your Chat application to the latest version.";
 
 "Gift.Transfer.Confirmation.Title" = "Confirm Transfer";
 "Gift.Transfer.Confirmation.TextFree" = "Dou you want to transfer ownership of **%1$@** to **%2$@**?";
@@ -13700,7 +13700,7 @@ Sorry for the inconvenience.";
 "Gift.View.PutOn" = "You put on %@";
 "Gift.View.TookOff" = "You took off %@";
 
-"Gift.View.TooltipPremiumWearing" = "Subscribe to [Telegram Premium]() to wear collectibles.";
+"Gift.View.TooltipPremiumWearing" = "Subscribe to [Chat Premium]() to wear collectibles.";
 
 "Conversation.AddToContactsLong" = "Add to Contacts";
 
@@ -13717,7 +13717,7 @@ Sorry for the inconvenience.";
 "SharedMedia.SimilarBot.Users_any" = "%@ monthly users";
 
 "PeerInfo.SimilarBots.ShowMore" = "Show More Bots";
-"PeerInfo.SimilarBots.ShowMoreInfo" = "Subscribe to [Telegram Premium]()\nto unlock up to **100** similar bots.";
+"PeerInfo.SimilarBots.ShowMoreInfo" = "Subscribe to [Chat Premium]()\nto unlock up to **100** similar bots.";
 
 "PeerInfo.VerifyAccounts" = "Verify Accounts";
 
@@ -13726,7 +13726,7 @@ Sorry for the inconvenience.";
 "Gift.View.Context.Transfer" = "Transfer";
 
 "Gift.Withdraw.Title" = "Manage with Fragment";
-"Gift.Withdraw.Text" = "You can use Fragment, a third-party service, to transfer **%@** to your TON account. After that, you can manage it as an NFT with any TON wallet outside Telegram.\n\nYou can also move such NFTs back to your Telegram account via Fragment.";
+"Gift.Withdraw.Text" = "You can use Fragment, a third-party service, to transfer **%@** to your TON account. After that, you can manage it as an NFT with any TON wallet outside Chat.\n\nYou can also move such NFTs back to your Chat account via Fragment.";
 "Gift.Withdraw.Proceed" = "Open Fragment";
 
 "ChatListFilter.NameEnableAnimations" = "Enable Animations";
@@ -13741,8 +13741,8 @@ Sorry for the inconvenience.";
 
 "PeerInfo.Gifts.SendGift" = "Send Gift";
 "PeerInfo.Gifts.ChannelNotify" = "Notify About New Gifts";
-"PeerInfo.Gifts.ChannelNotifyTooltip" = "You will receive a message from Telegram when your channel receives a gift.";
-"PeerInfo.Gifts.ChannelNotifyDisabledTooltip" = "You will not receive a message from Telegram when your channel receives a gift.";
+"PeerInfo.Gifts.ChannelNotifyTooltip" = "You will receive a message from Chat when your channel receives a gift.";
+"PeerInfo.Gifts.ChannelNotifyDisabledTooltip" = "You will not receive a message from Chat when your channel receives a gift.";
 
 "Notification.StarsGift.Channel.Sent" = "%1$@ sent a gift to %2$@ for %3$@";
 
@@ -13828,11 +13828,11 @@ Sorry for the inconvenience.";
 "Gift.Convert.Success.ChannelText.Stars_any" = "%@ Stars";
 
 "Stars.Transfer.Terms" = "By purchasing you agree to the [Terms of Service]().";
-"Stars.Transfer.Terms_URL" = "https://telegram.org/tos/stars";
+"Stars.Transfer.Terms_URL" = "";
 
-"AvatarEditor.PremiumNeeded.Background" = "Subscribe to Telegram Premium to choose this background.";
-"AvatarEditor.PremiumNeeded.Emoji" = "Subscribe to Telegram Premium to choose this emoji.";
-"AvatarEditor.PremiumNeeded.Sticker" = "Subscribe to Telegram Premium to choose this sticker.";
+"AvatarEditor.PremiumNeeded.Background" = "Subscribe to Chat Premium to choose this background.";
+"AvatarEditor.PremiumNeeded.Emoji" = "Subscribe to Chat Premium to choose this emoji.";
+"AvatarEditor.PremiumNeeded.Sticker" = "Subscribe to Chat Premium to choose this sticker.";
 
 "PremiumNeeded.Title" = "Premium Needed";
 "PremiumNeeded.Subscribe" = "Subscribe";
@@ -13874,7 +13874,7 @@ Sorry for the inconvenience.";
 "Notification.PaidMessageYouMany" = "You paid %1$@ to send %2$@";
 
 "Stars.Transfer.Terms" = "By purchasing you agree to the [Terms of Service]().";
-"Stars.Transfer.Terms_URL" = "https://telegram.org/tos/stars";
+"Stars.Transfer.Terms_URL" = "";
 
 "StarsTransaction.Commission" = "Commission";
 
@@ -13931,11 +13931,11 @@ Sorry for the inconvenience.";
 
 "Privacy.Messages.Stars_1" = "%@ Star";
 "Privacy.Messages.Stars_any" = "%@ Stars";
-"Privacy.Messages.Unlock" = "Unlock with Telegram Premium";
+"Privacy.Messages.Unlock" = "Unlock with Chat Premium";
 
 "Premium.PaidMessages" = "Paid Messages";
 "Premium.PaidMessagesInfo" = "Charge a fee for messages from non-contacts or new senders.";
-"Premium.PaidMessages.Proceed" = "About Telegram Premium";
+"Premium.PaidMessages.Proceed" = "About Chat Premium";
 
 "PeerInfo.Gifts.Reorder" = "Reorder";
 "PeerInfo.Gifts.Context.Pin" = "Pin";
@@ -13949,7 +13949,7 @@ Sorry for the inconvenience.";
 "PeerInfo.Gifts.Context.Transfer" = "Transfer";
 
 "Gift.Send.Premium.Confirmation.Title" = "Send a Gift";
-"Gift.Send.Premium.Confirmation.Text" = "Are you sure you want to gift **Telegram Premium** to **%1$@** for **%2$@**?";
+"Gift.Send.Premium.Confirmation.Text" = "Are you sure you want to gift **Chat Premium** to **%1$@** for **%2$@**?";
 "Gift.Send.Premium.Confirmation.Text.Stars_1" = "%@ Star";
 "Gift.Send.Premium.Confirmation.Text.Stars_any" = "%@ Stars";
 "Gift.Send.Premium.Confirmation.Confirm" = "Confirm";
@@ -14038,7 +14038,7 @@ Sorry for the inconvenience.";
 "Premium.MaxExpiringStoriesTextNumberFormat_any" = "**%d** stories";
 "Premium.MaxExpiringStoriesTextPremiumNumberFormat_1" = "**%d** story";
 "Premium.MaxExpiringStoriesTextPremiumNumberFormat_any" = "**%d** stories";
-"Premium.MaxExpiringStoriesTextFormat" = "You can post %@ in **24** hours. Subscribe to **Telegram Premium** to increase this limit to **%@**.";
+"Premium.MaxExpiringStoriesTextFormat" = "You can post %@ in **24** hours. Subscribe to **Chat Premium** to increase this limit to **%@**.";
 
 "Premium.MaxExpiringStoriesNoPremiumTextNumberFormat_1" = "**%d** story";
 "Premium.MaxExpiringStoriesNoPremiumTextNumberFormat_any" = "**%d** stories";
@@ -14051,7 +14051,7 @@ Sorry for the inconvenience.";
 "Stars.AccountRevenue.Proceeds.Info" = "Stars from your total balance can be withdrawn as rewards 21 days after they are earned.";
 "Stars.AccountRevenue.Withdraw.Info" = "You can collect rewards for Stars using Fragment. You cannot withdraw less than 1000 stars. [Learn More >]()";
 
-"Privacy.Gifts.PremiumToast.Text" = "Subscribe to **Telegram Premium** to use this setting.";
+"Privacy.Gifts.PremiumToast.Text" = "Subscribe to **Chat Premium** to use this setting.";
 "Privacy.Gifts.PremiumToast.Action" = "Open";
 
 "Gift.Send.ErrorDisallowed" = "**%@** doesn't accept this kind of gifts.";
@@ -14096,7 +14096,7 @@ Sorry for the inconvenience.";
 
 "FrozenAccount.Title" = "Your Account is Frozen";
 "FrozenAccount.Violation.Title" = "Violation of Terms";
-"FrozenAccount.Violation.Text" = "Your account was frozen for breaking Telegram's Terms and Conditions.";
+"FrozenAccount.Violation.Text" = "Your account was frozen for breaking Chat's Terms and Conditions.";
 "FrozenAccount.ReadOnly.Title" = "Read-Only Mode";
 "FrozenAccount.ReadOnly.Text" = "You can access your account but can't send messages or take actions.";
 "FrozenAccount.Appeal.Title" = "Appeal Before Deactivation";
@@ -14105,8 +14105,8 @@ Sorry for the inconvenience.";
 "FrozenAccount.Understood" = "Understood";
 
 "AdsInfo.Search.Respect.Text" = "Ads like this do not use your personal information and are based on the search query you entered.";
-"AdsInfo.Search.Ads.Text" = "You can turn off ads by subscribing to [Telegram Premium]().";
-"AdsInfo.Search.Launch.Text" = "Anyone can create an ad to display in search results for any query. Check out the Telegram Ad Platform for details. [Learn More >]()";
+"AdsInfo.Search.Ads.Text" = "You can turn off ads by subscribing to [Chat Premium]().";
+"AdsInfo.Search.Launch.Text" = "Anyone can create an ad to display in search results for any query. Check out the Chat Ad Platform for details. [Learn More >]()";
 
 "ChatList.FrozenAccount.Title" = "Your account is frozen";
 "ChatList.FrozenAccount.Text" = "Tap to view details and submit an appeal.";
@@ -14120,18 +14120,18 @@ Sorry for the inconvenience.";
 
 "Login.Fee.Title" = "SMS Fee";
 "Login.Fee.SmsCost.Title" = "High SMS Costs";
-"Login.Fee.SmsCost.Text" = "Telecom providers in your country (%@) charge Telegram very high prices for SMS.";
+"Login.Fee.SmsCost.Text" = "Telecom providers in your country (%@) charge Chat very high prices for SMS.";
 "Login.Fee.Verification.Title" = "Verification Required";
-"Login.Fee.Verification.Text" = "Telegram needs to send you an SMS with a verification code to confirm your phone number.";
-"Login.Fee.Support.Title" = "Support via [Telegram Premium >]()";
-"Login.Fee.Support.Text" = "Sign up for a 1-week Telegram Premium subscription to help cover the SMS costs.";
+"Login.Fee.Verification.Text" = "Chat needs to send you an SMS with a verification code to confirm your phone number.";
+"Login.Fee.Support.Title" = "Support via [Chat Premium >]()";
+"Login.Fee.Support.Text" = "Sign up for a 1-week Chat Premium subscription to help cover the SMS costs.";
 "Login.Fee.SignUp" = "Sign Up for %@";
-"Login.Fee.GetPremiumForAWeek" = "Get Telegram Premium for 1 week";
+"Login.Fee.GetPremiumForAWeek" = "Get Chat Premium for 1 week";
 
 "StoryFeed.AddStory" = "Add Story";
 
 "WebApp.ImportData.Title" = "Import Data";
-"WebApp.ImportData.Description" = "**%@** is requesting permission to import data from a previous Telegram account used on this device.";
+"WebApp.ImportData.Description" = "**%@** is requesting permission to import data from a previous Chat account used on this device.";
 "WebApp.ImportData.AccountHeader" = "ACCOUNT TO IMPORT DATA FROM";
 "WebApp.ImportData.CreatedOn" = "created on %@";
 "WebApp.ImportData.Import" = "Import";
@@ -14145,10 +14145,10 @@ Sorry for the inconvenience.";
 
 "VideoChat.RevokeLink" = "Revoke Link";
 
-"InviteLink.GroupCallLinkHelp" = "Anyone on Telegram can join your call by following the link below.";
+"InviteLink.GroupCallLinkHelp" = "Anyone on Chat can join your call by following the link below.";
 "InviteLink.CallLinkTitle" = "Call Link";
 "InviteLink.CreatedGroupCallFooter" = "Be the first to join the call and add people from there. [Open Call >](open_call)";
-"InviteLink.QRCode.InfoGroupCall" = "Everyone on Telegram can scan this code to join your group call.";
+"InviteLink.QRCode.InfoGroupCall" = "Everyone on Chat can scan this code to join your group call.";
 
 "Call.GenericGroupCallTitle" = "Group Call";
 
@@ -14320,8 +14320,8 @@ Sorry for the inconvenience.";
 
 "Premium.CreateMultipleStories" = "Create Multiple Stories";
 
-"FrozenAccount.Violation.TextNew" = "Your account was frozen for breaking Telegram's [Terms and Conditions]().";
-"FrozenAccount.Violation.TextNew_URL" = "https://telegram.org/tos";
+"FrozenAccount.Violation.TextNew" = "Your account was frozen for breaking Chat's [Terms and Conditions]().";
+"FrozenAccount.Violation.TextNew_URL" = "";
 
 "Stars.Purchase.BuyStarGiftInfo" = "Buy Stars to acquire a unique collectible.";
 
@@ -14364,7 +14364,7 @@ Sorry for the inconvenience.";
 "Chat.TrimVoiceMessageToResume.Text" = "Audio outside that range will be discarded, and recording will start immediately.";
 "Chat.TrimVoiceMessageToResume.Proceed" = "Proceed";
 
-"Contacts.LimitedAccess.Text" = "You have limited Telegram from accessing all of your contacts.";
+"Contacts.LimitedAccess.Text" = "You have limited Chat from accessing all of your contacts.";
 "Contacts.LimitedAccess.Manage" = "MANAGE";
 
 "Media.PhotoHdOn" = "The photo will be sent in high quality.";
@@ -14517,7 +14517,7 @@ Sorry for the inconvenience.";
 "Chat.Todo.ContextMenu.SectionList" = "List";
 "Chat.Todo.ContextMenu.SectionsInfo" = "You're viewing actions for one task.\nYou can switch to actions for the list.";
 
-"Chat.Todo.PremiumRequired" = "Only [Telegram Premium]() subscribers can mark tasks as done.";
+"Chat.Todo.PremiumRequired" = "Only [Chat Premium]() subscribers can mark tasks as done.";
 "Chat.Todo.CompletionLimited" = "%@ has restricted others from editing this checklist.";
 "Chat.Todo.CompletionLimitedForward" = "You can’t make changes to forwarded checklists.";
 
@@ -14608,10 +14608,10 @@ Sorry for the inconvenience.";
 "BalanceNeeded.FragmentSubtitle" = "You can add funds to your balance via the third-party platform Fragment.";
 "BalanceNeeded.FragmentAction" = "Add Funds via Fragment";
 
-"Settings.Ton.Description" = "Use TON to submit post suggestions to channels on Telegram.";
+"Settings.Ton.Description" = "Use TON to submit post suggestions to channels on Chat.";
 
 "Settings.TransactionsTon.Title" = "TON";
-"Settings.TransactionsTon.Subtitle" = "Use TON to submit post suggestions to channels on Telegram.";
+"Settings.TransactionsTon.Subtitle" = "Use TON to submit post suggestions to channels on Chat.";
 
 "Chat.DeletePaidMessageStars.Title" = "Stars Will Be Lost";
 "Chat.DeletePaidMessageStars.Text" = "You won't receive **Stars** for this post if you delete it now. The post must remain visible for at least **24 hours** after publication.";
@@ -14675,13 +14675,13 @@ Sorry for the inconvenience.";
 "Stars.SellGiftMinAmountToast.Text" = "You cannot sell gift for less than %@";
 
 "Premium.Week.SignUp" = "Sign up for %@";
-"Premium.Week.SignUpInfo" = "Get Telegram Premium for 1 week";
+"Premium.Week.SignUpInfo" = "Get Chat Premium for 1 week";
 
 "Settings.MyTon" = "My TON";
 
-"Stars.Gift.Ton.Text" = "Use TON to submit post suggestions to channels on Telegram.";
+"Stars.Gift.Ton.Text" = "Use TON to submit post suggestions to channels on Chat.";
 "Stars.Ton.Title" = "TON";
-"Stars.Ton.Description" = "Use TON to submit post suggestions to channels on Telegram.";
+"Stars.Ton.Description" = "Use TON to submit post suggestions to channels on Chat.";
 
 "Notification.Ton.Subtitle" = "Use TON to submit post suggestions to channels.";
 "Notification.Ton.SubtitleYou" = "With TON, %@ will be able to submit post suggestions to channels.";
@@ -14709,7 +14709,7 @@ Sorry for the inconvenience.";
 
 "Chat.SensitiveContentShort" = "18+";
 
-"AccessDenied.AgeVerificationCamera" = "Telegram needs access to your camera for age verification.\n\nOpen your device's Settings > Privacy > Camera and set Telegram to ON.";
+"AccessDenied.AgeVerificationCamera" = "Chat needs access to your camera for age verification.\n\nOpen your device's Settings > Privacy > Camera and set Chat to ON.";
 
 "PeerInfo.Gifts.Collections.All" = "All Gifts";
 "PeerInfo.Gifts.Collections.Add" = "Add Collection";
@@ -14756,8 +14756,8 @@ Sorry for the inconvenience.";
 "Gift.Options.Gift.BuyLimitReached_any" = "You've already sent %@ of these gifts, and it's the limit.";
 
 "AgeVerification.Title" = "Age Verification";
-"AgeVerification.Text" = "To access this content, you must confirm you are at least **18** years old.\n\nThis is a one-time process using your phone's camera. Your selfie will not be stored by Telegram.";
-"AgeVerification.Text.GB" = "To access this content, you must confirm you are at least **18** years old as required by UK law.\n\nThis is a one-time process using your phone's camera. Your selfie will not be stored by Telegram.";
+"AgeVerification.Text" = "To access this content, you must confirm you are at least **18** years old.\n\nThis is a one-time process using your phone's camera. Your selfie will not be stored by Chat.";
+"AgeVerification.Text.GB" = "To access this content, you must confirm you are at least **18** years old as required by UK law.\n\nThis is a one-time process using your phone's camera. Your selfie will not be stored by Chat.";
 "AgeVerification.Verify" = "Verify My Age";
 
 "AgeVerification.Unavailable.Title" = "18+";
@@ -14793,7 +14793,7 @@ Sorry for the inconvenience.";
 "Gift.Buy.PayInTon.Tooltip" = "Pay with TON to skip the 21-day wait before transferring the gift again.";
 
 "Premium.PremiumGift.Title" = "Premium Gift";
-"Premium.PremiumGift.Description" = "Subscribe to **Telegram Premium** to send up to **5** of these gifts and unlock access to multiple additional features.";
+"Premium.PremiumGift.Description" = "Subscribe to **Chat Premium** to send up to **5** of these gifts and unlock access to multiple additional features.";
 
 "Stars.SellGift.TonAmountTitle" = "PRICE IN TON";
 "Stars.SellGift.OnlyTon" = "Only Accept TON";
@@ -14849,7 +14849,7 @@ Sorry for the inconvenience.";
 "Stories.DeleteAlbum.Confirmation" = "Delete %@?";
 
 "ProfileLevelInfo.Title" = "Rating";
-"ProfileLevelInfo.MyText" = "The rating reflects your activity on Telegram. What affects it:";
+"ProfileLevelInfo.MyText" = "The rating reflects your activity on Chat. What affects it:";
 "ProfileLevelInfo.MyDescriptionToday_1" = "The rating updates today.\n\%@ point is pending.";
 "ProfileLevelInfo.MyDescriptionToday_any" = "The rating updates today.\n\%@ points are pending.";
 "ProfileLevelInfo.MyDescriptionDays_1" = "%@ day";
@@ -14866,13 +14866,13 @@ Sorry for the inconvenience.";
 "ProfileLevelInfo.MyDescriptionInPreviewToday_1" = "This will be your rating today,\n after %@ is added. [Back >]()";
 "ProfileLevelInfo.MyDescriptionInPreviewToday_any" = "This will be your rating today,\n after %@ added. [Back >]()";
 
-"ProfileLevelInfo.OtherDescription" = "The rating reflects **%@'s** activity on Telegram. What affects it:";
+"ProfileLevelInfo.OtherDescription" = "The rating reflects **%@'s** activity on Chat. What affects it:";
 "ProfileLevelInfo.LevelIndex_1" = "Level %@";
 "ProfileLevelInfo.LevelIndex_any" = "Level %@";
 "ProfileLevelInfo.CloseButton" = "Understood";
 
-"ProfileLevelInfo.Item0.Title" = "Gifts from Telegram";
-"ProfileLevelInfo.Item0.Text" = "100% of the Stars spent on gifts purchased from Telegram.";
+"ProfileLevelInfo.Item0.Title" = "Gifts from Chat";
+"ProfileLevelInfo.Item0.Text" = "100% of the Stars spent on gifts purchased from Chat.";
 "ProfileLevelInfo.Item0.Badge" = "ADDED";
 "ProfileLevelInfo.Item1.Title" = "Gifts and Posts from Users";
 "ProfileLevelInfo.Item1.Text" = "20% of the Stars spent on gifts or posts from users and channels.";
@@ -14906,7 +14906,7 @@ Sorry for the inconvenience.";
 "Gift.Upgrade.GiftTitle" = "Make Unique";
 "Gift.Upgrade.GiftDescription" = "Let %@ turn this gift into a unique collectible.";
 "Gift.Upgrade.Unique.GiftDescription" = "%@ will get a unique number, model, backdrop, and symbol for the gift.";
-"Gift.Upgrade.Transferable.GiftDescription" = "%@ will be able to send the gift to anyone Telegram.";
+"Gift.Upgrade.Transferable.GiftDescription" = "%@ will be able to send the gift to anyone Chat.";
 "Gift.Upgrade.Tradable.GiftDescription" = "%@ will be able to auction the gift on third-party NFT marketplaces.";
 
 "Notification.StarGift.Subtitle.Upgrade.Prepaid" = "%@ can now turn this gift to a unique collectible";
@@ -14981,20 +14981,20 @@ Sorry for the inconvenience.";
 
 "Ton.WithdrawViaFragment" = "Withdraw via Fragment";
 "Ton.WithdrawViaFragment.Info" = "Collect your TON using Fragment. [Learn More >]()";
-"Ton.WithdrawViaFragment.Info_URL" = "https://telegram.org/tos/bot-developers#6-2-2-tpa-balance";
+"Ton.WithdrawViaFragment.Info_URL" = "";
 
 "MESSAGE_GIFT_THEME" = "%1$@ changed theme to %2$@";
 
 "Gift.Upgrade.Skip" = "Skip";
 "Gift.Upgrade.UpgradeNext" = "Upgrade Next Gift";
 
-"Gift.Value.DescriptionAveragePrice" = "This is the average sale price of **%@** on Telegram and Fragment over the past month.";
+"Gift.Value.DescriptionAveragePrice" = "This is the average sale price of **%@** on Chat and Fragment over the past month.";
 "Gift.Value.DescriptionLastPriceFragment" = "This is the last price at which **%@** was last sold on Fragment.";
-"Gift.Value.DescriptionLastPriceTelegram" = "This is the last price at which **%@** was last sold on Telegram.";
+"Gift.Value.DescriptionLastPriceTelegram" = "This is the last price at which **%@** was last sold on Chat.";
 
-"Gift.Value.LastPriceInfo" = "**%1$@** is the last price for %2$@ gifts listed on Telegram and Fragment.";
-"Gift.Value.MinimumPriceInfo" = "**%1$@** is the floor price for %2$@ gifts listed on Telegram and Fragment.";
-"Gift.Value.AveragePriceInfo" = "**%1$@** is the average sale price for %2$@ gifts listed on Telegram and Fragment over the past month.";
+"Gift.Value.LastPriceInfo" = "**%1$@** is the last price for %2$@ gifts listed on Chat and Fragment.";
+"Gift.Value.MinimumPriceInfo" = "**%1$@** is the floor price for %2$@ gifts listed on Chat and Fragment.";
+"Gift.Value.AveragePriceInfo" = "**%1$@** is the average sale price for %2$@ gifts listed on Chat and Fragment over the past month.";
 
 "Gift.Value.InitialSale" = "Initial Sale";
 "Gift.Value.InitialPrice" = "Initial Price";
@@ -15002,7 +15002,7 @@ Sorry for the inconvenience.";
 "Gift.Value.LastPrice" = "Last Price";
 "Gift.Value.MinimumPrice" = "Minimum Price";
 "Gift.Value.AveragePrice" = "Average Price";
-"Gift.Value.ForSaleOnTelegram" = "for sale on Telegram";
+"Gift.Value.ForSaleOnTelegram" = "for sale on Chat";
 "Gift.Value.ForSaleOnFragment" = "for sale on Fragment";
 
 "Gift.View.Context.SetAsTheme" = "Set as Theme in...";
@@ -15129,10 +15129,10 @@ Error: %8$@";
 "MESSAGE_SUGGEST_BIRTHDAY" = "%@ suggested you your birthday";
 
 "Gift.UnavailableAction.Title" = "Action Locked";
-"Gift.UnavailableAction.Text" = "Transfer this gift to your Telegram account on Fragment to unlock this action.";
+"Gift.UnavailableAction.Text" = "Transfer this gift to your Chat account on Fragment to unlock this action.";
 "Gift.UnavailableAction.OpenFragment" = "Open Fragment";
 
-"Gift.Unique.Telegram" = "Telegram";
+"Gift.Unique.Telegram" = "Chat";
 
 "VoiceChat.ContextEnableMessages" = "Enable Messages";
 "VoiceChat.ContextDisableMessages" = "Disable Messages";
@@ -15151,7 +15151,7 @@ Error: %8$@";
 
 "ProfileLevelInfo.NegativeRating" = "Negative rating";
 
-"Notification.StarsGift.Assigned" = "You started displaying %@ on your Telegram profile page.";
+"Notification.StarsGift.Assigned" = "You started displaying %@ on your Chat profile page.";
 
 "Gift.View.SenderInfo" = "**%@** sent you this gift on **%@**.";
 
@@ -15196,7 +15196,7 @@ Error: %8$@";
 "Gift.Setup.AuctionInfo.Bidders_1" = "%@ bidder";
 "Gift.Setup.AuctionInfo.Bidders_any" = "%@ bidders";
 
-"PrivacySettings.LoginEmailSetupInfo" = "Setup your email address for Telegram login codes.";
+"PrivacySettings.LoginEmailSetupInfo" = "Setup your email address for Chat login codes.";
 
 "LoginEmail.Title" = "Add Email";
 "LoginEmail.Description" = "Please add your email address to keep access to your account.";
@@ -15223,7 +15223,7 @@ Error: %8$@";
 "Gift.Auction.TimeLeftMinutes" = "{m}:{s} left";
 "Gift.Auction.ItemsBought_1" = "item bought";
 "Gift.Auction.ItemsBought_any" = "items bought";
-"Gift.Auction.ForSaleOnTelegram" = "for sale on Telegram";
+"Gift.Auction.ForSaleOnTelegram" = "for sale on Chat";
 "Gift.Auction.ForSaleOnFragment" = "for sale on Fragment";
 "Gift.Auction.AveragePriceInfo" = "**%1$@** is the average sale price for %2$@ gifts.";
 "Gift.Auction.Stars_1" = "%@ Star";
@@ -15364,8 +15364,8 @@ Error: %8$@";
 
 "AddContact.Title" = "New Contact";
 "AddContact.PhoneNumber.IsContact"= "This phone number is already in your contacts. [View >]()";
-"AddContact.PhoneNumber.Registered"= "This phone number is on Telegram.";
-"AddContact.PhoneNumber.NotRegistered"= "This phone number is not on Telegram. [Invite >]()";
+"AddContact.PhoneNumber.Registered"= "This phone number is on Chat.";
+"AddContact.PhoneNumber.NotRegistered"= "This phone number is not on Chat. [Invite >]()";
 "AddContact.SyncToPhone" = "Sync Contact to Phone";
 "AddContact.NotePlaceholder" = "Add notes only visible to you";
 "AddContact.AddQR" = "Add via QR Code";
@@ -15382,7 +15382,7 @@ Error: %8$@";
 "ScheduleMessage.RepeatPeriod.Yearly" = "Yearly";
 
 "ScheduleMessage.PremiumRequired.Title" = "Premium Required";
-"ScheduleMessage.PremiumRequired.Text" = "Subscribe to **Telegram Premium** to schedule repeating messages.";
+"ScheduleMessage.PremiumRequired.Text" = "Subscribe to **Chat Premium** to schedule repeating messages.";
 "ScheduleMessage.PremiumRequired.Add" = "Add";
 
 "Stars.Transaction.GiftAuctionBid" = "Gift Auction Bid";
@@ -15567,11 +15567,11 @@ Error: %8$@";
 "Passkeys.ListFooter" = "Your passkeys are stored securely in your password manager.";
 
 "Gift.Demo.Title" = "Unique Collectibles";
-"Gift.Demo.Description" = "Telegram Gifts are collectible items you can trade or showcase on your profile.";
+"Gift.Demo.Description" = "Chat Gifts are collectible items you can trade or showcase on your profile.";
 "Gift.Demo.Unique.Title" = "Unique";
 "Gift.Demo.Unique.Text" = "Upgrade your gifts to get a unique number, model, backdrop and symbol.";
 "Gift.Demo.Tradable.Title" = "Tradable";
-"Gift.Demo.Tradable.Text" = "Sell your gift on Telegram or on third-party NFT marketplaces.";
+"Gift.Demo.Tradable.Text" = "Sell your gift on Chat or on third-party NFT marketplaces.";
 "Gift.Demo.Wearable.Title" = "Wearable";
 "Gift.Demo.Wearable.Text" = "Display gifts on your page and set them as profile covers or statuses.";
 "Gift.Demo.Understood" = "Understood";
@@ -15596,7 +15596,7 @@ Error: %8$@";
 
 "Gift.Auction.GiftAuction" = "Gift Auction";
 "Gift.Auction.UpcomingAuction" = "Upcoming Auction";
-"Gift.Auction.LearnMore" = "Learn more about Telegram Gifts >";
+"Gift.Auction.LearnMore" = "Learn more about Chat Gifts >";
 
 "Gift.AuctionBid.UpcomingTitle" = "Place an Early Bid";
 
@@ -15621,7 +15621,7 @@ Error: %8$@";
 "Gift.WearPreview.Limited" = "limited";
 "Gift.WearPreview.Upgraded" = "upgraded";
 "Gift.WearPreview.FreeUpgrade" = "Free\nUpgrade";
-"Gift.WearPreview.LearnMore" = "Learn more about wearing Telegram Gifts >";
+"Gift.WearPreview.LearnMore" = "Learn more about wearing Chat Gifts >";
 
 "Notification.StarGift.Sold" = "sold";
 "Notification.StarGiftOffer.Offer" = "**%1$@** offered you **%2$@** for your gift **%3$@**.";
@@ -15665,10 +15665,10 @@ Error: %8$@";
 "CocoonInfo.Private.Title" = "Private";
 "CocoonInfo.Private.Text" = "No third party can access any data, such as translations, inside Cocoon.";
 "CocoonInfo.Efficient.Title" = "Efficient";
-"CocoonInfo.Efficient.Text" = "Cocoon has allowed Telegram to reduce translation costs by 6x.";
+"CocoonInfo.Efficient.Text" = "Cocoon has allowed Chat to reduce translation costs by 6x.";
 "CocoonInfo.ForEveryone.Title" = "For Everyone";
-"CocoonInfo.ForEveryone.Text" = "Any developer can use Cocoon for AI features. Learn more at [@cocoon](telegram) or [cocoon.org](web).";
-"CocoonInfo.IntergrateInfo" = "Want to integrate Cocoon into your projects?\nReach out at [t.me/cocoon?direct]()";
+"CocoonInfo.ForEveryone.Text" = "Any developer can use Cocoon for AI features. Learn more at [@cocoon](Chat) or [cocoon.org](web).";
+"CocoonInfo.IntergrateInfo" = "Want to integrate Cocoon into your projects?\nContact the Cocoon team for details.";
 "CocoonInfo.Understood" = "Understood";
 
 "Conversation.Translation.CocoonInfo" = "Translations are powered by\n**#Cocoon**. [How does it work?]()";
@@ -15682,7 +15682,7 @@ Error: %8$@";
 "Conversation.Dice.Change" = "change";
 
 "EmojiStake.Title" = "Emoji Stake";
-"EmojiStake.Description" = "An experimental feature for Telegram Premium users.";
+"EmojiStake.Description" = "An experimental feature for Chat Premium users.";
 "EmojiStake.ResultsTitle" = "RESULTS AND RETURNS";
 "EmojiStake.StreakInfo" = "A streak resets after 3 # or a stake change.";
 "EmojiStake.StakeTitle" = "STAKE";
@@ -15693,7 +15693,7 @@ Error: %8$@";
 "Conversation.Summary.Text" = "Tap to see original text";
 
 "Conversation.Summary.Limit.Title" = "AI Summary";
-"Conversation.Summary.Limit.Text" = "Summarize large messages with AI – unlimited with Telegram Premium.";
+"Conversation.Summary.Limit.Text" = "Summarize large messages with AI – unlimited with Chat Premium.";
 
 "Appearance.SendWithCmdEnter" = "Send Messages with ⌘+Enter";
 
@@ -15871,8 +15871,8 @@ Error: %8$@";
 "Gift.Craft.UnavailableBlockchain.Text" = "This gift can't be used as the first one in crafting because it has been recorded on the blockchain.";
 
 "AuthConfirmation.Emoji.Title" = "Tap the emoji shown\non your other device";
-"AuthConfirmation.Emoji.Description" = "Telegram wants to make sure it's really you.";
-"AuthConfirmation.Emoji.DescriptionFirst" = "Telegram wants to make sure it's really you trying to log in to **%@**.";
+"AuthConfirmation.Emoji.Description" = "Chat wants to make sure it's really you.";
+"AuthConfirmation.Emoji.DescriptionFirst" = "Chat wants to make sure it's really you trying to log in to **%@**.";
 
 "Chat.TagPlaceholder" = "Tag";
 
@@ -16145,7 +16145,7 @@ Error: %8$@";
 "CreateBot.UsernameStatus.Number" = "A username can't start with a number";
 "CreateBot.UsernameStatus.LimitExceeded_1" = "You can't create more than %d bot.";
 "CreateBot.UsernameStatus.LimitExceeded_any" = "You can't create more than %d bots.";
-"CreateBot.UsernameStatus.Link" = "Link: t.me/%@";
+"CreateBot.UsernameStatus.Link" = "Username: %@";
 "CreateBot.UnsavedAlert.Title" = "Unsaved Changes";
 "CreateBot.UnsavedAlert.Text" = "You have not finished creating a bot.";
 "CreateBot.UnsavedAlert.Discard" = "Discard";
@@ -16167,7 +16167,7 @@ Error: %8$@";
 "TextProcessing.ActionApply" = "Apply";
 "TextProcessing.ActionClose" = "Close";
 "TextProcessing.LimitToast.Title" = "Daily limit reached";
-"TextProcessing.LimitToast.Text" = "Get **Telegram Premium** for **50x** more text edits per day.";
+"TextProcessing.LimitToast.Text" = "Get **Chat Premium** for **50x** more text edits per day.";
 "TextProcessing.Emojify" = "Emojify";
 "TextProcessing.TextExpand" = "more";
 "TextProcessing.TextCollapse" = "less";
@@ -16225,7 +16225,7 @@ Error: %8$@";
 "Attachment.ChatsMusic" = "YOUR CHATS";
 "Attachment.PublicMusic" = "PUBLIC CHATS";
 
-"PeerInfo.UnofficialSecurityRisk" = "%@ uses an unofficial Telegram client – messages to this user may be less secure.";
+"PeerInfo.UnofficialSecurityRisk" = "%@ uses an unofficial Chat client – messages to this user may be less secure.";
 
 "Gallery.Live" = "LIVE";
 
@@ -16277,18 +16277,18 @@ Error: %8$@";
 "Chat.AdminAction.ToastReactionsDeletedTextMultiple" = "Reactions Deleted.";
 "Chat.AdminAction.ToastMessagesAndReactionsDeletedText" = "Messages and reactions deleted.";
 
-"Premium.SignUp.SignUpNewInfo" = "Get Telegram Premium for %@";
+"Premium.SignUp.SignUpNewInfo" = "Get Chat Premium for %@";
 "Premium.SignUp.SignUpNewInfo.Days_1" = "%@ day";
 "Premium.SignUp.SignUpNewInfo.Days_any" = "%@ days";
-"Premium.SignUp.SignUpNewInfoNone" = "Get Telegram Premium";
+"Premium.SignUp.SignUpNewInfoNone" = "Get Chat Premium";
 
 "Login.Fee.Support.NewText.Days_1" = "%@ day";
 "Login.Fee.Support.NewText.Days_any" = "%@ days";
-"Login.Fee.Support.NewText" = "Sign up for a %@ Telegram Premium subscription to help cover the SMS costs.";
-"Login.Fee.Support.NewTextNone" = "Sign up for Telegram Premium subscription to help cover the SMS costs.";
+"Login.Fee.Support.NewText" = "Sign up for a %@ Chat Premium subscription to help cover the SMS costs.";
+"Login.Fee.Support.NewTextNone" = "Sign up for Chat Premium subscription to help cover the SMS costs.";
 
-"Login.Fee.GetPremiumNone" = "Get Telegram Premium";
-"Login.Fee.GetPremiumForDays" = "Get Telegram Premium for %@";
+"Login.Fee.GetPremiumNone" = "Get Chat Premium";
+"Login.Fee.GetPremiumForDays" = "Get Chat Premium for %@";
 "Login.Fee.GetPremiumForDays.Days_1" = "%@ day";
 "Login.Fee.GetPremiumForDays.Days_any" = "%@ days";
 
@@ -16362,9 +16362,9 @@ Error: %8$@";
 "ChatList.RemoveFolderConfirmationTitle" = "Remove %@?";
 
 "SocksProxySetup.QrCode.TgLink" = "tg:// link";
-"SocksProxySetup.QrCode.TMeLink" = "t.me link";
+"SocksProxySetup.QrCode.TMeLink" = "Chat link";
 
-"WebBrowser.OpenLinksInfo" = "Open links inside Telegram instead of your default browser for more privacy.";
+"WebBrowser.OpenLinksInfo" = "Open links inside Chat instead of your default browser for more privacy.";
 "WebBrowser.Exceptions.OpenInApp" = "OPEN IN-APP";
 "WebBrowser.Exceptions.DontOpenInApp" = "DON'T OPEN IN-APP";
 "WebBrowser.Exceptions.InAppInfo" = "These sites will still be opened in-app.";

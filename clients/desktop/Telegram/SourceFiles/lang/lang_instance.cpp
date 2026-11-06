@@ -232,6 +232,16 @@ Language DefaultLanguage() {
 	};
 }
 
+Language BundledChineseLanguage() {
+	return Language{
+		u"zh-Hans"_q,
+		u"zh"_q,
+		QString(),
+		u"Simplified Chinese"_q,
+		u"简体中文"_q,
+	};
+}
+
 struct Instance::PrivateTag {
 };
 
@@ -297,6 +307,7 @@ void Instance::reset(const Language &data) {
 		_values[i] = GetOriginalValue(ushort(i));
 	}
 	ranges::fill(_nonDefaultSet, 0);
+	loadBundledLanguage();
 	updateChoosingStickerReplacement();
 
 	_idChanges.fire_copy(_id);
@@ -526,7 +537,7 @@ void Instance::fillFromSerialized(
 		_base->fillFromSerialized(base, dataAppVersion);
 	}
 
-	_id = id;
+	_id = LanguageIdOrDefault(id);
 	_pluralId = (id == CustomLanguageId())
 		? PluralCodeForCustom(
 			customFilePathAbsolute,
@@ -538,6 +549,7 @@ void Instance::fillFromSerialized(
 	_customFilePathAbsolute = customFilePathAbsolute;
 	_customFilePathRelative = customFilePathRelative;
 	_customFileContent = customFileContent;
+	loadBundledLanguage();
 	LOG(("Lang Info: Loaded cached, keys: %1").arg(nonDefaultValuesCount));
 	for (auto i = 0, count = nonDefaultValuesCount * 2; i != count; i += 2) {
 		applyValue(nonDefaultStrings[i], nonDefaultStrings[i + 1]);
@@ -546,6 +558,14 @@ void Instance::fillFromSerialized(
 	updateChoosingStickerReplacement();
 
 	_idChanges.fire_copy(_id);
+}
+
+void Instance::loadBundledLanguage() {
+	if (_id == BundledChineseLanguage().id) {
+		loadFromContent(FileParser::ReadFile(
+			u":/langs/zh-Hans.strings"_q,
+			QString()));
+	}
 }
 
 void Instance::loadFromContent(const QByteArray &content) {

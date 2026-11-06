@@ -82,7 +82,7 @@ func (c *DfsCore) DfsUploadMp4DocumentMedia(in *dfs.TLDfsUploadMp4DocumentMedia)
 	)
 
 	// getFirstFrame
-	tmpFileName := fmt.Sprintf("http://127.0.0.1:11701/dfs/file/%d_%d.mp4", creatorId, file.GetId_INT64())
+	tmpFileName := dfsFileURL(c.svcCtx.Config.MiniHttp, creatorId, file.GetId_INT64(), "mp4")
 	thumbData, err = c.svcCtx.FFmpegUtil.GetFirstFrame(tmpFileName)
 	if thumbData == nil || err != nil {
 		// upload mp4 file

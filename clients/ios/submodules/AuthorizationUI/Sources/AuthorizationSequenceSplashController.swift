@@ -30,7 +30,7 @@ public final class AuthorizationSequenceSplashController: ViewController {
     
     private let startButton: SolidRoundedButtonNode
     
-    init(accountManager: AccountManager<TelegramAccountManagerTypes>, account: UnauthorizedAccount, theme: PresentationTheme) {
+    init(accountManager: AccountManager<TelegramAccountManagerTypes>, account: UnauthorizedAccount, theme: PresentationTheme, existingLocalizationCode: String?) {
         self.accountManager = accountManager
         self.account = account
         self.theme = theme
@@ -70,9 +70,11 @@ public final class AuthorizationSequenceSplashController: ViewController {
             })
         })
         
-        self.controller = RMIntroViewController(backgroundColor: theme.list.plainBackgroundColor, primaryColor: theme.list.itemPrimaryTextColor, buttonColor: theme.intro.startButtonColor, accentColor: theme.list.itemAccentColor, regularDotColor: theme.intro.dotColor, highlightedDotColor: theme.list.itemAccentColor, suggestedLocalizationSignal: localizationSignal)
+        let initialLocalizationCode = InitialLocalization.code(for: Locale.preferredLanguages, existingLanguageCode: existingLocalizationCode)
+
+        self.controller = RMIntroViewController(backgroundColor: theme.list.plainBackgroundColor, primaryColor: theme.list.itemPrimaryTextColor, buttonColor: theme.intro.startButtonColor, accentColor: theme.list.itemAccentColor, regularDotColor: theme.intro.dotColor, highlightedDotColor: theme.list.itemAccentColor, languageCode: InitialLocalization.introResourceCode(for: initialLocalizationCode), suggestedLocalizationSignal: localizationSignal)
         
-        self.startButton = SolidRoundedButtonNode(title: "Start Messaging", theme: SolidRoundedButtonTheme(theme: theme), glass: false, height: 50.0, cornerRadius: 50.0 * 0.5, isShimmering: true)
+        self.startButton = SolidRoundedButtonNode(title: InitialLocalization.startButtonTitle(for: initialLocalizationCode), theme: SolidRoundedButtonTheme(theme: theme), glass: false, height: 50.0, cornerRadius: 50.0 * 0.5, isShimmering: true)
         self.startButton.accessibilityIdentifier = "Auth.Welcome.StartButton"
 
         super.init(navigationBarPresentationData: nil)
@@ -84,7 +86,7 @@ public final class AuthorizationSequenceSplashController: ViewController {
         self.statusBar.statusBarStyle = theme.intro.statusBarStyle.style
         
         self.controller.startMessaging = { [weak self] in
-            self?.activateLocalization("en")
+            self?.activateLocalization(initialLocalizationCode, preserveExistingLanguage: true)
         }
         self.controller.startMessagingInAlternativeLanguage = { [weak self] code in
             if let code = code {
@@ -93,7 +95,7 @@ public final class AuthorizationSequenceSplashController: ViewController {
         }
         
         self.startButton.pressed = { [weak self] in
-            self?.activateLocalization("en")
+            self?.activateLocalization(initialLocalizationCode, preserveExistingLanguage: true)
         }
         
         self.controller.createStartButton = { [weak self] width in
@@ -188,12 +190,12 @@ public final class AuthorizationSequenceSplashController: ViewController {
         }
     }
     
-    private func activateLocalization(_ code: String) {
-        let currentCode = self.accountManager.transaction { transaction -> String in
+    private func activateLocalization(_ requestedCode: String, preserveExistingLanguage: Bool = false) {
+        let currentCode = self.accountManager.transaction { transaction -> String? in
             if let current = transaction.getSharedData(SharedDataKeys.localizationSettings)?.get(LocalizationSettings.self) {
                 return current.primaryComponent.languageCode
             } else {
-                return "en"
+                return nil
             }
         }
         let suggestedCode = self.suggestedLocalization.get()
@@ -207,12 +209,14 @@ public final class AuthorizationSequenceSplashController: ViewController {
             guard let strongSelf = self else {
                 return
             }
+
+            let code = preserveExistingLanguage ? InitialLocalization.code(for: Locale.preferredLanguages, existingLanguageCode: currentCode) : requestedCode
             
             if let suggestedCode = suggestedCode {
                 _ = TelegramEngineUnauthorized(account: strongSelf.account).localization.markSuggestedLocalizationAsSeenInteractively(languageCode: suggestedCode).start()
             }
             
-            if currentCode == code {
+            if (currentCode ?? "en") == code {
                 strongSelf.pressNext(strings: nil)
                 return
             }

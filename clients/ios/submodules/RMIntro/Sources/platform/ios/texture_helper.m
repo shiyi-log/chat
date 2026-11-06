@@ -12,7 +12,29 @@
 
 GLuint setup_texture(NSString *fileName, UIColor *color)
 {
-    CGImageRef spriteImage = [[UIImage imageNamed:fileName] CGImage];
+    UIImage *image;
+    if ([fileName isEqualToString:@"chat_bubble"]) {
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(164.0, 148.0), false, 1.0);
+        [[UIColor whiteColor] setFill];
+        UIBezierPath *bubble = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(4.0, 9.0, 156.0, 112.0) cornerRadius:33.0];
+        [bubble fill];
+        UIBezierPath *tail = [UIBezierPath bezierPath];
+        [tail moveToPoint:CGPointMake(39.0, 108.0)];
+        [tail addLineToPoint:CGPointMake(27.0, 140.0)];
+        [tail addLineToPoint:CGPointMake(75.0, 115.0)];
+        [tail closePath];
+        [tail fill];
+        CGContextRef context = UIGraphicsGetCurrentContext();
+        CGContextSetBlendMode(context, kCGBlendModeClear);
+        for (NSInteger index = 0; index < 3; index++) {
+            CGContextFillEllipseInRect(context, CGRectMake(39.0 + index * 32.0, 56.0, 18.0, 18.0));
+        }
+        image = UIGraphicsGetImageFromCurrentImageContext();
+        UIGraphicsEndImageContext();
+    } else {
+        image = [UIImage imageNamed:fileName];
+    }
+    CGImageRef spriteImage = image.CGImage;
     if (!spriteImage) {
         NSLog(@"Failed to load image %@", fileName);
         return -1;

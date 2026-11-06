@@ -59,7 +59,7 @@ func (c *DfsCore) DfsUploadRingtoneFile(in *dfs.TLDfsUploadRingtoneFile) (*mtpro
 	}
 
 	// duration
-	tmpFileName := fmt.Sprintf("http://127.0.0.1:11701/dfs/file/%d_%d.mp3", creatorId, file.GetId_INT64())
+	tmpFileName := dfsFileURL(c.svcCtx.Config.MiniHttp, creatorId, file.GetId_INT64(), "mp3")
 	md, err := c.svcCtx.FFmpegUtil.GetMetadata(tmpFileName)
 	if err != nil {
 		c.Logger.Errorf("dfs.uploadRingtoneFile - error: %v", err)

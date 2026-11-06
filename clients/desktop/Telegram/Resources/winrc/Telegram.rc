@@ -60,11 +60,11 @@ BEGIN
     BEGIN
         BLOCK "040904b0"
         BEGIN
-            VALUE "CompanyName", "Private Chat"
-            VALUE "FileDescription", "Private Chat Desktop"
+            VALUE "CompanyName", "Chat"
+            VALUE "FileDescription", "Chat Desktop"
             VALUE "FileVersion", "6.9.2.0"
             VALUE "LegalCopyright", "Copyright (C) 2014-2026"
-            VALUE "ProductName", "Private Chat Desktop"
+            VALUE "ProductName", "Chat Desktop"
             VALUE "ProductVersion", "6.9.2.0"
         END
     END

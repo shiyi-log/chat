@@ -1,15 +1,14 @@
-# Private Chat Desktop 桌面端
+# Chat Desktop 桌面端
 
 这是 `Private Chat` 私有聊天系统的桌面端源码快照，用于连接我们自建的 `private-chat-server`。当前仓库不再作为 Telegram Desktop 官方客户端发布，也不应使用 Telegram 品牌对外分发。
 
 ## 当前状态
 
-- 内置生产和测试 DC 已指向本机私有服务端：`127.0.0.1:10443`，IPv6 本机地址为 `::1:10443`。
+- 内置生产和测试 DC 已指向本机本地运行时：`127.0.0.1:25222`，IPv6 本机地址为 `::1:25222`。
 - 内置 MTProto RSA 公钥已替换为当前私有服务端公钥。
-- Linux、Windows、macOS 的高可见入口正在分批改为 `Private Chat` / `Private Chat Desktop`。
-- 本机已安装完整 Xcode 26.5，`xcode-select` 已指向 `/Applications/Xcode.app/Contents/Developer`。
-- 当前静态私有化配置验证为 `28/28` 项通过。
-- macOS 构建链路已能进入 CMake/Xcode 探测，当前阻塞收敛为 Qt 6.11.1 与第三方库依赖尚未全部准备完成。
+- Linux、Windows、macOS 的应用名称、图标、链接协议和高可见入口已纳入私有化配置检查。
+- 私有化配置检查通过不代表桌面端已完成构建或登录验证。
+- 当前桌面客户端的本地登录、消息收发和文件传输尚未完成端到端验证。
 
 ## 本地验证
 
@@ -25,7 +24,7 @@ python3 scripts/verify_private_chat_desktop_config.py
 - macOS `Info.plist` 高可见名称。
 - Windows 安装器、版本资源和 UWP/AppX 显示名称。
 - Linux desktop/AppStream 元数据。
-- 顶层 CMake/README 不再保留官方发布说明。
+- 顶层 CMake/README 不再将本项目描述为官方 Telegram Desktop 发行版。
 
 ## 后续构建要求
 

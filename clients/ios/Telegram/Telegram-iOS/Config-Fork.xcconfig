@@ -1,4 +1,4 @@
-APP_NAME=Private Chat
+APP_NAME=Chat
 APP_BUNDLE_ID=com.privatechat.ios
 APP_SPECIFIC_URL_SCHEME=privatechat
 

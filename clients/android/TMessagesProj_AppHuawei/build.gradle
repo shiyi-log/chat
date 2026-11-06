@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply from: rootProject.file("private-chat-signing.gradle")
 apply plugin: 'com.huawei.agconnect'
 
 repositories {
@@ -49,22 +50,6 @@ android {
         coreLibraryDesugaringEnabled true
     }
 
-    signingConfigs {
-        debug {
-            storeFile file("../TMessagesProj/config/release.keystore")
-            storePassword RELEASE_STORE_PASSWORD
-            keyAlias RELEASE_KEY_ALIAS
-            keyPassword RELEASE_KEY_PASSWORD
-        }
-
-        release {
-            storeFile file("../TMessagesProj/config/release.keystore")
-            storePassword RELEASE_STORE_PASSWORD
-            keyAlias RELEASE_KEY_ALIAS
-            keyPassword RELEASE_KEY_PASSWORD
-        }
-    }
-
     buildTypes {
         debug {
             debuggable true
@@ -79,7 +64,7 @@ android {
         release {
             debuggable false
             jniDebuggable false
-            signingConfig signingConfigs.release
+            signingConfig signingConfigs.privateChatReleaseSigning
             minifyEnabled true
             shrinkResources false
             multiDexEnabled true

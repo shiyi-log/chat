@@ -34,12 +34,12 @@ public class LauncherIconController {
     }
 
     public enum LauncherIcon {
-        DEFAULT("DefaultIcon", R.drawable.icon_background_sa, R.mipmap.icon_foreground_sa, R.string.AppIconDefault),
-        VINTAGE("VintageIcon", R.drawable.icon_6_background_sa, R.mipmap.icon_6_foreground_sa, R.string.AppIconVintage),
-        AQUA("AquaIcon", R.drawable.icon_4_background_sa, R.mipmap.icon_foreground_sa, R.string.AppIconAqua),
-        PREMIUM("PremiumIcon", R.drawable.icon_3_background_sa, R.mipmap.icon_3_foreground_sa, R.string.AppIconPremium, true),
-        TURBO("TurboIcon", R.drawable.icon_5_background_sa, R.mipmap.icon_5_foreground_sa, R.string.AppIconTurbo, true),
-        NOX("NoxIcon", R.mipmap.icon_2_background_sa, R.mipmap.icon_foreground_sa, R.string.AppIconNox, true);
+        DEFAULT("DefaultIcon", R.drawable.chat_icon_background, R.mipmap.chat_launcher_foreground, R.string.AppIconDefault),
+        VINTAGE("VintageIcon", R.drawable.chat_icon_background_vintage, R.mipmap.chat_launcher_foreground, R.string.AppIconVintage),
+        AQUA("AquaIcon", R.drawable.chat_icon_background_aqua, R.mipmap.chat_launcher_foreground, R.string.AppIconAqua),
+        PREMIUM("PremiumIcon", R.drawable.chat_icon_background_premium, R.mipmap.chat_launcher_foreground, R.string.AppIconPremium, true),
+        TURBO("TurboIcon", R.drawable.chat_icon_background_turbo, R.mipmap.chat_launcher_foreground, R.string.AppIconTurbo, true),
+        NOX("NoxIcon", R.drawable.chat_icon_background_nox, R.mipmap.chat_launcher_foreground, R.string.AppIconNox, true);
 
         public final String key;
         public final int background;

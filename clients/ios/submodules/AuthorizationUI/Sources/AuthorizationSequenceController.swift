@@ -50,6 +50,7 @@ public final class AuthorizationSequenceController: NavigationController, ASAuth
     private var applicationStateDisposable: Disposable?
     
     private var didPlayPresentationAnimation = false
+    private var initialLocalizationCode: String?
     
     private let _ready = Promise<Bool>()
     override public var ready: Promise<Bool> {
@@ -85,8 +86,13 @@ public final class AuthorizationSequenceController: NavigationController, ASAuth
         
         self.inAppPurchaseManager = InAppPurchaseManager(engine: .unauthorized(self.engine))
         
-        self.stateDisposable = (self.engine.auth.state()
-        |> map { state -> InnerState in
+        let existingLocalizationCode = self.sharedContext.accountManager.transaction { transaction -> String? in
+            return transaction.getSharedData(SharedDataKeys.localizationSettings)?.get(LocalizationSettings.self)?.primaryComponent.languageCode
+        }
+        self.stateDisposable = (combineLatest(self.engine.auth.state(), existingLocalizationCode)
+        |> deliverOnMainQueue
+        |> map { [weak self] state, existingLocalizationCode -> InnerState in
+            self?.initialLocalizationCode = existingLocalizationCode
             if case .authorized = state {
                 return .authorized
             } else if case let .unauthorized(state) = state {
@@ -140,7 +146,7 @@ public final class AuthorizationSequenceController: NavigationController, ASAuth
         if let currentController = currentController {
             controller = currentController
         } else {
-            controller = AuthorizationSequenceSplashController(accountManager: self.sharedContext.accountManager, account: self.account, theme: self.presentationData.theme)
+            controller = AuthorizationSequenceSplashController(accountManager: self.sharedContext.accountManager, account: self.account, theme: self.presentationData.theme, existingLocalizationCode: self.initialLocalizationCode)
             controller.nextPressed = { [weak self] strings in
                 if let strongSelf = self {
                     if let strings = strings {

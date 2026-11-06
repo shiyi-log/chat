@@ -1,0 +1,211 @@
+#!/usr/bin/env python3
+import plistlib
+import re
+import struct
+import unittest
+import xml.etree.ElementTree as ET
+import zlib
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parents[1]
+LANGUAGE_PATTERN = re.compile(
+    r'^[ \t]*"(?P<key>[^"]+)"\s*=\s*"(?P<value>(?:\\.|[^"\\])*)";',
+    re.MULTILINE,
+)
+PLACEHOLDER_PATTERN = re.compile(r"\{([a-zA-Z][a-zA-Z0-9_]*)\}")
+CHAT_ICON_COLORS = {(20, 91, 87), (244, 162, 97), (255, 255, 255)}
+
+
+def read_text(relative_path):
+    return (ROOT / relative_path).read_text(encoding="utf-8")
+
+
+def read_strings(relative_path):
+    return {
+        match.group("key"): match.group("value")
+        for match in LANGUAGE_PATTERN.finditer(read_text(relative_path))
+    }
+
+
+def png_colors(data):
+    if not data.startswith(b"\x89PNG\r\n\x1a\n"):
+        raise AssertionError("icon asset is not a PNG image")
+
+    offset = 8
+    compressed = bytearray()
+    width = height = color_type = bit_depth = None
+    while offset < len(data):
+        length = struct.unpack_from(">I", data, offset)[0]
+        kind = data[offset + 4:offset + 8]
+        chunk = data[offset + 8:offset + 8 + length]
+        if kind == b"IHDR":
+            width, height, bit_depth, color_type, compression, filtering, interlace = struct.unpack(
+                ">IIBBBBB", chunk
+            )
+            if compression or filtering or interlace or bit_depth != 8:
+                raise AssertionError("icon PNG uses an unsupported encoding")
+        elif kind == b"IDAT":
+            compressed.extend(chunk)
+        elif kind == b"IEND":
+            break
+        offset += length + 12
+
+    bytes_per_pixel = {2: 3, 6: 4}.get(color_type)
+    if bytes_per_pixel is None:
+        raise AssertionError("icon PNG must use RGB or RGBA pixels")
+
+    raw = zlib.decompress(compressed)
+    stride = width * bytes_per_pixel
+    previous = bytearray(stride)
+    colors = set()
+
+    def paeth(left, above, upper_left):
+        estimate = left + above - upper_left
+        distances = (abs(estimate - left), abs(estimate - above), abs(estimate - upper_left))
+        return (left, above, upper_left)[distances.index(min(distances))]
+
+    for row in range(height):
+        start = row * (stride + 1)
+        filter_type = raw[start]
+        scanline = bytearray(raw[start + 1:start + 1 + stride])
+        for index, value in enumerate(scanline):
+            left = scanline[index - bytes_per_pixel] if index >= bytes_per_pixel else 0
+            above = previous[index]
+            upper_left = previous[index - bytes_per_pixel] if index >= bytes_per_pixel else 0
+            if filter_type == 1:
+                predictor = left
+            elif filter_type == 2:
+                predictor = above
+            elif filter_type == 3:
+                predictor = (left + above) // 2
+            elif filter_type == 4:
+                predictor = paeth(left, above, upper_left)
+            elif filter_type == 0:
+                predictor = 0
+            else:
+                raise AssertionError(f"unsupported PNG filter: {filter_type}")
+            scanline[index] = (value + predictor) & 0xFF
+
+        for index in range(0, stride, bytes_per_pixel):
+            colors.add(tuple(scanline[index:index + 3]))
+        previous = scanline
+
+    return colors
+
+
+def ico_png_images(data):
+    reserved, image_type, count = struct.unpack_from("<HHH", data)
+    if reserved != 0 or image_type != 1:
+        raise AssertionError("app icon must be a Windows ICO file")
+    images = []
+    for index in range(count):
+        entry = struct.unpack_from("<BBBBHHII", data, 6 + index * 16)
+        size, offset = entry[6], entry[7]
+        image = data[offset:offset + size]
+        if image.startswith(b"\x89PNG\r\n\x1a\n"):
+            images.append(image)
+    return images
+
+
+class ChatDesktopBrandingTests(unittest.TestCase):
+    def test_runtime_language_packs_do_not_expose_telegram_brand_or_links(self):
+        brand_pattern = re.compile(r"\btelegram\b|telegram\.(?:org|me)|t\.me", re.IGNORECASE)
+        for path in (
+            "Telegram/Resources/langs/lang.strings",
+            "Telegram/Resources/langs/cloud_lang.strings",
+            "Telegram/Resources/langs/zh-Hans.strings",
+            "Telegram/Resources/langs/en.lproj/Localizable.strings",
+        ):
+            with self.subTest(path=path):
+                values = read_strings(path)
+                matches = [key for key, value in values.items() if brand_pattern.search(value)]
+                self.assertEqual([], matches, f"runtime language values contain legacy brand: {matches[:8]}")
+
+    def test_offline_chinese_pack_uses_known_keys_and_placeholders(self):
+        base = read_strings("Telegram/Resources/langs/lang.strings")
+        self.assertTrue((ROOT / "Telegram/Resources/langs/zh-Hans.strings").is_file())
+        chinese = read_strings("Telegram/Resources/langs/zh-Hans.strings")
+
+        self.assertGreaterEqual(len(chinese), 40)
+        self.assertTrue(
+            {"lng_menu_settings", "lng_start_msgs", "lng_intro_about"}
+            <= chinese.keys()
+        )
+        self.assertTrue(all(key in base for key in chinese))
+        for key, value in chinese.items():
+            self.assertEqual(
+                sorted(PLACEHOLDER_PATTERN.findall(base[key])),
+                sorted(PLACEHOLDER_PATTERN.findall(value)),
+                key,
+            )
+        self.assertEqual("设置", chinese["lng_menu_settings"])
+        self.assertEqual("开始聊天", chinese["lng_start_msgs"])
+
+    def test_offline_chinese_pack_is_in_the_runtime_resource_bundle(self):
+        tree = ET.parse(ROOT / "Telegram/Resources/qrc/telegram/telegram.qrc")
+        files = [node.text for node in tree.findall(".//file")]
+        resource_path = "../../langs/zh-Hans.strings"
+
+        self.assertIn(resource_path, files)
+        self.assertTrue(
+            (ROOT / "Telegram/Resources/qrc/telegram" / resource_path).resolve().is_file()
+        )
+
+    def test_first_run_uses_bundled_chinese_without_overriding_a_saved_language(self):
+        application = read_text("Telegram/SourceFiles/core/application.cpp")
+        instance = read_text("Telegram/SourceFiles/lang/lang_instance.cpp")
+
+        self.assertTrue("langpack().id().isEmpty()" in application)
+        self.assertTrue("BundledChineseLanguage()" in application)
+        self.assertIn('u"zh-Hans"_q', instance)
+        self.assertIn(':/langs/zh-Hans.strings', instance)
+
+    def test_packaged_application_displays_chat_brand(self):
+        plist_path = ROOT / "Telegram/Telegram.plist"
+        with plist_path.open("rb") as stream:
+            plist = plistlib.load(stream)
+        manifest = ET.parse(ROOT / "Telegram/Resources/uwp/AppX/AppxManifest.xml")
+        namespaces = {"f": "http://schemas.microsoft.com/appx/manifest/foundation/windows10"}
+        properties = manifest.find("f:Properties", namespaces)
+        desktop_entry = read_text("lib/xdg/org.telegram.desktop.desktop")
+        setup = read_text("Telegram/build/setup.iss")
+
+        self.assertEqual("Chat Desktop messaging app", plist["CFBundleGetInfoString"])
+        self.assertEqual("Chat", properties.findtext("f:DisplayName", namespaces=namespaces))
+        self.assertIn('#define MyAppShortName "Chat"', setup)
+        self.assertIn("Name=Chat\n", desktop_entry)
+
+    def test_packaged_application_icons_use_chat_art(self):
+        icon_paths = (
+            "Telegram/Telegram/Images.xcassets/Icon.iconset/icon_512x512@2x.png",
+            "Telegram/Telegram/Images.xcassets/Icon.appiconset/icon512@2x.png",
+            "Telegram/Resources/art/icon512.png",
+        )
+        for path in icon_paths:
+            with self.subTest(path=path):
+                self.assertTrue(
+                    CHAT_ICON_COLORS <= png_colors((ROOT / path).read_bytes())
+                )
+
+        ico_images = ico_png_images(
+            (ROOT / "Telegram/Resources/art/icon256.ico").read_bytes()
+        )
+        self.assertTrue(ico_images, "Windows app icon must contain a PNG image")
+        self.assertTrue(any(CHAT_ICON_COLORS <= png_colors(image) for image in ico_images))
+
+    def test_active_tray_icon_uses_the_chat_bubble_vector(self):
+        tray_path = ROOT / "Telegram/Resources/icons/tray_monochrome.svg"
+        tray = ET.parse(tray_path).getroot()
+        serialized = ET.tostring(tray, encoding="unicode")
+        app_icon = ET.parse(ROOT / "Telegram/Resources/art/chat_logo.svg").getroot()
+        app_icon_serialized = ET.tostring(app_icon, encoding="unicode").upper()
+        self.assertIn("#145B57", app_icon_serialized)
+        self.assertIn("#F4A261", app_icon_serialized)
+        self.assertIn("#FFFFFF", app_icon_serialized)
+        self.assertIn("M53,17h26", serialized)
+        self.assertIn("M17,28h42", serialized)
+
+
+if __name__ == "__main__":
+    unittest.main(verbosity=2)

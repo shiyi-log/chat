@@ -2,7 +2,7 @@
 
 <account-authenticator xmlns:android="http://schemas.android.com/apk/res/android"
     android:accountType="org.telegram.messenger"
-    android:icon="@drawable/ic_launcher_dr"
-    android:smallIcon="@drawable/ic_launcher_dr"
+    android:icon="@drawable/chat_logo"
+    android:smallIcon="@drawable/chat_logo_monochrome"
     android:label="@string/AppName"
     android:accountPreferences="@xml/auth_menu"/>

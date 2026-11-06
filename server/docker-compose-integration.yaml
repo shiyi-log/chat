@@ -1,0 +1,158 @@
+# Independent local dependency stack. See integration/README.md before starting.
+# Proposed host ports require registration in your local port manager first.
+name: private-chat-integration
+
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: ${LOCAL_INTEGRATION_MYSQL_ROOT_PASSWORD:?Set LOCAL_INTEGRATION_MYSQL_ROOT_PASSWORD in the integration env file}
+      MYSQL_DATABASE: teamgram
+      MYSQL_USER: teamgram
+      MYSQL_PASSWORD: ${LOCAL_INTEGRATION_MYSQL_PASSWORD:?Set LOCAL_INTEGRATION_MYSQL_PASSWORD in the integration env file}
+    ports:
+      - "127.0.0.1:23306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - type: bind
+        source: ./teamgramd/deploy/sql
+        target: /docker-entrypoint-initdb.d
+        read_only: true
+        bind:
+          create_host_path: false
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h localhost -uroot -p\"$$MYSQL_ROOT_PASSWORD\" --silent"]
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 30s
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "127.0.0.1:26379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  etcd:
+    image: quay.io/coreos/etcd:v3.5.11
+    environment:
+      ETCD_NAME: integration-node
+      ETCD_DATA_DIR: /etcd-data
+      ETCD_LISTEN_CLIENT_URLS: http://0.0.0.0:2379
+      ETCD_ADVERTISE_CLIENT_URLS: http://127.0.0.1:22379
+      ETCD_LISTEN_PEER_URLS: http://0.0.0.0:2380
+      ETCD_INITIAL_ADVERTISE_PEER_URLS: http://etcd:2380
+      ETCD_INITIAL_CLUSTER: integration-node=http://etcd:2380
+      ETCD_INITIAL_CLUSTER_TOKEN: private-chat-integration
+      ETCD_INITIAL_CLUSTER_STATE: new
+      ETCD_AUTO_COMPACTION_RETENTION: "1"
+    ports:
+      - "127.0.0.1:22379:2379"
+    volumes:
+      - etcd_data:/etcd-data
+    healthcheck:
+      test: ["CMD", "etcdctl", "--endpoints=http://127.0.0.1:2379", "endpoint", "health"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  kafka:
+    image: apache/kafka:3.9.0
+    environment:
+      KAFKA_NODE_ID: "1"
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,HOST://0.0.0.0:19092,CONTROLLER://0.0.0.0:9093
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,HOST://127.0.0.1:29092,CONTROLLER://kafka:9093
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,HOST:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: "1"
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: "1"
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: "1"
+      KAFKA_GROUP_INITIAL_REBALANCE_DELAY_MS: "0"
+      KAFKA_NUM_PARTITIONS: "1"
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
+    ports:
+      - "127.0.0.1:29092:19092"
+    volumes:
+      - kafka_data:/var/lib/kafka/data
+    healthcheck:
+      test: ["CMD", "/opt/kafka/bin/kafka-topics.sh", "--bootstrap-server", "kafka:9092", "--list"]
+      interval: 5s
+      timeout: 10s
+      retries: 24
+      start_period: 20s
+
+  kafka-init:
+    image: apache/kafka:3.9.0
+    depends_on:
+      kafka:
+        condition: service_healthy
+    entrypoint: ["/bin/sh", "-ec"]
+    command:
+      - |
+        for topic in Inbox-T Sync-T teamgram-log; do
+          /opt/kafka/bin/kafka-topics.sh --bootstrap-server kafka:9092 \
+            --create --if-not-exists --topic "$$topic" --partitions 1 --replication-factor 1
+        done
+
+  minio:
+    image: rustfs/rustfs@sha256:ed9210d6411d77ffceb70d94b964a3cb7d225983368bc25bebe01e995293dcc2
+    environment:
+      RUSTFS_ACCESS_KEY: integration-minio
+      RUSTFS_SECRET_KEY: ${LOCAL_INTEGRATION_MINIO_ROOT_PASSWORD:?Set LOCAL_INTEGRATION_MINIO_ROOT_PASSWORD in the integration env file}
+      RUSTFS_VOLUMES: /data
+      RUSTFS_ADDRESS: 0.0.0.0:9000
+      RUSTFS_CONSOLE_ENABLE: "true"
+      RUSTFS_CONSOLE_ADDRESS: 0.0.0.0:9001
+    command: ["server", "/data"]
+    ports:
+      - "127.0.0.1:29000:9000"
+      - "127.0.0.1:29001:9001"
+    volumes:
+      - minio_data:/data
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "--silent", "http://127.0.0.1:9000/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 24
+      start_period: 15s
+
+  minio-init:
+    image: rustfs/rc@sha256:1296510ec27800668d26a8bdca6251e587086187a9368c7b80134a169e8a3bb8
+    depends_on:
+      minio:
+        condition: service_healthy
+    environment:
+      RUSTFS_ACCESS_KEY: integration-minio
+      RUSTFS_SECRET_KEY: ${LOCAL_INTEGRATION_MINIO_ROOT_PASSWORD:?Set LOCAL_INTEGRATION_MINIO_ROOT_PASSWORD in the integration env file}
+    entrypoint: ["/bin/sh", "-ec"]
+    command:
+      - |
+        rc alias set integration http://minio:9000 "$${RUSTFS_ACCESS_KEY}" "$${RUSTFS_SECRET_KEY}"
+        for bucket in documents encryptedfiles photos videos; do
+          rc bucket create "integration/$$bucket" --ignore-existing
+        done
+
+volumes:
+  mysql_data:
+  redis_data:
+  etcd_data:
+  kafka_data:
+  minio_data:
+
+networks:
+  default:
+    driver: bridge

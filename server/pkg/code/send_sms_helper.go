@@ -22,6 +22,7 @@ import (
 	"context"
 
 	"github.com/teamgram/teamgram-server/pkg/code/conf"
+	"github.com/teamgram/teamgram-server/pkg/code/localfile"
 	"github.com/teamgram/teamgram-server/pkg/code/none"
 )
 
@@ -40,6 +41,8 @@ func NewVerifyCode(c *conf.SmsVerifyCodeConfig) VerifyCodeInterface {
 	// 	return predefined.New(c)
 	case "none":
 		return none.New(c)
+	case "localfile":
+		return localfile.New(c)
 	}
 	return none.New(c)
 }

@@ -29,19 +29,19 @@ struct BuiltInDc {
 };
 
 const BuiltInDc kBuiltInDcs[] = {
-	{ 1, "127.0.0.1", 10443 },
+	{ 1, "127.0.0.1", 25222 },
 };
 
 const BuiltInDc kBuiltInDcsIPv6[] = {
-	{ 1, "::1", 10443 },
+	{ 1, "::1", 25222 },
 };
 
 const BuiltInDc kBuiltInDcsTest[] = {
-	{ 1, "127.0.0.1", 10443 },
+	{ 1, "127.0.0.1", 25222 },
 };
 
 const BuiltInDc kBuiltInDcsIPv6Test[] = {
-	{ 1, "::1", 10443 },
+	{ 1, "::1", 25222 },
 };
 
 const char *kTestPublicRSAKeys[] = { "\

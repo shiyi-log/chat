@@ -1914,7 +1914,7 @@ void RegisterSettingsHandlers(Router &router) {
 		},
 	});
 
-	// Notification type deep links - Private Chats.
+	// Notification type deep links - Chats.
 	router.add(u"settings"_q, {
 		.path = u"notifications/private-chats"_q,
 		.action = CodeBlock{ [](const Context &ctx) {

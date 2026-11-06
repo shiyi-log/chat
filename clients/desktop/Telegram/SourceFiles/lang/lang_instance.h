@@ -34,6 +34,7 @@ inline bool operator!=(const Language &a, const Language &b) {
 QString CloudLangPackName();
 QString CustomLanguageId();
 Language DefaultLanguage();
+Language BundledChineseLanguage();
 
 class Instance;
 Instance &GetInstance();
@@ -118,6 +119,7 @@ private:
 		const QByteArray &content);
 	bool loadFromCustomFile(const QString &filePath);
 	void loadFromContent(const QByteArray &content);
+	void loadBundledLanguage();
 	void loadFromCustomContent(
 		const QString &absolutePath,
 		const QString &relativePath,

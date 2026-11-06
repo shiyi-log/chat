@@ -116,7 +116,7 @@ func (c *DfsCore) uploadVideoSizeListV2(creatorId int64, video *mtproto.InputFil
 		// videoId = idgen.GetUUID()
 		// ext         = model.GetFileExtName(video.GetName())
 		// extType     = model.GetStorageFileTypeConstructor(ext)
-		tmpFileName = fmt.Sprintf("http://127.0.0.1:11701/dfs/file/%d_%d.mp4", creatorId, video.GetId_INT64())
+		tmpFileName = dfsFileURL(c.svcCtx.Config.MiniHttp, creatorId, video.GetId_INT64(), "mp4")
 	)
 
 	videoMp4Data, _, err = c.svcCtx.FFmpegUtil.ConvertToMp4ByPipe(tmpFileName, 800, 800)

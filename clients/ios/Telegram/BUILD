@@ -269,6 +269,8 @@ filegroup(
     name = "AppStringResources",
     srcs = [
         "Telegram-iOS/en.lproj/Localizable.strings",
+        "Telegram-iOS/zh-Hans.lproj/Localizable.strings",
+        "Telegram-iOS/zh-Hant.lproj/Localizable.strings",
     ] + [
         "{}.lproj/Localizable.strings".format(language) for language in empty_languages
     ],
@@ -420,7 +422,7 @@ plist_fragment(
             <string>{telegram_bundle_id}</string>
             <key>CFBundleURLSchemes</key>
             <array>
-                <string>telegram</string>
+                <string>privatechat</string>
             </array>
         </dict>
         <dict>
@@ -430,7 +432,6 @@ plist_fragment(
             <string>{telegram_bundle_id}.compatibility</string>
             <key>CFBundleURLSchemes</key>
             <array>
-                <string>tg</string>
                 <string>tonsite</string>
             </array>
         </dict>
@@ -604,7 +605,7 @@ plist_fragment(
     template =
     """
     <key>CFBundleDisplayName</key>
-    <string>Private Chat</string>
+    <string>Chat</string>
     """
 )
 
@@ -1543,11 +1544,11 @@ plist_fragment(
     <key>CFBundleDevelopmentRegion</key>
     <string>en</string>
     <key>CFBundleDisplayName</key>
-    <string>Private Chat</string>
+    <string>Chat</string>
     <key>CFBundleIdentifier</key>
     <string>{telegram_bundle_id}</string>
     <key>CFBundleName</key>
-    <string>Private Chat</string>
+    <string>Chat</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
     <key>CFBundleSignature</key>
@@ -1752,9 +1753,6 @@ ios_application(
         ":UrlTypesInfoPlist",
     ],
     app_icons = [ ":{}_icon".format(name) for name in composer_icon_folders ],
-    alternate_icons = [
-        ":{}".format(name) for name in alternate_icon_folders
-    ],
     resources = [
         ":LaunchScreen",
         #":DefaultAppIcon",

@@ -7,6 +7,7 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+OLD_PRODUCT_BRAND = re.compile(r"\bPrivate Chat\b(?!s)")
 
 
 def read_text(relative_path):
@@ -34,6 +35,10 @@ def get_string_value(xml_text, name):
         if item.get("name") == name:
             return item.text or ""
     return ""
+
+
+def has_old_product_brand(value):
+    return OLD_PRODUCT_BRAND.search(value) is not None
 
 
 def google_package_names(relative_path):
@@ -69,20 +74,22 @@ def main():
     }
     library_google_path = "TMessagesProj/google-services.json"
     library_packages = set(google_package_names(library_google_path))
-    record(checks, expected_packages.issubset(library_packages), f"{library_google_path}：应包含 Private Chat 三个对外包名")
+    record(checks, expected_packages.issubset(library_packages), f"{library_google_path}：应包含 Chat 三个对外包名")
     record(checks, "org.telegram.messenger" in library_packages, f"{library_google_path}：库模块需保留 org.telegram.messenger 内部构建匹配项")
 
     app_google_path = "TMessagesProj_App/google-services.json"
     app_packages = set(google_package_names(app_google_path))
-    record(checks, expected_packages.issubset(app_packages), f"{app_google_path}：应包含 Private Chat 三个对外包名")
+    record(checks, expected_packages.issubset(app_packages), f"{app_google_path}：应包含 Chat 三个对外包名")
     record(checks, "org.telegram.messenger" not in app_packages, f"{app_google_path}：不应保留旧 org.telegram.messenger 对外包名")
 
     strings_path = "TMessagesProj/src/main/res/values/strings.xml"
     strings_text = read_text(strings_path)
-    record(checks, get_string_value(strings_text, "AppName") == "Private Chat", f"{strings_path}：AppName 应为 Private Chat")
-    record(checks, get_string_value(strings_text, "AppNameBeta") == "Private Chat Beta", f"{strings_path}：AppNameBeta 应为 Private Chat Beta")
+    record(checks, get_string_value(strings_text, "AppName") == "Chat", f"{strings_path}：AppName 应为 Chat")
+    record(checks, get_string_value(strings_text, "AppNameBeta") == "Chat Beta", f"{strings_path}：AppNameBeta 应为 Chat Beta")
     for key in ("SentAppCode", "SentAppCodeWithPhone", "SentAppCodeTitle", "SentCallCode", "CallText", "OtherLoginCode", "AllowReadCall", "InviteToTelegram"):
-        record(checks, "private chat" in get_string_value(strings_text, key).lower(), f"{strings_path}：{key} 应包含 Private Chat")
+        value = get_string_value(strings_text, key)
+        record(checks, "chat" in value.lower(), f"{strings_path}：{key} 应显示 Chat 品牌")
+        record(checks, not has_old_product_brand(value), f"{strings_path}：{key} 不应继续显示旧品牌 Private Chat")
     high_visibility_private_keys = (
         "DidNotGetTheCodeInfo",
         "CancelAccountResetInfo2",
@@ -108,8 +115,8 @@ def main():
     )
     for key in high_visibility_private_keys:
         value = get_string_value(strings_text, key)
-        record(checks, "private chat" in value.lower(), f"{strings_path}：{key} 应包含 Private Chat")
-        record(checks, "telegram" not in value.lower(), f"{strings_path}：{key} 不应继续显示 Telegram")
+        record(checks, "chat" in value.lower(), f"{strings_path}：{key} 应显示 Chat 品牌")
+        record(checks, not has_old_product_brand(value), f"{strings_path}：{key} 不应继续显示旧品牌 Private Chat")
     system_entry_private_keys = (
         "SecretChatName",
         "ChangePasscodeInfo",
@@ -144,8 +151,8 @@ def main():
     )
     for key in system_entry_private_keys:
         value = get_string_value(strings_text, key)
-        record(checks, "private chat" in value.lower(), f"{strings_path}：{key} 应包含 Private Chat")
-        record(checks, "telegram" not in value.lower(), f"{strings_path}：{key} 不应继续显示 Telegram")
+        record(checks, "chat" in value.lower(), f"{strings_path}：{key} 应显示 Chat 品牌")
+        record(checks, not has_old_product_brand(value), f"{strings_path}：{key} 不应继续显示旧品牌 Private Chat")
     account_invite_private_keys = (
         "PhoneNumberHelp",
         "ChangePhoneNumberOccupied",
@@ -173,8 +180,8 @@ def main():
     )
     for key in account_invite_private_keys:
         value = get_string_value(strings_text, key)
-        record(checks, "private chat" in value.lower(), f"{strings_path}：{key} 应包含 Private Chat")
-        record(checks, "telegram" not in value.lower(), f"{strings_path}：{key} 不应继续显示 Telegram")
+        record(checks, "chat" in value.lower(), f"{strings_path}：{key} 应显示 Chat 品牌")
+        record(checks, not has_old_product_brand(value), f"{strings_path}：{key} 不应继续显示旧品牌 Private Chat")
     general_experience_private_keys = (
         "PaymentWarningText",
         "ImportImportingInfo",
@@ -298,8 +305,8 @@ def main():
     )
     for key in general_experience_private_keys:
         value = get_string_value(strings_text, key)
-        record(checks, "private chat" in value.lower(), f"{strings_path}：{key} 应包含 Private Chat")
-        record(checks, "telegram" not in value.lower(), f"{strings_path}：{key} 不应继续显示 Telegram")
+        record(checks, "chat" in value.lower(), f"{strings_path}：{key} 应显示 Chat 品牌")
+        record(checks, not has_old_product_brand(value), f"{strings_path}：{key} 不应继续显示旧品牌 Private Chat")
     private_url_keys = (
         "TelegramFeaturesUrl",
         "TelegramFaqUrl",
@@ -330,7 +337,7 @@ def main():
         value = get_string_value(strings_text, key)
         record(checks, "privatechat.local" in value, f"{strings_path}：{key} 应使用 privatechat.local 链接示例")
         record(checks, "t.me" not in value, f"{strings_path}：{key} 不应继续使用 t.me 链接示例")
-    record(checks, get_string_value(strings_text, "NoChats") == "Welcome to Private Chat", f"{strings_path}：NoChats 应为 Welcome to Private Chat")
+    record(checks, get_string_value(strings_text, "NoChats") == "Welcome to Chat", f"{strings_path}：NoChats 应为 Welcome to Chat")
     policy_webapp_private_keys = (
         "TosDecline",
         "TosUpdateDecline",
@@ -340,8 +347,9 @@ def main():
     )
     for key in policy_webapp_private_keys:
         value = get_string_value(strings_text, key)
-        record(checks, "private chat" in value.lower(), f"{strings_path}：{key} 应包含 Private Chat")
-        record(checks, "telegram" not in value.lower() and "telegram.org" not in value.lower(), f"{strings_path}：{key} 不应继续显示 Telegram 或官方链接")
+        record(checks, "chat" in value.lower(), f"{strings_path}：{key} 应显示 Chat 品牌")
+        record(checks, not has_old_product_brand(value), f"{strings_path}：{key} 不应继续显示旧品牌 Private Chat")
+        record(checks, "telegram.org" not in value.lower(), f"{strings_path}：{key} 不应继续指向 Telegram 官方链接")
 
     buildvars_path = "TMessagesProj/src/main/java/org/telegram/messenger/BuildVars.java"
     buildvars = read_text(buildvars_path)
@@ -357,7 +365,7 @@ def main():
 
     notifications_controller_path = "TMessagesProj/src/main/java/org/telegram/messenger/NotificationsController.java"
     notifications_controller = read_text(notifications_controller_path)
-    record(checks, '"Private Chat internal notifications"' in notifications_controller, f"{notifications_controller_path}：内部通知渠道名应使用 Private Chat")
+    record(checks, '"Chat internal notifications"' in notifications_controller, f"{notifications_controller_path}：内部通知渠道名应使用 Chat")
     record(checks, '"Internal notifications"' not in notifications_controller, f"{notifications_controller_path}：内部通知渠道名不应继续使用通用默认名称")
 
     push_controller_path = "TMessagesProj/src/main/java/org/telegram/messenger/PushListenerController.java"
@@ -388,7 +396,7 @@ def main():
     conn = read_text(conn_path)
     official_dc_pattern = re.compile(r"\b(149\.154|91\.108)\.\d+\.\d+\b")
     record(checks, conn.count('new Datacenter(instanceNum, 1)') >= 2, f"{conn_path}：生产和测试默认 DC 应收敛到 DC 1")
-    record(checks, conn.count('addAddressAndPort("10.0.2.2", 10443, 0, "")') >= 2, f"{conn_path}：模拟器私有 DC 应指向 10.0.2.2:10443")
+    record(checks, conn.count('addAddressAndPort("10.0.2.2", 25222, 0, "")') >= 2, f"{conn_path}：模拟器私有 DC 应指向 10.0.2.2:25222")
     record(checks, "currentDatacenterId = 1;" in conn, f"{conn_path}：未登录默认 DC 应初始化为 1")
     record(checks, "auto iter = datacenters.find(datacenterId);" in conn and "return iter != datacenters.end() ? iter->second : nullptr;" in conn, f"{conn_path}：DEFAULT_DATACENTER_ID 查询应避免 map[] 插入空指针")
     record(checks, "if (allDc.empty())" in conn and "no alternative dc" in conn, f"{conn_path}：单 DC 情况应跳过随机切换备用 DC")
@@ -416,14 +424,14 @@ def main():
         return 1
 
     print(f"Android 私有化配置验证通过：{passed_count}/{len(checks)} 项通过")
-    print("- 对外包名、应用名和默认英文登录入口已指向 Private Chat")
+    print("- 对外包名、应用名和默认英文登录入口已指向 Chat")
     print("- 默认英文帮助、通知、QR 登录和更新入口已纳入高可见品牌门禁")
     print("- 默认英文权限、锁屏、存储、Passcode 和通话通知渠道说明已纳入系统入口品牌门禁")
     print("- 默认英文账号、邀请、会话和版本更新入口已纳入品牌门禁")
     print("- 默认英文通用体验、隐私安全、缓存、通话和导入入口已纳入品牌门禁")
     print("- 私有构建默认禁用 Firebase/Huawei 推送 token 获取，避免未配置第三方服务时报错")
     print("- 库模块保留 org.telegram.messenger 内部构建匹配项，最终 App 模块不保留旧对外包名")
-    print("- 模拟器私有 DC 已指向 10.0.2.2:10443，单 DC 防御逻辑存在")
+    print("- 模拟器私有 DC 已指向 10.0.2.2:25222，单 DC 防御逻辑存在")
     print("- 当前验证是静态配置验证；真机/公网测试仍需要替换服务端地址和发布证书")
     return 0
 

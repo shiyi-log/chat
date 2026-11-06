@@ -1,0 +1,11 @@
+"CFBundleDisplayName" = "Chat";
+"NSContactsUsageDescription" = "Chat 需要访问通讯录，以便你在私有聊天服务中查找联系人。";
+"NSLocationWhenInUseUsageDescription" = "Chat 需要访问位置，以便你在聊天中分享位置。";
+"NSLocationAlwaysAndWhenInUseUsageDescription" = "Chat 需要在后台访问位置，以便在你选择的实时位置分享期间持续更新。";
+"NSLocationAlwaysUsageDescription" = "Chat 需要在后台访问位置，以便更新你分享的实时位置。";
+"NSCameraUsageDescription" = "Chat 需要访问相机，以便拍摄照片、视频和进行视频通话。";
+"NSPhotoLibraryUsageDescription" = "Chat 需要访问照片图库，以便分享照片和视频。";
+"NSPhotoLibraryAddUsageDescription" = "Chat 需要将照片和视频保存到你的图库。";
+"NSMicrophoneUsageDescription" = "Chat 需要访问麦克风，以便录制语音、视频和进行通话。";
+"NSSiriUsageDescription" = "你可以使用 Siri 发送 Chat 消息。";
+"NSFaceIDUsageDescription" = "你可以使用面容 ID 解锁 Chat。";

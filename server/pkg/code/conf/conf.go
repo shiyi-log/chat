@@ -19,10 +19,11 @@
 package conf
 
 type SmsVerifyCodeConfig struct {
-	Name          string
-	SendCodeUrl   string
-	VerifyCodeUrl string
-	Key           string
-	Secret        string
-	RegionId      string
+	Name           string
+	SendCodeUrl    string
+	VerifyCodeUrl  string
+	Key            string
+	Secret         string
+	RegionId       string
+	LocalOutboxDir string
 }

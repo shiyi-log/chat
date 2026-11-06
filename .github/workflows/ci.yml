@@ -1,0 +1,115 @@
+name: CI
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  repository:
+    name: Repository and client checks
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Set up Ruby for workflow contract parsing
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+
+      - name: Set up Java for Android Gradle configuration tests
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Run repository tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Run Android configuration checks
+        run: |
+          python clients/android/scripts/verify_private_chat_android_config.py
+          python clients/android/scripts/tests/test_private_chat_api_config.py
+          python clients/android/scripts/tests/test_chat_branding_localization.py
+          python clients/android/scripts/tests/test_private_chat_signing_config.py
+
+      - name: Run iOS configuration checks
+        run: |
+          python clients/ios/scripts/verify_private_chat_ios_config.py
+          python clients/ios/scripts/tests/test_chat_app_branding.py
+
+      - name: Run desktop configuration checks
+        run: |
+          python clients/desktop/scripts/verify_private_chat_desktop_config.py
+          python clients/desktop/scripts/test_chat_desktop_branding.py
+
+  server:
+    name: Server offline unit packages
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Go
+        uses: actions/setup-go@v7
+        with:
+          go-version-file: server/go.mod
+          cache-dependency-path: server/go.sum
+
+      - name: Test scoped offline unit packages
+        working-directory: server
+        run: go test ./pkg/hashx ./pkg/phonenumber ./pkg/mention ./pkg/code/none ./pkg/code/localfile ./app/interface/session/internal/sess
+
+  android-compile:
+    name: Android Java compile
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    permissions:
+      contents: read
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Java
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK
+        uses: android-actions/setup-android@v4
+        with:
+          packages: >-
+            platforms;android-35
+            build-tools;35.0.0
+            cmake;3.10.2.4988404
+            ndk;27.2.12479018
+
+      - name: Compile Android Java sources without packaging
+        working-directory: clients/android
+        env:
+          PRIVATE_CHAT_API_ID: "123456"
+          PRIVATE_CHAT_API_HASH: "0123456789abcdef0123456789abcdef"
+        run: ./gradlew :TMessagesProj_App:compileAfatDebugJavaWithJavac --no-daemon

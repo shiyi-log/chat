@@ -22,8 +22,8 @@
             }
           ],
           "glass" : true,
-          "image-name" : "Plane.svg",
-          "name" : "Plane",
+          "image-name" : "Chat.svg",
+          "name" : "Chat",
           "position-specializations" : [
             {
               "idiom" : "watchOS",
@@ -51,15 +51,15 @@
             {
               "value" : {
                 "linear-gradient" : [
-                  "display-p3:0.21569,0.68627,0.89020,1.00000",
-                  "srgb:0.11373,0.57647,0.82353,1.00000"
+                  "display-p3:0.07843,0.35686,0.34118,1.00000",
+                  "srgb:0.07843,0.35686,0.34118,1.00000"
                 ]
               }
             },
             {
               "appearance" : "dark",
               "value" : {
-                "automatic-gradient" : "srgb:0.00000,0.47843,1.00000,1.00000"
+                "automatic-gradient" : "srgb:0.07843,0.35686,0.34118,1.00000"
               }
             }
           ],
@@ -73,8 +73,8 @@
               "value" : false
             }
           ],
-          "image-name" : "Oval.svg",
-          "name" : "Oval",
+          "image-name" : "ChatBackground.svg",
+          "name" : "Chat Background",
           "position-specializations" : [
             {
               "idiom" : "watchOS",

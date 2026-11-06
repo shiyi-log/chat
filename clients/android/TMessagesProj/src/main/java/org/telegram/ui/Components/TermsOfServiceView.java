@@ -58,7 +58,7 @@ public class TermsOfServiceView extends FrameLayout {
         linearLayout.setOrientation(LinearLayout.VERTICAL);
 
         ImageView imageView = new ImageView(context);
-        imageView.setImageResource(R.drawable.logo_middle);
+        imageView.setImageResource(R.drawable.chat_logo);
         linearLayout.addView(imageView, LayoutHelper.createLinear(LayoutHelper.WRAP_CONTENT, LayoutHelper.WRAP_CONTENT, Gravity.LEFT, 0, 28, 0, 0));
 
         titleTextView = new TextView(context);

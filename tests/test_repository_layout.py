@@ -13,6 +13,11 @@ SOURCE_MARKERS = {
 
 
 class RepositoryLayoutTest(unittest.TestCase):
+    def test_root_readme_is_chinese_first(self):
+        readme = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertTrue(readme.startswith("# Private Chat 私有聊天系统"))
+        self.assertIn("## English Summary", readme)
+
     def test_all_suite_sources_are_present_without_nested_git_repositories(self):
         for component, marker in SOURCE_MARKERS.items():
             with self.subTest(component=component):

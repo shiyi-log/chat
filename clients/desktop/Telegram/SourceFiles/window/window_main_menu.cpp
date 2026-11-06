@@ -384,7 +384,7 @@ MainMenu::MainMenu(
 	parentResized();
 
 	_telegram->setMarkedText(tr::link(
-		u"Private Chat Desktop"_q,
+		u"Chat Desktop"_q,
 		u"https://private-chat.local"_q));
 	_telegram->setLinksTrusted();
 	_version->setMarkedText(

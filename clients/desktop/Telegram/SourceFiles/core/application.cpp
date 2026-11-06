@@ -873,6 +873,10 @@ void Application::badMtprotoConfigurationError() {
 void Application::startLocalStorage() {
 	Ui::GL::DetectLastCheckCrash();
 	Local::start();
+	if (langpack().id().isEmpty()) {
+		langpack().switchToId(Lang::BundledChineseLanguage());
+		Local::writeLangPack();
+	}
 	_saveSettingsTimer.emplace([=] { saveSettings(); });
 	settings().saveDelayedRequests() | rpl::on_next([=] {
 		saveSettingsDelayed();
@@ -1913,7 +1917,7 @@ void Application::RegisterUrlScheme() {
 		.executable = Platform::ExecutablePathForShortcuts(),
 		.arguments = arguments,
 		.protocol = u"privatechat"_q,
-		.protocolName = u"Private Chat Link"_q,
+		.protocolName = u"Chat Link"_q,
 		.shortAppName = u"privatechat"_q,
 		.longAppName = QCoreApplication::applicationName(),
 		.displayAppName = AppName.utf16(),

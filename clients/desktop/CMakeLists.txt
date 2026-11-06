@@ -1,4 +1,4 @@
-# This file is part of Private Chat Desktop,
+# This file is part of Chat Desktop,
 # a private desktop client for a self-hosted chat service.
 #
 # For license and copyright information please follow this link:
@@ -27,7 +27,7 @@ endif()
 project(Telegram
     LANGUAGES C CXX
     VERSION ${desktop_app_version_cmake}
-    DESCRIPTION "Private Chat Desktop messenger"
+    DESCRIPTION "Chat Desktop messenger"
     HOMEPAGE_URL "https://private-chat.local"
 )
 

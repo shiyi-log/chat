@@ -1,5 +1,5 @@
 [Desktop Entry]
-Name=Private Chat
+Name=Chat
 Comment=Private messaging
 TryExec=Telegram
 Exec=Telegram -- %U
@@ -18,5 +18,5 @@ X-GNOME-SingleWindow=true
 
 [Desktop Action quit]
 Exec=Telegram -quit
-Name=Quit Private Chat
+Name=Quit Chat
 Icon=application-exit

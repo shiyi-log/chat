@@ -1,0 +1,43 @@
+def privateChatReleaseStoreFile = project.findProperty("RELEASE_STORE_FILE")
+def privateChatReleaseStorePassword = project.findProperty("RELEASE_STORE_PASSWORD")
+def privateChatReleaseKeyAlias = project.findProperty("RELEASE_KEY_ALIAS")
+def privateChatReleaseKeyPassword = project.findProperty("RELEASE_KEY_PASSWORD")
+
+def privateChatReleaseSigningConfigured = [
+    privateChatReleaseStoreFile,
+    privateChatReleaseStorePassword,
+    privateChatReleaseKeyAlias,
+    privateChatReleaseKeyPassword,
+].every { value -> value != null && !value.toString().trim().isEmpty() } &&
+    rootProject.file(privateChatReleaseStoreFile.toString()).isFile()
+
+android {
+    signingConfigs {
+        privateChatReleaseSigning {
+            if (privateChatReleaseSigningConfigured) {
+                storeFile rootProject.file(privateChatReleaseStoreFile.toString())
+                storePassword privateChatReleaseStorePassword
+                keyAlias privateChatReleaseKeyAlias
+                keyPassword privateChatReleaseKeyPassword
+            }
+        }
+    }
+}
+
+gradle.taskGraph.whenReady { taskGraph ->
+    def distributionTask = taskGraph.allTasks.find { task ->
+        def taskName = task.name.toLowerCase()
+        def createsArtifact = taskName.startsWith("assemble") || taskName.startsWith("bundle")
+        def isDistributionVariant = ["release", "standalone", "ha_private", "ha_public", "ha_hardcore"].any {
+            taskName.contains(it)
+        }
+        createsArtifact && isDistributionVariant
+    }
+
+    if (distributionTask != null && !privateChatReleaseSigningConfigured) {
+        throw new GradleException(
+            "Android distribution builds require RELEASE_STORE_FILE, RELEASE_STORE_PASSWORD, " +
+                "RELEASE_KEY_ALIAS, and RELEASE_KEY_PASSWORD from an external source."
+        )
+    }
+}

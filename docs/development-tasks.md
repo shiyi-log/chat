@@ -6,7 +6,7 @@
 
 - 套件由 `private-chat-server`、`private-chat-desktop`、`private-chat-android`、`private-chat-ios`、`private-chat-docs` 五个仓库组成。macOS 包含在 desktop；目前没有独立 Web 聊天客户端。
 - 当前服务端 Compose 要求操作者设置独立的 MySQL、MinIO 和 Grafana 密码，发布端口默认绑定 `127.0.0.1`。
-- 客户端默认地址仍为本地开发地址：Desktop / iOS 使用 `127.0.0.1:10443`，Android 模拟器使用 `10.0.2.2:10443`。跨设备联调需要修改地址并匹配 MTProto 公钥。
+- 当前单仓本地运行时的 MTProto TCP 端口为 `25222`：Desktop / iOS 使用 `127.0.0.1:25222`，Android 模拟器使用 `10.0.2.2:25222`。跨设备联调需要改为可访问的主机地址并匹配 MTProto 公钥。
 - 服务端定向验证已覆盖禁用验证码提供方、配置替换、Compose 配置和镜像构建；完整 Go 测试仍有 KV 接口不兼容及缺少 FFmpeg 的失败。
 - 历史客户端构建和 Android 双模拟器消息验证不能替代当前预览版的完整多端测试。Desktop / Android / iOS 全套登录、消息和文件上传联调，以及正式签名和分发配置仍需完成。
 - 源码许可按仓库分别适用，详见本仓库 README 的套件索引，保留上游及第三方许可声明。

@@ -261,6 +261,13 @@ std::pair<Languages, Languages> PrepareLists() {
 	};
 	const auto current = Lang::LanguageIdOrDefault(Lang::Id());
 	auto official = Lang::CurrentCloudManager().languageList();
+	for (const auto &language : {
+			Lang::BundledChineseLanguage(),
+			Lang::DefaultLanguage() }) {
+		if (ranges::find(official, language.id, projId) == end(official)) {
+			official.insert(begin(official), language);
+		}
+	}
 	auto recent = Local::readRecentLanguages();
 	ranges::stable_partition(recent, [&](const Language &language) {
 		return (language.id == current);

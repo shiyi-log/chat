@@ -3,17 +3,17 @@
     <id>com.privatechat.desktop</id>
     <metadata_license>CC0-1.0</metadata_license>
     <project_license>GPL-3.0</project_license>
-    <name>Private Chat</name>
+    <name>Chat</name>
     <summary>Private messaging</summary>
     <description>
-        <p>Private Chat is a private instant messaging client for our own self-hosted chat service.</p>
+        <p>Chat is a private instant messaging client for our own self-hosted chat service.</p>
         <p>It is configured for a private server environment and is maintained as an independent source snapshot.</p>
     </description>
     <categories>
         <category>Network</category>
         <category>InstantMessaging</category>
     </categories>
-    <developer id="com.privatechat"><name>Private Chat</name></developer>
+    <developer id="com.privatechat"><name>Chat</name></developer>
     <branding>
         <color type="primary" scheme_preference="light">#edf0f2</color>
         <color type="primary" scheme_preference="dark">#2d363f</color>

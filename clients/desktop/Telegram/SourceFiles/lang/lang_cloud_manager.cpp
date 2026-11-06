@@ -426,6 +426,19 @@ void CloudManager::requestLanguageAndSwitch(
 		performSwitchToCustom();
 		return;
 	}
+	for (const auto &language : {
+			BundledChineseLanguage(),
+			DefaultLanguage() }) {
+		if (id == language.id) {
+			changeIdAndReInitConnection(language);
+			Local::pushRecentLanguage(language);
+			Local::writeLangPack();
+			if (!canApplyWithoutRestart(id)) {
+				Core::Restart();
+			}
+			return;
+		}
+	}
 
 	_switchingToLanguageId = id;
 	_switchingToLanguageWarning = warning;
