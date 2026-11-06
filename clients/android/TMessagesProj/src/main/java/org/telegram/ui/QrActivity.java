@@ -334,7 +334,7 @@ public class QrActivity extends BaseFragment {
 
         logoImageView = new RLottieImageView(context);
         logoImageView.setAutoRepeat(true);
-        logoImageView.setAnimation(R.raw.qr_code_logo_2, 60, 60);
+        logoImageView.setImageResource(R.drawable.chat_logo);
         logoImageView.playAnimation();
         rootLayout.addView(logoImageView);
 

@@ -2132,7 +2132,7 @@ public class FilterCreateActivity extends BaseFragment {
             }
 
             QRCodeBottomSheet qrCodeBottomSheet = new QRCodeBottomSheet(getContext(), LocaleController.getString(R.string.InviteByQRCode), lastUrl, LocaleController.getString(R.string.QRCodeLinkHelpFolder), false);
-            qrCodeBottomSheet.setCenterAnimation(R.raw.qr_code_logo);
+            qrCodeBottomSheet.setCenterImage(R.drawable.chat_logo);
             qrCodeBottomSheet.show();
         }
 

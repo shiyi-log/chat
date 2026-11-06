@@ -2,12 +2,15 @@ package org.telegram.ui.Components;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.drawable.Drawable;
 import android.opengl.GLES20;
 import android.opengl.GLUtils;
 
 import androidx.annotation.RawRes;
+import androidx.core.content.ContextCompat;
 
 import org.telegram.messenger.AndroidUtilities;
+import org.telegram.messenger.ApplicationLoader;
 import org.telegram.messenger.FileLog;
 import org.telegram.messenger.R;
 
@@ -71,12 +74,14 @@ public class InstantCameraVideoEncoderOverlayHelper {
                 final int logoOffset = Math.round(width * 28 / 1536f);
                 final int trueSize = logoSize - logoOffset - logoOffset;
 
-                final int[] logoMetaData = new int[3];
-                final long logoPtr = RLottieDrawable.createWithJson(AndroidUtilities.readRes(R.raw.plane_logo_plain), "logo_plane", logoMetaData, null);
+                final Drawable logoDrawable = ContextCompat.getDrawable(ApplicationLoader.applicationContext, R.drawable.chat_logo);
+                logoDrawable.setBounds(0, 0, logoSize, logoSize);
                 final Bitmap logoBitmap = Bitmap.createBitmap(logoSize, logoSize, Bitmap.Config.ARGB_8888);
+                final Canvas logoCanvas = new Canvas(logoBitmap);
 
                 Bitmap bitmap = Bitmap.createBitmap(trueSize * 8, trueSize * 4, Bitmap.Config.ALPHA_8);
                 Canvas canvas = new Canvas(bitmap);
+                logoDrawable.draw(logoCanvas);
                 for (int x = 0; x < 8; x++) {
                     for (int y = 0; y < 4; y++) {
                         final int index = y * 8 + x;
@@ -91,7 +96,6 @@ public class InstantCameraVideoEncoderOverlayHelper {
                         b = (y + 1) / 4f;
 
                         setTextureCords(texData, TEXTURE_BUFFER_WATERMARK_LOGO_POSITION + index * 8, l, t, r, b);
-                        RLottieDrawable.getFrame(logoPtr, index * 2, logoBitmap, true);
                         canvas.drawBitmap(logoBitmap, trueSize * x - logoOffset, trueSize * y - logoOffset, null);
                     }
                 }
@@ -103,7 +107,6 @@ public class InstantCameraVideoEncoderOverlayHelper {
 
                 bitmap.recycle();
                 logoBitmap.recycle();
-                RLottieDrawable.destroy(logoPtr);
             } else if (i == TEXTURE_INDEX_WATERMARK_TEXT) {
                 final int logoSize = Math.round(width * 372f / 1536f);
                 float scale = (float) logoSize / videoWidth;

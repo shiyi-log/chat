@@ -315,6 +315,42 @@ class ChatBrandingLocalizationTests(unittest.TestCase):
         self.assertIn("R.drawable.chat_logo", notifications)
         self.assertIn("R.drawable.chat_logo", voip)
 
+    def test_qr_and_round_video_branding_use_chat_mark(self):
+        qr_sources = (
+            "TMessagesProj/src/main/java/org/telegram/ui/CallLogActivity.java",
+            "TMessagesProj/src/main/java/org/telegram/ui/FilterChatlistActivity.java",
+            "TMessagesProj/src/main/java/org/telegram/ui/FilterCreateActivity.java",
+            "TMessagesProj/src/main/java/org/telegram/ui/QrActivity.java",
+            "TMessagesProj/src/main/java/org/telegram/ui/Components/BlockingUpdateView.java",
+            "TMessagesProj/src/main/java/org/telegram/ui/Components/LinkActionView.java",
+        )
+        for relative_path in qr_sources:
+            contents = (ROOT / relative_path).read_text(encoding="utf-8")
+            with self.subTest(path=relative_path):
+                self.assertIn("R.drawable.chat_logo", contents)
+                self.assertNotRegex(contents, r"R\.raw\.qr_code_logo(?:_2)?")
+
+        video_overlay = (
+            ROOT / "TMessagesProj/src/main/java/org/telegram/ui/Components/InstantCameraVideoEncoderOverlayHelper.java"
+        ).read_text(encoding="utf-8")
+        self.assertIn("R.drawable.chat_logo", video_overlay)
+        self.assertNotIn("R.raw.plane_logo_plain", video_overlay)
+
+        legacy_assets = (
+            "raw/qr_code_logo.json",
+            "raw/qr_code_logo_2.json",
+            "raw/plane_logo_plain.json",
+            "drawable/telegram_logo.xml",
+            "drawable/telegram_logo_2.xml",
+            "drawable-mdpi/intro_tg_plane.webp",
+            "drawable-hdpi/intro_tg_plane.webp",
+            "drawable-xhdpi/intro_tg_plane.webp",
+            "drawable-xxhdpi/intro_tg_plane.webp",
+        )
+        for relative_path in legacy_assets:
+            with self.subTest(asset=relative_path):
+                self.assertFalse((RES / relative_path).exists())
+
     def test_launcher_aliases_keep_chat_variant_assets(self):
         expected = {
             "VintageIcon": ("@mipmap/chat_launcher_vintage", "@mipmap/chat_launcher_vintage"),
