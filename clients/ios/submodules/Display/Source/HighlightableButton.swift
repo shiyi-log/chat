@@ -6,8 +6,18 @@ open class HighlightableButton: HighlightTrackingButton {
     override public init(frame: CGRect) {
         super.init(frame: frame)
         
-        self.adjustsImageWhenHighlighted = false
-        self.adjustsImageWhenDisabled = false
+        if #available(iOS 15.0, *) {
+            self.configurationUpdateHandler = { button in
+                guard var configuration = button.configuration else {
+                    return
+                }
+                configuration.image = button.currentImage
+                configuration.imageColorTransformer = UIConfigurationColorTransformer { color in
+                    color
+                }
+                button.configuration = configuration
+            }
+        }
         self.internalHighligthedChanged = { [weak self] highlighted in
             if let strongSelf = self {
                 if highlighted {

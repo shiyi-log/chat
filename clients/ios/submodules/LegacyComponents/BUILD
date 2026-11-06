@@ -42,6 +42,7 @@ objc_library(
         "Foundation",
         "UIKIt",
         "QuickLook",
+        "UniformTypeIdentifiers",
         "CoreMotion",
     ],
     weak_sdk_frameworks = [
