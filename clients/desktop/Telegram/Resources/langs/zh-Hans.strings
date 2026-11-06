@@ -19,6 +19,10 @@
 "lng_open_from_tray" = "打开 Chat";
 "lng_minimize_to_tray" = "最小化到托盘";
 "lng_quit_from_tray" = "退出 Chat";
+"lng_mac_menu_hide_telegram" = "隐藏 {Chat}";
+"lng_mac_menu_show" = "显示 Chat";
+"lng_mac_menu_quit_telegram" = "退出 {Chat}";
+"lng_mac_menu_about_telegram" = "关于 {Chat}";
 "lng_tray_icon_text" = "Chat 仍在后台运行，\n你可以在设置中更改此选项。\n如果托盘图标消失，\n可以从隐藏图标中将它拖回。";
 "lng_box_ok" = "确定";
 "lng_cancel" = "取消";

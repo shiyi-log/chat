@@ -161,6 +161,54 @@ class ChatDesktopBrandingTests(unittest.TestCase):
         )
         self.assertIn("file.write(getCrashReportRaw());", source)
 
+    def test_platform_shell_surfaces_use_chat_branding_and_chinese_menu_copy(self):
+        mac_menu = read_text("Telegram/SourceFiles/platform/mac/global_menu_mac.mm")
+        linux_menu = read_text("Telegram/SourceFiles/platform/linux/main_window_linux.cpp")
+        main_window = read_text("Telegram/SourceFiles/window/main_window.cpp")
+        notifications = read_text("Telegram/SourceFiles/window/notifications_manager_default.cpp")
+        updater = read_text("Telegram/SourceFiles/_other/updater_win.cpp")
+
+        for path, source, legacy in (
+            ("macOS menu", mac_menu, 'u"About Telegram"_q'),
+            ("macOS app menu", mac_menu, '_menuBar->addMenu(u"Telegram"_q)'),
+            ("macOS show menu", mac_menu, 'u"Show Telegram"_q'),
+            ("Linux quit menu", linux_menu, 'lt_telegram, u"Telegram"_q'),
+            ("Linux about menu", linux_menu, 'lt_telegram,\n\t\t\tu"Telegram"_q'),
+            ("empty window title", main_window, 'u"Telegram"_q'),
+            ("private notification title", notifications, 'u"Telegram Desktop"_q'),
+            ("Windows update error", updater, 'L"Failed to update Telegram'),
+        ):
+            with self.subTest(surface=path):
+                self.assertNotIn(legacy, source)
+
+        self.assertIn('u"Chat"_q', mac_menu)
+        self.assertIn("tr::lng_mac_menu_show(tr::now)", mac_menu)
+        self.assertIn('lt_telegram, u"Chat"_q', linux_menu)
+        self.assertIn('u"Chat"_q', main_window)
+        self.assertIn('u"Chat"_q', notifications)
+        self.assertIn('L"Failed to update Chat', updater)
+
+        base = read_strings("Telegram/Resources/langs/lang.strings")
+        chinese = read_strings("Telegram/Resources/langs/zh-Hans.strings")
+        required = {
+            "lng_mac_menu_hide_telegram",
+            "lng_mac_menu_show",
+            "lng_mac_menu_quit_telegram",
+            "lng_mac_menu_about_telegram",
+        }
+        self.assertTrue(required <= base.keys())
+        self.assertTrue(required <= chinese.keys())
+        for key in required:
+            with self.subTest(locale="zh-Hans", key=key):
+                self.assertEqual(
+                    sorted(PLACEHOLDER_PATTERN.findall(base[key])),
+                    sorted(PLACEHOLDER_PATTERN.findall(chinese[key])),
+                )
+        self.assertEqual("隐藏 {Chat}", chinese["lng_mac_menu_hide_telegram"])
+        self.assertEqual("显示 Chat", chinese["lng_mac_menu_show"])
+        self.assertEqual("退出 {Chat}", chinese["lng_mac_menu_quit_telegram"])
+        self.assertEqual("关于 {Chat}", chinese["lng_mac_menu_about_telegram"])
+
     def test_new_install_defaults_to_simplified_chinese_without_overriding_saved_language(self):
         language = read_text("Telegram/SourceFiles/lang/lang_keys.cpp")
         application = read_text("Telegram/SourceFiles/core/application.cpp")
