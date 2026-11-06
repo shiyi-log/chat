@@ -46,6 +46,19 @@ class ChatAppBrandingTests(unittest.TestCase):
             )
         self.assertEqual(["Chat"] * len(localized_names), localized_names)
 
+    def test_appstore_llc_configuration_uses_chat_release_identity(self):
+        config = parse_xcconfig(IOS_APP / "Config-AppStoreLLC.xcconfig")
+        fork = parse_xcconfig(IOS_APP / "Config-Fork.xcconfig")
+
+        self.assertEqual("Chat", config["APP_NAME"])
+        self.assertEqual("com.privatechat.ios", config["APP_BUNDLE_ID"])
+        self.assertEqual("privatechat", config["APP_SPECIFIC_URL_SCHEME"])
+        self.assertEqual(fork["GLOBAL_CONSTANTS"], config["GLOBAL_CONSTANTS"])
+        self.assertEqual(
+            fork["GCC_PREPROCESSOR_DEFINITIONS"],
+            config["GCC_PREPROCESSOR_DEFINITIONS"],
+        )
+
     def test_active_app_icon_uses_chat_artwork(self):
         icon = json.loads((IOS_APP / "Telegram.icon/icon.json").read_text(encoding="utf-8"))
         icon_assets = IOS_APP / "Telegram.icon/Assets"

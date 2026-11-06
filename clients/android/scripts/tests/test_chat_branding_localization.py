@@ -113,6 +113,14 @@ class ChatBrandingLocalizationTests(unittest.TestCase):
                     self.assertIsNone(TELEGRAM_NAME.search(value), value)
                     self.assertEqual([], list(telegram_owned_targets(value)), value)
 
+    def test_cocoon_footer_uses_chat_feature_link_and_has_simplified_chinese_copy(self):
+        footer = self.english["CocoonFooter"]
+        self.assertNotRegex(footer, re.compile(r"t\.me|telegram", re.IGNORECASE))
+        self.assertEqual("https://privatechat.local/features", self.english["CocoonFooterLink"])
+        self.assertIn("CocoonFooter", self.chinese)
+        self.assertNotRegex(self.chinese["CocoonFooter"], re.compile(r"t\.me|telegram", re.IGNORECASE))
+        self.assertIn("Chat", self.chinese["CocoonFooter"])
+
     def test_real_empty_chat_and_launcher_surfaces_resolve_to_chat_resources(self):
         empty_cell = (ROOT / "TMessagesProj/src/main/java/org/telegram/ui/Cells/DialogsEmptyCell.java").read_text(encoding="utf-8")
         self.assertRegex(empty_cell, r"titleView\.setText\(LocaleController\.getString\(R\.string\.NoChats\)\)")

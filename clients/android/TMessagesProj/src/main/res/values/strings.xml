@@ -10482,7 +10482,7 @@
     <string name="CocoonFeature3Title">For Everyone</string>
     <string name="CocoonFeature3Text">Any developer can use Cocoon for AI features. Learn more at **cocoon.org**</string>
     <string name="CocoonFeature3TextLink">https://cocoon.org/</string>
-    <string name="CocoonFooter">Want to integrate Cocoon into your projects?\nReach out at **t.me/cocoon?direct**</string>
+    <string name="CocoonFooter">Want to integrate Cocoon into your projects?\nSee **Chat's feature page** for integration information.</string>
     <string name="CocoonFooterLink">https://privatechat.local/features</string>
     <string name="SummaryTitle">AI Summary</string>
     <string name="SummarySubtitle">Tap to see original text</string>
