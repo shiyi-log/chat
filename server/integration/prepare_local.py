@@ -7,7 +7,7 @@ import time
 from pathlib import Path
 
 
-SERVICE_PORTS = {
+DEFAULT_SERVICE_PORTS = {
     "idgen": 30660,
     "status": 30670,
     "dfs": 30640,
@@ -20,9 +20,30 @@ SERVICE_PORTS = {
     "session": 30120,
     "gnetway": 30110,
 }
-TCP_PORT = 25222
-WEBSOCKET_PORT = 25443
-DFS_HTTP_PORT = 31701
+PORT_DEFAULTS = {
+    **DEFAULT_SERVICE_PORTS,
+    "mysql": 23306,
+    "redis": 26379,
+    "etcd": 22379,
+    "kafka": 29092,
+    "minio": 29000,
+    "minio_console": 29001,
+    "tcp": 25222,
+    "websocket": 25443,
+    "dfs_http": 31701,
+}
+PORT_ENV_KEYS = {
+    **{name: f"LOCAL_RUNTIME_{name.upper()}_GRPC_PORT" for name in DEFAULT_SERVICE_PORTS},
+    "mysql": "LOCAL_INTEGRATION_MYSQL_PORT",
+    "redis": "LOCAL_INTEGRATION_REDIS_PORT",
+    "etcd": "LOCAL_INTEGRATION_ETCD_PORT",
+    "kafka": "LOCAL_INTEGRATION_KAFKA_PORT",
+    "minio": "LOCAL_INTEGRATION_MINIO_PORT",
+    "minio_console": "LOCAL_INTEGRATION_MINIO_CONSOLE_PORT",
+    "tcp": "LOCAL_RUNTIME_GNET_TCP_PORT",
+    "websocket": "LOCAL_RUNTIME_GNET_WEBSOCKET_PORT",
+    "dfs_http": "LOCAL_RUNTIME_DFS_HTTP_PORT",
+}
 
 _MYSQL_PASSWORD_KEY = "LOCAL_INTEGRATION_MYSQL_PASSWORD"
 _MINIO_PASSWORD_KEY = "LOCAL_INTEGRATION_MINIO_ROOT_PASSWORD"
@@ -101,6 +122,22 @@ def _quoted(value):
     return json.dumps(value, ensure_ascii=True)
 
 
+def _read_runtime_ports(credentials):
+    ports = {}
+    for name, default in PORT_DEFAULTS.items():
+        value = credentials.get(PORT_ENV_KEYS[name], str(default))
+        try:
+            port = int(value)
+        except ValueError as exc:
+            raise RuntimeError("local runtime port configuration is invalid") from exc
+        if not 1 <= port <= 65535:
+            raise RuntimeError("local runtime port configuration is invalid")
+        ports[name] = port
+    if len(set(ports.values())) != len(ports):
+        raise RuntimeError("local runtime ports must be unique")
+    return ports
+
+
 def _replace_once(text, old, new, description):
     count = text.count(old)
     if count != 1:
@@ -108,7 +145,7 @@ def _replace_once(text, old, new, description):
     return text.replace(old, new, 1)
 
 
-def _render_service_config(name, source_path, runtime_root, credentials):
+def _render_service_config(name, source_path, runtime_root, credentials, ports):
     text = source_path.read_text(encoding="utf-8")
     old_port = {
         "bff": 20010,
@@ -126,7 +163,7 @@ def _render_service_config(name, source_path, runtime_root, credentials):
     text = _replace_once(
         text,
         f"ListenOn: 127.0.0.1:{old_port}\n",
-        f"ListenOn: 127.0.0.1:{SERVICE_PORTS[name]}\n",
+        f"ListenOn: 127.0.0.1:{ports[name]}\n",
         f"{name} gRPC listener",
     )
     text, name_count = re.subn(r"(?m)^(Name: [^\n]+)$", r"\1\nMode: pro", text, count=1)
@@ -134,16 +171,16 @@ def _render_service_config(name, source_path, runtime_root, credentials):
         raise RuntimeError(f"unexpected {name} service name in source configuration")
     text = _replace_once(
         text,
-        f"ListenOn: 127.0.0.1:{SERVICE_PORTS[name]}\n",
-        f"ListenOn: 127.0.0.1:{SERVICE_PORTS[name]}\nDevServer:\n  Enabled: false\n",
+        f"ListenOn: 127.0.0.1:{ports[name]}\n",
+        f"ListenOn: 127.0.0.1:{ports[name]}\nDevServer:\n  Enabled: false\n",
         f"{name} dev server setting",
     )
 
     for old, new in (
-        ("127.0.0.1:2379", "127.0.0.1:22379"),
-        ("127.0.0.1:6379", "127.0.0.1:26379"),
-        ("localhost:6379", "127.0.0.1:26379"),
-        ("127.0.0.1:9092", "127.0.0.1:29092"),
+        ("127.0.0.1:2379", f"127.0.0.1:{ports['etcd']}"),
+        ("127.0.0.1:6379", f"127.0.0.1:{ports['redis']}"),
+        ("localhost:6379", f"127.0.0.1:{ports['redis']}"),
+        ("127.0.0.1:9092", f"127.0.0.1:{ports['kafka']}"),
     ):
         text = text.replace(old, new)
 
@@ -158,7 +195,7 @@ def _render_service_config(name, source_path, runtime_root, credentials):
             "BFF local outbox",
         )
 
-    dsn = f"teamgram:{credentials[_MYSQL_PASSWORD_KEY]}@tcp(127.0.0.1:23306)/teamgram?charset=utf8mb4&parseTime=true"
+    dsn = f"teamgram:{credentials[_MYSQL_PASSWORD_KEY]}@tcp(127.0.0.1:{ports['mysql']})/teamgram?charset=utf8mb4&parseTime=true"
     text, dsn_count = re.subn(
         r"(?m)^(\s*DSN:) root:@tcp\(127\.0\.0\.1:3306\)/teamgram\?charset=utf8mb4&parseTime=true$",
         lambda match: f"{match.group(1)} {_quoted(dsn)}",
@@ -168,14 +205,14 @@ def _render_service_config(name, source_path, runtime_root, credentials):
         raise RuntimeError(f"unexpected MySQL DSN count in {name} source configuration")
 
     if name == "dfs":
-        text = _replace_once(text, "  Host: 0.0.0.0\n  Port: 11701\n", f"  Host: 127.0.0.1\n  Port: {DFS_HTTP_PORT}\n", "DFS HTTP listener")
+        text = _replace_once(text, "  Host: 0.0.0.0\n  Port: 11701\n", f"  Host: 127.0.0.1\n  Port: {ports['dfs_http']}\n", "DFS HTTP listener")
         text = _replace_once(
             text,
-            f"  Port: {DFS_HTTP_PORT}\n  Timeout: 0\n",
-            f"  Port: {DFS_HTTP_PORT}\n  DevServer:\n    Enabled: false\n  Timeout: 0\n",
+            f"  Port: {ports['dfs_http']}\n  Timeout: 0\n",
+            f"  Port: {ports['dfs_http']}\n  DevServer:\n    Enabled: false\n  Timeout: 0\n",
             "DFS HTTP dev server setting",
         )
-        text = _replace_once(text, "  Endpoint: localhost:9000\n", "  Endpoint: 127.0.0.1:29000\n", "MinIO endpoint")
+        text = _replace_once(text, "  Endpoint: localhost:9000\n", f"  Endpoint: 127.0.0.1:{ports['minio']}\n", "MinIO endpoint")
         text = _replace_once(text, "  AccessKeyID: minio\n", "  AccessKeyID: integration-minio\n", "MinIO username")
         text = _replace_once(
             text,
@@ -189,9 +226,9 @@ def _render_service_config(name, source_path, runtime_root, credentials):
         text = text.replace('"./server_pkcs1.key"', _quoted(key_path))
         if text.count(key_path) != 2:
             raise RuntimeError("unexpected gateway RSA key references in source configuration")
-        text = _replace_once(text, "0.0.0.0:10443", f"127.0.0.1:{TCP_PORT}", "gateway TCP listener")
-        text = _replace_once(text, "        - 0.0.0.0:5222\n", "        - \"[::1]:25222\"\n", "gateway IPv6 loopback TCP listener")
-        text = _replace_once(text, "0.0.0.0:11443", f"127.0.0.1:{WEBSOCKET_PORT}", "gateway WebSocket listener")
+        text = _replace_once(text, "0.0.0.0:10443", f"127.0.0.1:{ports['tcp']}", "gateway TCP listener")
+        text = _replace_once(text, "        - 0.0.0.0:5222\n", f"        - \"[::1]:{ports['tcp']}\"\n", "gateway IPv6 loopback TCP listener")
+        text = _replace_once(text, "0.0.0.0:11443", f"127.0.0.1:{ports['websocket']}", "gateway WebSocket listener")
 
     text, log_path_count = re.subn(
         r"(?m)^(  Path: )\.\./logs/[^\n]+$",
@@ -204,7 +241,7 @@ def _render_service_config(name, source_path, runtime_root, credentials):
     return text
 
 
-def _render_client_config(source_path):
+def _render_client_config(source_path, ports):
     config = json.loads(source_path.read_text(encoding="utf-8"))
     data = config.get("data2")
     if not isinstance(data, dict) or not isinstance(data.get("dc_options"), list):
@@ -214,7 +251,7 @@ def _render_client_config(source_path):
             "predicate_name": "dcOption",
             "id": 1,
             "ip_address": "127.0.0.1",
-            "port": TCP_PORT,
+            "port": ports["tcp"],
         },
     ]
     return json.dumps(config, indent=2, ensure_ascii=True) + "\n"
@@ -224,19 +261,20 @@ def prepare_runtime(server_root, runtime_root, env_path):
     server_root = Path(server_root).resolve()
     runtime_root = Path(os.path.abspath(runtime_root))
     credentials = _read_env_file(env_path)
+    ports = _read_runtime_ports(credentials)
     source_dir = server_root / "teamgramd" / "etc"
     client_config_source = server_root / "teamgramd" / "bin" / "config.json"
 
-    source_configs = {name: source_dir / f"{name}.yaml" for name in SERVICE_PORTS}
+    source_configs = {name: source_dir / f"{name}.yaml" for name in DEFAULT_SERVICE_PORTS}
     missing = [path for path in [*source_configs.values(), client_config_source] if not path.is_file()]
     if missing:
         raise RuntimeError("local runtime source files are incomplete")
 
     rendered = {
-        name: _render_service_config(name, source, runtime_root, credentials)
+        name: _render_service_config(name, source, runtime_root, credentials, ports)
         for name, source in source_configs.items()
     }
-    client_config = _render_client_config(client_config_source)
+    client_config = _render_client_config(client_config_source, ports)
 
     _ensure_private_dir(runtime_root)
     etc_dir = _ensure_private_dir(runtime_root / "etc")
@@ -247,7 +285,7 @@ def prepare_runtime(server_root, runtime_root, env_path):
     _write_private_file(runtime_root / "config.json", client_config)
     _generate_runtime_key(runtime_root / "server_pkcs1.key")
     outbox_dir.chmod(0o700)
-    return [etc_dir / f"{name}.yaml" for name in SERVICE_PORTS]
+    return [etc_dir / f"{name}.yaml" for name in DEFAULT_SERVICE_PORTS]
 
 
 class ManagedServices:

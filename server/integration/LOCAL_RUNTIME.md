@@ -12,15 +12,15 @@ compatibility. No real SMS service is used.
 ## Dependency stack
 
 Follow [README.md](README.md) to create `server/integration/.env` and validate the
-separate `private-chat-integration` Compose project. The runtime runner does not
+separate `chat-monorepo-public-integration` Compose project. The runtime runner does not
 start Docker, import data from another stack, or stop existing containers. Start
 and inspect only the integration project, from the monorepo root:
 
 ```bash
-docker compose --project-name private-chat-integration \
+docker compose --project-name chat-monorepo-public-integration \
   --env-file server/integration/.env \
   -f server/docker-compose-integration.yaml up -d
-docker compose --project-name private-chat-integration \
+docker compose --project-name chat-monorepo-public-integration \
   --env-file server/integration/.env \
   -f server/docker-compose-integration.yaml ps -a
 ```
@@ -36,13 +36,13 @@ The Go runtime connects to these host endpoints:
 
 | Dependency | Endpoint |
 | --- | --- |
-| MySQL | `127.0.0.1:23306` |
-| Redis | `127.0.0.1:26379` |
-| etcd | `127.0.0.1:22379` |
-| Kafka | `127.0.0.1:29092` |
-| S3 API | `127.0.0.1:29000` |
+| MySQL | `127.0.0.1:23316` |
+| Redis | `127.0.0.1:26389` |
+| etcd | `127.0.0.1:22389` |
+| Kafka | `127.0.0.1:29012` |
+| S3 API | `127.0.0.1:29010` |
 
-etcd also advertises `http://127.0.0.1:22379` to host clients, so automatic
+etcd also advertises `http://127.0.0.1:22389` to host clients, so automatic
 endpoint synchronization keeps using the host-accessible loopback address.
 
 ## Build and verify
@@ -50,7 +50,7 @@ endpoint synchronization keeps using the host-accessible loopback address.
 Use the Go version required by `server/go.mod` or a compatible newer toolchain.
 The currently installed Mac ARM64 toolchain is Go 1.26.8 at
 `/Users/shiyi/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.8.darwin-arm64/bin`.
-The local command, from `/Users/shiyi/Documents/clawchat/monorepo/server`, is:
+The local command, from `/Users/shiyi/Documents/clawchat/monorepo-public/server`, is:
 
 ```bash
 PATH=/Users/shiyi/go/pkg/mod/golang.org/toolchain@v0.0.1-go1.26.8.darwin-arm64/bin:$PATH make -j4 all
@@ -68,53 +68,52 @@ python3 -m unittest discover -s tests -v
 
 ## Registered ports and foreground startup
 
-The application ports below are registered on this Mac to `Private Chat Local
-Runtime`, project ID `bea0ae7f79bf443bb373df5b5a0019e2`, with canonical directory
-`/Users/shiyi/Documents/clawchat/monorepo`. They are separate from the original
-server port registration. Fourteen ports are registered; thirteen distinct
-application ports are active in the current runtime. Other machines must
-allocate their own ports.
+The application and integration ports below are registered on this Mac to
+`Chat Monorepo Public Runtime`, project ID `2da758a8f2dc45dfa04bbcee49b9dd8c`,
+with canonical directory `/Users/shiyi/Documents/clawchat/monorepo-public`.
+Other machines must allocate and configure their own ports in
+`server/integration/.env`.
 
 | Registered endpoint | Loopback port |
 | --- | --- |
-| gnet MTProto TCP | `25222` |
-| gnet WebSocket | `25443` |
-| BFF gRPC | `30010` |
-| biz gRPC | `30020` |
-| msg gRPC | `30030` |
-| gnetway gRPC | `30110` |
-| session gRPC | `30120` |
-| sync gRPC (reserved; inactive) | `30420` |
-| authsession gRPC | `30450` |
-| DFS gRPC | `30640` |
-| media gRPC | `30650` |
-| idgen gRPC | `30660` |
-| status gRPC | `30670` |
-| DFS media HTTP | `31701` |
+| gnet MTProto TCP | `35222` |
+| gnet WebSocket | `35443` |
+| BFF gRPC | `36010` |
+| biz gRPC | `36020` |
+| msg gRPC | `36030` |
+| gnetway gRPC | `36110` |
+| session gRPC | `36120` |
+| sync gRPC (reserved; inactive) | `36420` |
+| authsession gRPC | `36450` |
+| DFS gRPC | `36640` |
+| media gRPC | `36650` |
+| idgen gRPC | `36660` |
+| status gRPC | `36670` |
+| DFS media HTTP | `37701` |
 
 The `sync` process runs as a Kafka consumer. Its gRPC server setup is disabled
 in the current source, so the process remains alive without listening on the
-reserved port `30420`.
+reserved port `36420`.
 
 Recheck registration and current listeners before every startup. The port
 manager also rechecks before its managed launch:
 
 ```bash
 python3 /Users/shiyi/Documents/ChatGPT/duankou/portctl.py check \
-  --project bea0ae7f79bf443bb373df5b5a0019e2 \
-  --ports 25222,25443,30010,30020,30030,30110,30120,30420,30450,30640,30650,30660,30670,31701
+  --project 2da758a8f2dc45dfa04bbcee49b9dd8c \
+  --ports 35222,35443,36010,36020,36030,36110,36120,36420,36450,36640,36650,36660,36670,37701
 python3 /Users/shiyi/Documents/ChatGPT/duankou/portctl.py run \
-  --project bea0ae7f79bf443bb373df5b5a0019e2 \
-  --ports 25222,25443,30010,30020,30030,30110,30120,30420,30450,30640,30650,30660,30670,31701 \
-  -- python3 /Users/shiyi/Documents/clawchat/monorepo/server/integration/run_local.py
+  --project 2da758a8f2dc45dfa04bbcee49b9dd8c \
+  --ports 35222,35443,36010,36020,36030,36110,36120,36420,36450,36640,36650,36660,36670,37701 \
+  -- python3 /Users/shiyi/Documents/clawchat/monorepo-public/server/integration/run_local.py
 ```
 
 The runner keeps all service children in its foreground process group, logs
 each child's output under `server/integration/.runtime/logs`, and uses
 `server/integration/.runtime` as their working directory. The BFF reads the
 generated `config.json` there. Its `dc_options` advertises only the ordinary
-MTProto TCP endpoint at `127.0.0.1:25222`; the gateway also listens on
-`[::1]:25222` for Desktop's IPv6 loopback option. WebSocket clients need their
+MTProto TCP endpoint at `127.0.0.1:35222`; the gateway also listens on
+`[::1]:35222` for Desktop's IPv6 loopback option. WebSocket clients need their
 own explicit WebSocket transport configuration. Go-zero development listeners
 are disabled. Configured listeners bind only to IPv4 or IPv6 loopback.
 
@@ -126,7 +125,7 @@ The runner does not execute global `killall` or stop unrelated processes.
 For runtime verification, inspect the port-manager output and each service's
 logs. Confirm all eleven service child processes remain alive, including the
 Kafka-only `sync` process, and all thirteen active listeners belong to this
-runner. Port `30420` should remain unbound with the current source. Confirm no
+runner. Port `36420` should remain unbound with the current source. Confirm no
 unregistered listener was created and the services have no dependency errors.
 A listening TCP socket only demonstrates backend readiness;
 complete an actual client login followed by send/receive and upload/download

@@ -1813,16 +1813,21 @@ uint8_t ConnectionsManager::getIpStratagy() {
 
 void ConnectionsManager::initDatacenters() {
     Datacenter *datacenter;
+#ifdef PRIVATE_CHAT_LOCAL_DC_PORT
+    constexpr int privateChatDcPort = PRIVATE_CHAT_LOCAL_DC_PORT;
+#else
+    constexpr int privateChatDcPort = 25222;
+#endif
     if (!testBackend) {
         if (datacenters.find(1) == datacenters.end()) {
             datacenter = new Datacenter(instanceNum, 1);
-            datacenter->addAddressAndPort("10.0.2.2", 25222, 0, "");
+            datacenter->addAddressAndPort("10.0.2.2", privateChatDcPort, 0, "");
             datacenters[1] = datacenter;
         }
     } else {
         if (datacenters.find(1) == datacenters.end()) {
             datacenter = new Datacenter(instanceNum, 1);
-            datacenter->addAddressAndPort("10.0.2.2", 25222, 0, "");
+            datacenter->addAddressAndPort("10.0.2.2", privateChatDcPort, 0, "");
             datacenters[1] = datacenter;
         }
     }

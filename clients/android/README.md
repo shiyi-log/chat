@@ -7,7 +7,7 @@
 - 对外包名前缀已改为 `com.privatechat.messenger`。
 - Debug/Beta 包名为 `com.privatechat.messenger.beta`。
 - 默认应用显示名为 `Chat`，Beta 显示名为 `Chat Beta`。
-- Android 模拟器默认连接宿主机本地运行时：`10.0.2.2:25222`。
+- Android Debug 模拟器连接宿主机本地运行时：`10.0.2.2:35222`；其他构建默认端口为 `25222`。
 - MTProto 握手公钥和 simple config 解密公钥已替换为当前私有服务端公钥。
 - 当前已完成本机 `afatDebug` APK 构建，并在两台 Android 模拟器完成启动稳定性验证。
 

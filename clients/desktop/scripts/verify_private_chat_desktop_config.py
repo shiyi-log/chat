@@ -46,10 +46,15 @@ def main():
     dc_path = "Telegram/SourceFiles/mtproto/mtproto_dc_options.cpp"
     dc_text = read_text(dc_path)
     official_dc_pattern = re.compile(r"\b(149\.154|91\.108)\.\d+\.\d+\b")
-    record(checks, '{ 1, "127.0.0.1", 25222 }' in dc_text, f"{dc_path}：IPv4 DC 1 应指向 127.0.0.1:25222")
-    record(checks, '{ 1, "::1", 25222 }' in dc_text, f"{dc_path}：IPv6 DC 1 应指向 ::1:25222")
+    record(checks, "#define PRIVATE_CHAT_DC_PORT 25222" in dc_text, f"{dc_path}：未配置编译端口时生产默认值应为 25222")
+    record(checks, dc_text.count("PRIVATE_CHAT_DC_PORT }") == 4, f"{dc_path}：生产和测试 IPv4/IPv6 DC 应统一使用编译端口")
     record(checks, dc_text.count("-----BEGIN RSA PUBLIC KEY-----") >= 2, f"{dc_path}：生产和测试 RSA 公钥应存在")
     record(checks, official_dc_pattern.search(dc_text) is None, f"{dc_path}：不应保留官方 DC IP")
+
+    mtproto_cmake_path = "Telegram/cmake/td_mtproto.cmake"
+    mtproto_cmake_text = read_text(mtproto_cmake_path)
+    record(checks, 'set(PRIVATE_CHAT_LOCAL_DC_PORT 35222 CACHE STRING' in mtproto_cmake_text, f"{mtproto_cmake_path}：Debug 本地 MTProto 端口默认值应为 35222")
+    record(checks, '"$<$<CONFIG:Debug>:PRIVATE_CHAT_DC_PORT=${PRIVATE_CHAT_LOCAL_DC_PORT}>"' in mtproto_cmake_text, f"{mtproto_cmake_path}：仅 Debug 构建应覆盖 DC 端口")
 
     plist_path = "Telegram/Telegram.plist"
     plist = read_plist(ROOT / plist_path)
@@ -327,7 +332,8 @@ def main():
         return 1
 
     print(f"Desktop 私有化配置验证通过：{passed_count}/{len(checks)} 项通过")
-    print("- 内置 DC 已指向 127.0.0.1:25222 / ::1:25222")
+    print("- 生产默认 MTProto 端口为 25222")
+    print("- Debug 构建使用本地 MTProto 端口 35222")
     print("- macOS、Windows、UWP、Linux 高可见入口已指向 Chat")
     print("- 默认构建已关闭自动更新和崩溃上报，可在接入自建服务后显式打开")
     print("- 当前验证是静态配置验证；登录、多端互通、发布签名和正式服务器入口仍需单独验证")

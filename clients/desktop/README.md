@@ -4,7 +4,8 @@
 
 ## 当前状态
 
-- 内置生产和测试 DC 已指向本机本地运行时：`127.0.0.1:25222`，IPv6 本机地址为 `::1:25222`。
+- 生产构建默认使用 MTProto 端口 `25222`；Debug 构建默认连接本机开发运行时 `127.0.0.1:35222`，IPv6 本机地址为 `::1:35222`。
+- Debug 端口可通过 CMake 参数 `-DPRIVATE_CHAT_LOCAL_DC_PORT=<port>` 覆盖；该参数不会改变 Release 构建的生产默认端口。
 - 内置 MTProto RSA 公钥已替换为当前私有服务端公钥。
 - Linux、Windows、macOS 的应用名称、图标、链接协议和高可见入口已纳入私有化配置检查。
 - 私有化配置检查通过不代表桌面端已完成构建或登录验证。
@@ -20,7 +21,7 @@ python3 scripts/verify_private_chat_desktop_config.py
 
 验证覆盖：
 
-- 私有 DC 地址与端口。
+- 生产默认 DC 端口及 Debug 本地运行时端口。
 - macOS `Info.plist` 高可见名称。
 - Windows 安装器、版本资源和 UWP/AppX 显示名称。
 - Linux desktop/AppStream 元数据。

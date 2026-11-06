@@ -15,6 +15,10 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include <QtCore/QFile>
 #include <QtCore/QRegularExpression>
 
+#ifndef PRIVATE_CHAT_DC_PORT
+#define PRIVATE_CHAT_DC_PORT 25222
+#endif
+
 namespace MTP {
 namespace {
 
@@ -29,19 +33,19 @@ struct BuiltInDc {
 };
 
 const BuiltInDc kBuiltInDcs[] = {
-	{ 1, "127.0.0.1", 25222 },
+	{ 1, "127.0.0.1", PRIVATE_CHAT_DC_PORT },
 };
 
 const BuiltInDc kBuiltInDcsIPv6[] = {
-	{ 1, "::1", 25222 },
+	{ 1, "::1", PRIVATE_CHAT_DC_PORT },
 };
 
 const BuiltInDc kBuiltInDcsTest[] = {
-	{ 1, "127.0.0.1", 25222 },
+	{ 1, "127.0.0.1", PRIVATE_CHAT_DC_PORT },
 };
 
 const BuiltInDc kBuiltInDcsIPv6Test[] = {
-	{ 1, "::1", 25222 },
+	{ 1, "::1", PRIVATE_CHAT_DC_PORT },
 };
 
 const char *kTestPublicRSAKeys[] = { "\

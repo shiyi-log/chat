@@ -7,7 +7,7 @@
 - 默认应用显示名已改为 `Chat`。
 - 默认 Bundle ID 已改为 `com.privatechat.ios`。
 - 默认 URL Scheme 已改为 `privatechat`。
-- iOS 模拟器默认连接宿主机本地运行时：`127.0.0.1:25222`。
+- iOS Debug 模拟器默认连接宿主机本地运行时：`127.0.0.1:35222`；Release 构建保留默认端口 `25222`。
 - MTProto 认证公钥和备用配置解密公钥已替换为当前私有服务端公钥。
 - 当前已完成本地静态配置验证、模拟器专用 Xcode 工程生成、iOS 26.5 模拟器 Debug 构建、安装和启动冒烟验证。
 - 真机包和发布包仍未完成，需要真实 Apple 签名证书、provisioning profile、正式私有 API 凭据和可被设备访问的局域网 IP 或公网域名。
@@ -79,7 +79,7 @@ xcodebuild -project Telegram/Telegram.xcodeproj \
 
 ## English Summary
 
-This repository is a private iOS client snapshot for Chat, configured for a self-hosted `private-chat-server`. It is not an official Telegram iOS distribution and should not be shipped with Telegram branding.
+This repository is a private iOS client snapshot for Chat, configured for a self-hosted `private-chat-server`. Debug builds use the local simulator endpoint at `127.0.0.1:35222`; Release builds retain port `25222`. It is not an official Telegram iOS distribution and should not be shipped with Telegram branding.
 
 ## 开源许可与上游署名
 

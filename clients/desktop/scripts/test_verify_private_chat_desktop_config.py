@@ -21,6 +21,9 @@ class DesktopConfigOutputTests(unittest.TestCase):
 
         self.assertEqual(0, result.returncode, result.stderr.decode("cp1252", errors="replace"))
         self.assertNotIn(b"UnicodeEncodeError", result.stderr)
+        output = result.stdout.decode("cp1252", errors="replace")
+        self.assertIn("25222", output)
+        self.assertIn("35222", output)
 
 
 if __name__ == "__main__":

@@ -138,6 +138,67 @@ class PrepareRuntimeTests(unittest.TestCase):
 
         self.assertIn("  DevServer:\n    Enabled: false\n", mini_http)
 
+    def test_registered_runtime_ports_override_default_endpoints(self):
+        self.env_path.write_text(
+            self.env_path.read_text(encoding="utf-8")
+            + "LOCAL_INTEGRATION_MYSQL_PORT=23316\n"
+            + "LOCAL_INTEGRATION_REDIS_PORT=26389\n"
+            + "LOCAL_INTEGRATION_ETCD_PORT=22389\n"
+            + "LOCAL_INTEGRATION_KAFKA_PORT=29012\n"
+            + "LOCAL_INTEGRATION_MINIO_PORT=29010\n"
+            + "LOCAL_INTEGRATION_MINIO_CONSOLE_PORT=29011\n"
+            + "LOCAL_RUNTIME_BFF_GRPC_PORT=36010\n"
+            + "LOCAL_RUNTIME_BIZ_GRPC_PORT=36020\n"
+            + "LOCAL_RUNTIME_MSG_GRPC_PORT=36030\n"
+            + "LOCAL_RUNTIME_SYNC_GRPC_PORT=36420\n"
+            + "LOCAL_RUNTIME_AUTHSESSION_GRPC_PORT=36450\n"
+            + "LOCAL_RUNTIME_MEDIA_GRPC_PORT=36650\n"
+            + "LOCAL_RUNTIME_IDGEN_GRPC_PORT=36660\n"
+            + "LOCAL_RUNTIME_STATUS_GRPC_PORT=36670\n"
+            + "LOCAL_RUNTIME_DFS_GRPC_PORT=36640\n"
+            + "LOCAL_RUNTIME_SESSION_GRPC_PORT=36120\n"
+            + "LOCAL_RUNTIME_GNETWAY_GRPC_PORT=36110\n"
+            + "LOCAL_RUNTIME_GNET_TCP_PORT=35222\n"
+            + "LOCAL_RUNTIME_GNET_WEBSOCKET_PORT=35443\n"
+            + "LOCAL_RUNTIME_DFS_HTTP_PORT=37701\n",
+            encoding="utf-8",
+        )
+
+        prepare_local.prepare_runtime(self.server, self.runtime, self.env_path)
+
+        bff = (self.runtime / "etc/bff.yaml").read_text(encoding="utf-8")
+        self.assertIn("ListenOn: 127.0.0.1:36010", bff)
+        self.assertIn("127.0.0.1:22389", bff)
+        self.assertIn("127.0.0.1:26389", bff)
+        self.assertIn("127.0.0.1:29012", bff)
+
+        dfs = (self.runtime / "etc/dfs.yaml").read_text(encoding="utf-8")
+        self.assertIn("ListenOn: 127.0.0.1:36640", dfs)
+        self.assertIn("Port: 37701", dfs)
+        self.assertIn("Endpoint: 127.0.0.1:29010", dfs)
+
+        gnetway = (self.runtime / "etc/gnetway.yaml").read_text(encoding="utf-8")
+        self.assertIn("ListenOn: 127.0.0.1:36110", gnetway)
+        self.assertIn("127.0.0.1:35222", gnetway)
+        self.assertIn("[::1]:35222", gnetway)
+        self.assertIn("127.0.0.1:35443", gnetway)
+
+        config = json.loads((self.runtime / "config.json").read_text(encoding="utf-8"))
+        self.assertEqual(config["data2"]["dc_options"][0]["port"], 35222)
+
+    def test_duplicate_runtime_ports_fail_before_writing_private_runtime(self):
+        self.env_path.write_text(
+            self.env_path.read_text(encoding="utf-8")
+            + "LOCAL_RUNTIME_BFF_GRPC_PORT=36010\n"
+            + "LOCAL_RUNTIME_BIZ_GRPC_PORT=36010\n",
+            encoding="utf-8",
+        )
+
+        with self.assertRaisesRegex(RuntimeError, "local runtime ports must be unique"):
+            prepare_local.prepare_runtime(self.server, self.runtime, self.env_path)
+
+        self.assertFalse(self.runtime.exists())
+
 
 class ManagedServicesTests(unittest.TestCase):
     def test_stop_terminates_only_the_child_owned_by_this_manager(self):

@@ -211,6 +211,9 @@ set_target_properties(tgnet PROPERTIES
         ANDROID_ARM_MODE arm)
 target_compile_definitions(tgnet PUBLIC
         HAVE_PTHREAD)
+if (DEFINED PRIVATE_CHAT_LOCAL_DC_PORT)
+    target_compile_definitions(tgnet PRIVATE PRIVATE_CHAT_LOCAL_DC_PORT=${PRIVATE_CHAT_LOCAL_DC_PORT})
+endif()
 target_include_directories(tgnet PUBLIC
         boringssl/include/)
 target_link_libraries(tgnet

@@ -6,7 +6,7 @@ compatible API, plus jobs that create the Kafka topics and buckets. It does not 
 any client. A valid Compose configuration is not evidence of working login,
 messaging, upload, or client compatibility.
 
-The Compose project is `private-chat-integration`. Its default bridge network and
+The Compose project is `chat-monorepo-public-integration`. Its default bridge network and
 all five data volumes belong to that project. There are no fixed container names,
 external resources, host network mode, or fixed subnets. Persistent state uses
 named volumes; no existing host data directory is mounted. The only host bind is
@@ -15,24 +15,25 @@ Initialization runs only when the MySQL volume is empty.
 
 ## Port registration is required before startup
 
-The six dependency ports below were registered to this repository's integration
-project on November 6, 2026 (local project ID
-`367500c93f1c4a3283dbd700237e5ca8`). Recheck registration and current listeners
-before each startup using the local port manager. The registration is machine
-local; other machines need their own allocation.
+This checkout's integration and application ports are registered on this Mac to
+`Chat Monorepo Public Runtime` (project ID
+`2da758a8f2dc45dfa04bbcee49b9dd8c`) at
+`/Users/shiyi/Documents/clawchat/monorepo-public`. Recheck registration and
+current listeners before each startup using the local port manager. The
+registration is machine local; other machines need their own allocation.
 
 | Service | Host endpoint | Endpoint inside this Compose project |
 | --- | --- | --- |
-| MySQL | `127.0.0.1:23306` | `mysql:3306` |
-| Redis | `127.0.0.1:26379` | `redis:6379` |
-| etcd | `127.0.0.1:22379` | `etcd:2379` |
-| Kafka | `127.0.0.1:29092` | `kafka:9092` |
-| RustFS S3 API | `127.0.0.1:29000` | `minio:9000` |
-| RustFS console | `127.0.0.1:29001` | `minio:9001` |
+| MySQL | `127.0.0.1:23316` | `mysql:3306` |
+| Redis | `127.0.0.1:26389` | `redis:6379` |
+| etcd | `127.0.0.1:22389` | `etcd:2379` |
+| Kafka | `127.0.0.1:29012` | `kafka:9092` |
+| RustFS S3 API | `127.0.0.1:29010` | `minio:9000` |
+| RustFS console | `127.0.0.1:29011` | `minio:9001` |
 
 All published ports bind to IPv4 loopback. Kafka has separate internal and host
 listeners: its host port maps to container port `19092`, and metadata advertises
-`127.0.0.1:29092` to host clients. Only services joined to this project's network
+`127.0.0.1:29012` to host clients. Only services joined to this project's network
 can use the container DNS names. The existing application Compose file is not
 joined to this network, and launching it does not connect it to this stack.
 
@@ -53,7 +54,7 @@ requires all three passwords and does not inherit the original stack's password
 variables.
 
 ```bash
-docker compose --project-name private-chat-integration \
+docker compose --project-name chat-monorepo-public-integration \
   --env-file server/integration/.env \
   -f server/docker-compose-integration.yaml config --quiet
 python3 -m unittest discover -s tests -v
@@ -68,29 +69,35 @@ test-only credentials to start services.
 
 Use the same project name, env file, and Compose file on every command; do not
 merge this file with the existing application or environment Compose files.
-After a port manager check, start the dependencies:
+Check that the six dependency ports are registered to this checkout and free,
+then start the dependencies:
 
 ```bash
-docker compose --project-name private-chat-integration \
+python3 /Users/shiyi/Documents/ChatGPT/duankou/portctl.py check \
+  --project 2da758a8f2dc45dfa04bbcee49b9dd8c \
+  --ports 22389,23316,26389,29010,29011,29012
+docker compose --project-name chat-monorepo-public-integration \
   --env-file server/integration/.env \
   -f server/docker-compose-integration.yaml up -d
-docker compose --project-name private-chat-integration \
+docker compose --project-name chat-monorepo-public-integration \
   --env-file server/integration/.env \
   -f server/docker-compose-integration.yaml ps -a
-docker compose --project-name private-chat-integration \
+docker compose --project-name chat-monorepo-public-integration \
   --env-file server/integration/.env \
   -f server/docker-compose-integration.yaml logs --tail 100
 ```
 
 Check that MySQL, Redis, etcd, Kafka, and RustFS report healthy and that
 `kafka-init` and `minio-init` exit with code zero. Check S3 readiness with
-`curl --fail http://127.0.0.1:29000/health`. Setup jobs fail if topic or bucket
+`curl --fail http://127.0.0.1:29010/health`. Setup jobs fail if topic or bucket
 creation fails. Inspect this project's logs if a job fails.
 
-The intended volumes are `private-chat-integration_mysql_data`,
-`private-chat-integration_redis_data`, `private-chat-integration_etcd_data`,
-`private-chat-integration_kafka_data`, and `private-chat-integration_minio_data`.
-The intended network is `private-chat-integration_default`. Inspect their
+The intended volumes are `chat-monorepo-public-integration_mysql_data`,
+`chat-monorepo-public-integration_redis_data`,
+`chat-monorepo-public-integration_etcd_data`,
+`chat-monorepo-public-integration_kafka_data`, and
+`chat-monorepo-public-integration_minio_data`. The intended network is
+`chat-monorepo-public-integration_default`. Inspect their
 ownership before reusing a project name from an earlier run.
 
 ## Stop while preserving integration data

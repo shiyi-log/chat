@@ -537,9 +537,15 @@ func initializedNetwork(accountId: AccountRecordId, arguments: NetworkInitializa
                     1: ["127.0.0.1"]
                 ]
             }
+
+            #if DEBUG
+            let localSeedPort = 35222
+            #else
+            let localSeedPort = 25222
+            #endif
             
             for (id, ips) in seedAddressList {
-                context.setSeedAddressSetForDatacenterWithId(id, seedAddressSet: MTDatacenterAddressSet(addressList: ips.map { MTDatacenterAddress(ip: $0, port: 25222, preferForMedia: false, restrictToTcp: false, cdn: false, preferForProxy: false, secret: nil) }))
+                context.setSeedAddressSetForDatacenterWithId(id, seedAddressSet: MTDatacenterAddressSet(addressList: ips.map { MTDatacenterAddress(ip: $0, port: localSeedPort, preferForMedia: false, restrictToTcp: false, cdn: false, preferForProxy: false, secret: nil) }))
             }
             
             context.keychain = keychain

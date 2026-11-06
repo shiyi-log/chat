@@ -134,6 +134,11 @@ android {
             minifyEnabled false
             shrinkResources false
             multiDexEnabled true
+            externalNativeBuild {
+                cmake {
+                    arguments "-DPRIVATE_CHAT_LOCAL_DC_PORT=35222"
+                }
+            }
             proguardFiles getDefaultProguardFile('proguard-android.txt'), '../TMessagesProj/proguard-rules.pro', '../TMessagesProj/proguard-rules-beta.pro'
             ndk.debugSymbolLevel = 'FULL'
             buildConfigField "String", "BUILD_VERSION_STRING", "\"" + APP_VERSION_NAME + "\""

@@ -20,7 +20,8 @@ func TestRenderedClientConfigDecodesConfiguredTcpEndpoint(t *testing.T) {
 		"from pathlib import Path\n" +
 		"sys.path.insert(0, \"integration\")\n" +
 		"import prepare_local\n" +
-		"sys.stdout.write(prepare_local._render_client_config(Path(\"teamgramd/bin/config.json\")))\n"
+		"ports = prepare_local._read_runtime_ports({})\n" +
+		"sys.stdout.write(prepare_local._render_client_config(Path(\"teamgramd/bin/config.json\"), ports))\n"
 	command := exec.Command("python3", "-c", script)
 	command.Dir = serverRoot
 	rendered, err := command.Output()

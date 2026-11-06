@@ -1,6 +1,6 @@
 # Independent local dependency stack. See integration/README.md before starting.
 # Proposed host ports require registration in your local port manager first.
-name: private-chat-integration
+name: chat-monorepo-public-integration
 
 services:
   mysql:
@@ -11,7 +11,7 @@ services:
       MYSQL_USER: teamgram
       MYSQL_PASSWORD: ${LOCAL_INTEGRATION_MYSQL_PASSWORD:?Set LOCAL_INTEGRATION_MYSQL_PASSWORD in the integration env file}
     ports:
-      - "127.0.0.1:23306:3306"
+      - "127.0.0.1:${LOCAL_INTEGRATION_MYSQL_PORT:-23306}:3306"
     volumes:
       - mysql_data:/var/lib/mysql
       - type: bind
@@ -35,7 +35,7 @@ services:
     image: redis:7-alpine
     command: ["redis-server", "--appendonly", "yes"]
     ports:
-      - "127.0.0.1:26379:6379"
+      - "127.0.0.1:${LOCAL_INTEGRATION_REDIS_PORT:-26379}:6379"
     volumes:
       - redis_data:/data
     healthcheck:
@@ -50,15 +50,15 @@ services:
       ETCD_NAME: integration-node
       ETCD_DATA_DIR: /etcd-data
       ETCD_LISTEN_CLIENT_URLS: http://0.0.0.0:2379
-      ETCD_ADVERTISE_CLIENT_URLS: http://127.0.0.1:22379
+      ETCD_ADVERTISE_CLIENT_URLS: http://127.0.0.1:${LOCAL_INTEGRATION_ETCD_PORT:-22379}
       ETCD_LISTEN_PEER_URLS: http://0.0.0.0:2380
       ETCD_INITIAL_ADVERTISE_PEER_URLS: http://etcd:2380
       ETCD_INITIAL_CLUSTER: integration-node=http://etcd:2380
-      ETCD_INITIAL_CLUSTER_TOKEN: private-chat-integration
+      ETCD_INITIAL_CLUSTER_TOKEN: chat-monorepo-public-integration
       ETCD_INITIAL_CLUSTER_STATE: new
       ETCD_AUTO_COMPACTION_RETENTION: "1"
     ports:
-      - "127.0.0.1:22379:2379"
+      - "127.0.0.1:${LOCAL_INTEGRATION_ETCD_PORT:-22379}:2379"
     volumes:
       - etcd_data:/etcd-data
     healthcheck:
@@ -73,7 +73,7 @@ services:
       KAFKA_NODE_ID: "1"
       KAFKA_PROCESS_ROLES: broker,controller
       KAFKA_LISTENERS: INTERNAL://0.0.0.0:9092,HOST://0.0.0.0:19092,CONTROLLER://0.0.0.0:9093
-      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,HOST://127.0.0.1:29092,CONTROLLER://kafka:9093
+      KAFKA_ADVERTISED_LISTENERS: INTERNAL://kafka:9092,HOST://127.0.0.1:${LOCAL_INTEGRATION_KAFKA_PORT:-29092},CONTROLLER://kafka:9093
       KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: INTERNAL:PLAINTEXT,HOST:PLAINTEXT,CONTROLLER:PLAINTEXT
       KAFKA_INTER_BROKER_LISTENER_NAME: INTERNAL
@@ -85,7 +85,7 @@ services:
       KAFKA_NUM_PARTITIONS: "1"
       KAFKA_LOG_DIRS: /var/lib/kafka/data
     ports:
-      - "127.0.0.1:29092:19092"
+      - "127.0.0.1:${LOCAL_INTEGRATION_KAFKA_PORT:-29092}:19092"
     volumes:
       - kafka_data:/var/lib/kafka/data
     healthcheck:
@@ -119,8 +119,8 @@ services:
       RUSTFS_CONSOLE_ADDRESS: 0.0.0.0:9001
     command: ["server", "/data"]
     ports:
-      - "127.0.0.1:29000:9000"
-      - "127.0.0.1:29001:9001"
+      - "127.0.0.1:${LOCAL_INTEGRATION_MINIO_PORT:-29000}:9000"
+      - "127.0.0.1:${LOCAL_INTEGRATION_MINIO_CONSOLE_PORT:-29001}:9001"
     volumes:
       - minio_data:/data
     healthcheck:

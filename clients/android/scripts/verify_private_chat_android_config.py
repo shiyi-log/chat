@@ -396,11 +396,20 @@ def main():
     conn = read_text(conn_path)
     official_dc_pattern = re.compile(r"\b(149\.154|91\.108)\.\d+\.\d+\b")
     record(checks, conn.count('new Datacenter(instanceNum, 1)') >= 2, f"{conn_path}：生产和测试默认 DC 应收敛到 DC 1")
-    record(checks, conn.count('addAddressAndPort("10.0.2.2", 25222, 0, "")') >= 2, f"{conn_path}：模拟器私有 DC 应指向 10.0.2.2:25222")
+    record(checks, conn.count('addAddressAndPort("10.0.2.2", privateChatDcPort, 0, "")') >= 2, f"{conn_path}：生产和 Debug 模拟器私有 DC 应使用受构建配置控制的端口")
+    record(checks, "constexpr int privateChatDcPort = PRIVATE_CHAT_LOCAL_DC_PORT;" in conn and "constexpr int privateChatDcPort = 25222;" in conn, f"{conn_path}：Debug 应使用本地端口宏，其他构建应回退到 25222")
     record(checks, "currentDatacenterId = 1;" in conn, f"{conn_path}：未登录默认 DC 应初始化为 1")
     record(checks, "auto iter = datacenters.find(datacenterId);" in conn and "return iter != datacenters.end() ? iter->second : nullptr;" in conn, f"{conn_path}：DEFAULT_DATACENTER_ID 查询应避免 map[] 插入空指针")
     record(checks, "if (allDc.empty())" in conn and "no alternative dc" in conn, f"{conn_path}：单 DC 情况应跳过随机切换备用 DC")
     record(checks, official_dc_pattern.search(conn) is None, f"{conn_path}：不应保留官方 DC IP")
+
+    app_gradle_path = "TMessagesProj/build.gradle"
+    app_gradle = read_text(app_gradle_path)
+    record(checks, 'arguments "-DPRIVATE_CHAT_LOCAL_DC_PORT=35222"' in app_gradle, f"{app_gradle_path}：Debug native build 应指向本地运行时端口 35222")
+
+    cmake_path = "TMessagesProj/jni/CMakeLists.txt"
+    cmake = read_text(cmake_path)
+    record(checks, "target_compile_definitions(tgnet PRIVATE PRIVATE_CHAT_LOCAL_DC_PORT=${PRIVATE_CHAT_LOCAL_DC_PORT})" in cmake, f"{cmake_path}：应将 Debug 本地端口宏传给 tgnet")
 
     handshake_path = "TMessagesProj/jni/tgnet/Handshake.cpp"
     handshake = read_text(handshake_path)
@@ -431,7 +440,7 @@ def main():
     print("- 默认英文通用体验、隐私安全、缓存、通话和导入入口已纳入品牌门禁")
     print("- 私有构建默认禁用 Firebase/Huawei 推送 token 获取，避免未配置第三方服务时报错")
     print("- 库模块保留 org.telegram.messenger 内部构建匹配项，最终 App 模块不保留旧对外包名")
-    print("- 模拟器私有 DC 已指向 10.0.2.2:25222，单 DC 防御逻辑存在")
+    print("- Debug 模拟器私有 DC 已指向 10.0.2.2:35222，非 Debug 构建回退到 25222")
     print("- 当前验证是静态配置验证；真机/公网测试仍需要替换服务端地址和发布证书")
     return 0
 

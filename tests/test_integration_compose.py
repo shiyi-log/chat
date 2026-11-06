@@ -7,7 +7,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 COMPOSE_FILE = ROOT / "server" / "docker-compose-integration.yaml"
-PROJECT_NAME = "private-chat-integration"
+PROJECT_NAME = "chat-monorepo-public-integration"
 EXPECTED_PORTS = {
     ("mysql", 3306): 23306,
     ("redis", 6379): 26379,
@@ -60,6 +60,55 @@ class IntegrationComposeTest(unittest.TestCase):
             len(EXPECTED_PORTS),
             sum(len(service.get("ports", [])) for service in services.values()),
         )
+
+    def test_registered_host_ports_are_configurable_and_advertised(self):
+        with tempfile.NamedTemporaryFile(mode="w", encoding="utf-8") as env_file:
+            env_file.write(
+                "LOCAL_INTEGRATION_MYSQL_ROOT_PASSWORD=test-root-password\n"
+                "LOCAL_INTEGRATION_MYSQL_PASSWORD=test-mysql-password\n"
+                "LOCAL_INTEGRATION_MINIO_ROOT_PASSWORD=test-minio-password\n"
+                "LOCAL_INTEGRATION_MYSQL_PORT=23316\n"
+                "LOCAL_INTEGRATION_REDIS_PORT=26389\n"
+                "LOCAL_INTEGRATION_ETCD_PORT=22389\n"
+                "LOCAL_INTEGRATION_KAFKA_PORT=29012\n"
+                "LOCAL_INTEGRATION_MINIO_PORT=29010\n"
+                "LOCAL_INTEGRATION_MINIO_CONSOLE_PORT=29011\n"
+            )
+            env_file.flush()
+            result = subprocess.run(
+                [
+                    "docker", "compose", "--env-file", env_file.name,
+                    "-f", str(COMPOSE_FILE), "config", "--format", "json",
+                ],
+                check=True,
+                capture_output=True,
+                text=True,
+                cwd=ROOT,
+            )
+
+        config = json.loads(result.stdout)
+        services = config["services"]
+        expected_ports = {
+            ("mysql", 3306): 23316,
+            ("redis", 6379): 26389,
+            ("etcd", 2379): 22389,
+            ("kafka", 19092): 29012,
+            ("minio", 9000): 29010,
+            ("minio", 9001): 29011,
+        }
+        for (service_name, target_port), host_port in expected_ports.items():
+            with self.subTest(service=service_name, target=target_port):
+                matches = [
+                    port for port in services[service_name].get("ports", [])
+                    if int(port["target"]) == target_port
+                ]
+                self.assertEqual(1, len(matches))
+                self.assertEqual(host_port, int(matches[0]["published"]))
+
+        etcd = services["etcd"]["environment"]
+        kafka = services["kafka"]["environment"]
+        self.assertEqual("http://127.0.0.1:22389", etcd["ETCD_ADVERTISE_CLIENT_URLS"])
+        self.assertIn("HOST://127.0.0.1:29012", kafka["KAFKA_ADVERTISED_LISTENERS"])
 
     def test_stateful_services_use_only_project_scoped_named_data_volumes(self):
         services = self.config["services"]

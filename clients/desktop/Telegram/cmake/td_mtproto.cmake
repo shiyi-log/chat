@@ -8,6 +8,11 @@ add_library(td_mtproto OBJECT)
 init_non_host_target(td_mtproto)
 add_library(tdesktop::td_mtproto ALIAS td_mtproto)
 
+set(PRIVATE_CHAT_LOCAL_DC_PORT 35222 CACHE STRING "MTProto port used by Debug builds.")
+target_compile_definitions(td_mtproto PRIVATE
+    "$<$<CONFIG:Debug>:PRIVATE_CHAT_DC_PORT=${PRIVATE_CHAT_LOCAL_DC_PORT}>"
+)
+
 target_precompile_headers(td_mtproto PRIVATE ${src_loc}/mtproto/mtproto_pch.h)
 nice_target_sources(td_mtproto ${src_loc}
 PRIVATE
