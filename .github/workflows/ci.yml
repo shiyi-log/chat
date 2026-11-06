@@ -84,7 +84,7 @@ jobs:
         run: go test ./pkg/hashx ./pkg/phonenumber ./pkg/mention ./pkg/code/none ./pkg/code/localfile ./app/interface/session/internal/sess
 
   android-compile:
-    name: Android Java compile
+    name: Android afatDebug APK preview
     runs-on: ubuntu-24.04
     timeout-minutes: 60
     permissions:
@@ -110,12 +110,21 @@ jobs:
             cmake;3.10.2.4988404
             ndk;27.2.12479018
 
-      - name: Compile Android Java sources without packaging
+      - name: Build Android afatDebug APK
         working-directory: clients/android
         env:
           PRIVATE_CHAT_API_ID: "123456"
           PRIVATE_CHAT_API_HASH: "0123456789abcdef0123456789abcdef"
-        run: ./gradlew :TMessagesProj_App:compileAfatDebugJavaWithJavac --no-daemon
+        run: ./gradlew :TMessagesProj_App:assembleAfatDebug --no-daemon
+
+      - name: Upload Android debug APK preview
+        uses: actions/upload-artifact@v7
+        with:
+          name: chat-android-afat-debug
+          path: clients/android/TMessagesProj_App/build/outputs/apk/afat/debug/app.apk
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
 
   ios-simulator-build:
     name: iOS simulator build (unsigned)
@@ -163,6 +172,20 @@ jobs:
             -derivedDataPath "${RUNNER_TEMP}/private-chat-ios-derived-data" \
             CODE_SIGNING_ALLOWED=NO \
             build
+
+      - name: Archive unsigned iOS simulator app
+        run: |
+          ditto -c -k --sequesterRsrc --keepParent \
+            "${RUNNER_TEMP}/private-chat-ios-derived-data/Build/Products/Debug-iphonesimulator/Telegram.app" \
+            "${RUNNER_TEMP}/Chat-iOS-Simulator.zip"
+
+      - name: Upload unsigned iOS simulator preview
+        uses: actions/upload-artifact@v7
+        with:
+          name: chat-ios-simulator-debug
+          path: ${{ runner.temp }}/Chat-iOS-Simulator.zip
+          if-no-files-found: error
+          retention-days: 14
 
   desktop-packaging-metadata:
     name: Desktop packaging metadata (${{ matrix.os }})

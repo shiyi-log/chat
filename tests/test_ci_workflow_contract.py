@@ -71,18 +71,24 @@ class CiWorkflowContractTest(unittest.TestCase):
         self.assertIn("./app/interface/session/internal/sess", commands)
         self.assertNotIn("go test ./...", commands)
 
-    def test_android_compile_avoids_packaging_and_signing_tasks(self):
+    def test_android_debug_apk_job_builds_and_uploads_only_debug_artifacts(self):
         android = self.workflow["jobs"]["android-compile"]
         commands = "\n".join(step.get("run", "") for step in android["steps"])
+        artifact = next(step for step in android["steps"] if step.get("name") == "Upload Android debug APK preview")
 
-        self.assertIn("compileAfatDebugJavaWithJavac", commands)
-        self.assertNotIn("assembleAfat", commands)
+        self.assertIn("assembleAfatDebug", commands)
+        self.assertEqual("actions/upload-artifact@v7", artifact.get("uses"))
+        self.assertEqual("clients/android/TMessagesProj_App/build/outputs/apk/afat/debug/app.apk", artifact["with"]["path"])
+        self.assertEqual("chat-android-afat-debug", artifact["with"]["name"])
+        self.assertEqual(14, artifact["with"]["retention-days"])
+        self.assertNotIn("assembleAfatRelease", commands)
         self.assertNotIn("signingConfig", commands)
         self.assertEqual(android["permissions"], {"contents": "read"})
 
     def test_ios_simulator_build_uses_the_unsigned_local_configuration(self):
         ios = self.workflow["jobs"]["ios-simulator-build"]
         commands = "\n".join(step.get("run", "") for step in ios["steps"])
+        artifact = next(step for step in ios["steps"] if step.get("name") == "Upload unsigned iOS simulator preview")
 
         self.assertEqual("macos-26", ios["runs-on"])
         self.assertIn("generateProject", commands)
@@ -93,6 +99,10 @@ class CiWorkflowContractTest(unittest.TestCase):
         self.assertIn("build-system/fake-codesigning", commands)
         self.assertIn("--noOpen", commands)
         self.assertIn("test_make_project_generation.py", commands)
+        self.assertIn("Chat-iOS-Simulator.zip", commands)
+        self.assertEqual("actions/upload-artifact@v7", artifact.get("uses"))
+        self.assertEqual("chat-ios-simulator-debug", artifact["with"]["name"])
+        self.assertEqual(14, artifact["with"]["retention-days"])
         self.assertNotIn("TELEGRAM_CODESIGNING_GIT_PASSWORD", commands)
         self.assertNotIn("--gitCodesigningRepository", commands)
 
