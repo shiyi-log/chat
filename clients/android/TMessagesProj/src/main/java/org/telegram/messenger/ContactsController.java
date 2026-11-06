@@ -374,14 +374,16 @@ public class ContactsController extends BaseController {
     }
 
     public String getInviteText(int contacts) {
-        String link = inviteLink == null ? "https://telegram.org/dl" : inviteLink;
+        if (TextUtils.isEmpty(inviteLink)) {
+            return LocaleController.getString(R.string.InviteTextWithoutLink);
+        }
         if (contacts <= 1) {
-            return LocaleController.formatString(R.string.InviteText2, link);
+            return LocaleController.formatString(R.string.InviteText2, inviteLink);
         } else {
             try {
-                return String.format(LocaleController.getPluralString("InviteTextNum", contacts), contacts, link);
+                return String.format(LocaleController.getPluralString("InviteTextNum", contacts), contacts, inviteLink);
             } catch (Exception e) {
-                return LocaleController.formatString(R.string.InviteText2, link);
+                return LocaleController.formatString(R.string.InviteText2, inviteLink);
             }
         }
     }

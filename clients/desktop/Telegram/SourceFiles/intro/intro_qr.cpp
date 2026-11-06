@@ -32,6 +32,8 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "platform/platform_webauthn.h"
 #include "styles/style_intro.h"
 
+#include <QPainterPath>
+
 namespace Intro {
 namespace details {
 namespace {
@@ -119,7 +121,7 @@ namespace {
 	std::move(
 		palettes
 	) | rpl::map([] {
-		return TelegramLogoImage();
+		return ChatQrLogoImage();
 	}) | rpl::on_next([=](QImage &&image) {
 		state->center = std::move(image);
 	}, result->lifetime());
@@ -520,7 +522,7 @@ void QrWidget::cancelled() {
 	api().request(base::take(_requestId)).cancel();
 }
 
-QImage TelegramLogoImage() {
+QImage ChatQrLogoImage() {
 	const auto size = QSize(st::introQrCenterSize, st::introQrCenterSize);
 	auto result = QImage(
 		size * style::DevicePixelRatio(),
@@ -530,10 +532,25 @@ QImage TelegramLogoImage() {
 	{
 		auto p = QPainter(&result);
 		auto hq = PainterHighQualityEnabler(p);
-		p.setBrush(QrActiveColor());
+		const auto accent = QrActiveColor();
+		p.setBrush(accent);
 		p.setPen(Qt::NoPen);
 		p.drawEllipse(QRect(QPoint(), size));
-		st::introQrPlane.paintInCenter(p, QRect(QPoint(), size));
+
+		const auto scale = size.width() / 44.0;
+		const auto bubbleRect = QRectF(
+			10.0 * scale,
+			10.0 * scale,
+			24.0 * scale,
+			18.0 * scale);
+		auto bubble = QPainterPath();
+		bubble.addRoundedRect(bubbleRect, 5.0 * scale, 5.0 * scale);
+		bubble.moveTo(16.0 * scale, 26.0 * scale);
+		bubble.lineTo(12.0 * scale, 33.0 * scale);
+		bubble.lineTo(23.0 * scale, 27.0 * scale);
+		bubble.closeSubpath();
+		p.setBrush(Qt::white);
+		p.drawPath(bubble);
 	}
 	return result;
 }

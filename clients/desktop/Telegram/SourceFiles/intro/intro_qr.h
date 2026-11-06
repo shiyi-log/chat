@@ -62,7 +62,7 @@ private:
 
 };
 
-[[nodiscard]] QImage TelegramLogoImage();
+[[nodiscard]] QImage ChatQrLogoImage();
 
 } // namespace details
 } // namespace Intro

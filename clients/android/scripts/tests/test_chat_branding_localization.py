@@ -190,6 +190,16 @@ class ChatBrandingLocalizationTests(unittest.TestCase):
             with self.subTest(locale="zh-CN", key=key):
                 self.assertEqual(value, self.chinese.get(key))
 
+    def test_contact_invites_use_localized_copy_when_server_link_is_missing(self):
+        contacts = (ROOT / "TMessagesProj/src/main/java/org/telegram/messenger/ContactsController.java").read_text(encoding="utf-8")
+        match = re.search(r"public String getInviteText\(int contacts\)\s*\{(?P<body>.*?)\n    \}", contacts, re.S)
+        self.assertIsNotNone(match, "ContactsController.getInviteText should remain available")
+        body = match.group("body")
+        self.assertRegex(body, r"if\s*\(TextUtils\.isEmpty\(inviteLink\)\)")
+        self.assertIn("LocaleController.getString(R.string.InviteTextWithoutLink)", body)
+        self.assertIn("LocaleController.formatString(R.string.InviteText2, inviteLink)", body)
+        self.assertNotIn("telegram.org/dl", body)
+
     def test_cocoon_footer_uses_chat_feature_link_and_has_simplified_chinese_copy(self):
         footer = self.english["CocoonFooter"]
         self.assertIn(r"Chat\'s feature page", footer)

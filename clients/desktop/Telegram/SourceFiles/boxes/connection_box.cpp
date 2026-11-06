@@ -15,6 +15,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 #include "core/application.h"
 #include "core/core_settings.h"
 #include "core/local_url_handlers.h"
+#include "intro/intro_qr.h"
 #include "lang/lang_keys.h"
 #include "main/main_account.h"
 #include "main/main_session.h"
@@ -153,10 +154,6 @@ using ProxyData = MTP::ProxyData;
 	return domain + queryPath;
 }
 
-[[nodiscard]] QColor ProxyQrActiveColor() {
-	return QColor(0x40, 0xA7, 0xE3);
-}
-
 [[nodiscard]] QImage ProxyQr(const Qr::Data &data, int pixel, int max = 0) {
 	Expects(data.size > 0);
 
@@ -174,21 +171,7 @@ using ProxyData = MTP::ProxyData;
 }
 
 [[nodiscard]] QImage ProxyQrLogo() {
-	const auto size = QSize(st::introQrCenterSize, st::introQrCenterSize);
-	auto result = QImage(
-		size * style::DevicePixelRatio(),
-		QImage::Format_ARGB32_Premultiplied);
-	result.fill(Qt::transparent);
-	result.setDevicePixelRatio(style::DevicePixelRatio());
-	{
-		auto p = QPainter(&result);
-		auto hq = PainterHighQualityEnabler(p);
-		p.setBrush(ProxyQrActiveColor());
-		p.setPen(Qt::NoPen);
-		p.drawEllipse(QRect(QPoint(), size));
-		st::introQrPlane.paintInCenter(p, QRect(QPoint(), size));
-	}
-	return result;
+	return Intro::details::ChatQrLogoImage();
 }
 
 [[nodiscard]] QImage ProxyQrTile(const QString &link, int max = 0) {

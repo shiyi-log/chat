@@ -1,4 +1,4 @@
-"Tour.Title1" = "私密聊天";
+"Tour.Title1" = "Chat";
 "Tour.Text1" = "**Chat** 是连接到自有服务器的私密聊天应用。\n简单易用，安全沟通。";
 "Tour.Title2" = "快速";
 "Tour.Text2" = "**Chat** 直接连接到\n你的私有聊天服务。";
@@ -28,7 +28,7 @@
 "Login.EnterCodeSMSTitle" = "输入验证码";
 "Login.EnterCodeSMSText" = "我们已向你的手机号 **%@** 发送短信验证码。";
 "Login.EnterCodeTelegramTitle" = "输入验证码";
-"Login.EnterCodeTelegramText" = "我们已将发给 %@ 的验证码发送到你另一台设备上的 **Private Chat 应用**。";
+"Login.EnterCodeTelegramText" = "我们已将发给 %@ 的验证码发送到你另一台设备上的 **Chat 应用**。";
 "Login.CodeExpired" = "验证码已过期，请重新登录。";
 "Login.InvalidCodeError" = "验证码无效，请重试。";
 "Login.NetworkError" = "请检查网络连接后重试。";

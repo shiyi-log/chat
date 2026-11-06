@@ -50,7 +50,7 @@
 "PUSH_MESSAGE_STICKER" = "%1$@|sent you a %2$@sticker";
 "PUSH_CHAT_MESSAGE_STICKER" = "%2$@|%1$@ sent a %3$@sticker";
 
-"PUSH_CONTACT_JOINED" = "%1$@|joined Private Chat!";
+"PUSH_CONTACT_JOINED" = "%1$@|joined Chat!";
 
 "PUSH_CHANNEL_MESSAGE_TEXT" = "%1$@|%2$@";
 "PUSH_CHANNEL_MESSAGE_NOTEXT" = "%1$@|posted a message";
@@ -205,7 +205,7 @@
 "PUSH_PINNED_GIF" = "%1$@|pinned a GIF";
 "PUSH_PINNED_PAID_MEDIA" = "%1$@|pinned a paid post for %2$@";
 
-"PUSH_CONTACT_JOINED" = "%1$@|joined Private Chat!";
+"PUSH_CONTACT_JOINED" = "%1$@|joined Chat!";
 
 "PUSH_AUTH_UNKNOWN" = "New login|from unrecognized device %1$@";
 "PUSH_AUTH_REGION" = "New login|from unrecognized device %1$@, location: %2$@";
@@ -401,38 +401,38 @@
 "Date.ChatDateHeaderYear" = "%1$@ %2$@, %3$@";
 
 // Tour
-"Tour.Title1" = "Private Chat";
-"Tour.Text1" = "**Private Chat** is a private messaging app for your own server.\nIt is **simple** and **secure**.";
+"Tour.Title1" = "Chat";
+"Tour.Text1" = "**Chat** is a private messaging app for your own server.\nIt is **simple** and **secure**.";
 
 "Tour.Title2" = "Fast";
-"Tour.Text2" = "**Private Chat** connects directly to\nyour private messaging service.";
+"Tour.Text2" = "**Chat** connects directly to\nyour private messaging service.";
 
 "Tour.Title3" = "Powerful";
-"Tour.Text3" = "**Private Chat** keeps chats and media\ninside your own deployment.";
+"Tour.Text3" = "**Chat** keeps chats and media\ninside your own deployment.";
 
 "Tour.Title4" = "Secure";
-"Tour.Text4" = "**Private Chat** protects messages with\nyour private server configuration.";
+"Tour.Text4" = "**Chat** protects messages with\nyour private server configuration.";
 
 "Tour.Title5" = "Cloud-Based";
-"Tour.Text5" = "**Private Chat** lets you access your\nmessages from multiple devices.";
+"Tour.Text5" = "**Chat** lets you access your\nmessages from multiple devices.";
 
 "Tour.Title6" = "Free";
-"Tour.Text6" = "**Private Chat** is built for your\nteam, users and deployment needs.";
+"Tour.Text6" = "**Chat** is built for your\nteam, users and deployment needs.";
 
 "Tour.StartButton" = "Start Messaging";
 
 // Login
 "Login.PhoneAndCountryHelp" = "Please confirm your country code\nand enter your phone number.";
-"Login.CodeSentInternal" = "We've sent the code to the **Private Chat** app on your other device";
+"Login.CodeSentInternal" = "We've sent the code to the **Chat** app on your other device";
 "Login.HaveNotReceivedCodeInternal" = "Didn't get the code?";
 "Login.CodeSentSms" = "We've sent you an SMS with the code";
 "Login.Code" = "Code";
-"Login.WillCallYou" = "Private Chat will call you in %@";
-"Login.CallRequestState2" = "Requesting a call from Private Chat…";
-"Login.CallRequestState3" = "Private Chat dialed your number\n[Didn't get the code?]";
+"Login.WillCallYou" = "Chat will call you in %@";
+"Login.CallRequestState2" = "Requesting a call from Chat…";
+"Login.CallRequestState3" = "Chat dialed your number\n[Didn't get the code?]";
 "Login.EmailNotConfiguredError" = "An email account is required so that you can send us details about the error.\n\nPlease go to your device‘s settings > Passwords & Accounts > Add account and set up an email account.";
 "Login.EmailCodeSubject" = "%@, no code";
-"Login.EmailCodeBody" = "My phone number is:\n%@\nI can't get an activation code for Private Chat.";
+"Login.EmailCodeBody" = "My phone number is:\n%@\nI can't get an activation code for Chat.";
 "Login.UnknownError" = "An error occurred, please try again later.";
 "Login.InvalidCodeError" = "Invalid code, please try again.";
 "Login.NetworkError" = "Please check your internet connection and try again.";
@@ -443,13 +443,13 @@
 "Login.InvalidLastNameError" = "Sorry, this last name can't be used.";
 
 "Login.InvalidPhoneEmailSubject" = "Invalid phone number: %@";
-"Login.InvalidPhoneEmailBody" = "I'm trying to use my mobile phone number: %1$@\nBut Private Chat says it's invalid. Please help.\n\nApp version: %2$@\nOS version: %3$@\nLocale: %4$@\nMNC: %5$@";
+"Login.InvalidPhoneEmailBody" = "I'm trying to use my mobile phone number: %1$@\nBut Chat says it's invalid. Please help.\n\nApp version: %2$@\nOS version: %3$@\nLocale: %4$@\nMNC: %5$@";
 
 "Login.PhoneBannedEmailSubject" = "Banned phone number: %@";
-"Login.PhoneBannedEmailBody" = "I'm trying to use my mobile phone number: %1$@\nBut Private Chat says it's banned. Please help.\n\nApp version: %2$@\nOS version: %3$@\nLocale: %4$@\nMNC: %5$@";
+"Login.PhoneBannedEmailBody" = "I'm trying to use my mobile phone number: %1$@\nBut Chat says it's banned. Please help.\n\nApp version: %2$@\nOS version: %3$@\nLocale: %4$@\nMNC: %5$@";
 
-"Login.PhoneGenericEmailSubject" = "Private Chat iOS error: %@";
-"Login.PhoneGenericEmailBody" = "I'm trying to use my mobile phone number: %1$@\nBut Private Chat shows an error. Please help.\n\nError: %2$@\nApp version: %3$@\nOS version: %4$@\nLocale: %5$@\nMNC: %6$@";
+"Login.PhoneGenericEmailSubject" = "Chat iOS error: %@";
+"Login.PhoneGenericEmailBody" = "I'm trying to use my mobile phone number: %1$@\nBut Chat shows an error. Please help.\n\nError: %2$@\nApp version: %3$@\nOS version: %4$@\nLocale: %5$@\nMNC: %6$@";
 
 "Login.PhonePaidEmailSubject" = "Payment Issue";
 
@@ -492,11 +492,11 @@
 "Contacts.TabTitle" = "Contacts";
 "Contacts.Title" = "Contacts";
 "Contacts.FailedToSendInvitesMessage" = "An error occurred.";
-"Contacts.AccessDeniedError" = "Private Chat does not have access to your contacts";
-"Contacts.AccessDeniedHelpLandscape" = "Please go to your %@ Settings — Privacy — Contacts.\nThen select ON for Private Chat.";
-"Contacts.AccessDeniedHelpPortrait" = "Please go to your %@ Settings — Privacy — Contacts. Then select ON for Private Chat.";
+"Contacts.AccessDeniedError" = "Chat does not have access to your contacts";
+"Contacts.AccessDeniedHelpLandscape" = "Please go to your %@ Settings — Privacy — Contacts.\nThen select ON for Chat.";
+"Contacts.AccessDeniedHelpPortrait" = "Please go to your %@ Settings — Privacy — Contacts. Then select ON for Chat.";
 "Contacts.AccessDeniedHelpON" = "ON";
-"Contacts.InviteToTelegram" = "Invite to Private Chat";
+"Contacts.InviteToTelegram" = "Invite to Chat";
 "Contacts.InviteFriends" = "Invite Friends";
 "Contacts.SelectAll" = "Select All";
 
@@ -532,7 +532,7 @@
 "Conversation.Contact" = "Contact";
 "Conversation.BlockUser" = "Block User";
 "Conversation.UnblockUser" = "Unblock User";
-"Conversation.UnsupportedMedia" = "This message is not supported on your version of Private Chat. Update the app to view:\nhttps://privatechat.local/update";
+"Conversation.UnsupportedMedia" = "This message is not supported on your version of Chat. Update the app to view:\nhttps://privatechat.local/update";
 "Conversation.EncryptionWaiting" = "Waiting for %@ to get online...";
 "Conversation.EncryptionProcessing" = "Exchanging encryption keys...";
 "Conversation.EmptyPlaceholder" = "No messages here yet...";
@@ -580,9 +580,9 @@
 "Notification.CreatedChannel" = "Channel created";
 "Notification.CreatedGroup" = "Group created";
 "Notification.CreatedChatWithTitle" = "%@ created the group \"%@\" ";
-"Notification.Joined" = "%@ joined Private Chat";
+"Notification.Joined" = "%@ joined Chat";
 "Notification.ChangedGroupName" = "%@ changed group name to \"%@\" ";
-"Notification.NewAuthDetected" = "%1$@,\nWe detected a login into your account from a new device on %2$@, %3$@ at %4$@\n\nDevice: %5$@\nLocation: %6$@\n\nIf this wasn't you, you can go to Settings — Privacy and Security — Sessions and terminate that session.\n\nIf you think that somebody logged in to your account against your will, you can enable two-step verification in Privacy and Security settings.\n\nSincerely,\nThe Private Chat Team";
+"Notification.NewAuthDetected" = "%1$@,\nWe detected a login into your account from a new device on %2$@, %3$@ at %4$@\n\nDevice: %5$@\nLocation: %6$@\n\nIf this wasn't you, you can go to Settings — Privacy and Security — Sessions and terminate that session.\n\nIf you think that somebody logged in to your account against your will, you can enable two-step verification in Privacy and Security settings.\n\nSincerely,\nThe Chat Team";
 "Notification.MessageLifetimeChanged" = "%1$@ set the self-destruct timer to %2$@";
 "Notification.MessageLifetimeChangedOutgoing" = "You set the self-destruct timer to %1$@";
 "Notification.MessageLifetimeRemoved" = "%1$@ disabled the self-destruct timer";
@@ -647,7 +647,7 @@
 
 // User Profile
 "Profile.CreateEncryptedChatError" = "An error occurred.";
-"Profile.CreateEncryptedChatOutdatedError" = "Cannot create a secret chat with %@.\n%@ is using an older version of Private Chat and needs to update first.";
+"Profile.CreateEncryptedChatOutdatedError" = "Cannot create a secret chat with %@.\n%@ is using an older version of Chat and needs to update first.";
 "Profile.CreateNewContact" = "Create New Contact";
 "Profile.AddToExisting" = "Add to Existing Contact";
 "Profile.EncryptionKey" = "Encryption Key";
@@ -679,7 +679,7 @@
 "UserInfo.NotificationsDisabled" = "Disabled";
 "UserInfo.NotificationsEnable" = "Enable";
 "UserInfo.NotificationsDisable" = "Disable";
-"UserInfo.Invite" = "Invite to Private Chat";
+"UserInfo.Invite" = "Invite to Chat";
 
 // New Contact
 "NewContact.Title" = "New Contact";
@@ -717,7 +717,7 @@
 
 // Encryption Key
 "EncryptionKey.Title" = "Encryption Key";
-"EncryptionKey.Description" = "This image and text were derived from the encryption key for this secret chat with %1$@.\n\n If they look the same on %2$@'s device, end-to-end encryption is guaranteed.\n\nLearn more in the Private Chat FAQ.";
+"EncryptionKey.Description" = "This image and text were derived from the encryption key for this secret chat with %1$@.\n\n If they look the same on %2$@'s device, end-to-end encryption is guaranteed.\n\nLearn more in the Chat FAQ.";
 
 // Conversation media
 "ConversationMedia.Title" = "Media";
@@ -753,9 +753,9 @@
 "Settings.BlockedUsers" = "Blocked Users";
 "Settings.ChatBackground" = "Chat Background";
 "Settings.Support" = "Ask a Question";
-"Settings.FAQ" = "Private Chat FAQ";
+"Settings.FAQ" = "Chat FAQ";
 "Settings.FAQ_URL" = "https://privatechat.local/faq";
-"Settings.FAQ_Intro" = "Please note that Private Chat Support may take a while to respond.\n\nPlease take a look at the Private Chat FAQ: it has important troubleshooting tips and answers to most questions.";
+"Settings.FAQ_Intro" = "Please note that Chat Support may take a while to respond.\n\nPlease take a look at the Chat FAQ: it has important troubleshooting tips and answers to most questions.";
 "Settings.FAQ_Button" = "FAQ";
 "Settings.SaveIncomingPhotos" = "Save Incoming Photos";
 
@@ -804,7 +804,7 @@
 "ChatSettings.TextSizeUnits" = "pt";
 "ChatSettings.AutomaticPhotoDownload" = "AUTOMATIC PHOTO DOWNLOAD";
 "ChatSettings.AutomaticAudioDownload" = "AUTOMATIC AUDIO DOWNLOAD";
-"ChatSettings.PrivateChats" = "Private Chats";
+"ChatSettings.PrivateChats" = "Chats";
 "ChatSettings.Groups" = "Groups";
 "ChatSettings.Cache" = "Storage Usage";
 
@@ -812,7 +812,7 @@
 "Cache.Title" = "Storage Usage";
 "Cache.ClearCache" = "Clear Cache";
 "Cache.KeepMedia" = "Keep Media";
-"Cache.Help" = "Photos, videos and other files from cloud chats that you have **not accessed** during this period will be removed from this device to save disk space.\n\nAll media will stay in the Private Chat cloud and can be re-downloaded if you need it again.";
+"Cache.Help" = "Photos, videos and other files from cloud chats that you have **not accessed** during this period will be removed from this device to save disk space.\n\nAll media will stay in the Chat cloud and can be re-downloaded if you need it again.";
 
 // Blocked Users
 "BlockedUsers.Title" = "Blocked";
@@ -836,9 +836,9 @@
 "BroadcastListInfo.AddRecipient" = "Add Recipient";
 
 "Settings.LogoutConfirmationTitle" = "Log out?";
-"Settings.LogoutConfirmationText" = "\nNote that you can seamlessly use Private Chat on all your devices at once.\n\nRemember, logging out kills all your Secret Chats.";
+"Settings.LogoutConfirmationText" = "\nNote that you can seamlessly use Chat on all your devices at once.\n\nRemember, logging out kills all your Secret Chats.";
 
-"Login.PadPhoneHelp" = "\nYou can use your main mobile number to log in to Private Chat on all devices.\nDon't use your iPad's SIM number here — we'll need to send you an SMS.\n\nIs this number correct?\n{number}";
+"Login.PadPhoneHelp" = "\nYou can use your main mobile number to log in to Chat on all devices.\nDon't use your iPad's SIM number here — we'll need to send you an SMS.\n\nIs this number correct?\n{number}";
 "Login.PadPhoneHelpTitle" = "Your Number";
 
 "MessageTimer.Custom" = "Custom";
@@ -926,7 +926,7 @@
 "Activity.RecordingAudio" = "recording audio";
 "Activity.RecordingVideoMessage" = "recording video";
 
-"Compatibility.SecretMediaVersionTooLow" = "%@ is using an older version of Private Chat, so secret photos will be shown in compatibility mode.\n\nOnce %@ updates Private Chat, photos with timers for 1 minute or less will start working in 'Tap and hold to view' mode, and you will be notified whenever the other party takes a screenshot.";
+"Compatibility.SecretMediaVersionTooLow" = "%@ is using an older version of Chat, so secret photos will be shown in compatibility mode.\n\nOnce %@ updates Chat, photos with timers for 1 minute or less will start working in 'Tap and hold to view' mode, and you will be notified whenever the other party takes a screenshot.";
 
 "Contacts.GlobalSearch" = "Global Search";
 "Profile.Username" = "username";
@@ -935,7 +935,7 @@
 
 "Username.Title" = "Username";
 "Username.Placeholder" = "Your Username";
-"Username.Help" = "You can choose a username on **Private Chat**. If you do, other people will be able to find you by this username and contact you without knowing your phone number.\n\nYou can use **a-z**, **0-9** and underscores. Minimum length is **5** characters.";
+"Username.Help" = "You can choose a username on **Chat**. If you do, other people will be able to find you by this username and contact you without knowing your phone number.\n\nYou can use **a-z**, **0-9** and underscores. Minimum length is **5** characters.";
 "Username.InvalidTooShort" = "A username must have at least 5 characters.";
 "Username.InvalidStartsWithNumber" = "Sorry, a username can't start with a number.";
 "Username.InvalidCharacters" = "Sorry, this username is invalid.";
@@ -1040,8 +1040,8 @@
 
 "Settings.PhoneNumber" = "Change Number";
 
-"PhoneNumberHelp.Help" = "You can change your Private Chat number here. Your account and all your cloud data — messages, media, contacts, etc. will be moved to the new number.\n\n**Important:** all your Private Chat contacts will get your **new number** added to their address book, provided they had your old number and you haven't blocked them in Private Chat.";
-"PhoneNumberHelp.Alert" = "All your Private Chat contacts will get your new number added to their address book, provided they had your old number and you haven't blocked them in Private Chat.";
+"PhoneNumberHelp.Help" = "You can change your Chat number here. Your account and all your cloud data — messages, media, contacts, etc. will be moved to the new number.\n\n**Important:** all your Chat contacts will get your **new number** added to their address book, provided they had your old number and you haven't blocked them in Chat.";
+"PhoneNumberHelp.Alert" = "All your Chat contacts will get your new number added to their address book, provided they had your old number and you haven't blocked them in Chat.";
 "PhoneNumberHelp.ChangeNumber" = "Change Number";
 
 "ChangePhoneNumberNumber.Title" = "Change Number";
@@ -1052,9 +1052,9 @@
 "ChangePhoneNumberCode.Code" = "YOUR CODE";
 "ChangePhoneNumberCode.CodePlaceholder" = "Code";
 "ChangePhoneNumberCode.Help" = "We have sent you an SMS with the code";
-"ChangePhoneNumberCode.CallTimer" = "Private Chat will call you in %@";
-"ChangePhoneNumberCode.RequestingACall" = "Requesting a call from Private Chat...";
-"ChangePhoneNumberCode.Called" = "Private Chat dialed your number";
+"ChangePhoneNumberCode.CallTimer" = "Chat will call you in %@";
+"ChangePhoneNumberCode.RequestingACall" = "Requesting a call from Chat...";
+"ChangePhoneNumberCode.Called" = "Chat dialed your number";
 
 "LoginPassword.Title" = "Your Password";
 "LoginPassword.PasswordPlaceholder" = "Password";
@@ -1206,7 +1206,7 @@
 "SharedMedia.EmptyFilesText" = "You can send and receive\nfiles of any type up to 1.5 GB each\nand access them anywhere.";
 
 "ShareFileTip.Title" = "Sharing Files";
-"ShareFileTip.Text" = "You can share **uncompressed** media files from your Camera Roll here.\n\nTo share files of any other type, open them on your %@ (e.g. in your browser), tap **Open in...** or the action button and choose Private Chat.";
+"ShareFileTip.Text" = "You can share **uncompressed** media files from your Camera Roll here.\n\nTo share files of any other type, open them on your %@ (e.g. in your browser), tap **Open in...** or the action button and choose Chat.";
 "ShareFileTip.CloseTip" = "Close Tip";
 
 "DialogList.SearchSectionDialogs" = "Chats and Contacts";
@@ -1214,7 +1214,7 @@
 "DialogList.SearchSectionGlobal" = "Global Search";
 "DialogList.SearchSectionMessages" = "Messages";
 
-"Username.LinkHint" = "This link opens a chat with you in Private Chat:[\nhttps://privatechat.local/%@]";
+"Username.LinkHint" = "This link opens a chat with you in Chat:[\nhttps://privatechat.local/%@]";
 "Username.LinkCopied" = "Copied link to clipboard";
 
 "SharedMedia.DeleteItemsConfirmation_1" = "Delete media file?";
@@ -1234,18 +1234,18 @@
 "PasscodeSettings.SimplePasscode" = "Simple Passcode";
 "PasscodeSettings.SimplePasscodeHelp" = "A simple passcode is a 4 digit number.";
 "PasscodeSettings.EncryptData" = "Encrypt Local Database";
-"PasscodeSettings.EncryptDataHelp" = "Experimental feature, use with caution. Encrypt your local Private Chat data, using a derivative of your passcode as the key.";
+"PasscodeSettings.EncryptDataHelp" = "Experimental feature, use with caution. Encrypt your local Chat data, using a derivative of your passcode as the key.";
 
-"EnterPasscode.EnterTitle" = "Enter your Private Chat Passcode";
+"EnterPasscode.EnterTitle" = "Enter your Chat Passcode";
 "EnterPasscode.ChangeTitle" = "Change Passcode";
-"EnterPasscode.EnterPasscode" = "Enter your Private Chat Passcode";
+"EnterPasscode.EnterPasscode" = "Enter your Chat Passcode";
 "EnterPasscode.EnterNewPasscodeNew" = "Enter a passcode";
 "EnterPasscode.EnterNewPasscodeChange" = "Enter your new passcode";
 "EnterPasscode.RepeatNewPasscode" = "Re-enter your new passcode";
 "EnterPasscode.EnterCurrentPasscode" = "Enter your current passcode";
-"EnterPasscode.TouchId" = "Unlock Private Chat";
+"EnterPasscode.TouchId" = "Unlock Chat";
 
-"DialogList.PasscodeLockHelp" = "Tap to lock Private Chat";
+"DialogList.PasscodeLockHelp" = "Tap to lock Chat";
 
 "PasscodeSettings.AutoLock" = "Auto-Lock";
 "PasscodeSettings.AutoLock.Disabled" = "Disabled";
@@ -1264,32 +1264,32 @@
 
 "AccessDenied.Title" = "Please Allow Access";
 
-"AccessDenied.Contacts" = "Private Chat messaging is based on your existing contact list.\n\nPlease go to Settings > Privacy > Contacts and set Private Chat to ON.";
+"AccessDenied.Contacts" = "Chat messaging is based on your existing contact list.\n\nPlease go to Settings > Privacy > Contacts and set Chat to ON.";
 
-"AccessDenied.VoiceMicrophone" = "Private Chat needs access to your microphone to send voice messages.\n\nPlease go to Settings > Privacy > Microphone and set Private Chat to ON.";
+"AccessDenied.VoiceMicrophone" = "Chat needs access to your microphone to send voice messages.\n\nPlease go to Settings > Privacy > Microphone and set Chat to ON.";
 
-"AccessDenied.VideoMicrophone" = "Private Chat needs access to your microphone to record sound in videos recording.\n\nPlease go to Settings > Privacy > Microphone and set Private Chat to ON.";
+"AccessDenied.VideoMicrophone" = "Chat needs access to your microphone to record sound in videos recording.\n\nPlease go to Settings > Privacy > Microphone and set Chat to ON.";
 
-"AccessDenied.MicrophoneRestricted" = "Microphone access is restricted for Private Chat.\n\nPlease go to Settings > General > Restrictions > Microphone and set Private Chat to ON.";
+"AccessDenied.MicrophoneRestricted" = "Microphone access is restricted for Chat.\n\nPlease go to Settings > General > Restrictions > Microphone and set Chat to ON.";
 
 
-"AccessDenied.Camera" = "Private Chat needs access to your camera to take photos and videos.\n\nPlease go to Settings > Privacy > Camera and set Private Chat to ON.";
+"AccessDenied.Camera" = "Chat needs access to your camera to take photos and videos.\n\nPlease go to Settings > Privacy > Camera and set Chat to ON.";
 
-"AccessDenied.CameraRestricted" = "Camera access is restricted for Private Chat.\n\nPlease go to Settings > General > Restrictions > Camera and set Private Chat to ON.";
+"AccessDenied.CameraRestricted" = "Camera access is restricted for Chat.\n\nPlease go to Settings > General > Restrictions > Camera and set Chat to ON.";
 
 "AccessDenied.CameraDisabled" = "Camera access is globally restricted on your phone.\n\nPlease go to Settings > General > Restrictions and set Camera to ON";
 
-"AccessDenied.PhotosAndVideos" = "Private Chat needs access to your photo library to send photos and videos.\n\nPlease go to Settings > Privacy > Photos and set Private Chat to ON.";
+"AccessDenied.PhotosAndVideos" = "Chat needs access to your photo library to send photos and videos.\n\nPlease go to Settings > Privacy > Photos and set Chat to ON.";
 
-"AccessDenied.SaveMedia" = "Private Chat needs access to your photo library to save photos and videos.\n\nPlease go to Settings > Privacy > Photos and set Private Chat to ON.";
+"AccessDenied.SaveMedia" = "Chat needs access to your photo library to save photos and videos.\n\nPlease go to Settings > Privacy > Photos and set Chat to ON.";
 
-"AccessDenied.PhotosRestricted" = "Photo access is restricted for Private Chat.\n\nPlease go to Settings > General > Restrictions > Photos and set Private Chat to ON.";
+"AccessDenied.PhotosRestricted" = "Photo access is restricted for Chat.\n\nPlease go to Settings > General > Restrictions > Photos and set Chat to ON.";
 
-"AccessDenied.LocationDenied" = "Private Chat needs access to your location so that you can share it with your contacts.\n\nPlease go to Settings > Privacy > Location Services and set Private Chat to ON.";
+"AccessDenied.LocationDenied" = "Chat needs access to your location so that you can share it with your contacts.\n\nPlease go to Settings > Privacy > Location Services and set Chat to ON.";
 
-"AccessDenied.LocationDisabled" = "Private Chat needs access to your location so that you can share it with your contacts.\n\nPlease go to Settings > Privacy > Location Services and set it to ON.";
+"AccessDenied.LocationDisabled" = "Chat needs access to your location so that you can share it with your contacts.\n\nPlease go to Settings > Privacy > Location Services and set it to ON.";
 
-"AccessDenied.LocationTracking" = "Private Chat needs access to your location to show you on the map.\n\nPlease go to Settings > Privacy > Location Services and set it to ON.";
+"AccessDenied.LocationTracking" = "Chat needs access to your location to show you on the map.\n\nPlease go to Settings > Privacy > Location Services and set it to ON.";
 
 "AccessDenied.Settings" = "Settings";
 
@@ -1378,7 +1378,7 @@
 "TwoStepAuth.SetupEmail" = "Set Recovery E-Mail";
 "TwoStepAuth.ChangeEmail" = "Change Recovery E-Mail";
 "TwoStepAuth.PendingEmailHelp" = "Your recovery e-mail %@ is not yet active and pending confirmation.";
-"TwoStepAuth.GenericHelp" = "You have enabled Two-Step verification.\nYou'll need the password you set up here to log in to your Private Chat account.";
+"TwoStepAuth.GenericHelp" = "You have enabled Two-Step verification.\nYou'll need the password you set up here to log in to your Chat account.";
 
 "TwoStepAuth.ConfirmationTitle" = "Two-Step Verification";
 "TwoStepAuth.ConfirmationText" = "Please check your e-mail and click on the validation link to complete Two-Step Verification setup. Be sure to check the spam folder as well.";
@@ -1398,7 +1398,7 @@
 
 "TwoStepAuth.EmailTitle" = "Recovery E-Mail";
 "TwoStepAuth.EmailSkip" = "Skip";
-"TwoStepAuth.EmailSkipAlert" = "No, seriously.\n\nIf you forget your password, you will lose access to your Private Chat account. There will be no way to restore it.";
+"TwoStepAuth.EmailSkipAlert" = "No, seriously.\n\nIf you forget your password, you will lose access to your Chat account. There will be no way to restore it.";
 "TwoStepAuth.Email" = "E-Mail";
 "TwoStepAuth.EmailPlaceholder" = "Your E-Mail";
 "TwoStepAuth.EmailHelp" = "Please add your valid e-mail. It is the only way to recover a forgotten password.";
@@ -1427,7 +1427,7 @@
 "Conversation.FileDropbox" = "Dropbox";
 
 "Conversation.FileOpenIn" = "Open in...";
-"Conversation.FileHowToText" = "To share files of any type, open them on your %@ (e.g. in your browser), tap **Open in...** or the action button and choose Private Chat.";
+"Conversation.FileHowToText" = "To share files of any type, open them on your %@ (e.g. in your browser), tap **Open in...** or the action button and choose Chat.";
 
 "Map.LocationTitle" = "Location";
 "Map.OpenInMaps" = "Open in Maps";
@@ -1461,9 +1461,9 @@
 "Map.ETAHours_any" = "%@ h";
 "Map.ETAHours_many" = "%@ h";
 
-"ChangePhone.ErrorOccupied" = "The number %@ is already connected to a Private Chat account. Please delete that account before migrating to the new number.";
+"ChangePhone.ErrorOccupied" = "The number %@ is already connected to a Chat account. Please delete that account before migrating to the new number.";
 
-"AccessDenied.LocationTracking" = "Private Chat needs access to your location to show you on the map.\n\nPlease go to Settings > Privacy > Location Services and set it to ON.";
+"AccessDenied.LocationTracking" = "Chat needs access to your location to show you on the map.\n\nPlease go to Settings > Privacy > Location Services and set it to ON.";
 
 "PrivacySettings.AuthSessions" = "Active Sessions";
 "AuthSessions.Title" = "Active Sessions";
@@ -1473,7 +1473,7 @@
 "AuthSessions.TerminateSession" = "Terminate session";
 "AuthSessions.OtherSessions" = "ACTIVE SESSIONS";
 "AuthSessions.EmptyTitle" = "No other sessions";
-"AuthSessions.EmptyText" = "You can log in to Private Chat from other mobile, tablet and desktop devices, using the same phone number. All your data will be instantly synchronized.";
+"AuthSessions.EmptyText" = "You can log in to Chat from other mobile, tablet and desktop devices, using the same phone number. All your data will be instantly synchronized.";
 "AuthSessions.AppUnofficial" = "(ID: %@)";
 
 "WebPreview.GettingLinkInfo" = "Getting Link Info...";
@@ -1486,7 +1486,7 @@
 
 "GroupInfo.InviteLink.Title" = "Invite Link";
 "GroupInfo.InviteLink.LinkSection" = "LINK";
-"GroupInfo.InviteLink.Help" = "Anyone who has Private Chat installed will be able to join your group by following this link.";
+"GroupInfo.InviteLink.Help" = "Anyone who has Chat installed will be able to join your group by following this link.";
 "GroupInfo.InviteLink.CopyLink" = "Copy Link";
 "GroupInfo.InviteLink.RevokeLink" = "Revoke Link";
 "GroupInfo.InviteLink.ShareLink" = "Share Link";
@@ -1573,7 +1573,7 @@
 
 "Login.PhoneNumberHelp" = "Help";
 "Login.EmailPhoneSubject" = "Invalid number %@";
-"Login.EmailPhoneBody" = "I'm trying to use my mobile phone number: %@\nBut Private Chat says it's invalid. Please help.\nAdditional Info: %@, %@.";
+"Login.EmailPhoneBody" = "I'm trying to use my mobile phone number: %@\nBut Chat says it's invalid. Please help.\nAdditional Info: %@, %@.";
 
 "SharedMedia.TitleLink" = "Shared Links";
 "SharedMedia.EmptyLinksText" = "All links shared in this chat will appear here.";
@@ -1600,8 +1600,8 @@
 "Channel.Edit.LinkItem" = "Link";
 
 "Channel.Username.Title" = "Link";
-"Channel.Username.Help" = "You can choose a channel name on **Private Chat**. If you do, other people will be able to find your channel by this name.\n\nYou can use **a-z**, **0-9** and underscores. Minimum length is **5** characters.";
-"Channel.Username.LinkHint" = "This link opens your channel in Private Chat:[\nhttps://privatechat.local/%@]";
+"Channel.Username.Help" = "You can choose a channel name on **Chat**. If you do, other people will be able to find your channel by this name.\n\nYou can use **a-z**, **0-9** and underscores. Minimum length is **5** characters.";
+"Channel.Username.LinkHint" = "This link opens your channel in Chat:[\nhttps://privatechat.local/%@]";
 "Channel.Username.InvalidTooShort" = "Channel names must have at least 5 characters.";
 "Channel.Username.InvalidStartsWithNumber" = "Channel names can't start with a number.";
 "Channel.Username.InvalidCharacters" = "Sorry, this name is invalid.";
@@ -1646,7 +1646,7 @@
 
 "Channel.Setup.Title" = "Channel";
 
-"Channel.Username.CreatePublicLinkHelp" = "People can share this link with others and find your channel using Private Chat search.";
+"Channel.Username.CreatePublicLinkHelp" = "People can share this link with others and find your channel using Chat search.";
 "Channel.Username.CreatePrivateLinkHelp" = "People can join your channel by following this link. You can revoke the link at any time.";
 
 "Channel.Setup.PublicNoLink" = "Please choose a link for your public channel, so that people can find it in search and share with others.\n\nIf you're not interested, we suggest creating a private channel instead.";
@@ -1772,7 +1772,7 @@
 
 "Group.Management.AddModeratorHelp" = "You can add admins to help you manage your group.";
 
-"Watch.AppName" = "Private Chat";
+"Watch.AppName" = "Chat";
 "Watch.Compose.AddContact" = "Choose Contact";
 "Watch.Compose.CreateMessage" = "Create Message";
 "Watch.Compose.CurrentLocation" = "Current Location";
@@ -1807,7 +1807,7 @@
 
 "Watch.Message.ForwardedFrom" = "Forwarded from";
 
-"Watch.Notification.Joined" = "Joined Private Chat";
+"Watch.Notification.Joined" = "Joined Chat";
 
 "Watch.MessageView.Title" = "Message";
 "Watch.MessageView.Forward" = "Forward";
@@ -1821,9 +1821,9 @@
 "Watch.Stickers.StickerPacks" = "Sticker Sets";
 
 "Watch.Location.Current" = "Current Location";
-"Watch.Location.Access" = "Allow Private Chat to access location on your phone";
+"Watch.Location.Access" = "Allow Chat to access location on your phone";
 
-"Watch.AuthRequired" = "Log in to Private Chat on your phone to get started";
+"Watch.AuthRequired" = "Log in to Chat on your phone to get started";
 
 "Watch.NoConnection" = "No Connection";
 "Watch.ConnectionDescription" = "Your Watch needs to be connected for the app to work";
@@ -1870,7 +1870,7 @@
 "Cache.ClearProgress" = "Please Wait...";
 "Cache.ClearEmpty" = "Empty";
 "Cache.ByPeerHeader" = "CHATS";
-"Cache.Indexing" = "Private Chat is calculating current cache size.\nThis can take a few minutes.";
+"Cache.Indexing" = "Chat is calculating current cache size.\nThis can take a few minutes.";
 
 "ExplicitContent.AlertTitle" = "Sorry";
 "ExplicitContent.AlertChannel" = "You can't access this channel because it violates App Store rules.";
@@ -1951,7 +1951,7 @@
 "PrivacyLastSeenSettings.GroupsAndChannelsHelp" = "Change who can add you to groups and channels.";
 "MusicPlayer.VoiceNote" = "Voice Message";
 
-"Watch.Microphone.Access" = "Allow Private Chat to access the microphone on your phone";
+"Watch.Microphone.Access" = "Allow Chat to access the microphone on your phone";
 
 "Settings.AppleWatch" = "Apple Watch";
 "AppleWatch.Title" = "Apple Watch";
@@ -1970,7 +1970,7 @@
 "KeyCommand.SendMessage" = "Send Message";
 "KeyCommand.ChatInfo" = "Chat Info";
 
-"Conversation.SecretLinkPreviewAlert" = "Would you like to enable extended link previews in Secret Chats? Note that link previews are generated on Private Chat servers.";
+"Conversation.SecretLinkPreviewAlert" = "Would you like to enable extended link previews in Secret Chats? Note that link previews are generated on Chat servers.";
 "Conversation.SecretChatContextBotAlert" = "Please note that inline bots are provided by third-party developers. For the bot to work, the symbols you type after the bot's username are sent to the respective developer.";
 
 "Map.OpenInWaze" = "Open in Waze";
@@ -2044,7 +2044,7 @@
 "Group.Setup.TypePublicHelp" = "Public groups can be found in search, chat history is available to everyone and anyone can join.";
 "Group.Setup.TypePrivateHelp" = "Private groups can only be joined if you were invited or have an invite link.";
 
-"Group.Username.CreatePublicLinkHelp" = "People can share this link with others and find your group using Private Chat search.";
+"Group.Username.CreatePublicLinkHelp" = "People can share this link with others and find your group using Chat search.";
 "Group.Username.CreatePrivateLinkHelp" = "People can join your group by following this link. You can revoke the link at any time.";
 
 "Conversation.PinMessageAlertGroup" = "Pin this message and notify all members of the group?";
@@ -2251,7 +2251,7 @@
 "StickerPack.RemoveMaskCount_many" = "Remove %@ Masks";
 "StickerPack.RemoveMaskCount_0" = "Remove %@ Masks";
 
-"Conversation.BotInteractiveUrlAlert" = "Allow %@ to pass your Private Chat name and id (not your phone number) to pages you open with this bot?";
+"Conversation.BotInteractiveUrlAlert" = "Allow %@ to pass your Chat name and id (not your phone number) to pages you open with this bot?";
 "StickerPacksSettings.ArchivedMasks" = "Archived Masks";
 "StickerSettings.MaskContextInfo" = "If you archive a set of masks, you can quickly restore it later from the Archived Masks section.";
 "StickerPacksSettings.ArchivedMasks.Info" = "You can have up to 200 sets of masks.
@@ -2259,9 +2259,9 @@ Unused sets are archived when you add more.";
 
 "CloudStorage.Title" = "Cloud Storage";
 
-"Widget.AuthRequired" = "Log in to Private Chat";
+"Widget.AuthRequired" = "Log in to Chat";
 "Widget.NoUsers" = "Start messaging to see your friends here";
-"Widget.GalleryTitle" = "Private Chat";
+"Widget.GalleryTitle" = "Chat";
 "Widget.GalleryDescription" = "Select chats";
 
 "ShareMenu.CopyShareLinkGame" = "Copy link to game";
@@ -2286,11 +2286,11 @@ Unused sets are archived when you add more.";
 "Conversation.JumpToDate" = "Jump To Date";
 "Conversation.AddToReadingList" = "Add to Reading List";
 
-"AccessDenied.CallMicrophone" = "Private Chat needs access to your microphone for voice calls.\n\nPlease go to Settings > Privacy > Microphone and set Private Chat to ON.";
+"AccessDenied.CallMicrophone" = "Chat needs access to your microphone for voice calls.\n\nPlease go to Settings > Privacy > Microphone and set Chat to ON.";
 
 "Call.EncryptionKey.Title" = "Encryption Key";
 
-"Application.Name" = "Private Chat";
+"Application.Name" = "Chat";
 "DialogList.Pin" = "Pin";
 "DialogList.Unpin" = "Unpin";
 "DialogList.PinLimitError" = "Sorry, you can pin no more than %@ chats to the top.";
@@ -2340,7 +2340,7 @@ Unused sets are archived when you add more.";
 "Calls.AddTab" = "Add Tab";
 "Calls.NewCall" = "New Call";
 
-"Calls.RatingTitle" = "Please rate the quality\nof your Private Chat call";
+"Calls.RatingTitle" = "Please rate the quality\nof your Chat call";
 "Calls.SubmitRating" = "Submit";
 
 "Call.Seconds_1" = "%@ second";
@@ -2527,14 +2527,14 @@ Unused sets are archived when you add more.";
 
 "Calls.RatingFeedback" = "Write a comment...";
 
-"Call.StatusIncoming" = "Private Chat Audio...";
+"Call.StatusIncoming" = "Chat Audio...";
 "Call.IncomingVoiceCall" = "Incoming Voice Call";
 "Call.IncomingVideoCall" = "Incoming Video Call";
 "Call.StatusRequesting" = "Contacting...";
 "Call.StatusWaiting" = "Waiting...";
 "Call.StatusRinging" = "Ringing...";
 "Call.StatusConnecting" = "Connecting...";
-"Call.StatusOngoing" = "Private Chat Audio %@";
+"Call.StatusOngoing" = "Chat Audio %@";
 "Call.StatusEnded" = "Call Ended";
 "Call.StatusFailed" = "Call Failed";
 "Call.StatusBusy" = "Busy";
@@ -2599,7 +2599,7 @@ Unused sets are archived when you add more.";
 "Call.AudioRouteHeadphones" = "Headphones";
 "Call.AudioRouteHide" = "Hide";
 
-"Call.PhoneCallInProgressMessage" = "You can’t place a Private Chat call if you’re already on a phone call.";
+"Call.PhoneCallInProgressMessage" = "You can’t place a Chat call if you’re already on a phone call.";
 "Call.RecordingDisabledMessage" = "Please end your call before recording a voice message.";
 
 "Call.EmojiDescription" = "If these emoji are the same on %@'s screen, this call is 100%% secure.";
@@ -2609,8 +2609,8 @@ Unused sets are archived when you add more.";
 "Conversation.HoldForAudio" = "Hold to record audio. Tap to switch to video.";
 "Conversation.HoldForVideo" = "Hold to record video. Tap to switch to audio.";
 
-"UserInfo.TelegramCall" = "Private Chat Call";
-"UserInfo.TelegramVideoCall" = "Private Chat Video Call";
+"UserInfo.TelegramCall" = "Chat Call";
+"UserInfo.TelegramVideoCall" = "Chat Video Call";
 "UserInfo.PhoneCall" = "Phone Call";
 
 "SharedMedia.CategoryMedia" = "Media";
@@ -2618,8 +2618,8 @@ Unused sets are archived when you add more.";
 "SharedMedia.CategoryLinks" = "Links";
 "SharedMedia.CategoryOther" = "Audio";
 
-"AccessDenied.VideoMessageCamera" = "Private Chat needs access to your camera to send video messages.\n\nPlease go to Settings > Privacy > Camera and set Private Chat to ON.";
-"AccessDenied.VideoMessageMicrophone" = "Private Chat needs access to your microphone to send video messages.\n\nPlease go to Settings > Privacy > Microphone and set Private Chat to ON.";
+"AccessDenied.VideoMessageCamera" = "Chat needs access to your camera to send video messages.\n\nPlease go to Settings > Privacy > Camera and set Chat to ON.";
+"AccessDenied.VideoMessageMicrophone" = "Chat needs access to your microphone to send video messages.\n\nPlease go to Settings > Privacy > Microphone and set Chat to ON.";
 
 "ChatSettings.AutomaticVideoMessageDownload" = "AUTOMATIC VIDEO MESSAGE DOWNLOAD";
 
@@ -2645,7 +2645,7 @@ Unused sets are archived when you add more.";
 
 "Privacy.PaymentsTitle" = "PAYMENTS";
 "Privacy.PaymentsClearInfo" = "Clear payment & shipping info";
-"Privacy.PaymentsClearInfoHelp" = "You can delete your shipping info and instruct all payment providers to remove your saved credit cards. Note that Private Chat never stores your credit card data.";
+"Privacy.PaymentsClearInfoHelp" = "You can delete your shipping info and instruct all payment providers to remove your saved credit cards. Note that Chat never stores your credit card data.";
 "Privacy.PaymentsClear.PaymentInfo" = "Payment Info";
 "Privacy.PaymentsClear.ShippingInfo" = "Shipping Info";
 
@@ -2800,7 +2800,7 @@ Unused sets are archived when you add more.";
 
 "Contacts.PhoneNumber" = "Phone Number";
 "Contacts.AddPhoneNumber" = "Add %@";
-"Contacts.ShareTelegram" = "Share Private Chat";
+"Contacts.ShareTelegram" = "Share Chat";
 
 "Conversation.ViewChannel" = "VIEW CHANNEL";
 "Conversation.ViewGroup" = "VIEW GROUP";
@@ -2864,10 +2864,10 @@ Unused sets are archived when you add more.";
 "Group.Members.AddMemberBotErrorNotAllowed" = "Sorry, you don't have the necessary permissions to add bots to this group.";
 
 "Privacy.Calls.P2P" = "Peer-to-Peer";
-"Privacy.Calls.P2PHelp" = "Disabling peer-to-peer will relay all calls through Private Chat servers to avoid revealing your IP address, but will slightly decrease audio quality.";
+"Privacy.Calls.P2PHelp" = "Disabling peer-to-peer will relay all calls through Chat servers to avoid revealing your IP address, but will slightly decrease audio quality.";
 
 "Privacy.Calls.Integration" = "iOS Call Integration";
-"Privacy.Calls.IntegrationHelp" = "iOS Call Integration shows Private Chat calls on the lock screen and in the system's call history. If iCloud sync is enabled, your call history is shared with Apple.";
+"Privacy.Calls.IntegrationHelp" = "iOS Call Integration shows Chat calls on the lock screen and in the system's call history. If iCloud sync is enabled, your call history is shared with Apple.";
 
 "Call.ReportPlaceholder" = "What went wrong?";
 "Call.ReportIncludeLog" = "Send technical information";
@@ -2894,12 +2894,12 @@ Unused sets are archived when you add more.";
 
 "Stickers.FrequentlyUsed" = "Recently Used";
 
-"Contacts.ImportersCount_1" = "1 contact on Private Chat";
-"Contacts.ImportersCount_2" = "2 contacts on Private Chat";
-"Contacts.ImportersCount_3_10" = "%@ contacts on Private Chat";
-"Contacts.ImportersCount_any" = "%@ contacts on Private Chat";
-"Contacts.ImportersCount_many" = "%@ contacts on Private Chat";
-"Contacts.ImportersCount_0" = "%@ contacts on Private Chat";
+"Contacts.ImportersCount_1" = "1 contact on Chat";
+"Contacts.ImportersCount_2" = "2 contacts on Chat";
+"Contacts.ImportersCount_3_10" = "%@ contacts on Chat";
+"Contacts.ImportersCount_any" = "%@ contacts on Chat";
+"Contacts.ImportersCount_many" = "%@ contacts on Chat";
+"Contacts.ImportersCount_0" = "%@ contacts on Chat";
 
 "Conversation.ContextMenuBan" = "Restrict";
 
@@ -2907,13 +2907,13 @@ Unused sets are archived when you add more.";
 "SocksProxySetup.UseForCallsHelp" = "Proxy servers may degrade the quality of your calls.";
 
 "InviteText.URL" = "https://privatechat.local/download";
-"InviteText.SingleContact" = "Hey, I'm using Private Chat to chat. Join me! Download it here: %@";
-"InviteText.ContactsCountText_1" = "Hey, I'm using Private Chat to chat. Join me! Download it here: {url}";
-"InviteText.ContactsCountText_2" = "Hey, I'm using Private Chat to chat – and so are 2 of our other contacts. Join us! Download it here: {url}";
-"InviteText.ContactsCountText_3_10" = "Hey, I'm using Private Chat to chat – and so are %@ of our other contacts. Join us! Download it here: {url}";
-"InviteText.ContactsCountText_any" = "Hey, I'm using Private Chat to chat – and so are %@ of our other contacts. Join us! Download it here: {url}";
-"InviteText.ContactsCountText_many" = "Hey, I'm using Private Chat to chat – and so are %@ of our other contacts. Join us! Download it here: {url}";
-"InviteText.ContactsCountText_0" = "Hey, I'm using Private Chat to chat. Join me! Download it here: {url}";
+"InviteText.SingleContact" = "Hey, I'm using Chat to chat. Join me! Download it here: %@";
+"InviteText.ContactsCountText_1" = "Hey, I'm using Chat to chat. Join me! Download it here: {url}";
+"InviteText.ContactsCountText_2" = "Hey, I'm using Chat to chat – and so are 2 of our other contacts. Join us! Download it here: {url}";
+"InviteText.ContactsCountText_3_10" = "Hey, I'm using Chat to chat – and so are %@ of our other contacts. Join us! Download it here: {url}";
+"InviteText.ContactsCountText_any" = "Hey, I'm using Chat to chat – and so are %@ of our other contacts. Join us! Download it here: {url}";
+"InviteText.ContactsCountText_many" = "Hey, I'm using Chat to chat – and so are %@ of our other contacts. Join us! Download it here: {url}";
+"InviteText.ContactsCountText_0" = "Hey, I'm using Chat to chat. Join me! Download it here: {url}";
 
 "Invite.LargeRecipientsCountWarning" = "Please note that it may take some time for your device to send all of these invitations";
 
@@ -3069,12 +3069,12 @@ Unused sets are archived when you add more.";
 
 "NotificationSettings.ContactJoined" = "New Contacts";
 
-"AccessDenied.LocationAlwaysDenied" = "If you'd like to share your Live Location with friends, Private Chat needs location access when the app is in the background.\n\nPlease go to Settings > Privacy > Location Services and set Private Chat to Always.";
+"AccessDenied.LocationAlwaysDenied" = "If you'd like to share your Live Location with friends, Chat needs location access when the app is in the background.\n\nPlease go to Settings > Privacy > Location Services and set Chat to Always.";
 
 "UserInfo.UnblockConfirmation" = "Unblock %@?";
 
 "Login.BannedPhoneSubject" = "Banned phone number: %@";
-"Login.BannedPhoneBody" = "I'm trying to use my mobile phone number: %@\nBut Private Chat says it's banned. Please help.";
+"Login.BannedPhoneBody" = "I'm trying to use my mobile phone number: %@\nBut Chat says it's banned. Please help.";
 
 "Conversation.StopLiveLocation" = "Stop Sharing";
 
@@ -3145,7 +3145,7 @@ Unused sets are archived when you add more.";
 "Channel.Setup.TypePrivateHelp" = "Private channels can only be joined if you were invited or have an invite link.";
 "Group.Username.InvalidTooShort" = "Group names must have at least 5 characters.";
 "Group.Username.InvalidStartsWithNumber" = "Group names can't start with a number.";
-"Group.Username.CreatePublicLinkHelp" = "People can share this link with others and find your group using Private Chat search.";
+"Group.Username.CreatePublicLinkHelp" = "People can share this link with others and find your group using Chat search.";
 "Channel.TypeSetup.Title" = "Channel Type";
 
 "Group.Setup.TypePrivate" = "Private";
@@ -3157,16 +3157,16 @@ Unused sets are archived when you add more.";
 
 "Privacy.PaymentsClearInfoDoneHelp" = "Payment & shipping info cleared.";
 
-"InfoPlist.NSContactsUsageDescription" = "Private Chat will continuously upload your contacts to its encrypted cloud servers to let you connect with your friends across all your devices.";
-"InfoPlist.NSLocationWhenInUseUsageDescription" = "When you send your location to your friends, Private Chat needs access to show them a map.";
+"InfoPlist.NSContactsUsageDescription" = "Chat will continuously upload your contacts to its encrypted cloud servers to let you connect with your friends across all your devices.";
+"InfoPlist.NSLocationWhenInUseUsageDescription" = "When you send your location to your friends, Chat needs access to show them a map.";
 "InfoPlist.NSCameraUsageDescription" = "We need this so that you can take and share photos and videos, as well as make video calls.";
 "InfoPlist.NSPhotoLibraryUsageDescription" = "We need this so that you can share photos and videos from your photo library.";
 "InfoPlist.NSPhotoLibraryAddUsageDescription" = "We need this so that you can save photos and videos to your photo library.";
 "InfoPlist.NSMicrophoneUsageDescription" = "We need this so that you can record and share voice messages and videos with sound.";
 "InfoPlist.NSSiriUsageDescription" = "You can use Siri to send messages.";
-"InfoPlist.NSLocationAlwaysAndWhenInUseUsageDescription" = "When you choose to share your Live Location with friends in a chat, Private Chat needs background access to your location to keep them updated for the duration of the live sharing.";
-"InfoPlist.NSLocationAlwaysUsageDescription" = "When you choose to share your live location with friends in a chat, Private Chat needs background access to your location to keep them updated for the duration of the live sharing. You also need this to send locations from an Apple Watch.";
-"InfoPlist.NSLocationWhenInUseUsageDescription" = "When you send your location to your friends, Private Chat needs access to show them a map.";
+"InfoPlist.NSLocationAlwaysAndWhenInUseUsageDescription" = "When you choose to share your Live Location with friends in a chat, Chat needs background access to your location to keep them updated for the duration of the live sharing.";
+"InfoPlist.NSLocationAlwaysUsageDescription" = "When you choose to share your live location with friends in a chat, Chat needs background access to your location to keep them updated for the duration of the live sharing. You also need this to send locations from an Apple Watch.";
+"InfoPlist.NSLocationWhenInUseUsageDescription" = "When you send your location to your friends, Chat needs access to show them a map.";
 "InfoPlist.NSFaceIDUsageDescription" = "You can use Face ID to unlock the app.";
 
 "Privacy.Calls.P2PNever" = "Never";
@@ -3193,7 +3193,7 @@ Unused sets are archived when you add more.";
 "AutoDownloadSettings.Cellular" = "CELLULAR";
 "AutoDownloadSettings.WiFi" = "WI-FI";
 "AutoDownloadSettings.Contacts" = "Contacts";
-"AutoDownloadSettings.PrivateChats" = "Other Private Chats";
+"AutoDownloadSettings.PrivateChats" = "Other Chats";
 "AutoDownloadSettings.GroupChats" = "Group Chats";
 "AutoDownloadSettings.Channels" = "Channels";
 "AutoDownloadSettings.LimitBySize" = "LIMIT BY SIZE";
@@ -3210,10 +3210,10 @@ Unused sets are archived when you add more.";
 "Channel.AdminLogFilter.EventsNewSubscribers" = "New Subscribers";
 "Channel.AdminLogFilter.EventsLeavingSubscribers" = "Subscribers Removed";
 
-"Conversation.ClearPrivateHistory" = "This will delete all messages and media in this chat from your Private Chat cloud. Your chat partner will still have them.";
-"Conversation.ClearGroupHistory" = "This will delete all messages and media in this chat from your Private Chat cloud. Other members of the group will still have them.";
+"Conversation.ClearPrivateHistory" = "This will delete all messages and media in this chat from your Chat cloud. Your chat partner will still have them.";
+"Conversation.ClearGroupHistory" = "This will delete all messages and media in this chat from your Chat cloud. Other members of the group will still have them.";
 "Conversation.ClearSecretHistory" = "This will delete all messages and media in this chat for both you and your chat partner.";
-"Conversation.ClearSelfHistory" = "This will delete all messages and media in this chat from your Private Chat cloud.";
+"Conversation.ClearSelfHistory" = "This will delete all messages and media in this chat from your Chat cloud.";
 
 "MediaPicker.LivePhotoDescription" = "The live photo will be sent as a GIF.";
 
@@ -3257,7 +3257,7 @@ Unused sets are archived when you add more.";
 "AuthSessions.Sessions" = "Sessions";
 "AuthSessions.LoggedIn" = "Websites";
 "AuthSessions.LogOutApplications" = "Disconnect All Websites";
-"AuthSessions.LogOutApplicationsHelp" = "You can log in on websites that support signing in with Private Chat.";
+"AuthSessions.LogOutApplicationsHelp" = "You can log in on websites that support signing in with Chat.";
 "AuthSessions.LoggedInWithTelegram" = "CONNECTED WEBSITES";
 "AuthSessions.LogOut" = "Disconnect";
 "AuthSessions.Message" = "You allowed this bot to message you when you logged in on %@.";
@@ -3316,20 +3316,20 @@ Unused sets are archived when you add more.";
 
 "Privacy.SecretChatsTitle" = "SECRET CHATS";
 "Privacy.SecretChatsLinkPreviews" = "Link Previews";
-"Privacy.SecretChatsLinkPreviewsHelp" = "Link previews will be generated on Private Chat servers. We do not store data about the links you send.";
+"Privacy.SecretChatsLinkPreviewsHelp" = "Link previews will be generated on Chat servers. We do not store data about the links you send.";
 
 "Privacy.ContactsTitle" = "CONTACTS";
 "Privacy.ContactsSync" = "Sync Contacts";
 "Privacy.ContactsSyncHelp" = "Turn on to continuously sync contacts from this device with your account.";
 "Privacy.ContactsReset" = "Delete Synced Contacts";
-"Privacy.ContactsResetConfirmation" = "This will remove your contacts from the Private Chat servers.\nIf 'Sync Contacts' is enabled, contacts will be re-synced.";
+"Privacy.ContactsResetConfirmation" = "This will remove your contacts from the Chat servers.\nIf 'Sync Contacts' is enabled, contacts will be re-synced.";
 
 "Login.TermsOfServiceDecline" = "Decline";
 "Login.TermsOfServiceAgree" = "Agree & Continue";
 
 "Login.TermsOfService.ProceedBot" = "Please agree and proceed to %@.";
 
-"Login.TermsOfServiceSignupDecline" = "We're very sorry, but this means you can't sign up for Private Chat.\n\nPrivate Chat is a private messaging service for our own server. You can adjust how we use your data (e.g., delete synced contacts) in Privacy & Security settings.\n\nIf you're not comfortable with these requirements, it won't be possible for us to provide this service.";
+"Login.TermsOfServiceSignupDecline" = "We're very sorry, but this means you can't sign up for Chat.\n\nChat is a private messaging service for our own server. You can adjust how we use your data (e.g., delete synced contacts) in Privacy & Security settings.\n\nIf you're not comfortable with these requirements, it won't be possible for us to provide this service.";
 
 "UserInfo.BotPrivacy" = "Privacy Policy";
 
@@ -3342,20 +3342,20 @@ Unused sets are archived when you add more.";
 "PrivacyPolicy.AgeVerificationAgree" = "Agree";
 
 "PrivacyPolicy.DeclineTitle" = "Decline";
-"PrivacyPolicy.DeclineMessage" = "We're very sorry, but this means we must part ways here. Private Chat is a private messaging service for our own server. You can adjust how we use your data (e.g., delete synced contacts) in Privacy & Security settings.\n\nIf you're not comfortable with these requirements, it won't be possible for us to provide this service.";
+"PrivacyPolicy.DeclineMessage" = "We're very sorry, but this means we must part ways here. Chat is a private messaging service for our own server. You can adjust how we use your data (e.g., delete synced contacts) in Privacy & Security settings.\n\nIf you're not comfortable with these requirements, it won't be possible for us to provide this service.";
 "PrivacyPolicy.DeclineDeclineAndDelete" = "Decline and Delete";
 
-"PrivacyPolicy.DeclineLastWarning" = "Warning, this will irreversibly delete your Private Chat account along with the data stored on our private chat server.\n\nExport any data you need before deleting your account.";
+"PrivacyPolicy.DeclineLastWarning" = "Warning, this will irreversibly delete your Chat account along with the data stored on our private chat server.\n\nExport any data you need before deleting your account.";
 "PrivacyPolicy.DeclineDeleteNow" = "Delete Now";
 
-"Settings.Passport" = "Private Chat Passport";
+"Settings.Passport" = "Chat Passport";
 
 "Passport.Title" = "Passport";
 
 "Passport.RequestHeader" = "%@ requests access to your personal data to sign you up for their services.";
 
-"Passport.InfoTitle" = "What is Private Chat Passport?";
-"Passport.InfoText" = "With **Private Chat Passport** you can easily sign up for websites and services that require identity verification.\n\nYour information, personal data, and documents are protected by end-to-end encryption. Nobody, including Private Chat, can access them without your permission.";
+"Passport.InfoTitle" = "What is Chat Passport?";
+"Passport.InfoText" = "With **Chat Passport** you can easily sign up for websites and services that require identity verification.\n\nYour information, personal data, and documents are protected by end-to-end encryption. Nobody, including Chat, can access them without your permission.";
 "Passport.InfoLearnMore" = "Learn More";
 "Passport.InfoFAQ_URL" = "https://privatechat.local/faq#passport";
 
@@ -3376,19 +3376,19 @@ Unused sets are archived when you add more.";
 "Passport.AcceptHelp" = "You are sending your documents directly to %1$@ and allowing their @%2$@ to send you messages.";
 "Passport.Authorize" = "Authorize";
 
-"Passport.DeletePassport" = "Delete Private Chat Passport";
-"Passport.DeletePassportConfirmation" = "Are you sure you want to delete your Private Chat Passport? All details will be lost.";
+"Passport.DeletePassport" = "Delete Chat Passport";
+"Passport.DeletePassportConfirmation" = "Are you sure you want to delete your Chat Passport? All details will be lost.";
 
-"Passport.PasswordHelp" = "Please enter your Private Chat Password\nto decrypt your data";
+"Passport.PasswordHelp" = "Please enter your Chat Password\nto decrypt your data";
 "Passport.PasswordPlaceholder" = "Enter your password";
 "Passport.InvalidPasswordError" = "Invalid password. Please try again.";
 "Passport.FloodError" = "Limit exceeded. Please try again later.";
-"Passport.UpdateRequiredError" = "Sorry, your Private Chat app is out of date and can’t handle this request. Please update Private Chat.";
+"Passport.UpdateRequiredError" = "Sorry, your Chat app is out of date and can’t handle this request. Please update Chat.";
 
 "Passport.ForgottenPassword" = "Forgotten Password";
-"Passport.PasswordReset" = "All documents uploaded to your Private Chat Passport will be lost. You will be able to upload new documents.";
+"Passport.PasswordReset" = "All documents uploaded to your Chat Passport will be lost. You will be able to upload new documents.";
 
-"Passport.PasswordDescription" = "Please create a password to secure your personal data with end-to-end encryption.\n\nThis password will also be required whenever you log in to Private Chat on a new device.";
+"Passport.PasswordDescription" = "Please create a password to secure your personal data with end-to-end encryption.\n\nThis password will also be required whenever you log in to Chat on a new device.";
 "Passport.PasswordCreate" = "Create a Password";
 "Passport.PasswordCompleteSetup" = "Complete Password Setup";
 "Passport.PasswordNext" = "Next";
@@ -3508,14 +3508,14 @@ Unused sets are archived when you add more.";
 
 "Passport.Phone.Title" = "Phone Number";
 "Passport.Phone.UseTelegramNumber" = "Use %@";
-"Passport.Phone.UseTelegramNumberHelp" = "Use the same phone number as on Private Chat.";
+"Passport.Phone.UseTelegramNumberHelp" = "Use the same phone number as on Chat.";
 "Passport.Phone.EnterOtherNumber" = "OR ENTER NEW PHONE NUMBER";
 "Passport.Phone.Help" = "Note: You will receive a confirmation code on the phone number you provide.";
 "Passport.Phone.Delete" = "Delete Phone Number";
 
 "Passport.Email.Title" = "Email";
 "Passport.Email.UseTelegramEmail" = "Use %@";
-"Passport.Email.UseTelegramEmailHelp" = "Use the same address as on Private Chat.";
+"Passport.Email.UseTelegramEmailHelp" = "Use the same address as on Chat.";
 "Passport.Email.EnterOtherEmail" = "OR ENTER NEW EMAIL ADDRESS";
 "Passport.Email.EmailPlaceholder" = "Enter your email address";
 "Passport.Email.Help" = "Note: You will receive a confirmation code to the email address you provide.";
@@ -3541,7 +3541,7 @@ Unused sets are archived when you add more.";
 "Passport.ScanPassport" = "Scan Your Passport";
 "Passport.ScanPassportHelp" = "Scan your passport or identity card with machine-readable zone to fill personal details automatically.";
 
-"TwoStepAuth.PasswordRemovePassportConfirmation" = "Are you sure you want to disable your password?\n\nWarning! All data saved in your Private Chat Passport will be lost!";
+"TwoStepAuth.PasswordRemovePassportConfirmation" = "Are you sure you want to disable your password?\n\nWarning! All data saved in your Chat Passport will be lost!";
 
 "Application.Update" = "Update";
 
@@ -3586,17 +3586,17 @@ Unused sets are archived when you add more.";
 
 "Passport.CorrectErrors" = "Tap to correct errors";
 
-"Passport.NotLoggedInMessage" = "Please log in to your account to use Private Chat Passport";
+"Passport.NotLoggedInMessage" = "Please log in to your account to use Chat Passport";
 
-"Update.Title" = "Private Chat Update";
-"Update.AppVersion" = "Private Chat %@";
-"Update.UpdateApp" = "Update Private Chat";
+"Update.Title" = "Chat Update";
+"Update.AppVersion" = "Chat %@";
+"Update.UpdateApp" = "Update Chat";
 "Update.Skip" = "Skip";
 
 "ReportPeer.ReasonCopyright" = "Copyright";
 
 "PrivacySettings.DataSettings" = "Data Settings";
-"PrivacySettings.DataSettingsHelp" = "Control which of your data is stored in the cloud and used by Private Chat to enable advanced features.";
+"PrivacySettings.DataSettingsHelp" = "Control which of your data is stored in the cloud and used by Chat to enable advanced features.";
 
 "PrivateDataSettings.Title" = "Data Settings";
 "Privacy.ChatsTitle" = "CHATS";
@@ -3781,8 +3781,8 @@ Unused sets are archived when you add more.";
 
 "SocksProxySetup.PasteFromClipboard" = "Paste From Clipboard";
 
-"Share.AuthTitle" = "Log in to Private Chat";
-"Share.AuthDescription" = "Open Private Chat and log in to share.";
+"Share.AuthTitle" = "Log in to Chat";
+"Share.AuthDescription" = "Open Chat and log in to share.";
 
 "Notifications.DisplayNamesOnLockScreen" = "Names on lock-screen";
 "Notifications.DisplayNamesOnLockScreenInfoWithLink" = "Display names in notifications when the device is locked. To disable, make sure that \"Show Previews\" is also set to \"When Unlocked\" or \"Never\" in [iOS Settings]";
@@ -3828,7 +3828,7 @@ Unused sets are archived when you add more.";
 "ApplyLanguage.ChangeLanguageAction" = "Change";
 "ApplyLanguage.ApplyLanguageAction" = "Change";
 "ApplyLanguage.UnsufficientDataTitle" = "Insufficient Data";
-"ApplyLanguage.UnsufficientDataText" = "Unfortunately, this custom language pack (%1$@) doesn't contain data for Private Chat iOS. You can contribute to this language pack using the [translations platform]()";
+"ApplyLanguage.UnsufficientDataText" = "Unfortunately, this custom language pack (%1$@) doesn't contain data for Chat iOS. You can contribute to this language pack using the [translations platform]()";
 "ApplyLanguage.LanguageNotSupportedError" = "Sorry, this language doesn't seem to exist.";
 "ApplyLanguage.ApplySuccess" = "Language changed";
 
@@ -3869,8 +3869,8 @@ Unused sets are archived when you add more.";
 "InstantPage.TapToOpenLink" = "Tap to open the link:";
 "InstantPage.RelatedArticleAuthorAndDateTitle" = "%1$@ • %2$@";
 
-"AuthCode.Alert" = "Your login code is %@. Enter it in the Private Chat app where you are trying to log in.\n\nDo not give this code to anyone.";
-"Login.CheckOtherSessionMessages" = "Check your Private Chat messages";
+"AuthCode.Alert" = "Your login code is %@. Enter it in the Chat app where you are trying to log in.\n\nDo not give this code to anyone.";
+"Login.CheckOtherSessionMessages" = "Check your Chat messages";
 "Login.SendCodeViaSms" = "Get the code via SMS";
 "Login.SendCodeViaCall" = "Call me to dictate the code";
 "Login.SendCodeViaFlashCall" = "Get the code via phone call";
@@ -3880,7 +3880,7 @@ Unused sets are archived when you add more.";
 "Login.CodeExpired" = "Code expired, please login again.";
 "Login.CancelSignUpConfirmation" = "Do you want to stop the registration process?";
 
-"Passcode.AppLockedAlert" = "Private Chat\nLocked";
+"Passcode.AppLockedAlert" = "Chat\nLocked";
 
 "ChatList.ReadAll" = "Read All";
 "ChatList.Read" = "Read";
@@ -3900,7 +3900,7 @@ Unused sets are archived when you add more.";
 "Permissions.Skip" = "Skip";
 
 "Permissions.ContactsTitle.v0" = "Sync Your Contacts";
-"Permissions.ContactsText.v0" = "See who's on Private Chat and switch seamlessly, without having to \"add\" your friends.";
+"Permissions.ContactsText.v0" = "See who's on Chat and switch seamlessly, without having to \"add\" your friends.";
 "Permissions.ContactsAllow.v0" = "Allow Access";
 "Permissions.ContactsAllowInSettings.v0" = "Allow in Settings";
 
@@ -3911,7 +3911,7 @@ Unused sets are archived when you add more.";
 "Permissions.NotificationsAllowInSettings.v0" = "Turn ON in Settings";
 
 "Permissions.CellularDataTitle.v0" = "Enable Cellular Data";
-"Permissions.CellularDataText.v0" = "Don't worry, Private Chat keeps network usage to a minimum. You can further control this in Settings > Data and Storage.";
+"Permissions.CellularDataText.v0" = "Don't worry, Chat keeps network usage to a minimum. You can further control this in Settings > Data and Storage.";
 "Permissions.CellularDataAllowInSettings.v0" = "Turn ON in Settings";
 
 "Permissions.SiriTitle.v0" = "Turn ON Siri";
@@ -3922,11 +3922,11 @@ Unused sets are archived when you add more.";
 "Permissions.PrivacyPolicy" = "Privacy Policy";
 
 "Contacts.PermissionsTitle" = "Access to Contacts";
-"Contacts.PermissionsText" = "Please allow Private Chat access to your phonebook to seamlessly find all your friends.";
+"Contacts.PermissionsText" = "Please allow Chat access to your phonebook to seamlessly find all your friends.";
 "Contacts.PermissionsAllow" = "Allow Access";
 "Contacts.PermissionsAllowInSettings" = "Allow in Settings";
 "Contacts.PermissionsSuppressWarningTitle" = "Keep contacts disabled?";
-"Contacts.PermissionsSuppressWarningText" = "You won't know when your friends join Private Chat and become available to chat. We recommend enabling access to contacts in Settings.";
+"Contacts.PermissionsSuppressWarningText" = "You won't know when your friends join Chat and become available to chat. We recommend enabling access to contacts in Settings.";
 "Contacts.PermissionsKeepDisabled" = "Keep Disabled";
 "Contacts.PermissionsEnable" = "Enable";
 
@@ -3938,7 +3938,7 @@ Unused sets are archived when you add more.";
 "Notifications.PermissionsAllowInSettings" = "Turn ON in Settings";
 "Notifications.PermissionsOpenSettings" = "Open Settings";
 "Notifications.PermissionsSuppressWarningTitle" = "Keep notifications disabled?";
-"Notifications.PermissionsSuppressWarningText" = "You may miss important messages on Private Chat due to your current settings.\n\nFor better results, enable alerts or banners and try muting certain chats or chat types in Private Chat settings.";
+"Notifications.PermissionsSuppressWarningText" = "You may miss important messages on Chat due to your current settings.\n\nFor better results, enable alerts or banners and try muting certain chats or chat types in Chat settings.";
 "Notifications.PermissionsKeepDisabled" = "Keep Disabled";
 "Notifications.PermissionsEnable" = "Enable";
 
@@ -3995,8 +3995,8 @@ Unused sets are archived when you add more.";
 
 "AttachmentMenu.WebSearch" = "Web Search";
 
-"Conversation.UnsupportedMediaPlaceholder" = "This message is not supported on your version of Private Chat. Please update to the latest version.";
-"Conversation.UpdateTelegram" = "UPDATE PRIVATE CHAT";
+"Conversation.UnsupportedMediaPlaceholder" = "This message is not supported on your version of Chat. Please update to the latest version.";
+"Conversation.UpdateTelegram" = "UPDATE CHAT";
 
 "Cache.LowDiskSpaceText" = "Your phone has run out of available storage. Please free some space to download or upload media.";
 
@@ -4006,7 +4006,7 @@ Unused sets are archived when you add more.";
 "Contacts.SortedByName" = "Sorted by Name";
 "Contacts.SortedByPresence" = "Sorted by Last Seen Time";
 
-"NotificationSettings.ContactJoinedInfo" = "Receive push notifications when one of your contacts becomes available on Private Chat.";
+"NotificationSettings.ContactJoinedInfo" = "Receive push notifications when one of your contacts becomes available on Chat.";
 
 "GroupInfo.Permissions" = "Permissions";
 "GroupInfo.Permissions.Title" = "Permissions";
@@ -4133,7 +4133,7 @@ Unused sets are archived when you add more.";
 "Undo.DeletedChannel" = "Deleted channel";
 "Undo.DeletedGroup" = "Deleted group";
 
-"AccessDenied.Wallpapers" = "Private Chat needs access to your photo library to set a custom chat background.\n\nPlease go to Settings > Privacy > Photos and set Private Chat to ON.";
+"AccessDenied.Wallpapers" = "Chat needs access to your photo library to set a custom chat background.\n\nPlease go to Settings > Privacy > Photos and set Chat to ON.";
 
 "Conversation.ChatBackground" = "Chat Background";
 "Conversation.ViewBackground" = "VIEW BACKGROUND";
@@ -5059,11 +5059,11 @@ Sorry for the inconvenience.";
 "Group.ErrorSupergroupConversionNotPossible" = "Sorry, you are a member of too many groups and channels. Please leave some before creating a new one.";
 
 "ClearCache.StorageTitle" = "%@ STORAGE";
-"ClearCache.StorageCache" = "Private Chat Cache";
-"ClearCache.StorageServiceFiles" = "Private Chat Service Files";
+"ClearCache.StorageCache" = "Chat Cache";
+"ClearCache.StorageServiceFiles" = "Chat Service Files";
 "ClearCache.StorageOtherApps" = "Other Apps";
 "ClearCache.StorageFree" = "Free";
-"ClearCache.ClearCache" = "Clear Private Chat Cache";
+"ClearCache.ClearCache" = "Clear Chat Cache";
 "ClearCache.Clear" = "Clear";
 "ClearCache.Forever" = "Forever";
 
@@ -5099,7 +5099,7 @@ Sorry for the inconvenience.";
 "IntentsSettings.SuggestedChats" = "Suggested Chats";
 "IntentsSettings.SuggestedChatsContacts" = "Contacts";
 "IntentsSettings.SuggestedChatsSavedMessages" = "Saved Messages";
-"IntentsSettings.SuggestedChatsPrivateChats" = "Private Chats";
+"IntentsSettings.SuggestedChatsPrivateChats" = "Chats";
 "IntentsSettings.SuggestedChatsGroups" = "Groups";
 "IntentsSettings.SuggestedChatsInfo" = "Archived chats will not be suggested.";
 "IntentsSettings.SuggestedAndSpotlightChatsInfo" = "Suggestions will appear in the Share Sheet and Spotlight search results. Archived chats will not be suggested.";
@@ -5127,8 +5127,8 @@ Sorry for the inconvenience.";
 "AuthSessions.AddDevice.ScanTitle" = "Scan QR Code";
 "AuthSessions.AddDevice.InvalidQRCode" = "Invalid QR Code";
 "AuthSessions.AddDeviceIntro.Title" = "Log in by QR Code";
-"AuthSessions.AddDeviceIntro.Text1" = "Download Private Chat Desktop from your private deployment page.";
-"AuthSessions.AddDeviceIntro.Text2" = "Run Private Chat Desktop to get the QR code";
+"AuthSessions.AddDeviceIntro.Text1" = "Download Chat Desktop from your private deployment page.";
+"AuthSessions.AddDeviceIntro.Text2" = "Run Chat Desktop to get the QR code";
 "AuthSessions.AddDeviceIntro.Text3" = "Scan the QR code to connect your account";
 "AuthSessions.AddDeviceIntro.Action" = "Scan QR Code";
 "AuthSessions.AddedDeviceTitle" = "Login Successful";
@@ -5141,13 +5141,13 @@ Sorry for the inconvenience.";
 "Map.Home" = "Home";
 "Map.Work" = "Work";
 "Map.HomeAndWorkTitle" = "Home & Work Addresses";
-"Map.HomeAndWorkInfo" = "Private Chat uses the Home and Work addresses from your Contact Card.\n\nKeep your Contact Card up to date for quick access to sending Home and Work addresses.";
+"Map.HomeAndWorkInfo" = "Chat uses the Home and Work addresses from your Contact Card.\n\nKeep your Contact Card up to date for quick access to sending Home and Work addresses.";
 "Map.SearchNoResultsDescription" = "There were no results for \"%@\".\nTry a new search.";
 
 "ChatList.Search.ShowMore" = "Show more";
 "ChatList.Search.ShowLess" = "Show less";
 
-"AuthSessions.OtherDevices" = "Private Chat clients are available for iPhone, iPad, Android, macOS, Windows and Linux. [Learn More]()";
+"AuthSessions.OtherDevices" = "Chat clients are available for iPhone, iPad, Android, macOS, Windows and Linux. [Learn More]()";
 
 "MediaPlayer.UnknownArtist" = "Unknown Artist";
 "MediaPlayer.UnknownTrack" = "Unknown Track";
@@ -5165,7 +5165,7 @@ Sorry for the inconvenience.";
 
 "Theme.Colors.Proceed" = "Proceed";
 
-"AuthSessions.AddDevice.UrlLoginHint" = "This code can be used to allow someone to log in to your Private Chat account.\n\nTo confirm Private Chat login, please go to Settings > Devices > Scan QR and scan the code.";
+"AuthSessions.AddDevice.UrlLoginHint" = "This code can be used to allow someone to log in to your Chat account.\n\nTo confirm Chat login, please go to Settings > Devices > Scan QR and scan the code.";
 
 "Appearance.RemoveThemeColor" = "Remove";
 "Appearance.RemoveThemeColorConfirmation" = "Remove Color";
@@ -5663,7 +5663,7 @@ Sorry for the inconvenience.";
 
 "Cache.MaximumCacheSize" = "Maximum Cache Size";
 "Cache.NoLimit" = "No Limit";
-"Cache.MaximumCacheSizeHelp" = "If your cache size exceeds this limit, the oldest media will be deleted.\n\nAll media will stay in the Private Chat cloud and can be re-downloaded if you need it again.";
+"Cache.MaximumCacheSizeHelp" = "If your cache size exceeds this limit, the oldest media will be deleted.\n\nAll media will stay in the Chat cloud and can be re-downloaded if you need it again.";
 
 "Stats.MessageTitle" = "Message Statistics";
 "Stats.MessageOverview" = "Overview";
@@ -6038,8 +6038,8 @@ Sorry for the inconvenience.";
 "InviteLink.PeopleJoined_3_10" = "%@ people joined";
 "InviteLink.PeopleJoined_many" = "%@ people joined";
 "InviteLink.PeopleJoined_any" = "%@ people joined";
-"InviteLink.CreatePrivateLinkHelp" = "Anyone who has Private Chat installed will be able to join your group by following this link.";
-"InviteLink.CreatePrivateLinkHelpChannel" = "Anyone who has Private Chat installed will be able to join your channel by following this link.";
+"InviteLink.CreatePrivateLinkHelp" = "Anyone who has Chat installed will be able to join your group by following this link.";
+"InviteLink.CreatePrivateLinkHelpChannel" = "Anyone who has Chat installed will be able to join your channel by following this link.";
 "InviteLink.Manage" = "Manage Invite Links";
 
 "InviteLink.PeopleJoinedShortNoneExpired" = "no one joined";
@@ -6099,8 +6099,8 @@ Sorry for the inconvenience.";
 "InviteLink.Create.Revoke" = "Revoke Link";
 
 "InviteLink.QRCode.Title" = "Invite by QR Code";
-"InviteLink.QRCode.Info" = "Everyone on Private Chat can scan this code to join your group.";
-"InviteLink.QRCode.InfoChannel" = "Everyone on Private Chat can scan this code to join your channel.";
+"InviteLink.QRCode.Info" = "Everyone on Chat can scan this code to join your group.";
+"InviteLink.QRCode.InfoChannel" = "Everyone on Chat can scan this code to join your channel.";
 "InviteLink.QRCode.Share" = "Share QR Code";
 
 "InviteLink.InviteLink" = "Invite Link";
@@ -6182,7 +6182,7 @@ Sorry for the inconvenience.";
 "Message.ImportedDateFormat" = "%1$@, %2$@ Imported %3$@";
 
 "ChatImportActivity.Title" = "Importing Chat";
-"ChatImportActivity.OpenApp" = "Open Private Chat";
+"ChatImportActivity.OpenApp" = "Open Chat";
 "ChatImportActivity.Retry" = "Retry";
 "ChatImportActivity.InProgress" = "Please keep this window open\nuntil the import is completed.";
 "ChatImportActivity.ErrorNotAdmin" = "You need to be an admin in the group to import messages.";
@@ -6244,7 +6244,7 @@ Sorry for the inconvenience.";
 "Report.AdditionalDetailsText" = "Please enter any additional details relevant for your report.";
 "Report.AdditionalDetailsPlaceholder" = "Additional details...";
 "Report.Report" = "Report";
-"Report.Succeed" = "Private Chat moderators will study your report. Thank you!";
+"Report.Succeed" = "Chat moderators will study your report. Thank you!";
 
 "Conversation.AutoremoveRemainingTime" = "auto-deletes in %@";
 "Conversation.AutoremoveRemainingDays_1" = "auto-deletes in %@ day";
@@ -6334,7 +6334,7 @@ Sorry for the inconvenience.";
 "Widget.UpdatedAt" = "Updated {}";
 
 "Intents.ErrorLockedTitle" = "Locked";
-"Intents.ErrorLockedText" = "Open Private Chat and enter passcode to edit widget.";
+"Intents.ErrorLockedText" = "Open Chat and enter passcode to edit widget.";
 
 "Conversation.GigagroupDescription" = "Only admins can send messages in this group.";
 
@@ -6355,7 +6355,7 @@ Sorry for the inconvenience.";
 
 "Conversation.UploadFileTooLarge" = "File could not be sent, because it is larger than 2 GB.\n\nYou can send as many files as you like, but each must be smaller than 2 GB.";
 
-"Channel.AddUserLeftError" = "Sorry, if a person is no longer part of a channel, you need to be in their Private Chat contacts in order to add them back.\n\nNote that they can still join via the channel's invite link as long as they are not in the Removed Users list.";
+"Channel.AddUserLeftError" = "Sorry, if a person is no longer part of a channel, you need to be in their Chat contacts in order to add them back.\n\nNote that they can still join via the channel's invite link as long as they are not in the Removed Users list.";
 
 "Message.ScamAccount" = "Scam";
 "Message.FakeAccount" = "Fake";
@@ -6640,7 +6640,7 @@ Sorry for the inconvenience.";
 "ScheduledIn.Years_any" = "%@ years";
 "ScheduledIn.Months_many" = "%@ years";
 
-"Checkout.PaymentLiabilityAlert" = "Neither Private Chat, nor {target} will have access to your credit card information. Credit card details will be handled only by the payment system, {payment_system}.\n\nPayments will go directly to the developer of {target}. Private Chat cannot provide any guarantees, so proceed at your own risk. In case of problems, please contact the developer of {target} or your bank.";
+"Checkout.PaymentLiabilityAlert" = "Neither Chat, nor {target} will have access to your credit card information. Credit card details will be handled only by the payment system, {payment_system}.\n\nPayments will go directly to the developer of {target}. Chat cannot provide any guarantees, so proceed at your own risk. In case of problems, please contact the developer of {target} or your bank.";
 
 "Checkout.OptionalTipItem" = "Tip (Optional)";
 "Checkout.TipItem" = "Tip";
@@ -6658,7 +6658,7 @@ Sorry for the inconvenience.";
 "Privacy.PaymentsClear.ShippingInfoCleared" = "Shipping info cleared.";
 "Privacy.PaymentsClear.AllInfoCleared" = "Payment and shipping info cleared.";
 
-"Settings.Tips" = "Private Chat Features";
+"Settings.Tips" = "Chat Features";
 "Settings.TipsUsername" = "PrivateChatTips";
 
 "Calls.NoVoiceAndVideoCallsPlaceholder" = "Your recent voice and video calls will appear here.";
@@ -7127,11 +7127,11 @@ Sorry for the inconvenience.";
 
 "Stickers.ShowMore" = "Show More";
 
-"Notifications.PrivateChats" = "Private Chats";
+"Notifications.PrivateChats" = "Chats";
 "Notifications.GroupChats" = "Group Chats";
 "Notifications.Channels" = "Channels";
 
-"Notifications.PrivateChatsTitle" = "Private Chats";
+"Notifications.PrivateChatsTitle" = "Chats";
 "Notifications.GroupChatsTitle" = "Group Chats";
 "Notifications.ChannelsTitle" = "Channels";
 
@@ -7237,9 +7237,9 @@ Sorry for the inconvenience.";
 "Conversation.InviteRequestInfo" = "You received this message because you requested to join %1$@ on %2$@.";
 "Conversation.InviteRequestInfoConfirm" = "I understand";
 
-"AuthSessions.HeaderInfo" = "Link [Private Chat Desktop](desktop) or [Private Chat Web](web) by scanning a QR code.";
+"AuthSessions.HeaderInfo" = "Link [Chat Desktop](desktop) or [Chat Web](web) by scanning a QR code.";
 "AuthSessions.LinkDesktopDevice" = "Link Desktop Device";
-"AuthSessions.AddDevice.ScanInstallInfo" = "Open Private Chat Desktop or Private Chat Web from your private deployment page to get the QR code";
+"AuthSessions.AddDevice.ScanInstallInfo" = "Open Chat Desktop or Chat Web from your private deployment page to get the QR code";
 
 "Channel.AdminLog.MessageSent" = "%@ sent message:";
 
@@ -7288,7 +7288,7 @@ Sorry for the inconvenience.";
 
 "Conversation.ContextMenuTranslate" = "Translate";
 
-"ClearCache.ClearDescription" = "All media will stay in the Private Chat cloud and can be re-downloaded if you need them again.";
+"ClearCache.ClearDescription" = "All media will stay in the Chat cloud and can be re-downloaded if you need them again.";
 
 "ChatSettings.StickersAndReactions" = "Stickers and Emoji";
 
@@ -7310,8 +7310,8 @@ Sorry for the inconvenience.";
 "Contacts.QrCode.MyCode" = "My QR Code";
 "Contacts.QrCode.NoCodeFound" = "No valid QR code found in the image. Please try again.";
 
-"AccessDenied.QrCode" = "Private Chat needs access to your photo library to scan QR codes.\n\nOpen your device's Settings > Privacy > Photos and set Private Chat to ON.";
-"AccessDenied.QrCamera" = "Private Chat needs access to your camera to scan QR codes.\n\nOpen your device's Settings > Privacy > Camera and set Private Chat to ON.";
+"AccessDenied.QrCode" = "Chat needs access to your photo library to scan QR codes.\n\nOpen your device's Settings > Privacy > Photos and set Chat to ON.";
+"AccessDenied.QrCamera" = "Chat needs access to your camera to scan QR codes.\n\nOpen your device's Settings > Privacy > Camera and set Chat to ON.";
 
 "Share.ShareToInstagramStories" = "Share to Instagram Stories";
 
@@ -7440,7 +7440,7 @@ Sorry for the inconvenience.";
 "Attachment.DeselectedItems_1" = "%@ item deselected";
 "Attachment.DeselectedItems_any" = "%@ items deselected";
 
-"PrivacyPhoneNumberSettings.CustomPublicLink" = "Users who have your number saved in their contacts will also see it on Private Chat.\n\nThis public link opens a chat with you:\n[https://privatechat.local/%@]()";
+"PrivacyPhoneNumberSettings.CustomPublicLink" = "Users who have your number saved in their contacts will also see it on Chat.\n\nThis public link opens a chat with you:\n[https://privatechat.local/%@]()";
 
 "DownloadList.DownloadingHeader" = "Downloading";
 "DownloadList.DownloadedHeader" = "Recently Downloaded";
@@ -7460,7 +7460,7 @@ Sorry for the inconvenience.";
 "DownloadList.RemoveFileAlertRemove" = "Remove";
 
 "DownloadList.ClearAlertTitle" = "Downloaded Files";
-"DownloadList.ClearAlertText" = "Private Chat allows you to store all received and sent\ndocuments in the cloud and save storage\nspace on your device.";
+"DownloadList.ClearAlertText" = "Chat allows you to store all received and sent\ndocuments in the cloud and save storage\nspace on your device.";
 
 "ChatList.Search.FilterDownloads" = "Downloads";
 
@@ -7547,7 +7547,7 @@ Sorry for the inconvenience.";
 "WebApp.RemoveConfirmationText" = "Remove **%@** from the attachment menu?";
 
 "Notifications.SystemTones" = "SYSTEM TONES";
-"Notifications.TelegramTones" = "Private Chat Tones";
+"Notifications.TelegramTones" = "Chat Tones";
 
 "Notifications.UploadSound" = "Upload Sound";
 "Notifications.MessageSoundInfo" = "Press and hold a short voice note or mp3 file in any chat and select \"Save for Notifications\". It will appear here.";
@@ -8098,7 +8098,7 @@ Sorry for the inconvenience.";
 "Login.EnterCodeSMSText" = "We've sent an SMS with an activation code to your phone **%@**.";
 "Login.SendCodeAsSMS" = "Send the code as an SMS";
 "Login.EnterCodeTelegramTitle" = "Enter Code";
-"Login.EnterCodeTelegramText" = "We've sent the code to the **Private Chat app** for %@ on your other device.";
+"Login.EnterCodeTelegramText" = "We've sent the code to the **Chat app** for %@ on your other device.";
 "Login.AddEmailTitle" = "Add Email";
 "Login.AddEmailText" = "Please enter your valid email address to protect your account.";
 "Login.AddEmailPlaceholder" = "Enter your email";
@@ -8638,7 +8638,7 @@ Sorry for the inconvenience.";
 "StorageManagement.Title" = "Storage Usage";
 "StorageManagement.TitleCleared" = "Storage Cleared";
 
-"StorageManagement.DescriptionCleared" = "All media can be re-downloaded from the Private Chat cloud if you need it again.";
+"StorageManagement.DescriptionCleared" = "All media can be re-downloaded from the Chat cloud if you need it again.";
 "StorageManagement.DescriptionChatUsage" = "This chat uses %1$@% of your Chat cache.";
 "StorageManagement.DescriptionAppUsage" = "Chat uses %1$@% of your free disk space.";
 
@@ -8654,7 +8654,7 @@ Sorry for the inconvenience.";
 "StorageManagement.SectionAvatars" = "Avatars";
 "StorageManagement.SectionMiscellaneous" = "Misc";
 
-"StorageManagement.SectionsDescription" = "All media will stay in the Private Chat cloud and can be re-downloaded if you need it again.";
+"StorageManagement.SectionsDescription" = "All media will stay in the Chat cloud and can be re-downloaded if you need it again.";
 
 "StorageManagement.AutoremoveHeader" = "AUTO-REMOVE CACHED MEDIA";
 "StorageManagement.AutoremoveDescription" = "Photos, videos and other files from cloud chats that you have **not accessed** during this period will be removed from this device to save disk space.";
@@ -9957,7 +9957,7 @@ Sorry for the inconvenience.";
 "Gallery.ViewOnceVideoTooltip" = "This video can only be viewed once.";
 
 "WebApp.DisclaimerTitle" = "Terms of Use";
-"WebApp.DisclaimerText" = "You are about to use a mini app operated by an independent party not affiliated with Private Chat. You must agree to the Terms of Use of mini apps to continue.";
+"WebApp.DisclaimerText" = "You are about to use a mini app operated by an independent party not affiliated with Chat. You must agree to the Terms of Use of mini apps to continue.";
 "WebApp.DisclaimerAgree" = "I agree to the [Terms of Use]()";
 "WebApp.DisclaimerContinue" = "Continue";
 "WebApp.Disclaimer_URL" = "https://privatechat.local/terms/mini-apps";
@@ -12256,19 +12256,19 @@ Sorry for the inconvenience.";
 "Chat.Context.Phone.CreateNewContact" = "Create New Contact";
 "Chat.Context.Phone.AddToExistingContact" = "Add to Existing Contact";
 "Chat.Context.Phone.SendMessage" = "Send Message";
-"Chat.Context.Phone.TelegramVoiceCall" = "Private Chat Voice Call";
-"Chat.Context.Phone.TelegramVideoCall" = "Private Chat Video Call";
-"Chat.Context.Phone.InviteToTelegram" = "Invite to Private Chat";
+"Chat.Context.Phone.TelegramVoiceCall" = "Chat Voice Call";
+"Chat.Context.Phone.TelegramVideoCall" = "Chat Video Call";
+"Chat.Context.Phone.InviteToTelegram" = "Invite to Chat";
 "Chat.Context.Phone.CallViaCarrier" = "Call via Carrier";
 "Chat.Context.Phone.CopyNumber" = "Copy Number";
-"Chat.Context.Phone.NotOnTelegram" = "This number is not on Private Chat.";
+"Chat.Context.Phone.NotOnTelegram" = "This number is not on Chat.";
 "Chat.Context.Phone.ViewProfile" = "View Profile";
 
 "Chat.Context.Username.SendMessage" = "Send Message";
 "Chat.Context.Username.OpenGroup" = "Open Group";
 "Chat.Context.Username.OpenChannel" = "Open Channel";
 "Chat.Context.Username.Copy" = "Copy Username";
-"Chat.Context.Username.NotOnTelegram" = "This user doesn't exist on Private Chat.";
+"Chat.Context.Username.NotOnTelegram" = "This user doesn't exist on Chat.";
 
 "Chat.Context.Hashtag.Search" = "Search";
 "Chat.Context.Hashtag.Copy" = "Copy Hashtag";
@@ -12582,7 +12582,7 @@ Sorry for the inconvenience.";
 "Browser.ContextMenu.CopyLink" = "Copy Link";
 "Browser.ContextMenu.Share" = "Share";
 
-"WebBrowser.Telegram" = "Private Chat";
+"WebBrowser.Telegram" = "Chat";
 
 "Monetization.Proceeds.Ton.Info" = "TON from your total balance can be used for ads or withdrawn as rewards 3 days after they are earned.";
 "Monetization.Proceeds.Stars.Info" = "Stars from your total balance can be used for ads or withdrawn as rewards 21 days after they are earned.";
@@ -13481,12 +13481,12 @@ Sorry for the inconvenience.";
 "Gallery.SaveToGallery.cached" = "cached";
 
 "ChatList.Search.Messages.AllChats" = "From All Chats";
-"ChatList.Search.Messages.PrivateChats" = "From Private Chats";
+"ChatList.Search.Messages.PrivateChats" = "From Chats";
 "ChatList.Search.Messages.GroupChats" = "From Group Chats";
 "ChatList.Search.Messages.Channels" = "From Channels";
 
 "ChatList.Search.Messages.Menu.AllChats" = "All Chats";
-"ChatList.Search.Messages.Menu.PrivateChats" = "Private Chats";
+"ChatList.Search.Messages.Menu.PrivateChats" = "Chats";
 "ChatList.Search.Messages.Menu.GroupChats" = "Group Chats";
 "ChatList.Search.Messages.Menu.Channels" = "Channels";
 

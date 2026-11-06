@@ -191,4 +191,3 @@ introQrStepsTop: 232px;
 introQrStepMargins: margins(20px, 8px, 0px, 0px);
 introQrSkipTop: 360px;
 introQrCenterSize: 44px;
-introQrPlane: icon {{ "intro_qr_plane", activeButtonFg }};

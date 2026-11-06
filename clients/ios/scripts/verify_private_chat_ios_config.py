@@ -139,13 +139,13 @@ def main():
         "NSMotionUsageDescription",
     ]
     for key in permission_keys:
-        record(checks, "Private Chat" in info.get(key, ""), f"{info_plist_path}：{key} 应包含 Private Chat")
+        record(checks, "Chat" in info.get(key, ""), f"{info_plist_path}：{key} 应包含 Chat")
 
     theme_types = info.get("UTImportedTypeDeclarations", [])
     theme_identifiers = [item.get("UTTypeIdentifier") for item in theme_types]
     theme_descriptions = [item.get("UTTypeDescription", "") for item in theme_types]
     record(checks, "com.privatechat.ios.theme" in theme_identifiers, f"{info_plist_path}：主题 UTI 应为 com.privatechat.ios.theme")
-    record(checks, any("Private Chat" in value for value in theme_descriptions), f"{info_plist_path}：主题文件说明应包含 Private Chat")
+    record(checks, any("Chat" in value for value in theme_descriptions), f"{info_plist_path}：主题文件说明应包含 Chat")
 
     build_path = "Telegram/BUILD"
     build_text = read_text(build_path)
@@ -170,8 +170,8 @@ def main():
 
     share_path = "Telegram/Share/en.lproj/Localizable.strings"
     share_text = read_text(share_path)
-    record(checks, 'Share.AuthTitle" = "Log in to Private Chat"' in share_text, f"{share_path}：分享扩展登录标题应包含 Private Chat")
-    record(checks, 'Share.AuthDescription" = "Open Private Chat and log in to share."' in share_text, f"{share_path}：分享扩展登录说明应包含 Private Chat")
+    record(checks, 'Share.AuthTitle" = "Log in to Chat"' in share_text, f"{share_path}：分享扩展登录标题应包含 Chat")
+    record(checks, 'Share.AuthDescription" = "Open Chat and log in to share."' in share_text, f"{share_path}：分享扩展登录说明应包含 Chat")
 
     strings_path = "Telegram/Telegram-iOS/en.lproj/Localizable.strings"
     strings = parse_strings_file(read_text(strings_path))
@@ -360,7 +360,7 @@ def main():
     )
     for key in default_english_private_keys:
         value = strings.get(key, "")
-        record(checks, "Private Chat" in value or "PrivateChat" in value or "privatechat.local" in value, f"{strings_path}：{key} 应包含 Private Chat、PrivateChat 或 privatechat.local")
+        record(checks, "Chat" in value or "PrivateChat" in value or "privatechat.local" in value, f"{strings_path}：{key} 应包含 Chat、PrivateChat 或 privatechat.local")
         record(checks, "Telegram" not in value and "telegram.org" not in value and "t.me" not in value and "desktop.telegram.org" not in value and "web.telegram.org" not in value, f"{strings_path}：{key} 不应继续显示上游品牌或官方链接")
     record(checks, strings.get("Settings.FAQ_URL") == "https://privatechat.local/faq", f"{strings_path}：Settings.FAQ_URL 应指向 privatechat.local")
     record(checks, strings.get("Passport.InfoFAQ_URL") == "https://privatechat.local/faq#passport", f"{strings_path}：Passport.InfoFAQ_URL 应指向 privatechat.local")
@@ -380,12 +380,12 @@ def main():
     )
     for key in default_english_policy_update_keys:
         value = strings.get(key, "")
-        record(checks, "Private Chat" in value or "privatechat.local" in value or "UPDATE PRIVATE CHAT" in value, f"{strings_path}：{key} 应指向 Private Chat 或 privatechat.local")
+        record(checks, "Chat" in value or "privatechat.local" in value or "UPDATE CHAT" in value, f"{strings_path}：{key} 应指向 Chat 或 privatechat.local")
         record(checks, "Telegram" not in value and "telegram.org" not in value, f"{strings_path}：{key} 不应继续显示 Telegram 或官方条款链接")
 
     widget_strings_path = "Telegram/WidgetKitWidget/en.lproj/Localizable.strings"
     widget_strings = parse_strings_file(read_text(widget_strings_path))
-    record(checks, widget_strings.get("Widget.AuthRequired") == "Open Private Chat and log in.", f"{widget_strings_path}：Widget.AuthRequired 应包含 Private Chat")
+    record(checks, widget_strings.get("Widget.AuthRequired") == "Open Chat and log in.", f"{widget_strings_path}：Widget.AuthRequired 应包含 Chat")
 
     network_path = "submodules/TelegramCore/Sources/Network/Network.swift"
     network_text = read_text(network_path)
@@ -398,7 +398,7 @@ def main():
 
     readme_path = "README.md"
     readme_text = read_text(readme_path)
-    record(checks, readme_text.startswith("# Private Chat iOS 端"), f"{readme_path}：应使用 Private Chat 中文优先说明")
+    record(checks, readme_text.startswith("# Chat iOS 端"), f"{readme_path}：应使用 Chat 中文优先说明")
     record(checks, "官方 iOS 客户端发布" in readme_text, f"{readme_path}：应明确说明不作为上游官方 iOS 客户端发布")
     record(checks, "official Telegram iOS distribution" in readme_text, f"{readme_path}：应包含英文摘要说明非官方 Telegram 发布")
 
@@ -412,10 +412,10 @@ def main():
         return 1
 
     print(f"iOS 私有化配置验证通过：{passed_count}/{len(checks)} 项通过")
-    print("- 应用显示名为 Chat，Bundle ID 与 URL Scheme 使用 Private Chat 私有配置")
+    print("- 应用显示名、权限提示和默认本地化产品名为 Chat，Bundle ID 与 URL Scheme 使用私有配置")
     print("- 本地模板已使用可生成工程的开发凭据格式，生产发布前必须替换为私有正式凭据")
     print("- iOS 网络 seed DC 1 已指向 127.0.0.1:25222，本地模拟器可用于后续连接验证")
-    print("- README 已改为中文优先的 Private Chat iOS 私有快照说明")
+    print("- README 已改为中文优先的 Chat iOS 私有快照说明")
     print("- 默认英文 PresentationStrings 与 Widget 扩展高可见入口已纳入品牌门禁")
     print("- App Store / AppCenter 发布配置已收敛为私有占位，默认英文条款、隐私和更新入口已纳入门禁")
     print("- 旧发布校验脚本和扩展构建 plist 已收敛到私有占位身份")

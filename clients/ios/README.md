@@ -1,6 +1,6 @@
-# Private Chat iOS 端
+# Chat iOS 端
 
-这是 `Private Chat` 私有聊天系统的 iOS 客户端源码快照，用于连接我们自建的 `private-chat-server`。当前仓库不再作为 Telegram 官方 iOS 客户端发布，也不应使用 Telegram 品牌对外分发。
+这是 Chat 私有聊天系统的 iOS 客户端源码快照，用于连接我们自建的 `private-chat-server`。当前仓库不再作为 Telegram 官方 iOS 客户端发布，也不应使用 Telegram 品牌对外分发。
 
 ## 当前状态
 
@@ -79,7 +79,7 @@ xcodebuild -project Telegram/Telegram.xcodeproj \
 
 ## English Summary
 
-This repository is a private iOS client snapshot for `Private Chat`, configured for a self-hosted `private-chat-server`. It is not an official Telegram iOS distribution and should not be shipped with Telegram branding.
+This repository is a private iOS client snapshot for Chat, configured for a self-hosted `private-chat-server`. It is not an official Telegram iOS distribution and should not be shipped with Telegram branding.
 
 ## 开源许可与上游署名
 

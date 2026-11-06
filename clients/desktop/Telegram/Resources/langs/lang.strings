@@ -187,7 +187,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_lastseen_or" = "or";
 "lng_lastseen_premium_title" = "Upgrade to Premium";
 "lng_lastseen_premium_about" = "Subscribing will let you see **{user}'s** Last Seen\nstatus without showing yours.";
-"lng_lastseen_premium_button" = "Subscribe to Private Chat Premium";
+"lng_lastseen_premium_button" = "Subscribe to Chat Premium";
 "lng_lastseen_shown_toast" = "Your last seen time is now visible.";
 
 "lng_readtime_show_title" = "Show Your Read Date";
@@ -196,14 +196,14 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_readtime_or" = "or";
 "lng_readtime_premium_title" = "Upgrade to Premium";
 "lng_readtime_premium_about" = "Subscription will let you see **{user}'s** read time\nwithout showing yours.";
-"lng_readtime_premium_button" = "Subscribe to Private Chat Premium";
+"lng_readtime_premium_button" = "Subscribe to Chat Premium";
 "lng_readtime_shown_toast" = "Your read times are now visible.";
 
 "lng_channels_limit_title" = "Too Many Communities";
 "lng_channels_limit1#one" = "You are a member of **{count}** group or channel.";
 "lng_channels_limit1#other" = "You are a member of **{count}** groups and channels.";
-"lng_channels_limit2#one" = "Please leave some before joining a new one — or upgrade to **Private Chat Premium** to double the limit to **{count}** group or channel.";
-"lng_channels_limit2#other" = "Please leave some before joining a new one — or upgrade to **Private Chat Premium** to double the limit to **{count}** groups and channels.";
+"lng_channels_limit2#one" = "Please leave some before joining a new one — or upgrade to **Chat Premium** to double the limit to **{count}** group or channel.";
+"lng_channels_limit2#other" = "Please leave some before joining a new one — or upgrade to **Chat Premium** to double the limit to **{count}** groups and channels.";
 "lng_channels_limit2_final" = "Please leave some before joining a new one.";
 "lng_channels_leave_title" = "Least active communities";
 "lng_channels_leave_status" = "{type}, inactive {time}";
@@ -214,8 +214,8 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_links_limit_title" = "Too Many Public Links";
 "lng_links_limit1#one" = "You have reserved **{count}** public link.";
 "lng_links_limit1#other" = "You have reserved **{count}** public links.";
-"lng_links_limit2#one" = "Try revoking the link from an older group or channel, or subscribe to **Private Chat Premium** to double the limit to **{count}** public link.";
-"lng_links_limit2#other" = "Try revoking the link from an older group or channel, or subscribe to **Private Chat Premium** to double the limit to **{count}** public links.";
+"lng_links_limit2#one" = "Try revoking the link from an older group or channel, or subscribe to **Chat Premium** to double the limit to **{count}** public link.";
+"lng_links_limit2#other" = "Try revoking the link from an older group or channel, or subscribe to **Chat Premium** to double the limit to **{count}** public links.";
 "lng_links_limit2_final" = "Try revoking the link from an older group or channel";
 "lng_links_revoke_title" = "Your public communities";
 
@@ -224,20 +224,20 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_filter_chats_limit1#other" = "Sorry, you can't add more than **{count}** chats to a folder.";
 "lng_filter_chats_exlude_limit1#one" = "Sorry, you can't exclude more than **{count}** chat from a folder.";
 "lng_filter_chats_exlude_limit1#other" = "Sorry, you can't exclude more than **{count}** chats from a folder.";
-"lng_filter_chats_limit2#one" = "You can increase this limit to **{count}** by subscribing to **Private Chat Premium**.";
-"lng_filter_chats_limit2#other" = "You can increase this limit to **{count}** by subscribing to **Private Chat Premium**.";
+"lng_filter_chats_limit2#one" = "You can increase this limit to **{count}** by subscribing to **Chat Premium**.";
+"lng_filter_chats_limit2#other" = "You can increase this limit to **{count}** by subscribing to **Chat Premium**.";
 
 "lng_filters_limit_title" = "Limit Reached";
 "lng_filters_limit1#one" = "You have reached the limit of **{count}** folder.";
 "lng_filters_limit1#other" = "You have reached the limit of **{count}** folders.";
-"lng_filters_limit2#one" = "You can double the limit to **{count}** folder by subscribing to **Private Chat Premium**.";
-"lng_filters_limit2#other" = "You can double the limit to **{count}** folders by subscribing to **Private Chat Premium**.";
+"lng_filters_limit2#one" = "You can double the limit to **{count}** folder by subscribing to **Chat Premium**.";
+"lng_filters_limit2#other" = "You can double the limit to **{count}** folders by subscribing to **Chat Premium**.";
 
 "lng_filter_pin_limit_title" = "Limit Reached";
 "lng_filter_pin_limit1#one" = "Sorry, you can't pin more than **{count}** chat to the top.";
 "lng_filter_pin_limit1#other" = "Sorry, you can't pin more than **{count}** chats to the top.";
-"lng_filter_pin_limit2#one" = "Unpin some of the currently pinned ones or subscribe to **Private Chat Premium** to double the limit to **{count}** chat.";
-"lng_filter_pin_limit2#other" = "Unpin some of the currently pinned ones or subscribe to **Private Chat Premium** to double the limit to **{count}** chats.";
+"lng_filter_pin_limit2#one" = "Unpin some of the currently pinned ones or subscribe to **Chat Premium** to double the limit to **{count}** chat.";
+"lng_filter_pin_limit2#other" = "Unpin some of the currently pinned ones or subscribe to **Chat Premium** to double the limit to **{count}** chats.";
 
 "lng_forum_pin_limit#one" = "Sorry, you can't pin more than **{count}** topic to the top.";
 "lng_forum_pin_limit#other" = "Sorry, you can't pin more than **{count}** topics to the top.";
@@ -257,8 +257,8 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_caption_limit_title" = "Limit Reached";
 "lng_caption_limit1#one" = "Sorry, you can't use more than **{count}** character in media captions.";
 "lng_caption_limit1#other" = "Sorry, you can't use more than **{count}** characters in media captions.";
-"lng_caption_limit2#one" = "Make the caption shorter or subscribe to **Private Chat Premium** to double the limit to **{count}** character.";
-"lng_caption_limit2#other" = "Make the caption shorter or subscribe to **Private Chat Premium** to double the limit to **{count}** characters.";
+"lng_caption_limit2#one" = "Make the caption shorter or subscribe to **Chat Premium** to double the limit to **{count}** character.";
+"lng_caption_limit2#other" = "Make the caption shorter or subscribe to **Chat Premium** to double the limit to **{count}** characters.";
 "lng_caption_limit_reached#one" = "You've reached the media caption limit. Please make the caption shorter by {count} character.";
 "lng_caption_limit_reached#other" = "You've reached the media caption limit. Please make the caption shorter by {count} characters.";
 "lng_caption_move_up" = "Move Caption Up";
@@ -268,25 +268,25 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_file_size_limit#one" = "{count} GB";
 "lng_file_size_limit#other" = "{count} GB";
 "lng_file_size_limit1" = "The document can't be sent, because it is larger than {size}.";
-"lng_file_size_limit2" = "You can double this limit to {size} per document by subscribing to **Private Chat Premium**.";
+"lng_file_size_limit2" = "You can double this limit to {size} per document by subscribing to **Chat Premium**.";
 
 "lng_filter_links_limit_title" = "Limit Reached";
 "lng_filter_links_limit1#one" = "Sorry, you can't create more than **{count}** invite link.";
 "lng_filter_links_limit1#other" = "Sorry, you can't create more than **{count}** invite links.";
-"lng_filter_links_limit2#one" = "You can increase the limit to **{count}** link by subscribing to **Private Chat Premium**.";
-"lng_filter_links_limit2#other" = "You can increase the limit to **{count}** links by subscribing to **Private Chat Premium**.";
+"lng_filter_links_limit2#one" = "You can increase the limit to **{count}** link by subscribing to **Chat Premium**.";
+"lng_filter_links_limit2#other" = "You can increase the limit to **{count}** links by subscribing to **Chat Premium**.";
 
 "lng_filter_shared_limit_title" = "Limit Reached";
 "lng_filter_shared_limit1#one" = "Sorry, you can't add more than **{count}** shareable folders.";
 "lng_filter_shared_limit1#other" = "Sorry, you can't add more than **{count}** shareable folders.";
-"lng_filter_shared_limit2#one" = "You can increase the limit to **{count}** folder by subscribing to **Private Chat Premium**.";
-"lng_filter_shared_limit2#other" = "You can increase the limit to **{count}** folders by subscribing to **Private Chat Premium**.";
+"lng_filter_shared_limit2#one" = "You can increase the limit to **{count}** folder by subscribing to **Chat Premium**.";
+"lng_filter_shared_limit2#other" = "You can increase the limit to **{count}** folders by subscribing to **Chat Premium**.";
 
 "lng_limits_increase" = "Increase Limit";
 
 "lng_sticker_premium_text" = "This set contains premium stickers like this one.";
 "lng_sticker_premium_view" = "View";
-"lng_animated_emoji_text" = "Subscribe to **Private Chat Premium** to unlock this emoji.";
+"lng_animated_emoji_text" = "Subscribe to **Chat Premium** to unlock this emoji.";
 "lng_animated_emoji_saved" = "Try sending these emoji in **Saved Messages** for free to test.";
 "lng_animated_emoji_saved_open" = "Open";
 
@@ -833,7 +833,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_settings_birthday_privacy" = "Date of Birth";
 "lng_settings_saved_music_privacy" = "Saved Music";
 "lng_settings_privacy_premium" = "Only subscribers of {link} can restrict receiving voice messages.";
-"lng_settings_privacy_premium_link" = "Private Chat Premium";
+"lng_settings_privacy_premium_link" = "Chat Premium";
 "lng_settings_passcode_disable" = "Disable passcode";
 "lng_settings_passcode_disable_sure" = "Are you sure you want to disable passcode?";
 "lng_settings_use_winhello" = "Unlock with Windows Hello";
@@ -1410,7 +1410,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_archive_hint_button" = "Got it";
 
 "lng_settings_generic_subscribe" = "Subscribe to {link} to use this setting.";
-"lng_settings_generic_subscribe_link" = "Private Chat Premium";
+"lng_settings_generic_subscribe_link" = "Chat Premium";
 
 "lng_sessions_header" = "This device";
 "lng_sessions_other_header" = "Active Devices";
@@ -1461,7 +1461,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_edit_privacy_exceptions" = "Add exceptions";
 "lng_edit_privacy_user_types" = "User types";
 "lng_edit_privacy_users_and_groups" = "Users and groups";
-"lng_edit_privacy_premium_status" = "all Private Chat Premium subscribers";
+"lng_edit_privacy_premium_status" = "all Chat Premium subscribers";
 "lng_edit_privacy_miniapps_status" = "web mini apps that you use";
 
 "lng_edit_privacy_exceptions_count#one" = "{count} user";
@@ -1492,7 +1492,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_edit_privacy_lastseen_never_title" = "Never share with";
 "lng_edit_lastseen_hide_read_time" = "Hide read time";
 "lng_edit_lastseen_hide_read_time_about" = "Hide the time when you read messages from people who can't see your last seen. If you turn this on, their read time will also be hidden from you (unless you are a Premium user).\n\nThis setting does not affect group chats.";
-"lng_edit_lastseen_subscribe" = "Subscribe to Private Chat Premium";
+"lng_edit_lastseen_subscribe" = "Subscribe to Chat Premium";
 "lng_edit_lastseen_subscribe_about" = "If you subscribe to Premium, you will see other users' last seen and read time even if you hid yours from them (unless they specifically restricted it).";
 
 "lng_edit_privacy_groups_title" = "Groups & Channels";
@@ -1607,10 +1607,10 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_messages_privacy_everyone" = "Everybody";
 "lng_messages_privacy_restricted" = "My Contacts and Premium Users";
 "lng_messages_privacy_about" = "You can restrict messages from users who are not in your contacts and don't have Premium.";
-"lng_messages_privacy_premium_button" = "Subscribe to Private Chat Premium";
-"lng_messages_privacy_premium_about" = "Subscribe now to change this setting and get access to other exclusive features of Private Chat Premium.";
+"lng_messages_privacy_premium_button" = "Subscribe to Chat Premium";
+"lng_messages_privacy_premium_about" = "Subscribe now to change this setting and get access to other exclusive features of Chat Premium.";
 "lng_messages_privacy_premium" = "Only subscribers of {link} can select this option.";
-"lng_messages_privacy_premium_link" = "Private Chat Premium";
+"lng_messages_privacy_premium_link" = "Chat Premium";
 "lng_messages_privacy_charge" = "Charge for messages";
 "lng_messages_privacy_charge_about" = "Charge a fee for messages from people outside your contacts or those you haven't messaged first.";
 "lng_messages_privacy_price" = "Set your price per message";
@@ -1957,7 +1957,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_manage_peer_reactions_max_about" = "Limit the number of different reactions that can be added to a post, including already published ones.";
 
 "lng_manage_peer_reactions_paid" = "Enable Paid Reactions";
-"lng_manage_peer_reactions_paid_about" = "Switch this on to let your subscribers react to posts with Private Chat Stars, which you will be able to withdraw as TON. {link}";
+"lng_manage_peer_reactions_paid_about" = "Switch this on to let your subscribers react to posts with Chat Stars, which you will be able to withdraw as TON. {link}";
 "lng_manage_peer_reactions_paid_link" = "Learn more >";
 
 "lng_manage_peer_antispam" = "Aggressive Anti-Spam";
@@ -2009,7 +2009,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_disable_sharing_no_forwarding_about" = "Disable message forwarding to other chats.";
 "lng_disable_sharing_no_saving" = "No Saving";
 "lng_disable_sharing_no_saving_about" = "Disable copying texts and saving photos and videos to gallery.";
-"lng_disable_sharing_unlock" = "Unlock with Private Chat Premium";
+"lng_disable_sharing_unlock" = "Unlock with Chat Premium";
 "lng_disable_sharing_button" = "Disable Sharing";
 "lng_disable_sharing_toast" = "Sharing disabled for this chat.";
 "lng_enable_sharing_toast" = "Sharing enabled for this chat.";
@@ -2080,7 +2080,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_star_ref_share_title" = "Share revenue with affiliates";
 "lng_star_ref_share_about" = "Set the commission for revenue generated by users referred to you.";
 "lng_star_ref_launch_title" = "Launch your affiliate program";
-"lng_star_ref_launch_about" = "Private Chat will feature your program for millions of potential affiliates.";
+"lng_star_ref_launch_about" = "Chat will feature your program for millions of potential affiliates.";
 "lng_star_ref_let_title" = "Let affiliate promote you";
 "lng_star_ref_let_about" = "Affiliates will share your referral link with their audience.";
 "lng_star_ref_commission_title" = "Commission";
@@ -2109,9 +2109,9 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_star_ref_warning_if_end3" = "You will be able to start a new affiliate program only in **24** hours.";
 "lng_star_ref_warning_end" = "End Anyway";
 "lng_star_ref_created_title" = "Affiliate program started";
-"lng_star_ref_created_text" = "Any Private Chat user, channel owner or mini app developer can now join your program.";
+"lng_star_ref_created_text" = "Any Chat user, channel owner or mini app developer can now join your program.";
 "lng_star_ref_updated_title" = "Affiliate program updated";
-"lng_star_ref_updated_text" = "Any Private Chat user, channel owner or mini app developer can join your program.";
+"lng_star_ref_updated_text" = "Any Chat user, channel owner or mini app developer can join your program.";
 "lng_star_ref_ended_title" = "Affiliate program ended";
 "lng_star_ref_ended_text" = "Participating affiliates have been notified. All referral links will be disabled in **24** hours.";
 "lng_star_ref_list_title" = "Affiliate Programs";
@@ -2173,10 +2173,10 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_stars_rating_negative" = "A negative rating indicates that **{name}'s** payments are unreliable.";
 "lng_stars_rating_negative_your#one" = "A negative rating indicates that your payments are unreliable. Spend **{count} Star** to fix this issue.";
 "lng_stars_rating_negative_your#other" = "A negative rating indicates that your payments are unreliable. Spend **{count} Stars** to fix this issue.";
-"lng_stars_rating_about" = "This rating reflects **{name}'s** activity on Private Chat. What affects it:";
-"lng_stars_rating_about_your" = "This rating reflects your activity on Private Chat. What affects it:";
-"lng_stars_title_gifts_telegram" = "Gifts from Private Chat";
-"lng_stars_about_gifts_telegram" = "{emoji} 100% of the Stars spent on gifts purchased from Private Chat.";
+"lng_stars_rating_about" = "This rating reflects **{name}'s** activity on Chat. What affects it:";
+"lng_stars_rating_about_your" = "This rating reflects your activity on Chat. What affects it:";
+"lng_stars_title_gifts_telegram" = "Gifts from Chat";
+"lng_stars_about_gifts_telegram" = "{emoji} 100% of the Stars spent on gifts purchased from Chat.";
 "lng_stars_title_gifts_users" = "Gifts and Posts from Users";
 "lng_stars_about_gifts_users" = "{emoji} 20% of the Stars spent on resold gifts, paid messages and channel posts.";
 "lng_stars_title_refunds" = "Refunds and Conversions";
@@ -2486,7 +2486,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_action_gift_transferred_unknown" = "Someone transferred you a gift";
 "lng_action_gift_transferred_unknown_channel" = "Someone transferred a gift to {channel}";
 "lng_action_gift_transferred_self" = "You transferred a unique collectible";
-"lng_action_gift_displayed_self" = "You've started displaying {name} on your Private Chat profile page.";
+"lng_action_gift_displayed_self" = "You've started displaying {name} on your Chat profile page.";
 "lng_action_gift_transferred_self_channel" = "You transferred a gift to {channel}";
 "lng_action_gift_transferred_mine" = "You transferred a gift to {user}";
 "lng_action_gift_crafted" = "You crafted a new gift";
@@ -2522,7 +2522,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_action_gift_sent_upgradable" = "{user} can upgrade this gift to a unique collectible.";
 "lng_action_gift_premium_months#one" = "{count} Month Premium";
 "lng_action_gift_premium_months#other" = "{count} Months Premium";
-"lng_action_gift_premium_about" = "Subscription for exclusive Private Chat features.";
+"lng_action_gift_premium_about" = "Subscription for exclusive Chat features.";
 "lng_action_gift_refunded" = "This gift was downgraded because a request to refund the payment related to this gift was made, and the money was returned.";
 "lng_action_gift_got_ton" = "Use TON to suggest posts to channels.";
 "lng_action_gift_offer_incoming" = "An offer to buy this gift for {amount}.";
@@ -2585,18 +2585,18 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_action_story_mention_button" = "View Story";
 "lng_action_story_mention_me_unavailable" = "The story where you mentioned {user} is no longer available.";
 "lng_action_story_mention_unavailable" = "The story where {user} mentioned you is no longer available.";
-"lng_action_giveaway_started_group" = "{from} just started a giveaway of Private Chat Premium subscriptions to its members.";
-"lng_action_giveaway_started" = "{from} just started a giveaway of Private Chat Premium subscriptions for its followers.";
+"lng_action_giveaway_started_group" = "{from} just started a giveaway of Chat Premium subscriptions to its members.";
+"lng_action_giveaway_started" = "{from} just started a giveaway of Chat Premium subscriptions for its followers.";
 "lng_action_giveaway_credits_started_amount#one" = "{count} Star";
 "lng_action_giveaway_credits_started_amount#other" = "{count} Stars";
 "lng_action_giveaway_credits_started_group" = "{from} just started a giveaway of {amount} to its members.";
 "lng_action_giveaway_credits_started" = "{from} just started a giveaway of {amount} to its followers.";
-"lng_action_giveaway_results#one" = "{count} winner of the giveaway was randomly selected by Private Chat and received private messages with giftcodes.";
-"lng_action_giveaway_results#other" = "{count} winners of the giveaway were randomly selected by Private Chat and received private messages with giftcodes.";
-"lng_action_giveaway_results_some" = "Some winners of the giveaway were randomly selected by Private Chat and received private messages with giftcodes.";
-"lng_action_giveaway_results_credits#one" = "{count} winner of the giveaway was randomly selected by Private Chat and received their prize.";
-"lng_action_giveaway_results_credits#other" = "{count} winners of the giveaway were randomly selected by Private Chat and received their prize.";
-"lng_action_giveaway_results_credits_some" = "Some winners of the giveaway were randomly selected by Private Chat and received their prize.";
+"lng_action_giveaway_results#one" = "{count} winner of the giveaway was randomly selected by Chat and received private messages with giftcodes.";
+"lng_action_giveaway_results#other" = "{count} winners of the giveaway were randomly selected by Chat and received private messages with giftcodes.";
+"lng_action_giveaway_results_some" = "Some winners of the giveaway were randomly selected by Chat and received private messages with giftcodes.";
+"lng_action_giveaway_results_credits#one" = "{count} winner of the giveaway was randomly selected by Chat and received their prize.";
+"lng_action_giveaway_results_credits#other" = "{count} winners of the giveaway were randomly selected by Chat and received their prize.";
+"lng_action_giveaway_results_credits_some" = "Some winners of the giveaway were randomly selected by Chat and received their prize.";
 "lng_action_giveaway_results_none" = "No winners of the giveaway could be selected.";
 "lng_action_boost_apply_me" = "You boosted the group";
 "lng_action_boost_apply#one" = "{from} boosted the group";
@@ -2696,7 +2696,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_similar_channels_more" = "More Channels";
 "lng_similar_channels_premium_all#one" = "Subscribe to {link} to unlock up to **{count}** similar channel.";
 "lng_similar_channels_premium_all#other" = "Subscribe to {link} to unlock up to **{count}** similar channels.";
-"lng_similar_channels_premium_all_link" = "Private Chat Premium";
+"lng_similar_channels_premium_all_link" = "Chat Premium";
 "lng_similar_channels_show_more" = "Show more channels";
 
 "lng_similar_bots_title" = "Similar bots";
@@ -2710,7 +2710,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_peer_gifts_empty_search" = "No matching gifts";
 "lng_peer_gifts_view_all" = "View All Gifts";
 "lng_peer_gifts_notify" = "Notify About New Gifts";
-"lng_peer_gifts_notify_enabled" = "You will receive a message from Private Chat when your channel receives a gift.";
+"lng_peer_gifts_notify_enabled" = "You will receive a message from Chat when your channel receives a gift.";
 "lng_peer_gifts_filter_by_value" = "Sort by Value";
 "lng_peer_gifts_filter_by_date" = "Sort by Date";
 "lng_peer_gifts_filter_unlimited" = "Unlimited";
@@ -3023,7 +3023,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 
 "lng_premium" = "Premium";
 "lng_premium_free" = "Free";
-"lng_premium_more_about" = "About Private Chat Premium";
+"lng_premium_more_about" = "About Chat Premium";
 "lng_premium_unlock_reactions" = "Unlock Premium Reactions";
 "lng_premium_unlock_stickers" = "Unlock Premium Stickers";
 "lng_premium_unlock_emoji" = "Unlock Animated Emoji";
@@ -3038,23 +3038,23 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 
 "lng_premium_emoji_status_title" = "{user} set this emoji from {link} as their current status.";
 "lng_premium_emoji_status_title_colored" = "{user} set this emoji as their current status.";
-"lng_premium_emoji_status_about" = "Emoji status is a premium feature. Other features included in **Private Chat Premium**:";
+"lng_premium_emoji_status_about" = "Emoji status is a premium feature. Other features included in **Chat Premium**:";
 "lng_premium_emoji_status_button" = "Unlock Emoji Status";
 
-"lng_premium_summary_user_title" = "{user} is a subscriber of Private Chat Premium.";
-"lng_premium_summary_user_about" = "Owners of Private Chat Premium accounts have exclusive access to multiple additional features.";
+"lng_premium_summary_user_title" = "{user} is a subscriber of Chat Premium.";
+"lng_premium_summary_user_about" = "Owners of Chat Premium accounts have exclusive access to multiple additional features.";
 
-"lng_premium_summary_title" = "Private Chat Premium";
-"lng_premium_summary_top_about" = "Go **beyond the limits** and **unlock dozens of exclusive** features by subscribing to **Private Chat Premium**.";
+"lng_premium_summary_title" = "Chat Premium";
+"lng_premium_summary_top_about" = "Go **beyond the limits** and **unlock dozens of exclusive** features by subscribing to **Chat Premium**.";
 "lng_premium_summary_title_subscribed" = "You are all set!";
-"lng_premium_summary_subtitle_gift#one" = "{user} has gifted you a {count}-month subscription to Private Chat Premium.";
-"lng_premium_summary_subtitle_gift#other" = "{user} has gifted you a {count}-months subscription to Private Chat Premium.";
-"lng_premium_summary_subtitle_gift_days#one" = "{user} has gifted you a {count}-day subscription to Private Chat Premium.";
-"lng_premium_summary_subtitle_gift_days#other" = "{user} has gifted you a {count}-days subscription to Private Chat Premium.";
-"lng_premium_summary_subtitle_gift_me#one" = "You gifted {user} a {count}-month subscription to Private Chat Premium.";
-"lng_premium_summary_subtitle_gift_me#other" = "You gifted {user} a {count}-months subscription to Private Chat Premium.";
-"lng_premium_summary_subtitle_gift_days_me#one" = "You gifted {user} a {count}-month subscription to Private Chat Premium.";
-"lng_premium_summary_subtitle_gift_days_me#other" = "You gifted {user} a {count}-months subscription to Private Chat Premium.";
+"lng_premium_summary_subtitle_gift#one" = "{user} has gifted you a {count}-month subscription to Chat Premium.";
+"lng_premium_summary_subtitle_gift#other" = "{user} has gifted you a {count}-months subscription to Chat Premium.";
+"lng_premium_summary_subtitle_gift_days#one" = "{user} has gifted you a {count}-day subscription to Chat Premium.";
+"lng_premium_summary_subtitle_gift_days#other" = "{user} has gifted you a {count}-days subscription to Chat Premium.";
+"lng_premium_summary_subtitle_gift_me#one" = "You gifted {user} a {count}-month subscription to Chat Premium.";
+"lng_premium_summary_subtitle_gift_me#other" = "You gifted {user} a {count}-months subscription to Chat Premium.";
+"lng_premium_summary_subtitle_gift_days_me#one" = "You gifted {user} a {count}-month subscription to Chat Premium.";
+"lng_premium_summary_subtitle_gift_days_me#other" = "You gifted {user} a {count}-months subscription to Chat Premium.";
 "lng_premium_summary_subtitle_wallpapers" = "Wallpapers for Both Sides";
 "lng_premium_summary_about_wallpapers" = "Set custom wallpapers for you and your chat partner.";
 "lng_premium_summary_subtitle_stories" = "Stories";
@@ -3068,7 +3068,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_premium_summary_subtitle_voice_to_text" = "Voice-to-Text Conversion";
 "lng_premium_summary_about_voice_to_text" = "Ability to read the transcript of any incoming voice message.";
 "lng_premium_summary_subtitle_no_ads" = "No Ads";
-"lng_premium_summary_about_no_ads" = "No more ads in public channels where Private Chat sometimes shows ads.";
+"lng_premium_summary_about_no_ads" = "No more ads in public channels where Chat sometimes shows ads.";
 "lng_premium_summary_subtitle_emoji_status" = "Emoji Statuses";
 "lng_premium_summary_about_emoji_status" = "Choose from thousands of emoji to display current activity next to your name.";
 "lng_premium_summary_subtitle_infinite_reactions" = "Infinite Reactions";
@@ -3086,12 +3086,12 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_premium_summary_subtitle_advanced_chat_management" = "Advanced Chat Management";
 "lng_premium_summary_about_advanced_chat_management" = "Tools to set the default folder, auto-archive and hide new chats from non-contacts.";
 "lng_premium_summary_subtitle_profile_badge" = "Profile Badge";
-"lng_premium_summary_about_profile_badge" = "An exclusive badge next to your name showing that you subscribe to Private Chat Premium.";
+"lng_premium_summary_about_profile_badge" = "An exclusive badge next to your name showing that you subscribe to Chat Premium.";
 "lng_premium_summary_subtitle_animated_userpics" = "Animated Profile Pictures";
 "lng_premium_summary_about_animated_userpics" = "Video avatars animated in chat lists and chats to allow for additional self-expression.";
 "lng_premium_summary_subtitle_translation" = "Real-Time Translation";
 "lng_premium_summary_about_translation" = "Real-time translation of channels and chats into other languages.";
-"lng_premium_summary_subtitle_business" = "Private Chat Business";
+"lng_premium_summary_subtitle_business" = "Chat Business";
 "lng_premium_summary_about_business" = "Upgrade your account with business features such as location, opening hours and quick replies.";
 "lng_premium_summary_subtitle_effects" = "Message Effects";
 "lng_premium_summary_about_effects" = "Add over 500 animated effects to private messages.";
@@ -3101,21 +3101,21 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_premium_summary_about_todo_lists" = "Plan, assign, and complete tasks - seamlessly and efficiently.";
 "lng_premium_summary_subtitle_peer_colors" = "Name and Profile Colors";
 "lng_premium_summary_about_peer_colors" = "Choose a color and logo for your profile and replies to your messages.";
-"lng_premium_summary_subtitle_gifts" = "Private Chat Gifts";
+"lng_premium_summary_subtitle_gifts" = "Chat Gifts";
 "lng_premium_summary_about_gifts" = "Gifts are collectible items you can trade or showcase on your profile.";
 "lng_premium_summary_subtitle_no_forwards" = "Disable Sharing";
 "lng_premium_summary_about_no_forwards" = "Restrict forwarding, copying, and saving content from your private chats.";
 "lng_premium_summary_subtitle_ai_compose" = "AI Tools";
 "lng_premium_summary_about_ai_compose" = "Transform your messages and entire chats in your preferred style and language.";
-"lng_premium_summary_bottom_subtitle" = "About Private Chat Premium";
-"lng_premium_summary_bottom_about" = "While the free version of Private Chat already gives its users more than any other messaging application, **Private Chat Premium** pushes its capabilities even further.\n\n**Private Chat Premium** is a paid option, because most Premium Features require additional expenses from Private Chat to third parties such as data center providers and server manufacturers. Contributions from **Private Chat Premium** users allow us to cover such costs and also help Private Chat stay free for everyone.";
+"lng_premium_summary_bottom_subtitle" = "About Chat Premium";
+"lng_premium_summary_bottom_about" = "While the free version of Chat already gives its users more than any other messaging application, **Chat Premium** pushes its capabilities even further.\n\n**Chat Premium** is a paid option, because most Premium Features require additional expenses from Chat to third parties such as data center providers and server manufacturers. Contributions from **Chat Premium** users allow us to cover such costs and also help Chat stay free for everyone.";
 "lng_premium_summary_button" = "Subscribe for {cost} per month";
 
 "lng_premium_summary_new_badge" = "NEW";
 "lng_soon_badge" = "Soon";
 
-"lng_premium_success" = "You've successfully subscribed to Private Chat Premium!";
-"lng_premium_unavailable" = "This feature requires subscription to **Private Chat Premium**.\n\nUnfortunately, **Private Chat Premium** is not available in your region.";
+"lng_premium_success" = "You've successfully subscribed to Chat Premium!";
+"lng_premium_unavailable" = "This feature requires subscription to **Chat Premium**.\n\nUnfortunately, **Chat Premium** is not available in your region.";
 
 // Upgraded Stories.
 "lng_premium_stories_subtitle_order" = "Priority Order";
@@ -3139,7 +3139,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_premium_stories_subtitle_links" = "Links and Formatting*";
 "lng_premium_stories_about_links" = "Add links and formatting to your story captions.";
 
-"lng_premium_stories_about_mobile" = "* Available when posting stories from Private Chat apps for iOS and Android.";
+"lng_premium_stories_about_mobile" = "* Available when posting stories from Chat apps for iOS and Android.";
 
 // Doubled Limits.
 "lng_premium_double_limits_subtitle_channels" = "Groups and Channels";
@@ -3185,11 +3185,11 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_premium_double_limits_about_similar_channels#other" = "View up to {count} similar channels";
 //
 
-"lng_premium_gift_title" = "Gift Private Chat Premium";
-"lng_premium_gift_about" = "Give **{user}** access to exclusive features with **Private Chat Premium**.";
+"lng_premium_gift_title" = "Gift Chat Premium";
+"lng_premium_gift_about" = "Give **{user}** access to exclusive features with **Chat Premium**.";
 "lng_premium_gift_button" = "Gift Subscription for {cost}";
 "lng_premium_gift_per" = "{cost} / month";
-"lng_premium_gift_terms" = "You can review the list of features and more details about Private Chat Premium {link}.";
+"lng_premium_gift_terms" = "You can review the list of features and more details about Chat Premium {link}.";
 "lng_premium_gift_terms_link" = "here";
 "lng_premium_gifts_about_user1" = "Give **{user}** access to exclusive features.";
 "lng_premium_gifts_about_user2" = "Give **{user}** and **{second_user}** access to exclusive features.";
@@ -3207,10 +3207,10 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_premium_gifts_about_paid_below#one" = "They now have access to additional features.";
 "lng_premium_gifts_about_paid_below#other" = "They now have access to additional features.";
 "lng_premium_gifts_summary_subtitle" = "What's Included";
-"lng_premium_gifts_terms" = "By gifting Private Chat Premium, you agree to the Private Chat {link} and {policy}.";
+"lng_premium_gifts_terms" = "By gifting Chat Premium, you agree to the Chat {link} and {policy}.";
 "lng_premium_gifts_terms_policy" = "Privacy Policy";
 
-"lng_business_title" = "Private Chat Business";
+"lng_business_title" = "Chat Business";
 "lng_business_about" = "Turn your account to a business page with these additional features.";
 "lng_business_unlocked" = "You have now unlocked these additional business features.";
 "lng_business_subtitle_location" = "Location";
@@ -3231,14 +3231,14 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_business_about_chat_links" = "Create links that start a chat with you, suggesting the first message.";
 "lng_business_subtitle_sponsored" = "Ads in Channels";
 "lng_business_button_sponsored" = "Do Not Hide Ads";
-"lng_business_about_sponsored" = "As a Premium subscriber, you don’t see any ads on Private Chat, but you can turn them on, for example, to view your own ads that you launched on the {link}";
-"lng_business_about_sponsored_link" = "Private Chat Ad Platform {emoji}";
+"lng_business_about_sponsored" = "As a Premium subscriber, you don’t see any ads on Chat, but you can turn them on, for example, to view your own ads that you launched on the {link}";
+"lng_business_about_sponsored_link" = "Chat Ad Platform {emoji}";
 "lng_business_about_sponsored_url" = "https://ads.";
 
-"lng_credits_summary_title" = "Private Chat Stars";
-"lng_credits_summary_about" = "Buy Stars to unlock content and services in miniapps on Private Chat.";
+"lng_credits_summary_title" = "Chat Stars";
+"lng_credits_summary_about" = "Buy Stars to unlock content and services in miniapps on Chat.";
 "lng_credits_currency_summary_title" = "TON Balance";
-"lng_credits_currency_summary_about" = "Offer TON to submit post suggestions to channels on Private Chat.";
+"lng_credits_currency_summary_about" = "Offer TON to submit post suggestions to channels on Chat.";
 "lng_credits_currency_summary_subtitle" = "You can withdraw your TON using Fragment.";
 "lng_credits_currency_summary_in_button" = "Top-up via Fragment";
 "lng_credits_currency_summary_in_subtitle" = "You can top-up your TON balance via Fragment.";
@@ -3322,8 +3322,8 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_credits_box_history_entry_gift_unavailable" = "Unavailable";
 "lng_credits_box_history_entry_gift_released" = "released by {name}";
 "lng_credits_box_history_entry_gift_sold_out" = "This gift has sold out";
-"lng_credits_box_history_entry_gift_out_about" = "With Stars, **{user}** will be able to unlock content and services on Private Chat.\n{link}";
-"lng_credits_box_history_entry_gift_in_about" = "Use Stars to unlock content and services on Private Chat. {link}";
+"lng_credits_box_history_entry_gift_out_about" = "With Stars, **{user}** will be able to unlock content and services on Chat.\n{link}";
+"lng_credits_box_history_entry_gift_in_about" = "Use Stars to unlock content and services on Chat. {link}";
 "lng_credits_box_history_entry_gift_about_link" = "See Examples {emoji}";
 "lng_credits_box_history_entry_gift_examples" = "Examples";
 "lng_credits_box_history_entry_ads" = "Ads Platform";
@@ -3398,12 +3398,12 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_credits_small_balance_for_suggest" = "Buy **Stars** to suggest post to {channel}.";
 "lng_credits_small_balance_for_offer" = "Buy **Stars** to offer for this gift.";
 "lng_credits_small_balance_for_search" = "Buy **Stars** to search through public posts.";
-"lng_credits_small_balance_fallback" = "Buy **Stars** to unlock content and services on Private Chat.";
-"lng_credits_purchase_blocked" = "Sorry, you can't purchase this item with Private Chat Stars.";
+"lng_credits_small_balance_fallback" = "Buy **Stars** to unlock content and services on Chat.";
+"lng_credits_purchase_blocked" = "Sorry, you can't purchase this item with Chat Stars.";
 "lng_credits_enough" = "You have enough stars at the moment. {link}";
 "lng_credits_enough_link" = "Buy anyway";
 
-"lng_credits_gift_title" = "Gift Private Chat Stars";
+"lng_credits_gift_title" = "Gift Chat Stars";
 
 "lng_location_title" = "Location";
 "lng_location_about" = "Display the location of your business on your account.";
@@ -3527,7 +3527,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_chatbots_manage_stories" = "Manage Stories";
 
 "lng_chatbots_not_found" = "Chatbot not found.";
-"lng_chatbots_not_supported" = "This bot doesn't support Private Chat Business yet.";
+"lng_chatbots_not_supported" = "This bot doesn't support Chat Business yet.";
 "lng_chatbots_add" = "Add";
 "lng_chatbots_remove_bot" = "Remove Bot";
 "lng_chatbots_leave_without_added_title" = "No Bot Added";
@@ -3624,19 +3624,19 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_boost_group_lift_restrictions_many#one" = "Boost the group **{count} time** to remove messaging restrictions.";
 "lng_boost_group_lift_restrictions_many#other" = "Boost the group **{count} times** to remove messaging restrictions.";
 "lng_boost_error_gifted_title" = "Can't boost with gifted Premium!";
-"lng_boost_error_gifted_text" = "Because your **Private Chat Premium** subscription was gifted to you, you can't use it to boost channels.";
-"lng_boost_error_gifted_text_group" = "Because your **Private Chat Premium** subscription was gifted to you, you can't use it to boost groups.";
+"lng_boost_error_gifted_text" = "Because your **Chat Premium** subscription was gifted to you, you can't use it to boost channels.";
+"lng_boost_error_gifted_text_group" = "Because your **Chat Premium** subscription was gifted to you, you can't use it to boost groups.";
 "lng_boost_need_more" = "More boosts needed";
-"lng_boost_need_more_text#one" = "To boost {channel}, gift **Private Chat Premium** to a friend and get **{count}** boost.";
-"lng_boost_need_more_text#other" = "To boost {channel}, gift **Private Chat Premium** to a friend and get **{count}** boosts.";
-"lng_boost_need_more_again#one" = "To boost {channel} again, gift **Private Chat Premium** to a friend and get **{count}** additional boost.";
-"lng_boost_need_more_again#other" = "To boost {channel} again, gift **Private Chat Premium** to a friend and get **{count}** additional boosts.";
+"lng_boost_need_more_text#one" = "To boost {channel}, gift **Chat Premium** to a friend and get **{count}** boost.";
+"lng_boost_need_more_text#other" = "To boost {channel}, gift **Chat Premium** to a friend and get **{count}** boosts.";
+"lng_boost_need_more_again#one" = "To boost {channel} again, gift **Chat Premium** to a friend and get **{count}** additional boost.";
+"lng_boost_need_more_again#other" = "To boost {channel} again, gift **Chat Premium** to a friend and get **{count}** additional boosts.";
 "lng_boost_error_already_title" = "Already Boosted!";
 "lng_boost_error_already_text" = "You are already boosting this channel.";
 "lng_boost_error_already_text_group" = "You are already boosting this group.";
 "lng_boost_error_premium_title" = "Premium needed";
-"lng_boost_error_premium_text_group" = "Only **Private Chat Premium** subscribers can boost groups. Do you want to subscribe to **Private Chat Premium**?";
-"lng_boost_error_premium_text" = "Only **Private Chat Premium** subscribers can boost channels. Do you want to subscribe to **Private Chat Premium**?";
+"lng_boost_error_premium_text_group" = "Only **Chat Premium** subscribers can boost groups. Do you want to subscribe to **Chat Premium**?";
+"lng_boost_error_premium_text" = "Only **Chat Premium** subscribers can boost channels. Do you want to subscribe to **Chat Premium**?";
 "lng_boost_error_premium_yes" = "Yes";
 "lng_boost_error_flood_title" = "Can't boost too often!";
 "lng_boost_error_flood_text_group" = "You can change the group you boost only once a day. Next time you can boost is in {left}.";
@@ -3645,13 +3645,13 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_boost_now_replace" = "Replace";
 "lng_boost_reassign_title" = "Reassign boost";
 "lng_boost_reassign_text" = "To boost {channel}, reassign a previous boost or {gift}.";
-"lng_boost_reassign_gift#one" = "gift **Private Chat Premium** to a friend to get **{count}** additional boost";
-"lng_boost_reassign_gift#other" = "gift **Private Chat Premium** to a friend to get **{count}** additional boosts";
+"lng_boost_reassign_gift#one" = "gift **Chat Premium** to a friend to get **{count}** additional boost";
+"lng_boost_reassign_gift#other" = "gift **Chat Premium** to a friend to get **{count}** additional boosts";
 "lng_boost_remove_title" = "Remove your boost from";
 "lng_boost_reassign_button" = "Reassign";
 "lng_boost_available_in" = "available in {duration}";
-"lng_boost_available_in_toast#one" = "Wait until the boost is available or get **{count}** more boost by gifting a **Private Chat Premium** subscription.";
-"lng_boost_available_in_toast#other" = "Wait until the boost is available or get **{count}** more boosts by gifting a **Private Chat Premium** subscription.";
+"lng_boost_available_in_toast#one" = "Wait until the boost is available or get **{count}** more boost by gifting a **Chat Premium** subscription.";
+"lng_boost_available_in_toast#other" = "Wait until the boost is available or get **{count}** more boosts by gifting a **Chat Premium** subscription.";
 "lng_boost_reassign_done#one" = "{count} boost is reassigned from {channels}.";
 "lng_boost_reassign_done#other" = "{count} boosts are reassigned from {channels}.";
 "lng_boost_reassign_channels#one" = "{count} channel";
@@ -3777,10 +3777,10 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_giveaway_start_sure" = "Are you sure you want to start this prepaid giveaway now? This action cannot be undone.";
 "lng_giveaway_date_title" = "Date when giveaway ends";
 "lng_giveaway_date" = "Date and Time";
-"lng_giveaway_date_about#one" = "Choose when {count} subscriber of your channel will be randomly selected to receive Private Chat Premium.";
-"lng_giveaway_date_about#other" = "Choose when {count} subscribers of your channel will be randomly selected to receive Private Chat Premium.";
-"lng_giveaway_date_about_group#one" = "Choose when {count} members of your group will be randomly selected to receive Private Chat Premium.";
-"lng_giveaway_date_about_group#other" = "Choose when {count} members of your group will be randomly selected to receive Private Chat Premium.";
+"lng_giveaway_date_about#one" = "Choose when {count} subscriber of your channel will be randomly selected to receive Chat Premium.";
+"lng_giveaway_date_about#other" = "Choose when {count} subscribers of your channel will be randomly selected to receive Chat Premium.";
+"lng_giveaway_date_about_group#one" = "Choose when {count} members of your group will be randomly selected to receive Chat Premium.";
+"lng_giveaway_date_about_group#other" = "Choose when {count} members of your group will be randomly selected to receive Chat Premium.";
 "lng_giveaway_duration_title#one" = "Duration of Premium subscription";
 "lng_giveaway_duration_title#other" = "Duration of Premium subscriptions";
 "lng_giveaway_duration_price" = "{price} x {amount}";
@@ -3799,10 +3799,10 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_giveaway_additional_prizes" = "Additional prizes";
 "lng_giveaway_additional_about" = "Turn this on if you want to give the winners your own prizes in addition to Premium subscriptions.";
 "lng_giveaway_additional_prizes_ph" = "Enter your prize";
-"lng_giveaway_prizes_just_premium#one" = "All prizes: **{count}** Private Chat Premium subscription {duration}.";
-"lng_giveaway_prizes_just_premium#other" = "All prizes: **{count}** Private Chat Premium subscriptions {duration}.";
-"lng_giveaway_prizes_additional#one" = "All prizes: **{count}** {prize} with Private Chat Premium subscription {duration}.";
-"lng_giveaway_prizes_additional#other" = "All prizes: **{count}** {prize} with Private Chat Premium subscriptions {duration}.";
+"lng_giveaway_prizes_just_premium#one" = "All prizes: **{count}** Chat Premium subscription {duration}.";
+"lng_giveaway_prizes_just_premium#other" = "All prizes: **{count}** Chat Premium subscriptions {duration}.";
+"lng_giveaway_prizes_additional#one" = "All prizes: **{count}** {prize} with Chat Premium subscription {duration}.";
+"lng_giveaway_prizes_additional#other" = "All prizes: **{count}** {prize} with Chat Premium subscriptions {duration}.";
 "lng_giveaway_additional_credits_about" = "Turn this on if you want to give the winners your own prizes in addition to Stars.";
 "lng_giveaway_prizes_just_credits#one" = "All prizes: **{count}** Star.";
 "lng_giveaway_prizes_just_credits#other" = "All prizes: **{count}** Stars.";
@@ -3830,24 +3830,24 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 
 "lng_prize_title" = "Congratulations!";
 "lng_prize_about" = "You won a prize in a giveaway organized by {channel}.";
-"lng_prize_duration" = "Your prize is a **Private Chat Premium** subscription {duration}.";
+"lng_prize_duration" = "Your prize is a **Chat Premium** subscription {duration}.";
 "lng_prize_credits" = "Your prize is {amount}.";
 "lng_prize_credits_amount#one" = "{count} Star";
 "lng_prize_credits_amount#other" = "{count} Stars";
 "lng_prize_gift_about" = "You've received a gift from {channel}.";
-"lng_prize_gift_duration" = "Your gift is a **Private Chat Premium** subscription {duration}.";
+"lng_prize_gift_duration" = "Your gift is a **Chat Premium** subscription {duration}.";
 "lng_prize_open" = "Open Gift Link";
 "lng_prize_unclaimed_title" = "Unclaimed Prize";
 "lng_prize_unclaimed_about" = "You have an unclaimed prize from a giveaway by {channel}.";
-"lng_prize_unclaimed_duration" = "This prize is a **Private Chat Premium** subscription {duration}.";
+"lng_prize_unclaimed_duration" = "This prize is a **Chat Premium** subscription {duration}.";
 
 "lng_prizes_title#one" = "Giveaway Prize";
 "lng_prizes_title#other" = "Giveaway Prizes";
 "lng_prizes_additional#one" = "**{count}** {prize}";
 "lng_prizes_additional#other" = "**{count}** {prize}";
 "lng_prizes_additional_with" = "with";
-"lng_prizes_about#one" = "**{count}** Private Chat Premium Subscription {duration}.";
-"lng_prizes_about#other" = "**{count}** Private Chat Premium Subscriptions {duration}.";
+"lng_prizes_about#one" = "**{count}** Chat Premium Subscription {duration}.";
+"lng_prizes_about#other" = "**{count}** Chat Premium Subscriptions {duration}.";
 "lng_prizes_credits_about_single" = "**{amount}** will be distributed to the **1** winner.";
 "lng_prizes_credits_about#one" = "**{amount}** will be distributed among {count} winner.";
 "lng_prizes_credits_about#other" = "**{amount}** will be distributed among {count} winners.";
@@ -3875,10 +3875,10 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_prizes_end_title" = "Giveaway ended";
 "lng_prizes_how_text" = "This giveaway is sponsored by {admins}.";
 "lng_prizes_end_text" = "This giveaway was sponsored by {admins}.";
-"lng_prizes_admins#one" = "the admins of {channel}, who acquired **{count} Private Chat Premium** subscription {duration} for its followers";
-"lng_prizes_admins#other" = "the admins of {channel}, who acquired **{count} Private Chat Premium** subscriptions {duration} for its followers";
-"lng_prizes_admins_group#one" = "the admins of {channel}, who acquired **{count} Private Chat Premium** subscription {duration} for its members";
-"lng_prizes_admins_group#other" = "the admins of {channel}, who acquired **{count} Private Chat Premium** subscriptions {duration} for its members";
+"lng_prizes_admins#one" = "the admins of {channel}, who acquired **{count} Chat Premium** subscription {duration} for its followers";
+"lng_prizes_admins#other" = "the admins of {channel}, who acquired **{count} Chat Premium** subscriptions {duration} for its followers";
+"lng_prizes_admins_group#one" = "the admins of {channel}, who acquired **{count} Chat Premium** subscription {duration} for its members";
+"lng_prizes_admins_group#other" = "the admins of {channel}, who acquired **{count} Chat Premium** subscriptions {duration} for its members";
 "lng_prizes_credits_admins" = "the admins of {channel}, who aquired **{amount}** for its followers";
 "lng_prizes_credits_admins_group" = "the admins of {channel}, who aquired **{amount}** for its members";
 "lng_prizes_credits_admins_amount#one" = "{count} Star";
@@ -3887,8 +3887,8 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_prizes_additional_added#other" = "{channel} also included **{count} {prize}** in the prizes. Admins of the channel are responsible for delivering these prizes.";
 "lng_prizes_additional_added_group#one" = "{channel} also included **{count} {prize}** in the prize. Admins of the group are responsible for delivering this prize.";
 "lng_prizes_additional_added_group#other" = "{channel} also included **{count} {prize}** in the prizes. Admins of the group are responsible for delivering these prizes.";
-"lng_prizes_how_when_finish" = "On {date}, Private Chat will automatically select {winners}.";
-"lng_prizes_end_when_finish" = "On {date}, Private Chat automatically selected {winners}.";
+"lng_prizes_how_when_finish" = "On {date}, Chat will automatically select {winners}.";
+"lng_prizes_end_when_finish" = "On {date}, Chat automatically selected {winners}.";
 "lng_prizes_end_activated#one" = "**{count}** winner already used their gift link.";
 "lng_prizes_end_activated#other" = "**{count}** of the winners already used their gift links.";
 "lng_prizes_winners_all_of_one#one" = "{count} random subscriber of {channel}";
@@ -3924,8 +3924,8 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 
 "lng_prizes_results_title" = "Winners Selected!";
 "lng_prizes_results_title_one" = "Winner Selected!";
-"lng_prizes_results_about#one" = "**{count}** winner of the {link} was randomly selected by Private Chat.";
-"lng_prizes_results_about#other" = "**{count}** winners of the {link} were randomly selected by Private Chat.";
+"lng_prizes_results_about#one" = "**{count}** winner of the {link} was randomly selected by Chat.";
+"lng_prizes_results_about#other" = "**{count}** winners of the {link} were randomly selected by Chat.";
 "lng_prizes_results_link" = "Giveaway";
 "lng_prizes_results_winner" = "Winner";
 "lng_prizes_results_winners" = "Winners";
@@ -3940,12 +3940,12 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_prizes_results_some" = "Some winners couldn't be selected.";
 
 "lng_gift_link_title" = "Gift Link";
-"lng_gift_link_about" = "This link allows you to activate\na **Private Chat Premium** subscription.";
+"lng_gift_link_about" = "This link allows you to activate\na **Chat Premium** subscription.";
 "lng_gift_link_label_from" = "From";
 "lng_gift_link_label_to" = "To";
 "lng_gift_link_label_to_unclaimed" = "No recipient";
 "lng_gift_link_label_gift" = "Gift";
-"lng_gift_link_gift_premium" = "Private Chat Premium {duration}";
+"lng_gift_link_gift_premium" = "Chat Premium {duration}";
 "lng_gift_link_label_reason" = "Reason";
 "lng_gift_link_reason_giveaway" = "Giveaway";
 "lng_gift_link_reason_unclaimed" = "Incomplete Giveaway";
@@ -3957,32 +3957,32 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_gift_link_also_send" = "You can also {link} to a friend as a gift.";
 "lng_gift_link_also_send_link" = "send this link";
 "lng_gift_link_use" = "Use Link";
-"lng_gift_link_already_title" = "You already have Private Chat Premium";
+"lng_gift_link_already_title" = "You already have Chat Premium";
 "lng_gift_link_already_about" = "You can activate this link after {date} or {link} to a friend.";
 "lng_gift_link_already_link" = "send the link";
 "lng_gift_link_used_title" = "Used Gift Link";
-"lng_gift_link_used_about" = "This link was used to activate\na **Private Chat Premium** subscription.";
+"lng_gift_link_used_about" = "This link was used to activate\na **Chat Premium** subscription.";
 "lng_gift_link_used_footer" = "This link was used on {date}.";
 "lng_gift_link_expired" = "Gift code link expired";
-"lng_gift_link_pending_about" = "This link allows {user} to activate\na **Private Chat Premium** subscription.";
+"lng_gift_link_pending_about" = "This link allows {user} to activate\na **Chat Premium** subscription.";
 "lng_gift_link_pending_toast" = "Only the recipient can see the link.";
 "lng_gift_link_pending_footer" = "This link hasn't been activated yet.";
 
 "lng_gift_stars_title#one" = "{count} Star";
 "lng_gift_stars_title#other" = "{count} Stars";
-"lng_gift_stars_outgoing" = "With Stars, {user} will be able to unlock content and services on Private Chat.";
-"lng_gift_stars_incoming" = "Use Stars to unlock content and services on Private Chat.";
+"lng_gift_stars_outgoing" = "With Stars, {user} will be able to unlock content and services on Chat.";
+"lng_gift_stars_incoming" = "Use Stars to unlock content and services on Chat.";
 "lng_gift_until" = "Until";
 
 "lng_gift_ton_amount#one" = "{count} TON";
 "lng_gift_ton_amount#other" = "{count} TON";
 
 "lng_gift_premium_title" = "Premium Gift";
-"lng_gift_premium_text#one" = "Subscribe to **Private Chat Premium** to send up to **{count}** of these gifts and unlock access to multiple additional features.";
-"lng_gift_premium_text#other" = "Subscribe to **Private Chat Premium** to send up to **{count}** of these gifts and unlock access to multiple additional features.";
+"lng_gift_premium_text#one" = "Subscribe to **Chat Premium** to send up to **{count}** of these gifts and unlock access to multiple additional features.";
+"lng_gift_premium_text#other" = "Subscribe to **Chat Premium** to send up to **{count}** of these gifts and unlock access to multiple additional features.";
 "lng_gift_premium_or_stars" = "Gift Premium or Stars";
 "lng_gift_premium_subtitle" = "Gift Premium";
-"lng_gift_premium_about" = "Give {name} access to exclusive features with Private Chat Premium. {features}";
+"lng_gift_premium_about" = "Give {name} access to exclusive features with Chat Premium. {features}";
 "lng_gift_premium_features" = "See Features >";
 "lng_gift_premium_label" = "Premium";
 "lng_gift_premium_by_stars" = "or {amount}";
@@ -4088,7 +4088,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_gift_released_by" = "released by {name}";
 "lng_gift_unique_owner" = "Owner";
 "lng_gift_unique_address_copied" = "Address copied to clipboard.";
-"lng_gift_unique_telegram" = "Private Chat";
+"lng_gift_unique_telegram" = "Chat";
 "lng_gift_unique_status" = "Status";
 "lng_gift_unique_status_non" = "Non-Unique";
 "lng_gift_unique_upgrade" = "Upgrade";
@@ -4120,7 +4120,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_gift_availability_left#one" = "{count} of {amount} left";
 "lng_gift_availability_left#other" = "{count} of {amount} left";
 "lng_gift_availability_none" = "None of {amount} left";
-"lng_gift_value_about_average" = "This is the average sale price of {gift} gifts on Private Chat and Fragment over the past month.";
+"lng_gift_value_about_average" = "This is the average sale price of {gift} gifts on Chat and Fragment over the past month.";
 "lng_gift_value_about_last" = "This is the price at which {gift} was last sold on {platform}.";
 "lng_gift_value_initial_sale" = "Initial Sale";
 "lng_gift_value_initial_price" = "Initial Price";
@@ -4128,12 +4128,12 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_gift_value_last_sale" = "Last Sale";
 "lng_gift_value_last_price" = "Last Price";
 "lng_gift_value_minimum_price" = "Minimum Price";
-"lng_gift_value_minimum_price_tooltip" = "{amount} is the floor price for {gift} gifts listed on Private Chat and Fragment.";
+"lng_gift_value_minimum_price_tooltip" = "{amount} is the floor price for {gift} gifts listed on Chat and Fragment.";
 "lng_gift_vlaue_average_price" = "Average Price";
-"lng_gift_value_average_price_tooltip" = "{amount} is the average sale price of {gift} gifts on Private Chat and Fragment over the past month.";
+"lng_gift_value_average_price_tooltip" = "{amount} is the average sale price of {gift} gifts on Chat and Fragment over the past month.";
 "lng_gift_value_availability#one" = "{count} {emoji} for sale on {platform} {arrow}";
 "lng_gift_value_availability#other" = "{count} {emoji} for sale on {platform} {arrow}";
-"lng_gift_value_telegram" = "Private Chat";
+"lng_gift_value_telegram" = "Chat";
 "lng_gift_value_fragment" = "Fragment";
 "lng_gift_convert_to_stars#one" = "Convert to {count} Star";
 "lng_gift_convert_to_stars#other" = "Convert to {count} Stars";
@@ -4174,13 +4174,13 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_gift_upgrade_unique_about_user" = "{name} will get a unique number, model, backdrop and symbol for your gift.";
 "lng_gift_upgrade_unique_about_channel" = "Admins of {name} will get a unique number, model, backdrop and symbol for your gift.";
 "lng_gift_upgrade_transferable_title" = "Transferable";
-"lng_gift_upgrade_transferable_about" = "Send your upgraded gift to any of your friends on Private Chat.";
-"lng_gift_upgrade_transferable_about_user" = "{name} will be able to send the gift to anyone on Private Chat.";
-"lng_gift_upgrade_transferable_about_channel" = "Admins of {name} will be able to send the gift to anyone on Private Chat.";
+"lng_gift_upgrade_transferable_about" = "Send your upgraded gift to any of your friends on Chat.";
+"lng_gift_upgrade_transferable_about_user" = "{name} will be able to send the gift to anyone on Chat.";
+"lng_gift_upgrade_transferable_about_channel" = "Admins of {name} will be able to send the gift to anyone on Chat.";
 "lng_gift_upgrade_tradable_title" = "Tradable";
 "lng_gift_upgrade_tradable_about" = "Sell or auction your gift on third-party NFT marketplaces.";
-"lng_gift_upgrade_tradable_about_user" = "{name} will be able to sell the gift on Private Chat and NFT marketplaces.";
-"lng_gift_upgrade_tradable_about_channel" = "Admins of {name} will be able to sell the gift on Private Chat and NFT marketplaces.";
+"lng_gift_upgrade_tradable_about_user" = "{name} will be able to sell the gift on Chat and NFT marketplaces.";
+"lng_gift_upgrade_tradable_about_channel" = "Admins of {name} will be able to sell the gift on Chat and NFT marketplaces.";
 "lng_gift_upgrade_wearable_title" = "Wearable";
 "lng_gift_upgrade_wearable_about" = "Display gifts on your page and set them as profile covers or statuses.";
 "lng_gift_upgrade_button" = "Upgrade for {price}";
@@ -4208,20 +4208,20 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_gift_transfer_password_description" = "Please enter your password to transfer.";
 "lng_gift_transfer_password_about" = "You can withdraw only if you have:";
 "lng_gift_transfer_confirm_title" = "Manage with Fragment";
-"lng_gift_transfer_confirm_text" = "You can use Fragment, a third-party service, to transfer {name} to your TON account. After that, you can manage it as an NFT with any TON wallet outside Private Chat.\n\nYou can also move such NFTs back to your Private Chat account via Fragment.";
+"lng_gift_transfer_confirm_text" = "You can use Fragment, a third-party service, to transfer {name} to your TON account. After that, you can manage it as an NFT with any TON wallet outside Chat.\n\nYou can also move such NFTs back to your Chat account via Fragment.";
 "lng_gift_transfer_confirm_button" = "Open Fragment";
 "lng_gift_transfer_unlocks_days#one" = "unlocks in {count} day";
 "lng_gift_transfer_unlocks_days#other" = "unlocks in {count} days";
 "lng_gift_transfer_unlocks_hours#one" = "unlocks in {count} hour";
 "lng_gift_transfer_unlocks_hours#other" = "unlocks in {count} hours";
 "lng_gift_transfer_unlocks_title" = "Unlocking in progress";
-"lng_gift_transfer_unlocks_about" = "{when}, you'll be able to send this collectible to any TON blockchain address outside Private Chat for sale or auction.";
+"lng_gift_transfer_unlocks_about" = "{when}, you'll be able to send this collectible to any TON blockchain address outside Chat for sale or auction.";
 "lng_gift_transfer_unlocks_when_days#one" = "In {count} day";
 "lng_gift_transfer_unlocks_when_days#other" = "In {count} days";
 "lng_gift_transfer_unlocks_when_hours#one" = "In {count} hour";
 "lng_gift_transfer_unlocks_when_hours#other" = "In {count} hours";
 "lng_gift_transfer_unlocks_update_title" = "Update required";
-"lng_gift_transfer_unlocks_update_about" = "Please update your Private Chat application to the latest version.";
+"lng_gift_transfer_unlocks_update_about" = "Please update your Chat application to the latest version.";
 "lng_gift_transfer_sure" = "Do you want to transfer ownership of {name} to {recipient}?";
 "lng_gift_transfer_sure_for" = "Do you want to transfer ownership of {name} to {recipient} for {price}?";
 "lng_gift_transfer_button" = "Transfer";
@@ -4234,7 +4234,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_gift_transfer_update" = "Change Price";
 "lng_gift_transfer_unlist" = "Unlist";
 "lng_gift_transfer_locked_title" = "Action Locked";
-"lng_gift_transfer_locked_text" = "Transfer this gift to your Private Chat account on Fragment to unlock this action.";
+"lng_gift_transfer_locked_text" = "Transfer this gift to your Chat account on Fragment to unlock this action.";
 "lng_gift_offer_button" = "Offer to Buy";
 "lng_gift_offer_title" = "Offer to Buy";
 "lng_gift_offer_stars_about" = "Choose how many Stars you'd like to offer for {name}.";
@@ -4491,7 +4491,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_auction_change_already_me" = "You've already placed a bid on this gift for yourself.";
 "lng_auction_change_to_me" =  "Do you want to raise your bid and change the recipient to yourself?";
 "lng_auction_preview_name" = "Upcoming Auction";
-"lng_auction_preview_learn_gifts" = "Learn more about Private Chat Gifts {arrow}";
+"lng_auction_preview_learn_gifts" = "Learn more about Chat Gifts {arrow}";
 "lng_auction_preview_variants#one" = "View {emoji} {count} Variant {arrow}";
 "lng_auction_preview_variants#other" = "View {emoji} {count} Variants {arrow}";
 "lng_auction_preview_random" = "Random Traits";
@@ -4519,7 +4519,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_accounts_limit_title" = "Limit Reached";
 "lng_accounts_limit1#one" = "You have reached the limit of **{count}** connected account.";
 "lng_accounts_limit1#other" = "You have reached the limit of **{count}** connected accounts.";
-"lng_accounts_limit2" = "You can free one place by subscribing to **Private Chat Premium** with one of these connected accounts:";
+"lng_accounts_limit2" = "You can free one place by subscribing to **Chat Premium** with one of these connected accounts:";
 
 "lng_emoji_status_for_title" = "Set Status for...";
 "lng_emoji_status_for_submit" = "Set Status";
@@ -4697,7 +4697,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_new_contact_from_request_channel" = "{user} is an admin of {name}, a channel you requested to join.";
 "lng_new_contact_from_request_group" = "{user} is an admin of {name}, a group you requested to join.";
 "lng_new_contact_about_status" = "This account uses {emoji} as a custom status next to its\nname. Such emoji statuses are available to all\nsubscribers of {link}.";
-"lng_new_contact_about_status_link" = "Private Chat Premium";
+"lng_new_contact_about_status_link" = "Chat Premium";
 "lng_new_contact_not_contact" = "Not a contact";
 "lng_new_contact_phone_number" = "Phone number";
 "lng_new_contact_registration" = "Registration";
@@ -4747,7 +4747,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_schedule_repeat_every_month#other" = "Every {count} month";
 "lng_schedule_repeat_yearly" = "Yearly";
 "lng_schedule_repeat_promo" = "Subscribe to {link} to schedule repeating messages.";
-"lng_schedule_repeat_promo_link" = "Private Chat Premium";
+"lng_schedule_repeat_promo_link" = "Chat Premium";
 "lng_schedule_at" = "at";
 "lng_message_ph" = "Write a message...";
 "lng_broadcast_ph" = "Broadcast a message...";
@@ -4783,7 +4783,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_send_as_title" = "Send message as...";
 "lng_send_as_anonymous_admin" = "Anonymous admin";
 "lng_send_as_premium_required" = "Subscribe to {link} to be able to comment on behalf of your channels in group chats.";
-"lng_send_as_premium_required_link" = "Private Chat Premium";
+"lng_send_as_premium_required_link" = "Chat Premium";
 "lng_record_cancel" = "Release outside this field to cancel";
 "lng_record_cancel_stories" = "Release outside to cancel";
 "lng_record_lock_cancel_sure" = "Do you want to stop recording and discard your voice message?";
@@ -4887,12 +4887,12 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_dialogs_suggestions_birthday_contacts_title#other" = "{count} contacts have **birthdays** today! 🎂";
 "lng_dialogs_suggestions_birthday_contacts_about" = "Send them a Gift.";
 "lng_dialogs_suggestions_birthday_contact_dismiss" = "You can send a Gift later in Settings";
-"lng_dialogs_suggestions_premium_annual_title" = "Private Chat Premium with a {text} discount";
-"lng_dialogs_suggestions_premium_annual_about" = "Sign up for the annual payment plan for Private Chat Premium now to get the discount.";
-"lng_dialogs_suggestions_premium_upgrade_title" = "Private Chat Premium with a {text} discount";
-"lng_dialogs_suggestions_premium_upgrade_about" = "Upgrade to the annual payment plan for Private Chat Premium now to get the discount.";
+"lng_dialogs_suggestions_premium_annual_title" = "Chat Premium with a {text} discount";
+"lng_dialogs_suggestions_premium_annual_about" = "Sign up for the annual payment plan for Chat Premium now to get the discount.";
+"lng_dialogs_suggestions_premium_upgrade_title" = "Chat Premium with a {text} discount";
+"lng_dialogs_suggestions_premium_upgrade_about" = "Upgrade to the annual payment plan for Chat Premium now to get the discount.";
 "lng_dialogs_suggestions_premium_restore_title" = "Get Premium back with up to {text} off";
-"lng_dialogs_suggestions_premium_restore_about" = "Your Private Chat Premium has recently expired. Tap here to extend it.";
+"lng_dialogs_suggestions_premium_restore_about" = "Your Chat Premium has recently expired. Tap here to extend it.";
 "lng_dialogs_suggestions_premium_grace_title" = "⚠️ Your Premium subscription is expiring!";
 "lng_dialogs_suggestions_premium_grace_about" = "Don’t lose access to exclusive features.";
 "lng_dialogs_suggestions_userpics_title" = "Add your photo! 📸";
@@ -5362,7 +5362,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_translate_cocoon_private_text" = "No third party can access any data, such as translations, inside {mention}.";
 "lng_translate_cocoon_private_mention" = "@cocoon";
 "lng_translate_cocoon_efficient_title" = "Efficient";
-"lng_translate_cocoon_efficient_text" = "Cocoon has allowed Private Chat to reduce translation costs by 6x.";
+"lng_translate_cocoon_efficient_text" = "Cocoon has allowed Chat to reduce translation costs by 6x.";
 "lng_translate_cocoon_everyone_title" = "For Everyone";
 "lng_translate_cocoon_everyone_text" = "Any developer can use Cocoon for AI features. Learn more at {domain}.";
 "lng_translate_cocoon_everyone_domain" = "cocoon.org";
@@ -6639,7 +6639,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_send_non_premium_story" = "Replies restricted";
 "lng_send_non_premium_unlock" = "unlock";
 "lng_send_non_premium_message_toast" = "**{user}** only accepts messages from contacts and {link} subscribers.";
-"lng_send_non_premium_message_toast_link" = "Private Chat Premium";
+"lng_send_non_premium_message_toast_link" = "Chat Premium";
 
 "lng_send_charges_stars_channel" = "{channel} charges {amount} per message to its admin.";
 "lng_send_free_channel" = "Send a direct message to the administrator of {channel}.";
@@ -7226,7 +7226,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_article_limit_columns" = "The article table has too many columns.";
 "lng_article_limit_media" = "The article has too many media files.";
 "lng_article_premium_required" = "Subscribe to {link} to be able to send rich articles.";
-"lng_article_premium_required_link" = "Private Chat Premium";
+"lng_article_premium_required_link" = "Chat Premium";
 "lng_article_table_change" = "Change Table";
 "lng_article_table_add_row" = "Add Row";
 "lng_article_table_add_column" = "Add Column";
@@ -7356,7 +7356,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_todo_create_premium" = "Only subscribers of {link} can create Checklists.";
 "lng_todo_add_premium" = "Only subscribers of {link} can add tasks.";
 "lng_todo_mark_premium" = "Only subscribers of {link} can mark tasks as done.";
-"lng_todo_premium_link" = "Private Chat Premium";
+"lng_todo_premium_link" = "Chat Premium";
 "lng_todo_mark_restricted" = "{user} has restricted others from marking tasks as done.";
 "lng_todo_mark_forwarded" = "You can't change forwarded checklists.";
 
@@ -7575,33 +7575,33 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 
 "lng_sponsored_hide_ads" = "Hide";
 "lng_sponsored_title" = "What are sponsored messages?";
-"lng_sponsored_info_description1_linked" = "Unlike other apps, Private Chat never uses your private data to target ads. {link}\n\nUnlike other apps, Private Chat doesn't track whether you tapped on a sponsored message and doesn't profile you based on your activity. We also prevent external links in sponsored messages to ensure that third parties can’t spy on our users. We believe that everyone has the right to privacy, and technological platforms should respect that.\n\nPrivate Chat offers free and unlimited service, which involves significant server and traffic costs. In order to remain independent and stay true to its values, Private Chat developed a paid tool to promote messages with user privacy in mind. We welcome responsible advertisers at:";
+"lng_sponsored_info_description1_linked" = "Unlike other apps, Chat never uses your private data to target ads. {link}\n\nUnlike other apps, Chat doesn't track whether you tapped on a sponsored message and doesn't profile you based on your activity. We also prevent external links in sponsored messages to ensure that third parties can’t spy on our users. We believe that everyone has the right to privacy, and technological platforms should respect that.\n\nChat offers free and unlimited service, which involves significant server and traffic costs. In order to remain independent and stay true to its values, Chat developed a paid tool to promote messages with user privacy in mind. We welcome responsible advertisers at:";
 "lng_sponsored_info_description1_link" = "Learn more in the Privacy Policy";
 "lng_sponsored_info_description1_url" = "";
-"lng_sponsored_info_description2" = "Sponsored Messages are currently in test mode. Once they are fully launched and allow Private Chat to cover its basic costs, we will start sharing ad revenue with the owners of public channels in which sponsored messages are displayed.\n\nOnline ads should no longer be synonymous with abuse of user privacy. Let us redefine how a tech company should operate – together.";
+"lng_sponsored_info_description2" = "Sponsored Messages are currently in test mode. Once they are fully launched and allow Chat to cover its basic costs, we will start sharing ad revenue with the owners of public channels in which sponsored messages are displayed.\n\nOnline ads should no longer be synonymous with abuse of user privacy. Let us redefine how a tech company should operate – together.";
 "lng_sponsored_info_menu" = "Advertiser info";
 "lng_sponsored_info_submenu" = "Advertiser: {text}";
 "lng_sponsored_menu_revenued_about" = "About These Ads";
 "lng_sponsored_menu_revenued_report" = "Report Ad";
-"lng_sponsored_revenued_subtitle" = "Private Chat Ads are very different from ads on other platforms. Ads such as this one:";
+"lng_sponsored_revenued_subtitle" = "Chat Ads are very different from ads on other platforms. Ads such as this one:";
 "lng_sponsored_revenued_info1_title" = "Respect Your Privacy";
-"lng_sponsored_revenued_info1_description" = "Ads on Private Chat do not use your personal information and are based on the channel in which you see them.";
-"lng_sponsored_revenued_info1_bot_description" = "Ads on Private Chat do not use your personal information and are based on the mini app in which you see them.";
-"lng_sponsored_revenued_info1_search_description" = "Ads on Private Chat do not use your personal information and are based on the search query you entered.";
+"lng_sponsored_revenued_info1_description" = "Ads on Chat do not use your personal information and are based on the channel in which you see them.";
+"lng_sponsored_revenued_info1_bot_description" = "Ads on Chat do not use your personal information and are based on the mini app in which you see them.";
+"lng_sponsored_revenued_info1_search_description" = "Ads on Chat do not use your personal information and are based on the search query you entered.";
 "lng_sponsored_revenued_info2_title" = "Help the Channel Creator";
 "lng_sponsored_revenued_info2_bot_title" = "Help the Bot Developer";
-"lng_sponsored_revenued_info2_description" = "50% of the revenue from Private Chat Ads goes to the owner of the channel where they are displayed.";
-"lng_sponsored_revenued_info2_bot_description" = "50% of the revenue from Private Chat Ads goes to the developer of the mini app where they are displayed.";
+"lng_sponsored_revenued_info2_description" = "50% of the revenue from Chat Ads goes to the owner of the channel where they are displayed.";
+"lng_sponsored_revenued_info2_bot_description" = "50% of the revenue from Chat Ads goes to the developer of the mini app where they are displayed.";
 "lng_sponsored_revenued_info3_title" = "Can Be Removed";
 "lng_sponsored_revenued_info3_description#one" = "You can turn off ads by subscribing to {link}, and Level {count} channels can remove them for their subscribers.";
 "lng_sponsored_revenued_info3_description#other" = "You can turn off ads by subscribing to {link}, and Level {count} channels can remove them for their subscribers.";
 "lng_sponsored_revenued_info3_bot_description" = "You can turn off ads in mini apps by subscribing to {link}.";
-"lng_sponsored_revenued_info3_search_description" = "You can turn off ads by subscribing to Private Chat Premium. {link}";
+"lng_sponsored_revenued_info3_search_description" = "You can turn off ads by subscribing to Chat Premium. {link}";
 "lng_sponsored_revenued_info3_search_link" = "Subscribe {arrow}";
 "lng_sponsored_revenued_footer_title" = "Can I Launch an Ad?";
-"lng_sponsored_revenued_footer_description" = "Anyone can create an ad to display in this channel — with minimal budgets. Check out the **Private Chat Ad Platform** for details. {link}";
-"lng_sponsored_revenued_footer_bot_description" = "Anyone can create an ad to display in this bot — with minimal budgets. Check out the **Private Chat Ad Platform** for details. {link}";
-"lng_sponsored_revenued_footer_search_description" = "Anyone can create an ad to display in search results for any query. Check out the **Private Chat Ad Platform** for details. {link}";
+"lng_sponsored_revenued_footer_description" = "Anyone can create an ad to display in this channel — with minimal budgets. Check out the **Chat Ad Platform** for details. {link}";
+"lng_sponsored_revenued_footer_bot_description" = "Anyone can create an ad to display in this bot — with minimal budgets. Check out the **Chat Ad Platform** for details. {link}";
+"lng_sponsored_revenued_footer_search_description" = "Anyone can create an ad to display in search results for any query. Check out the **Chat Ad Platform** for details. {link}";
 "lng_sponsored_top_bar_hide" = "remove";
 
 "lng_telegram_features_url" = "https://private-chat.local/features";
@@ -7803,7 +7803,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 
 "lng_stealth_mode_menu_item" = "Hide My View";
 "lng_stealth_mode_title" = "Stealth Mode";
-"lng_stealth_mode_unlock_about" = "Subscribe to Private Chat Premium to watch stories without appearing in the list of viewers.";
+"lng_stealth_mode_unlock_about" = "Subscribe to Chat Premium to watch stories without appearing in the list of viewers.";
 "lng_stealth_mode_about" = "Turn Stealth Mode on to watch stories without appearing in the list of viewers.";
 "lng_stealth_mode_past_title" = "Hide Recent Views";
 "lng_stealth_mode_past_about" = "Hide my views from the past 5 minutes.";
@@ -7918,8 +7918,8 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_boosts_link_subtext" = "Share this link with your subscribers to get more boosts.";
 "lng_boosts_link_subtext_group" = "Share this link with the members of your group to get more boosts.";
 "lng_boosts_get_boosts" = "Get Boosts via Gifts";
-"lng_boosts_get_boosts_subtext" = "Get more boosts for your channel by gifting Private Chat Premium to your subscribers.";
-"lng_boosts_get_boosts_subtext_group" = "Get more boosts for your group by gifting Private Chat Premium to the members.";
+"lng_boosts_get_boosts_subtext" = "Get more boosts for your channel by gifting Chat Premium to your subscribers.";
+"lng_boosts_get_boosts_subtext_group" = "Get more boosts for your group by gifting Chat Premium to the members.";
 "lng_boosts_list_unclaimed" = "Unclaimed";
 "lng_boosts_list_pending" = "To be distributed";
 "lng_boosts_list_pending_about" = "The recipient will be selected when the giveaway ends.";
@@ -7929,8 +7929,8 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_boosts_prepaid_giveaway_title" = "Prepaid giveaways";
 "lng_boosts_prepaid_giveaway_title_subtext" = "Select a giveaway you already paid for to set it up.";
 "lng_boosts_prepaid_giveaway_single" = "Prepaid giveaway";
-"lng_boosts_prepaid_giveaway_quantity#one" = "{count} Private Chat Premium";
-"lng_boosts_prepaid_giveaway_quantity#other" = "{count} Private Chat Premium";
+"lng_boosts_prepaid_giveaway_quantity#one" = "{count} Chat Premium";
+"lng_boosts_prepaid_giveaway_quantity#other" = "{count} Chat Premium";
 "lng_boosts_prepaid_giveaway_moths#one" = "{count}-month subscriptions";
 "lng_boosts_prepaid_giveaway_moths#other" = "{count}-month subscriptions";
 "lng_boosts_prepaid_giveaway_status#one" = "{count} subscription {duration}";
@@ -7939,8 +7939,8 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_boosts_prepaid_giveaway_credits_status#other" = "{amount} among {count} winners.";
 
 "lng_channel_earn_title" = "Monetization";
-"lng_channel_earn_about" = "Private Chat shares 50% of the revenue from ads displayed in your channel as rewards. {link}";
-"lng_channel_earn_about_bot" = "Private Chat shares 50% of the revenue from ads displayed in your bot. {link}";
+"lng_channel_earn_about" = "Chat shares 50% of the revenue from ads displayed in your channel as rewards. {link}";
+"lng_channel_earn_about_bot" = "Chat shares 50% of the revenue from ads displayed in your bot. {link}";
 "lng_channel_earn_about_link" = "Learn more {emoji}";
 "lng_channel_earn_overview_title" = "Rewards overview";
 "lng_channel_earn_available" = "Rewards available for collection";
@@ -7974,15 +7974,15 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_channel_earn_cpm#other" = "{emoji} {count} CPM";
 "lng_channel_earn_learn_title" = "Earn From Your Channel";
 "lng_channel_earn_bot_learn_title" = "Earn From Your Bot";
-"lng_channel_earn_learn_in_subtitle" = "Private Chat Ads";
-"lng_channel_earn_learn_in_about" = "Private Chat can display ads in your channel.";
-"lng_channel_earn_learn_bot_in_about" = "Private Chat can display ads in your bot.";
+"lng_channel_earn_learn_in_subtitle" = "Chat Ads";
+"lng_channel_earn_learn_in_about" = "Chat can display ads in your channel.";
+"lng_channel_earn_learn_bot_in_about" = "Chat can display ads in your bot.";
 "lng_channel_earn_learn_split_subtitle" = "50:50 revenue split";
 "lng_channel_earn_learn_split_about" = "You can receive 50% of the ad revenue as rewards in TON.";
 "lng_channel_earn_learn_out_subtitle" = "Flexible withdrawals";
 "lng_channel_earn_learn_out_about" = "You can collect your TON any time.";
 "lng_channel_earn_learn_coin_title" = "What is {emoji} TON?";
-"lng_channel_earn_learn_coin_about" = "TON is a blockchain platform and cryptocurrency that Private Chat uses for its high speed and low commissions on transactions. {link}";
+"lng_channel_earn_learn_coin_about" = "TON is a blockchain platform and cryptocurrency that Chat uses for its high speed and low commissions on transactions. {link}";
 "lng_channel_earn_learn_close" = "Got it";
 "lng_channel_earn_learn_coin_link" = "";
 "lng_channel_earn_chart_top_hours" = "Ad impressions";
@@ -8040,13 +8040,13 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_limit_download_increase_times#one" = "**{count}** time";
 "lng_limit_download_increase_times#other" = "**{count}** times";
 "lng_limit_download_increase_speed" = "by **{percent}**";
-"lng_limit_download_subscribe_link" = "Private Chat Premium";
+"lng_limit_download_subscribe_link" = "Chat Premium";
 "lng_limit_upload_title" = "Upload speed limited";
 "lng_limit_upload_subscribe" = "Subscribe to {link} to increase upload speed {increase}.";
 "lng_limit_upload_increase_times#one" = "**{count}** time";
 "lng_limit_upload_increase_times#other" = "**{count}** times";
 "lng_limit_upload_increase_speed" = "by **{percent}**";
-"lng_limit_upload_subscribe_link" = "Private Chat Premium";
+"lng_limit_upload_subscribe_link" = "Chat Premium";
 
 "lng_recent_frequent" = "Frequent contacts";
 "lng_recent_frequent_all" = "Show all";
@@ -8212,7 +8212,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_ai_compose_tooltip" = "Rewrite, translate, or correct your text using AI.";
 "lng_ai_compose_flood_title" = "Daily limit reached";
 "lng_ai_compose_flood_text" = "Get {link} for **50x** more AI text transformations per day.";
-"lng_ai_compose_flood_link" = "Private Chat Premium";
+"lng_ai_compose_flood_link" = "Chat Premium";
 "lng_ai_compose_increase_limit" = "Increase Limit";
 "lng_ai_compose_select_style" = "Select Style";
 "lng_ai_compose_apply_style" = "Apply Style";
@@ -8293,12 +8293,12 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_mac_not_known_app" = "It's not known if this application can open \"{file}\".";
 
 "lng_mac_menu_services" = "Services";
-"lng_mac_menu_hide_telegram" = "Hide {Private Chat}";
+"lng_mac_menu_hide_telegram" = "Hide {Chat}";
 "lng_mac_menu_hide_others" = "Hide Others";
 "lng_mac_menu_show_all" = "Show All";
 "lng_mac_menu_preferences" = "Preferences...";
-"lng_mac_menu_quit_telegram" = "Quit {Private Chat}";
-"lng_mac_menu_about_telegram" = "About {Private Chat}";
+"lng_mac_menu_quit_telegram" = "Quit {Chat}";
+"lng_mac_menu_about_telegram" = "About {Chat}";
 //"lng_mac_menu_warn_before_quit" = "Warn Before Quitting ({text})";
 "lng_mac_menu_file" = "File";
 "lng_mac_menu_logout" = "Log Out";

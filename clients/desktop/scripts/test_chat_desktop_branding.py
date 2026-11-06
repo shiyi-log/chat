@@ -220,6 +220,7 @@ class ChatDesktopBrandingTests(unittest.TestCase):
 
     def test_runtime_language_packs_do_not_expose_telegram_brand_or_links(self):
         brand_pattern = re.compile(r"telegram|t\.me", re.IGNORECASE)
+        old_product_name = "Private Chat"
         for path in (
             "Telegram/Resources/langs/lang.strings",
             "Telegram/Resources/langs/cloud_lang.strings",
@@ -230,6 +231,24 @@ class ChatDesktopBrandingTests(unittest.TestCase):
                 values = read_strings(path)
                 matches = [key for key, value in values.items() if brand_pattern.search(value)]
                 self.assertEqual([], matches, f"runtime language values contain legacy brand: {matches[:8]}")
+                old_names = [key for key, value in values.items() if old_product_name in value]
+                self.assertEqual([], old_names, f"runtime language values contain the old product name: {old_names[:8]}")
+
+    def test_qr_logos_use_the_chat_bubble_mark(self):
+        header = read_text("Telegram/SourceFiles/intro/intro_qr.h")
+        intro = read_text("Telegram/SourceFiles/intro/intro_qr.cpp")
+        connection = read_text("Telegram/SourceFiles/boxes/connection_box.cpp")
+
+        self.assertIn("ChatQrLogoImage", header)
+        self.assertNotIn("TelegramLogoImage", header)
+        for path, source in (
+            ("intro QR", intro),
+            ("connection QR", connection),
+        ):
+            with self.subTest(path=path):
+                self.assertIn("ChatQrLogoImage()", source)
+                self.assertNotIn("introQrPlane", source)
+        self.assertIn("bubble.addRoundedRect", intro)
 
     def test_offline_chinese_pack_uses_known_keys_and_placeholders(self):
         base = read_strings("Telegram/Resources/langs/lang.strings")

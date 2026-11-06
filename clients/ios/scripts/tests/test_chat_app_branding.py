@@ -277,12 +277,21 @@ print(InitialLocalization.code(for: [\"en-US\"], existingLanguageCode: \"fr\"))
         self.assertIn('"Telegram-iOS/zh-Hans.lproj/Localizable.strings"', build)
         self.assertIn('"Telegram-iOS/zh-Hant.lproj/Localizable.strings"', build)
         for language, title, button in (
-            ("zh-Hans", "私密聊天", "开始聊天"),
-            ("zh-Hant", "私密聊天", "開始聊天"),
+            ("zh-Hans", "Chat", "开始聊天"),
+            ("zh-Hant", "Chat", "開始聊天"),
         ):
             contents = (IOS_APP / f"{language}.lproj/Localizable.strings").read_text(encoding="utf-8")
             self.assertIn(f'"Tour.Title1" = "{title}";', contents)
             self.assertIn(f'"Tour.StartButton" = "{button}";', contents)
+
+    def test_supported_localizations_use_chat_as_the_product_name(self):
+        for language in ("en", "zh-Hans", "zh-Hant"):
+            strings = parse_strings_file(
+                (IOS_APP / f"{language}.lproj/Localizable.strings").read_text(encoding="utf-8")
+            )
+            stale = {key: value for key, value in strings.items() if "Private Chat" in value}
+            with self.subTest(language=language):
+                self.assertEqual({}, stale, f"{language} still displays the old product name")
 
     def test_simplified_chinese_covers_the_initial_authentication_flow(self):
         required_keys = {
