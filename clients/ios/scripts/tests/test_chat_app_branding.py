@@ -231,6 +231,21 @@ print(InitialLocalization.code(for: [\"en-US\"], existingLanguageCode: \"fr\"))
             result.stdout,
         )
 
+    def test_startup_continues_when_the_preferred_language_download_fails(self):
+        source = (
+            ROOT / "submodules/AuthorizationUI/Sources/AuthorizationSequenceSplashController.swift"
+        ).read_text(encoding="utf-8")
+        activation = source.split(".localization.downloadAndApplyLocalization", 1)[1]
+        activation = activation.split("\n            }))", 1)[0]
+        error_callback = re.search(
+            r"\.start\(error:\s*\{(?P<body>.*?)\},\s*completed:", activation, re.S
+        )
+
+        self.assertIsNotNone(error_callback, "localization failures must release the start flow")
+        self.assertIn("controller.isEnabled = true", error_callback.group("body"))
+        self.assertIn("startButton.alpha = 1.0", error_callback.group("body"))
+        self.assertIn("pressNext(strings: nil)", error_callback.group("body"))
+
     def test_bazel_generated_app_url_schemes_use_private_chat_brand(self):
         import plistlib
 

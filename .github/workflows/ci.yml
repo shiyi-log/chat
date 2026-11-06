@@ -49,6 +49,8 @@ jobs:
           python clients/android/scripts/tests/test_private_chat_signing_config.py
 
       - name: Run iOS configuration checks
+        env:
+          PYTHONPATH: clients/ios
         run: |
           python clients/ios/scripts/verify_private_chat_ios_config.py
           python clients/ios/scripts/tests/test_chat_app_branding.py

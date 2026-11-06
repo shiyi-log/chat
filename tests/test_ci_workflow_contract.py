@@ -53,6 +53,12 @@ class CiWorkflowContractTest(unittest.TestCase):
         self.assertIn("scripts/verify_private_chat_ios_config.py", commands)
         self.assertIn("scripts/verify_private_chat_desktop_config.py", commands)
 
+    def test_ios_config_step_sets_package_import_path(self):
+        steps = self.workflow["jobs"]["repository"]["steps"]
+        ios_step = next(step for step in steps if step.get("name") == "Run iOS configuration checks")
+
+        self.assertEqual("clients/ios", ios_step.get("env", {}).get("PYTHONPATH"))
+
     def test_server_job_runs_only_the_scoped_offline_unit_packages(self):
         steps = self.workflow["jobs"]["server"]["steps"]
         commands = "\n".join(step.get("run", "") for step in steps)

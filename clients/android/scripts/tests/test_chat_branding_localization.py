@@ -102,7 +102,8 @@ class ChatBrandingLocalizationTests(unittest.TestCase):
         self.assertEqual("Chat Business", self.english["TelegramBusiness"])
 
     def test_shipped_string_values_have_no_telegram_brand_or_owned_links(self):
-        resource_files = sorted(RES.glob("values*/strings.xml"))
+        standalone_resources = ROOT / "TMessagesProj_AppStandalone/src/main/res/values/strings.xml"
+        resource_files = sorted(RES.glob("values*/strings.xml")) + [standalone_resources]
         self.assertTrue(resource_files, "expected shipped Android string resources")
 
         for path in resource_files:
