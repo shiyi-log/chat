@@ -28,7 +28,7 @@
     <rescap:Capability Name="runFullTrust"/>
   </Capabilities>
   <Applications>
-    <Application Id="PrivateChat.Desktop.Store" Executable="Telegram.exe" EntryPoint="Windows.FullTrustApplication">
+    <Application Id="PrivateChat.Desktop.Store" Executable="Chat.exe" EntryPoint="Windows.FullTrustApplication">
       <uap:VisualElements
        BackgroundColor="#145B57"
        DisplayName="Chat"

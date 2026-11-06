@@ -70,7 +70,7 @@
     </content_rating>
     <launchable type="desktop-id">com.privatechat.desktop.desktop</launchable>
     <provides>
-        <binary>Telegram</binary>
+        <binary>Chat</binary>
         <dbus type="session">com.privatechat.desktop</dbus>
         <mediatype>x-scheme-handler/tg</mediatype>
         <mediatype>x-scheme-handler/tonsite</mediatype>

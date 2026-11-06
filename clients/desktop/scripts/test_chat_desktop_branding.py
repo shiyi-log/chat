@@ -304,6 +304,46 @@ class ChatDesktopBrandingTests(unittest.TestCase):
         self.assertIn('#define MyAppShortName "Chat"', setup)
         self.assertIn("Name=Chat\n", desktop_entry)
 
+    def test_linux_package_launch_metadata_matches_chat_executable(self):
+        cmake = read_text("Telegram/CMakeLists.txt")
+        desktop_entry = read_text("lib/xdg/org.telegram.desktop.desktop")
+        dbus_service = read_text("lib/xdg/org.telegram.desktop.service")
+        metainfo = read_text("lib/xdg/org.telegram.desktop.metainfo.xml")
+        snapcraft = read_text("snap/snapcraft.yaml")
+
+        self.assertIn('set(output_name "Chat")', cmake)
+        self.assertIn("TryExec=Chat", desktop_entry)
+        self.assertIn("Exec=Chat -- %U", desktop_entry)
+        self.assertIn("Exec=Chat -quit", desktop_entry)
+        self.assertIn("@CMAKE_INSTALL_FULL_BINDIR@/Chat", dbus_service)
+        self.assertIn("<binary>Chat</binary>", metainfo)
+        self.assertIn(
+            "desktop: usr/share/applications/com.privatechat.desktop.desktop",
+            snapcraft,
+        )
+        self.assertIn(
+            "parse-info: [usr/share/metainfo/com.privatechat.desktop.metainfo.xml]",
+            snapcraft,
+        )
+        self.assertIn('mv "$CRAFT_PART_INSTALL"/usr/bin/{Chat,telegram-desktop}', snapcraft)
+        self.assertIn("APP_ID=com.privatechat.desktop", snapcraft)
+
+    def test_windows_package_and_update_paths_match_chat_executable(self):
+        manifest = ET.parse(ROOT / "Telegram/Resources/uwp/AppX/AppxManifest.xml")
+        namespaces = {"f": "http://schemas.microsoft.com/appx/manifest/foundation/windows10"}
+        application = manifest.find("f:Applications/f:Application", namespaces)
+        setup = read_text("Telegram/build/setup.iss")
+        startup = read_text("Telegram/SourceFiles/_other/startup_task_win.cpp")
+        updater = read_text("Telegram/SourceFiles/_other/updater_win.cpp")
+
+        self.assertEqual("Chat.exe", application.get("Executable"))
+        self.assertIn('#define MyAppExeName "Chat.exe"', setup)
+        self.assertIn(r'Source: "{#ReleasePath}\Chat.exe"', setup)
+        self.assertIn(r'UninstallDisplayIcon={app}\Chat.exe', setup)
+        self.assertIn(r'directory + L"\\Chat.exe"', startup)
+        self.assertIn('exeName = L"Chat.exe";', updater)
+        self.assertIn('equal(tofname, updateTo + L"Telegram.exe")', updater)
+
     def test_packaged_application_icons_use_chat_art(self):
         icon_paths = (
             "Telegram/Telegram/Images.xcassets/Icon.iconset/icon_512x512@2x.png",
