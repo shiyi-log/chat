@@ -168,6 +168,56 @@ class ChatDesktopBrandingTests(unittest.TestCase):
         self.assertIn("if (langpack().id().isEmpty())", application)
         self.assertIn("langpack().switchToId(Lang::BundledChineseLanguage())", application)
 
+    def test_about_and_entry_surfaces_use_chat_identity_and_local_project_links(self):
+        paths = (
+            "Telegram/SourceFiles/boxes/about_box.cpp",
+            "Telegram/SourceFiles/intro/intro_start.cpp",
+            "Telegram/SourceFiles/settings/sections/settings_notifications.cpp",
+        )
+        forbidden = re.compile(
+            r"\bTelegram\b|telegram\.org|github\.com/telegramdesktop|tdesktop\.com",
+            re.IGNORECASE,
+        )
+        for path in paths:
+            source = read_text(path)
+            source = re.sub(r"\A/\*.*?\*/", "", source, flags=re.DOTALL)
+            literals = re.findall(r'(?:u8|u|U|L)?"((?:\\.|[^"\\])*)"', source)
+            with self.subTest(path=path):
+                self.assertEqual([], [value for value in literals if forbidden.search(value)])
+
+        about = read_text(paths[0])
+        intro = read_text(paths[1])
+        notifications = read_text(paths[2])
+        self.assertIn('box->setTitle(u"Chat"_q);', about)
+        self.assertIn('setTitleText(rpl::single(u"Chat"_q));', intro)
+        self.assertIn('elided(u"Chat"_q', notifications)
+        self.assertIn("https://github.com/shiyi-log/chat", about)
+        application = read_text("Telegram/SourceFiles/core/application.cpp")
+        changelog = re.search(
+            r"QString Application::changelogLink\(\) const \{(?P<body>.*?)\n\}",
+            application,
+            re.DOTALL,
+        )
+        self.assertIsNotNone(changelog)
+        self.assertIn("https://github.com/shiyi-log/chat/releases", changelog.group("body"))
+
+        base = read_strings("Telegram/Resources/langs/lang.strings")
+        chinese = read_strings("Telegram/Resources/langs/zh-Hans.strings")
+        required = {
+            "lng_about_text1",
+            "lng_about_text1_api",
+            "lng_about_text2",
+            "lng_about_text3",
+            "lng_about_text3_faq",
+        }
+        self.assertTrue(required <= chinese.keys())
+        for key in required:
+            self.assertEqual(
+                sorted(PLACEHOLDER_PATTERN.findall(base[key])),
+                sorted(PLACEHOLDER_PATTERN.findall(chinese[key])),
+                key,
+            )
+
     def test_runtime_language_packs_do_not_expose_telegram_brand_or_links(self):
         brand_pattern = re.compile(r"\btelegram\b|telegram\.(?:org|me)|t\.me", re.IGNORECASE)
         for path in (

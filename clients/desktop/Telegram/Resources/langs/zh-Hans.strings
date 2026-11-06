@@ -9,6 +9,11 @@
 "lng_menu_night_mode" = "夜间模式";
 "lng_menu_add_account" = "添加账号";
 "lng_main_menu" = "主菜单";
+"lng_about_text1" = "Chat 是自托管聊天应用。请参阅{api_link}了解服务端协议。";
+"lng_about_text1_api" = "Chat 服务端协议文档";
+"lng_about_text2" = "本软件基于 {gpl_link} 第 3 版授权。\n源代码可在 {github_link} 查看。";
+"lng_about_text3" = "访问{faq_link}了解安装和项目信息。";
+"lng_about_text3_faq" = "Chat 项目文档";
 "lng_filter_unread_chats#one" = "{text}（{count} 条未读聊天）";
 "lng_filter_unread_chats#other" = "{text}（{count} 条未读聊天）";
 "lng_open_from_tray" = "打开 Chat";

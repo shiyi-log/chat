@@ -139,7 +139,7 @@ def main():
     record(checks, '.protocol = u"privatechat"_q' in application_text, f"{application_path}：运行时应注册 privatechat URL scheme")
     record(checks, '.protocol = u"tg"_q' not in application_text, f"{application_path}：运行时不应继续注册 tg URL scheme")
     record(checks, 'protocolName = u"Chat Link"_q' in application_text, f"{application_path}：运行时协议名称应为 Chat Link")
-    record(checks, 'return u"https://private-chat.local/changelog/"_q;' in application_text, f"{application_path}：版本记录链接应指向私有占位地址")
+    record(checks, 'return u"https://github.com/shiyi-log/chat/releases"_q;' in application_text, f"{application_path}：版本记录链接应指向 Chat GitHub Releases")
     record(checks, "telegramdesktop.github.io" not in application_text, f"{application_path}：不应继续使用官方版本记录地址")
 
     local_url_handlers_path = "Telegram/SourceFiles/core/local_url_handlers.cpp"

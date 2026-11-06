@@ -1204,7 +1204,7 @@ bool Application::openInternalUrl(const QString &url, QVariant context) {
 }
 
 QString Application::changelogLink() const {
-	return u"https://private-chat.local/changelog/"_q;
+	return u"https://github.com/shiyi-log/chat/releases"_q;
 }
 
 bool Application::openCustomUrl(
