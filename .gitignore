@@ -14,6 +14,12 @@ local.properties
 **/bazel-*/
 **/bazel-out/
 **/out/
+!clients/ios/build-system/bazel-rules/
+!clients/ios/build-system/bazel-rules/rules_xcodeproj/
+!clients/ios/build-system/bazel-rules/rules_xcodeproj/xcodeproj/
+!clients/ios/build-system/bazel-rules/rules_xcodeproj/xcodeproj/internal/
+!clients/ios/build-system/bazel-rules/rules_xcodeproj/xcodeproj/internal/templates/
+!clients/ios/build-system/bazel-rules/rules_xcodeproj/xcodeproj/internal/templates/xcodeproj.bazelrc
 **/CMakeFiles/
 **/CMakeCache.txt
 **/cmake-build-*/

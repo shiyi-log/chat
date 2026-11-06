@@ -24,6 +24,17 @@ def parse_xcconfig(path):
 
 
 class ChatAppBrandingTests(unittest.TestCase):
+    def test_ios_deployment_minimum_matches_the_current_xcode_platform_floor(self):
+        build = (ROOT / "Telegram/BUILD").read_text(encoding="utf-8")
+        minimum = re.search(r'^minimum_os_version = "([0-9.]+)"$', build, re.M)
+        self.assertIsNotNone(minimum)
+        self.assertGreaterEqual(tuple(map(int, minimum.group(1).split("."))), (15, 0))
+
+        project_generator = (
+            ROOT / "build-system/MakeProject/Sources/MakeProject/ProjectGenerator.swift"
+        ).read_text(encoding="utf-8")
+        self.assertIn('"IPHONEOS_DEPLOYMENT_TARGET": "15.0"', project_generator)
+
     def test_built_app_name_is_chat(self):
         config = parse_xcconfig(IOS_APP / "Config-Fork.xcconfig")
         self.assertEqual("Chat", config["APP_NAME"])
