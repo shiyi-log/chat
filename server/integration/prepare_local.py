@@ -1,7 +1,6 @@
 import json
 import os
 import re
-import shutil
 import signal
 import subprocess
 import time
@@ -78,6 +77,23 @@ def _ensure_private_dir(path):
 def _write_private_file(path, contents):
     path = Path(path)
     path.write_text(contents, encoding="utf-8")
+    path.chmod(0o600)
+
+
+def _generate_runtime_key(path):
+    path = Path(path)
+    try:
+        result = subprocess.run(
+            ["openssl", "genrsa", "-out", str(path), "2048"],
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.PIPE,
+            text=True,
+        )
+    except OSError as exc:
+        raise RuntimeError("OpenSSL is required to generate the local runtime RSA key") from exc
+    if result.returncode != 0:
+        path.unlink(missing_ok=True)
+        raise RuntimeError("unable to generate the local runtime RSA key")
     path.chmod(0o600)
 
 
@@ -209,11 +225,10 @@ def prepare_runtime(server_root, runtime_root, env_path):
     runtime_root = Path(os.path.abspath(runtime_root))
     credentials = _read_env_file(env_path)
     source_dir = server_root / "teamgramd" / "etc"
-    key_source = server_root / "teamgramd" / "bin" / "server_pkcs1.key"
     client_config_source = server_root / "teamgramd" / "bin" / "config.json"
 
     source_configs = {name: source_dir / f"{name}.yaml" for name in SERVICE_PORTS}
-    missing = [path for path in [*source_configs.values(), key_source, client_config_source] if not path.is_file()]
+    missing = [path for path in [*source_configs.values(), client_config_source] if not path.is_file()]
     if missing:
         raise RuntimeError("local runtime source files are incomplete")
 
@@ -230,8 +245,7 @@ def prepare_runtime(server_root, runtime_root, env_path):
     for name, contents in rendered.items():
         _write_private_file(etc_dir / f"{name}.yaml", contents)
     _write_private_file(runtime_root / "config.json", client_config)
-    shutil.copyfile(key_source, runtime_root / "server_pkcs1.key")
-    (runtime_root / "server_pkcs1.key").chmod(0o600)
+    _generate_runtime_key(runtime_root / "server_pkcs1.key")
     outbox_dir.chmod(0o700)
     return [etc_dir / f"{name}.yaml" for name in SERVICE_PORTS]
 

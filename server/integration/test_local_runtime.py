@@ -2,6 +2,7 @@ import json
 import os
 import shutil
 import signal
+import subprocess
 import sys
 import tempfile
 import time
@@ -43,7 +44,6 @@ class PrepareRuntimeTests(unittest.TestCase):
         for name in SERVICE_PORTS:
             shutil.copy(REPO_ROOT / "server/teamgramd/etc" / f"{name}.yaml", self.etc)
         shutil.copy(REPO_ROOT / "server/teamgramd/bin/config.json", self.bin)
-        shutil.copy(REPO_ROOT / "server/teamgramd/bin/server_pkcs1.key", self.bin)
         self.env_path = self.server / "integration" / ".env"
         self.env_path.write_text(
             "LOCAL_INTEGRATION_MYSQL_ROOT_PASSWORD=root-secret\n"
@@ -61,6 +61,15 @@ class PrepareRuntimeTests(unittest.TestCase):
         config_paths = prepare_local.prepare_runtime(self.server, self.runtime, self.env_path)
 
         self.assertEqual(set(path.name for path in config_paths), {f"{name}.yaml" for name in SERVICE_PORTS})
+        runtime_key = self.runtime / "server_pkcs1.key"
+        self.assertTrue(runtime_key.is_file())
+        self.assertEqual(runtime_key.stat().st_mode & 0o777, 0o600)
+        key_check = subprocess.run(
+            ["openssl", "rsa", "-in", str(runtime_key), "-check", "-noout"],
+            capture_output=True,
+            text=True,
+        )
+        self.assertEqual(key_check.returncode, 0, key_check.stderr)
         for name, port in SERVICE_PORTS.items():
             text = (self.runtime / "etc" / f"{name}.yaml").read_text(encoding="utf-8")
             self.assertIn(f"ListenOn: 127.0.0.1:{port}\n", text)

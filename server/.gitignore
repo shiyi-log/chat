@@ -38,7 +38,6 @@ teamgramd/bin/*
 !teamgramd/bin/killall.sh
 !teamgramd/bin/runall2.sh
 !teamgramd/bin/runall-docker.sh
-!teamgramd/bin/server_pkcs1.key
 
 integration/.runtime/
 

@@ -3,9 +3,11 @@
 This runs the backend on this Mac using the isolated integration dependencies.
 It generates private runtime copies of the existing Go service configurations,
 uses the local file verification-code provider, and leaves the checked-in
-configuration files unchanged. It does not launch a desktop, Android, or iOS
-client, and backend startup alone does not establish multi-client end-to-end
-login, messaging, or upload compatibility. No real SMS service is used.
+configuration files unchanged. It also generates a fresh 2048-bit RSA key in the
+private runtime directory instead of relying on a shared repository key. It
+does not launch a desktop, Android, or iOS client, and backend startup alone
+does not establish multi-client end-to-end login, messaging, or upload
+compatibility. No real SMS service is used.
 
 ## Dependency stack
 
