@@ -1,9 +1,11 @@
 import json
 import re
 import shutil
+import struct
 import subprocess
 import tempfile
 import unittest
+import zlib
 from pathlib import Path
 
 from scripts.verify_private_chat_ios_config import parse_strings_file
@@ -21,6 +23,66 @@ def parse_xcconfig(path):
             key, value = line.split("=", 1)
             values[key.strip()] = value.strip()
     return values
+
+
+def read_png_pixels(path):
+    data = path.read_bytes()
+    if data[:8] != b"\x89PNG\r\n\x1a\n":
+        raise AssertionError(f"not a PNG file: {path}")
+
+    chunks = []
+    offset = 8
+    while offset < len(data):
+        length = struct.unpack_from(">I", data, offset)[0]
+        kind = data[offset + 4 : offset + 8]
+        payload = data[offset + 8 : offset + 8 + length]
+        chunks.append((kind, payload))
+        offset += length + 12
+
+    header = next(payload for kind, payload in chunks if kind == b"IHDR")
+    width, height, bit_depth, color_type, compression, filter_method, interlace = struct.unpack(
+        ">IIBBBBB", header
+    )
+    if bit_depth != 8 or color_type not in (2, 6) or compression or filter_method or interlace:
+        raise AssertionError(f"unsupported app icon PNG encoding: {path}")
+
+    bytes_per_pixel = 4 if color_type == 6 else 3
+    stride = width * bytes_per_pixel
+    raw = zlib.decompress(b"".join(payload for kind, payload in chunks if kind == b"IDAT"))
+    rows = []
+    prior = bytearray(stride)
+    cursor = 0
+    for _ in range(height):
+        filter_type = raw[cursor]
+        source = raw[cursor + 1 : cursor + 1 + stride]
+        cursor += stride + 1
+        row = bytearray(stride)
+        for index, value in enumerate(source):
+            left = row[index - bytes_per_pixel] if index >= bytes_per_pixel else 0
+            up = prior[index]
+            upper_left = prior[index - bytes_per_pixel] if index >= bytes_per_pixel else 0
+            if filter_type == 1:
+                value += left
+            elif filter_type == 2:
+                value += up
+            elif filter_type == 3:
+                value += (left + up) // 2
+            elif filter_type == 4:
+                base = left + up - upper_left
+                distances = (abs(base - left), abs(base - up), abs(base - upper_left))
+                predictor = (left, up, upper_left)[distances.index(min(distances))]
+                value += predictor
+            elif filter_type != 0:
+                raise AssertionError(f"unsupported PNG filter {filter_type}: {path}")
+            row[index] = value & 0xFF
+        rows.append(row)
+        prior = row
+
+    def pixel(x, y):
+        start = x * bytes_per_pixel
+        return tuple(rows[y][start : start + bytes_per_pixel])
+
+    return width, height, pixel
 
 
 class ChatAppBrandingTests(unittest.TestCase):
@@ -91,6 +153,45 @@ class ChatAppBrandingTests(unittest.TestCase):
         serialized = json.dumps(icon)
         self.assertNotIn("0.21569,0.68627,0.89020", serialized)
         self.assertIn("0.07843,0.35686,0.34118", serialized)
+
+    def test_shipped_ios_app_icon_assets_use_the_chat_mark(self):
+        icon_set = IOS_APP / "DefaultAppIcon.xcassets/AppIconLLC.appiconset"
+        manifest = json.loads((icon_set / "Contents.json").read_text(encoding="utf-8"))
+        images = [item for item in manifest["images"] if "filename" in item]
+        filenames = {item["filename"] for item in images}
+        self.assertTrue(
+            {
+                "BlueIcon@2x.png",
+                "BlueIcon@3x.png",
+                "BlueIconIpad@2x.png",
+                "BlueIconLargeIpad@2x.png",
+                "Simple-iTunesArtwork.png",
+            }.issubset(filenames)
+        )
+
+        for item in images:
+            path = icon_set / item["filename"]
+            width, height, pixel = read_png_pixels(path)
+            size = float(item["size"].split("x")[0])
+            scale = int(item["scale"].removesuffix("x"))
+            expected = round(size * scale)
+            corner = pixel(0, 0)
+            center = pixel(width // 2, height // 2)
+            orange = pixel(round(width * 780 / 1024), round(height * 350 / 1024))
+            with self.subTest(filename=item["filename"]):
+                self.assertEqual((expected, expected), (width, height))
+                self.assertEqual((20, 91, 87), corner[:3])
+                if len(corner) == 4:
+                    self.assertEqual(255, corner[3])
+                self.assertGreaterEqual(min(center[:3]), 200)
+                self.assertGreater(orange[0], 220)
+                self.assertGreater(orange[1], 120)
+                self.assertLess(orange[2], 150)
+
+        artwork = icon_set / "Simple-iTunesArtwork.png"
+        width, height, pixel = read_png_pixels(artwork)
+        self.assertEqual((1024, 1024), (width, height))
+        self.assertEqual((255, 255, 255), pixel(512, 512)[:3])
 
     def test_initial_localization_defaults_to_chinese_and_preserves_existing(self):
         helper = ROOT / "submodules/AuthorizationUI/Sources/InitialLocalization.swift"
