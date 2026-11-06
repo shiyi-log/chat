@@ -391,7 +391,7 @@ def main():
     network_text = read_text(network_path)
     has_private_dc = bool(re.search(r"1:\s*\[\s*\"127\.0\.0\.1\"\s*\]", network_text))
     seed_port_config = re.search(
-        r"#if DEBUG\s+let localSeedPort = 35222\s+#else\s+let localSeedPort = 25222\s+#endif",
+        r"#if DEBUG\s+let localSeedPort: UInt16 = 35222\s+#else\s+let localSeedPort: UInt16 = 25222\s+#endif",
         network_text,
     )
     official_dc_pattern = re.compile(r"\b(149\.154|91\.108)\.\d+\.\d+\b")

@@ -539,9 +539,9 @@ func initializedNetwork(accountId: AccountRecordId, arguments: NetworkInitializa
             }
 
             #if DEBUG
-            let localSeedPort = 35222
+            let localSeedPort: UInt16 = 35222
             #else
-            let localSeedPort = 25222
+            let localSeedPort: UInt16 = 25222
             #endif
             
             for (id, ips) in seedAddressList {

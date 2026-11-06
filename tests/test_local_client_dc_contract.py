@@ -55,7 +55,7 @@ class LocalClientDcContractTest(unittest.TestCase):
             / "clients/ios/submodules/TelegramCore/Sources/Network/Network.swift"
         ).read_text(encoding="utf-8")
         debug_release_ports = re.search(
-            r"#if DEBUG\s+let localSeedPort = (\d+)\s+#else\s+let localSeedPort = (\d+)\s+#endif",
+            r"#if DEBUG\s+let localSeedPort: UInt16 = (\d+)\s+#else\s+let localSeedPort: UInt16 = (\d+)\s+#endif",
             source,
         )
 
