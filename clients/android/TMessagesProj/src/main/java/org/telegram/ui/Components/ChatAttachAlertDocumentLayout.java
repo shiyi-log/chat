@@ -1349,7 +1349,7 @@ public class ChatAttachAlertDocumentLayout extends ChatAttachAlert.AttachAlertLa
             File telegramPath = new File(ApplicationLoader.applicationContext.getExternalFilesDir(null), "Telegram");
             if (telegramPath.exists()) {
                 fs = new ListItem();
-                fs.title = "Telegram";
+                fs.title = LocaleController.getString(R.string.AppName);
                 fs.subtitle = LocaleController.getString(R.string.AppFolderInfo);
                 fs.icon = R.drawable.files_folder;
                 fs.file = telegramPath;

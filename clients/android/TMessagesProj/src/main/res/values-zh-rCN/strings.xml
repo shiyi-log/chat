@@ -235,4 +235,11 @@
     <string name="YourPasswordHeader">你的密码</string>
     <string name="YourPasswordReset">你的密码已成功停用</string>
     <string name="YourPasswordSuccess">成功！</string>
+    <string name="ChatProfile">Chat 个人资料</string>
+    <string name="InviteTextWithoutLink">我正在使用 Chat，快来和我聊天吧！</string>
+    <string name="PhoneNumberNotOnChatWithInvite">该手机号尚未注册 Chat。**邀请 &gt;**</string>
+    <string name="PhoneNumberOnChat">该手机号已注册 Chat。</string>
+    <string name="UnlockToUse">解锁后即可使用 Chat</string>
+    <string name="VoiceCallViaTelegram">Chat 语音通话</string>
+    <string name="VideoCallViaTelegram">Chat 视频通话</string>
 </resources>

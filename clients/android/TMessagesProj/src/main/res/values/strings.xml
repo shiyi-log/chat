@@ -1871,6 +1871,7 @@
     <string name="AddContactPhonebookTitle">Add Contact</string>
     <string name="NoContacts">No contacts yet</string>
     <string name="InviteText2">Hey, I\'m using Chat to chat. Join me! Download it here: %1$s</string>
+    <string name="InviteTextWithoutLink">Hey, I\'m using Chat to chat. Join me!</string>
     <string name="TodayAt">at</string>
     <string name="YesterdayAt">yesterday at</string>
     <string name="TodayAtFormatted">at %1$s</string>
@@ -4617,6 +4618,7 @@
     <string name="InviteRevokedHint">The invite link has been revoked.</string>
     <string name="ExpiredLink">Expired Link</string>
     <!--contacts shortcuts-->
+    <string name="ChatProfile">Chat Profile</string>
     <string name="ContactShortcutMessage">Message %1$s</string>
     <string name="ContactShortcutVoiceCall">Voice call %1$s</string>
     <string name="ContactShortcutVideoCall">Video call %1$s</string>
@@ -8215,6 +8217,8 @@
     <string name="AnimatedEffectPremium">Subscribe to **Chat Premium** to add this animated effect.</string>
     <string name="StickerEffects">Effects from stickers</string>
     <string name="NumberNotOnTelegram">This number is not on Chat</string>
+    <string name="PhoneNumberNotOnChatWithInvite">This phone number is not on Chat. **Invite &gt;**</string>
+    <string name="PhoneNumberOnChat">This phone number is on Chat.</string>
     <string name="NoUsernameFound2">This user doesn’t exist on Chat</string>
     <string name="ViewProfile">View Profile ></string>
     <string name="ViewGroupProfile">View Group Info ></string>

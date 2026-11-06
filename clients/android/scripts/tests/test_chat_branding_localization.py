@@ -128,6 +128,68 @@ class ChatBrandingLocalizationTests(unittest.TestCase):
                     self.assertIsNone(TELEGRAM_NAME.search(value), value)
                     self.assertEqual([], list(telegram_owned_targets(value)), value)
 
+    def test_android_brand_surfaces_use_chat_resources_with_simplified_chinese_copy(self):
+        passcode = (ROOT / "TMessagesProj/src/main/java/org/telegram/ui/Components/PasscodeView.java").read_text(encoding="utf-8")
+        self.assertRegex(
+            passcode,
+            r'title\.setTypeface\(AndroidUtilities\.bold\(\)\);\s*'
+            r'title\.setText\(LocaleController\.getString\(R\.string\.UnlockToUse\)\);',
+        )
+
+        new_contact = (ROOT / "TMessagesProj/src/main/java/org/telegram/ui/NewContactBottomSheet.java").read_text(encoding="utf-8")
+        self.assertIn(
+            "replaceSingleTag(LocaleController.getString(R.string.PhoneNumberNotOnChatWithInvite),",
+            new_contact,
+        )
+        self.assertIn(
+            "underPhoneTextView.setText(LocaleController.getString(R.string.PhoneNumberOnChat));",
+            new_contact,
+        )
+        self.assertTrue(
+            re.search(
+                r'intent\.putExtra\("sms_body", LocaleController\.getString\(R\.string\.InviteTextWithoutLink\)\);',
+                new_contact,
+            ),
+            "SMS invites should use the localized Chat copy without an unknown download URL",
+        )
+        self.assertNotIn("telegram.org/dl", new_contact)
+
+        contacts = (ROOT / "TMessagesProj/src/main/java/org/telegram/messenger/ContactsController.java").read_text(encoding="utf-8")
+        for key in ("ChatProfile", "VoiceCallViaTelegram", "VideoCallViaTelegram"):
+            with self.subTest(contact_label=key):
+                self.assertIn(
+                    f"ContactsContract.Data.DATA2, LocaleController.getString(R.string.{key})",
+                    contacts,
+                )
+
+        document_picker = (ROOT / "TMessagesProj/src/main/java/org/telegram/ui/Components/ChatAttachAlertDocumentLayout.java").read_text(encoding="utf-8")
+        self.assertIn("fs.title = LocaleController.getString(R.string.AppName);", document_picker)
+
+        expected_english = {
+            "UnlockToUse": "Unlock to use Chat",
+            "PhoneNumberNotOnChatWithInvite": "This phone number is not on Chat. **Invite >**",
+            "PhoneNumberOnChat": "This phone number is on Chat.",
+            "ChatProfile": "Chat Profile",
+            "VoiceCallViaTelegram": "Chat Voice Call",
+            "VideoCallViaTelegram": "Chat Video Call",
+            "InviteTextWithoutLink": "Hey, I\\'m using Chat to chat. Join me!",
+        }
+        expected_chinese = {
+            "UnlockToUse": "解锁后即可使用 Chat",
+            "PhoneNumberNotOnChatWithInvite": "该手机号尚未注册 Chat。**邀请 >**",
+            "PhoneNumberOnChat": "该手机号已注册 Chat。",
+            "ChatProfile": "Chat 个人资料",
+            "VoiceCallViaTelegram": "Chat 语音通话",
+            "VideoCallViaTelegram": "Chat 视频通话",
+            "InviteTextWithoutLink": "我正在使用 Chat，快来和我聊天吧！",
+        }
+        for key, value in expected_english.items():
+            with self.subTest(locale="en", key=key):
+                self.assertEqual(value, self.english.get(key))
+        for key, value in expected_chinese.items():
+            with self.subTest(locale="zh-CN", key=key):
+                self.assertEqual(value, self.chinese.get(key))
+
     def test_cocoon_footer_uses_chat_feature_link_and_has_simplified_chinese_copy(self):
         footer = self.english["CocoonFooter"]
         self.assertIn(r"Chat\'s feature page", footer)
