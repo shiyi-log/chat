@@ -1,4 +1,4 @@
-# 私有聊天服务端（基于 Teamgram）
+# Chat 服务端（基于 Teamgram）
 
 **中文** | [English](README.md)
 
@@ -71,8 +71,8 @@
 ### 1. 克隆仓库
 
 ```bash
-git clone https://github.com/shiyi-log/private-chat-server.git
-cd private-chat-server
+git clone https://github.com/shiyi-log/chat.git
+cd chat/server
 cp .env.example .env
 # 为 MYSQL_ROOT_PASSWORD、MYSQL_PASSWORD、MINIO_ROOT_PASSWORD 和
 # GRAFANA_ADMIN_PASSWORD 分别生成不同的随机值并写入 .env。

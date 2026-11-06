@@ -1,6 +1,6 @@
 # Chat Desktop 桌面端
 
-这是 `Private Chat` 私有聊天系统的桌面端源码快照，用于连接我们自建的 `private-chat-server`。当前仓库不再作为 Telegram Desktop 官方客户端发布，也不应使用 Telegram 品牌对外分发。
+这是 Chat 自托管聊天系统的桌面端源码，用于连接我们自建的服务端。本仓库不作为 Telegram Desktop 官方客户端发布，也不应使用 Telegram 品牌对外分发。
 
 ## 当前状态
 
@@ -35,4 +35,4 @@ python3 scripts/verify_private_chat_desktop_config.py
 
 ## English Summary
 
-This repository is a private snapshot for `Private Chat Desktop`, configured for a self-hosted `private-chat-server`. It is not an official Telegram Desktop distribution and should not be shipped with Telegram branding.
+This repository contains the Chat desktop client, configured for a self-hosted server. It is not an official Telegram Desktop distribution and should not be shipped with Telegram branding.

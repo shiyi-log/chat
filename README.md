@@ -1,6 +1,6 @@
-# Private Chat 私有聊天系统
+# Chat 聊天系统
 
-Private Chat 是可自行部署和管理的聊天软件套件。本仓库把服务端、Android、iOS、macOS、Windows、Linux 客户端源码和项目文档合并到同一个 Git 仓库。
+Chat 是可自行部署和管理的聊天软件套件。本仓库统一维护服务端、Android、iOS、macOS、Windows、Linux 客户端源码和项目文档。
 
 ## 目录结构
 
@@ -15,7 +15,7 @@ Private Chat 是可自行部署和管理的聊天软件套件。本仓库把服�
 
 ## 开发状态
 
-五个 Private Chat 源码仓库的历史已导入本仓库。CI 覆盖仓库测试、客户端配置校验、部分离线服务端单测、Android Java 编译、iOS 无签名模拟器构建，以及 Ubuntu、Windows、macOS runner 上的桌面打包元数据检查；桌面端完整二进制构建尚未接入 CI。五个平台的登录、消息互通和文件传输尚未完成当前版本的端到端验证；完整中文本地化、所有 Telegram 品牌/UI 遗留项和正式发行也仍需逐项验证。源码合并或静态检查通过不代表这些发布要求已经完成。
+组件源码和文档现已合并到本仓库。CI 覆盖仓库测试、客户端配置校验、部分离线服务端单测、Android Java 编译、iOS 无签名模拟器构建，以及 Ubuntu、Windows、macOS runner 上的桌面打包元数据检查；桌面端完整二进制构建尚未接入 CI。五个平台的登录、消息互通和文件传输尚未完成当前版本的端到端验证；完整中文本地化、所有 Telegram 品牌/UI 遗留项和正式发行也仍需逐项验证。源码合并或静态检查通过不代表这些发布要求已经完成。
 
 ## 本地服务端
 
@@ -31,7 +31,7 @@ Private Chat 是可自行部署和管理的聊天软件套件。本仓库把服�
 
 ## English Summary
 
-Private Chat is a self-hosted messaging suite. This repository combines the server, Android and iOS apps, macOS, Windows and Linux desktop clients, and project documentation in one Git history.
+Chat is a self-hosted messaging suite. This repository maintains the server, Android and iOS apps, macOS, Windows and Linux desktop clients, and project documentation in one Git history.
 
 CI currently runs repository checks, client configuration checks, scoped offline server tests, an unsigned Android Java compile, an unsigned iOS simulator build, and desktop packaging metadata checks on Ubuntu, Windows, and macOS runners. A full desktop binary build is not yet part of CI. Current-version login, messaging, and file-transfer flows across the five client platforms have not completed end-to-end validation. Complete Chinese localization, remaining Telegram-facing UI cleanup, and a production release also remain under validation. A source import or static check does not establish release readiness.
 

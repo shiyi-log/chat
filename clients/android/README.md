@@ -1,12 +1,12 @@
-# Private Chat Android 安卓端
+# Chat Android 安卓端
 
-这是 `Private Chat` 私有聊天系统的 Android 客户端源码快照，用于连接我们自建的 `private-chat-server`。当前仓库不再作为 Telegram 官方 Android 客户端发布，也不应使用 Telegram 品牌对外分发。
+这是 Chat 自托管聊天系统的 Android 客户端源码，用于连接我们自建的服务端。本仓库不作为 Telegram 官方 Android 客户端发布，也不应使用 Telegram 品牌对外分发。
 
 ## 当前状态
 
 - 对外包名前缀已改为 `com.privatechat.messenger`。
 - Debug/Beta 包名为 `com.privatechat.messenger.beta`。
-- 默认应用显示名为 `Private Chat`，Beta 显示名为 `Private Chat Beta`。
+- 默认应用显示名为 `Chat`，Beta 显示名为 `Chat Beta`。
 - Android 模拟器默认连接宿主机本地运行时：`10.0.2.2:25222`。
 - MTProto 握手公钥和 simple config 解密公钥已替换为当前私有服务端公钥。
 - 当前已完成本机 `afatDebug` APK 构建，并在两台 Android 模拟器完成启动稳定性验证。
@@ -69,4 +69,4 @@ python3 scripts/tests/test_private_chat_api_config.py
 
 ## English Summary
 
-This repository is a private Android client snapshot for `Private Chat`, configured for a self-hosted `private-chat-server`. It is not an official Telegram Android distribution and should not be shipped with Telegram branding.
+This repository contains the Chat Android client, configured for a self-hosted server. It is not an official Telegram Android distribution and should not be shipped with Telegram branding.

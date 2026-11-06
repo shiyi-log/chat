@@ -1,18 +1,18 @@
-# Private Chat Documentation
+# Chat 文档
 
-`Private Chat` 是一套可自建的聊天系统，由私有消息服务端、Android、iOS、桌面客户端及本仓库的项目文档组成。这里的“私有”指服务可由操作者自行部署和管理。
+Chat 是一套可自建的聊天系统，由服务端、Android、iOS、桌面客户端及本仓库的项目文档组成。服务可由操作者自行部署和管理。
 
-## 套件仓库
+## 单仓目录
 
-| 仓库 | 范围 | 源码许可 |
+| 目录 | 范围 | 源码许可 |
 | --- | --- | --- |
-| [private-chat-server](https://github.com/shiyi-log/private-chat-server) | 基于 Teamgram 的 Go / MTProto 服务端 | Apache-2.0 |
-| [private-chat-desktop](https://github.com/shiyi-log/private-chat-desktop) | Windows、Linux、macOS 桌面客户端 | GPL-3.0，保留 OpenSSL 链接例外；见该仓库 `LICENSE` |
-| [private-chat-android](https://github.com/shiyi-log/private-chat-android) | Android 客户端 | GPL-2.0；见该仓库 `LICENSE` |
-| [private-chat-ios](https://github.com/shiyi-log/private-chat-ios) | iOS 客户端 | GPL-2.0-or-later；保留上游及第三方许可声明 |
-| [private-chat-docs](https://github.com/shiyi-log/private-chat-docs) | 架构、任务与历史版本记录 | 本仓库原创文档采用 Apache-2.0；见 `LICENSE` |
+| `server/` | 基于 Teamgram 的 Go / MTProto 服务端 | Apache-2.0；见目录内许可文件 |
+| `clients/desktop/` | Windows、Linux、macOS 桌面客户端 | GPL-3.0，保留 OpenSSL 链接例外；见目录内 `LICENSE` |
+| `clients/android/` | Android 客户端 | GPL-2.0；见目录内 `LICENSE` |
+| `clients/ios/` | iOS 客户端 | GPL-2.0-or-later；保留上游及第三方许可声明 |
+| `docs/` | 架构、任务与历史版本记录 | 原创文档采用 Apache-2.0；见目录内 `LICENSE` |
 
-macOS 端由 `private-chat-desktop` 覆盖。目前这五个仓库没有独立 Web 聊天客户端。服务端的 WebSocket 网关不等于浏览器聊天界面。
+macOS 端由 `clients/desktop/` 覆盖。本单仓当前没有独立 Web 聊天客户端。服务端的 WebSocket 网关不等于浏览器聊天界面。
 
 服务端保留 Teamgram 上游署名；客户端基于 Telegram 开源客户端源码快照，保留各自上游许可与第三方声明。各仓库的许可证分别适用；本仓库文档的 Apache-2.0 授权不改变客户端和第三方代码的许可。
 
@@ -42,6 +42,6 @@ macOS 端由 `private-chat-desktop` 覆盖。目前这五个仓库没有独立 W
 
 ## English summary
 
-Private Chat comprises five repositories: a Teamgram-based server, desktop clients for Windows/Linux/macOS, Android, iOS, and documentation. There is no standalone web chat client in this suite.
+Chat is maintained as one repository containing the Teamgram-based server, desktop clients for Windows/Linux/macOS, Android, iOS, and documentation. There is no standalone web chat client in this suite.
 
 The server source preview disables the default verification provider. Sign-in requires a reviewed real provider. Current client addresses target local development, and complete cross-client sign-in, messaging, and upload validation remains outstanding. Upstream and third-party licenses apply independently in each repository; the Apache-2.0 license here covers original documentation only.

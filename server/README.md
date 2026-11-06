@@ -1,4 +1,4 @@
-# Private Chat Server (Teamgram-based)
+# Chat Server (Teamgram-based)
 
 [中文](README-zh.md) | **English**
 
@@ -64,8 +64,8 @@ For running the full stack with Docker. **No manual data initialization:** the d
 ### 1. Clone
 
 ```bash
-git clone https://github.com/shiyi-log/private-chat-server.git
-cd private-chat-server
+git clone https://github.com/shiyi-log/chat.git
+cd chat/server
 cp .env.example .env
 # Set distinct random values for MYSQL_ROOT_PASSWORD, MYSQL_PASSWORD,
 # MINIO_ROOT_PASSWORD, and GRAFANA_ADMIN_PASSWORD in .env.

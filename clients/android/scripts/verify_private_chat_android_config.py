@@ -411,7 +411,7 @@ def main():
 
     readme_path = "README.md"
     readme = read_text(readme_path)
-    record(checks, readme.startswith("# Private Chat Android 安卓端"), f"{readme_path}：应使用 Private Chat 中文优先说明")
+    record(checks, readme.startswith("# Chat Android 安卓端"), f"{readme_path}：应使用 Chat 中文优先说明")
     record(checks, "official Telegram Android distribution" in readme, f"{readme_path}：应包含英文摘要说明非官方 Telegram 发布")
 
     failed = [message for ok, message in checks if not ok]
