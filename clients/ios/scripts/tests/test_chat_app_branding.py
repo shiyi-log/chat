@@ -86,6 +86,14 @@ def read_png_pixels(path):
 
 
 class ChatAppBrandingTests(unittest.TestCase):
+    def test_pasteboard_text_types_use_uniform_type_identifiers(self):
+        pasteboard = (
+            ROOT / "submodules/Pasteboard/Sources/Pasteboard.swift"
+        ).read_text(encoding="utf-8")
+        self.assertIn("UTType.utf8PlainText.identifier", pasteboard)
+        self.assertIn("UTType.rtf.identifier", pasteboard)
+        self.assertNotRegex(pasteboard, r"\bkUTType(?:UTF8PlainText|RTF)\b")
+
     def test_ios_deployment_minimum_matches_the_current_xcode_platform_floor(self):
         build = (ROOT / "Telegram/BUILD").read_text(encoding="utf-8")
         minimum = re.search(r'^minimum_os_version = "([0-9.]+)"$', build, re.M)

@@ -84,6 +84,8 @@ def main():
 
     strings_path = "TMessagesProj/src/main/res/values/strings.xml"
     strings_text = read_text(strings_path)
+    chinese_strings_path = "TMessagesProj/src/main/res/values-zh-rCN/strings.xml"
+    chinese_strings_text = read_text(chinese_strings_path)
     record(checks, get_string_value(strings_text, "AppName") == "Chat", f"{strings_path}：AppName 应为 Chat")
     record(checks, get_string_value(strings_text, "AppNameBeta") == "Chat Beta", f"{strings_path}：AppNameBeta 应为 Chat Beta")
     for key in ("SentAppCode", "SentAppCodeWithPhone", "SentAppCodeTitle", "SentCallCode", "CallText", "OtherLoginCode", "AllowReadCall", "InviteToTelegram"):
@@ -175,13 +177,41 @@ def main():
         "TelegramContacts_other",
         "InviteTextNum_one",
         "InviteTextNum_other",
-        "InviteToTelegramShort",
+        "InviteToChatShort",
         "NoUsernameFound2",
     )
     for key in account_invite_private_keys:
         value = get_string_value(strings_text, key)
         record(checks, "chat" in value.lower(), f"{strings_path}：{key} 应显示 Chat 品牌")
         record(checks, not has_old_product_brand(value), f"{strings_path}：{key} 不应继续显示旧品牌 Private Chat")
+    invite_key = "InviteToChatShort"
+    record(checks, get_string_value(strings_text, invite_key) == "Invite To Chat", f"{strings_path}：{invite_key} 应使用 Chat 文案")
+    record(checks, get_string_value(chinese_strings_text, invite_key) == "邀请使用 Chat", f"{chinese_strings_path}：{invite_key} 应提供简体中文文案")
+
+    invite_sources = {
+        "TMessagesProj/src/main/java/org/telegram/ui/ChatActivity.java": "options.add(R.drawable.chat_logo, getString(R.string.InviteToChatShort)",
+        "TMessagesProj/src/main/java/org/telegram/ui/Adapters/SearchAdapter.java": "R.string.InviteToChatShort",
+        "TMessagesProj/src/main/java/org/telegram/ui/Adapters/DialogsSearchAdapter.java": "R.string.InviteToChatShort",
+    }
+    for relative_path, expected in invite_sources.items():
+        source = read_text(relative_path)
+        record(checks, expected in source, f"{relative_path}：手机号邀请入口应使用 Chat 图标和文案")
+        record(checks, "InviteToTelegramShort" not in source, f"{relative_path}：不应继续引用旧邀请文案键")
+    chat_activity_path = "TMessagesProj/src/main/java/org/telegram/ui/ChatActivity.java"
+    chat_activity = read_text(chat_activity_path)
+    record(checks, "menu_invit_telegram" not in chat_activity, f"{chat_activity_path}：不应继续显示 Telegram 邀请图标")
+
+    qr_writer_path = "TMessagesProj/src/main/java/com/google/zxing/qrcode/QRCodeWriter.java"
+    qr_writer = read_text(qr_writer_path)
+    qr_logo_path = "TMessagesProj/src/main/res/raw/qr_logo.svg"
+    qr_logo_text = read_text(qr_logo_path)
+    qr_logo = ET.fromstring(qr_logo_text)
+    qr_logo_ids = {element.get("id") for element in qr_logo.iter()}
+    expected_qr_logo_ids = {"chat-icon-background", "chat-back-bubble", "chat-front-bubble", "chat-message-lines"}
+    record(checks, "readRes(R.raw.qr_logo)" in qr_writer, f"{qr_writer_path}：二维码应加载项目内 logo 资源")
+    record(checks, qr_logo.get("viewBox") == "0 0 96 96", f"{qr_logo_path}：应使用标准 96×96 viewBox")
+    record(checks, expected_qr_logo_ids.issubset(qr_logo_ids), f"{qr_logo_path}：应包含 Chat 气泡图形")
+    record(checks, "Path-3" not in qr_logo_text and "#50A7EA" not in qr_logo_text, f"{qr_logo_path}：不应保留 Telegram 飞机图形或蓝色旧背景")
     general_experience_private_keys = (
         "PaymentWarningText",
         "ImportImportingInfo",

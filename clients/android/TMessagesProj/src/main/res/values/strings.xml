@@ -6028,7 +6028,7 @@
     <string name="ActionSuggestPhotoShort">Suggested profile photo</string>
     <string name="ActionSuggestVideoShort">Suggested profile video</string>
     <string name="SetAsMyPhoto">Set as My Photo</string>
-    <string name="InviteToTelegramShort">Invite To Chat</string>
+    <string name="InviteToChatShort">Invite To Chat</string>
     <string name="ActionAttachMenuBotAllowed">You allowed this bot to message you when you added it to your attachment menu</string>
     <string name="ActionRequestedPeer">You shared un1 with un2</string>
     <string name="ActionRequestedPeerUserPlural_one">You shared a user with un2</string>

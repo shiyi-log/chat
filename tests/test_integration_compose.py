@@ -1,4 +1,5 @@
 import json
+import re
 import tempfile
 import subprocess
 import unittest
@@ -7,6 +8,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 COMPOSE_FILE = ROOT / "server" / "docker-compose-integration.yaml"
+INTEGRATION_README = ROOT / "server" / "integration" / "README.md"
 PROJECT_NAME = "chat-monorepo-public-integration"
 EXPECTED_PORTS = {
     ("mysql", 3306): 23306,
@@ -149,6 +151,15 @@ class IntegrationComposeTest(unittest.TestCase):
         for network in self.config["networks"].values():
             self.assertFalse(network.get("external", False))
             self.assertFalse(network.get("ipam", {}).get("config"))
+
+    def test_documented_compose_commands_use_the_declared_project_name(self):
+        readme = INTEGRATION_README.read_text(encoding="utf-8")
+        project_names = re.findall(
+            r"docker compose --project-name (\S+)", readme
+        )
+
+        self.assertTrue(project_names)
+        self.assertEqual({PROJECT_NAME}, set(project_names))
 
     def test_kafka_advertises_reachable_internal_and_host_listeners(self):
         environment = self.config["services"]["kafka"]["environment"]

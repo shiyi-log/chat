@@ -103,7 +103,7 @@ ownership before reusing a project name from an earlier run.
 ## Stop while preserving integration data
 
 ```bash
-docker compose --project-name private-chat-integration \
+docker compose --project-name chat-monorepo-public-integration \
   --env-file server/integration/.env \
   -f server/docker-compose-integration.yaml down
 ```

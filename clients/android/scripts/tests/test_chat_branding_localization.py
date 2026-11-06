@@ -336,6 +336,38 @@ class ChatBrandingLocalizationTests(unittest.TestCase):
         self.assertIn("R.drawable.chat_logo", notifications)
         self.assertIn("R.drawable.chat_logo", voip)
 
+    def test_phone_invite_surfaces_use_chat_icon_and_simplified_chinese_copy(self):
+        chat_activity = (ROOT / "TMessagesProj/src/main/java/org/telegram/ui/ChatActivity.java").read_text(encoding="utf-8")
+        search_adapter = (ROOT / "TMessagesProj/src/main/java/org/telegram/ui/Adapters/SearchAdapter.java").read_text(encoding="utf-8")
+        dialogs_search_adapter = (ROOT / "TMessagesProj/src/main/java/org/telegram/ui/Adapters/DialogsSearchAdapter.java").read_text(encoding="utf-8")
+
+        self.assertIn(
+            "options.add(R.drawable.chat_logo, getString(R.string.InviteToChatShort)",
+            chat_activity,
+        )
+        self.assertNotIn("menu_invit_telegram", chat_activity)
+        for source in (search_adapter, dialogs_search_adapter):
+            with self.subTest(source="search invite" if source == search_adapter else "dialogs search invite"):
+                self.assertIn("R.string.InviteToChatShort", source)
+                self.assertNotIn("InviteToTelegramShort", source)
+        self.assertEqual("Invite To Chat", self.english["InviteToChatShort"])
+        self.assertEqual("邀请使用 Chat", self.chinese["InviteToChatShort"])
+
+    def test_embedded_qr_logo_uses_chat_bubble_mark(self):
+        writer = (ROOT / "TMessagesProj/src/main/java/com/google/zxing/qrcode/QRCodeWriter.java").read_text(encoding="utf-8")
+        logo_path = RES / "raw/qr_logo.svg"
+        logo_text = logo_path.read_text(encoding="utf-8")
+        logo = ET.parse(logo_path).getroot()
+        logo_ids = {element.get("id") for element in logo.iter()}
+
+        self.assertIn("readRes(R.raw.qr_logo)", writer)
+        self.assertEqual("0 0 96 96", logo.get("viewBox"))
+        self.assertTrue(
+            {"chat-icon-background", "chat-back-bubble", "chat-front-bubble", "chat-message-lines"}.issubset(logo_ids)
+        )
+        self.assertNotIn("Path-3", logo_text)
+        self.assertNotIn("#50A7EA", logo_text)
+
     def test_qr_and_round_video_branding_use_chat_mark(self):
         qr_sources = (
             "TMessagesProj/src/main/java/org/telegram/ui/CallLogActivity.java",
