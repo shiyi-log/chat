@@ -112,7 +112,10 @@ class CiWorkflowContractTest(unittest.TestCase):
             self.assertIn(binary, commands)
 
         self.assertEqual("actions/upload-artifact@v7", artifact.get("uses"))
-        self.assertEqual("chat-server-linux-preview", artifact["with"]["name"])
+        self.assertEqual(
+            "chat-server-linux-preview-${{ github.run_id }}-${{ github.run_attempt }}",
+            artifact["with"]["name"],
+        )
         self.assertEqual("${{ runner.temp }}/chat-server-linux-preview.tar.gz", artifact["with"]["path"])
         self.assertEqual(14, artifact["with"]["retention-days"])
         self.assertEqual("error", artifact["with"]["if-no-files-found"])
@@ -132,7 +135,10 @@ class CiWorkflowContractTest(unittest.TestCase):
         self.assertIn("assembleAfatDebug", commands)
         self.assertEqual("actions/upload-artifact@v7", artifact.get("uses"))
         self.assertEqual("clients/android/TMessagesProj_App/build/outputs/apk/afat/debug/app.apk", artifact["with"]["path"])
-        self.assertEqual("chat-android-afat-debug", artifact["with"]["name"])
+        self.assertEqual(
+            "chat-android-afat-debug-${{ github.run_id }}-${{ github.run_attempt }}",
+            artifact["with"]["name"],
+        )
         self.assertEqual(14, artifact["with"]["retention-days"])
         self.assertNotIn("assembleAfatRelease", commands)
         self.assertNotIn("signingConfig", commands)
@@ -154,7 +160,10 @@ class CiWorkflowContractTest(unittest.TestCase):
         self.assertIn("test_make_project_generation.py", commands)
         self.assertIn("Chat-iOS-Simulator.zip", commands)
         self.assertEqual("actions/upload-artifact@v7", artifact.get("uses"))
-        self.assertEqual("chat-ios-simulator-debug", artifact["with"]["name"])
+        self.assertEqual(
+            "chat-ios-simulator-debug-${{ github.run_id }}-${{ github.run_attempt }}",
+            artifact["with"]["name"],
+        )
         self.assertEqual(14, artifact["with"]["retention-days"])
         self.assertNotIn("TELEGRAM_CODESIGNING_GIT_PASSWORD", commands)
         self.assertNotIn("--gitCodesigningRepository", commands)

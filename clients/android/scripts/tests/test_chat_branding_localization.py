@@ -103,7 +103,7 @@ class ChatBrandingLocalizationTests(unittest.TestCase):
                 )
 
     def test_primary_post_login_screens_have_local_chinese_resources(self):
-        for activity in ("ContactsActivity", "DialogsActivity", "SettingsActivity"):
+        for activity in ("ContactsActivity", "DialogsActivity", "SettingsActivity", "PrivacySettingsActivity"):
             source_path = ROOT / f"TMessagesProj/src/main/java/org/telegram/ui/{activity}.java"
             source = source_path.read_text(encoding="utf-8")
             keys = set(re.findall(r"R[.]string[.]([A-Za-z0-9_]+)", source))

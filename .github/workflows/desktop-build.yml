@@ -1,6 +1,12 @@
 name: Desktop Debug Build
 
 on:
+  workflow_call:
+    inputs:
+      platform:
+        description: Build one platform or all desktop preview packages.
+        required: true
+        type: string
   workflow_dispatch:
     inputs:
       platform:
@@ -18,7 +24,7 @@ permissions:
 jobs:
   linux:
     name: Linux Debug (self-hosted)
-    if: inputs.platform == 'linux'
+    if: inputs.platform == 'linux' || inputs.platform == 'all'
     runs-on: [self-hosted, Linux, X64, chat-desktop-build]
     timeout-minutes: 360
     steps:
@@ -97,7 +103,7 @@ jobs:
 
   macos:
     name: macOS Debug (self-hosted)
-    if: inputs.platform == 'macos'
+    if: inputs.platform == 'macos' || inputs.platform == 'all'
     runs-on: [self-hosted, macOS, ARM64, chat-desktop-build]
     timeout-minutes: 360
     steps:
@@ -170,7 +176,7 @@ jobs:
 
   windows:
     name: Windows Debug (self-hosted)
-    if: inputs.platform == 'windows'
+    if: inputs.platform == 'windows' || inputs.platform == 'all'
     runs-on: [self-hosted, Windows, X64, chat-desktop-build]
     timeout-minutes: 360
     steps:

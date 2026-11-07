@@ -5,6 +5,8 @@ on:
   push:
     branches:
       - main
+    tags:
+      - 'v*-preview.*'
 
 permissions:
   contents: read
@@ -125,7 +127,7 @@ jobs:
       - name: Upload Linux server preview
         uses: actions/upload-artifact@v7
         with:
-          name: chat-server-linux-preview
+          name: chat-server-linux-preview-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/chat-server-linux-preview.tar.gz
           if-no-files-found: error
           retention-days: 14
@@ -168,7 +170,7 @@ jobs:
       - name: Upload Web preview
         uses: actions/upload-artifact@v7
         with:
-          name: chat-web-preview
+          name: chat-web-preview-${{ github.run_id }}-${{ github.run_attempt }}
           path: clients/web/dist/
           if-no-files-found: error
           retention-days: 14
@@ -210,7 +212,7 @@ jobs:
       - name: Upload Android debug APK preview
         uses: actions/upload-artifact@v7
         with:
-          name: chat-android-afat-debug
+          name: chat-android-afat-debug-${{ github.run_id }}-${{ github.run_attempt }}
           path: clients/android/TMessagesProj_App/build/outputs/apk/afat/debug/app.apk
           if-no-files-found: error
           retention-days: 14
@@ -290,13 +292,14 @@ jobs:
       - name: Upload unsigned iOS simulator preview
         uses: actions/upload-artifact@v7
         with:
-          name: chat-ios-simulator-debug
+          name: chat-ios-simulator-debug-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/Chat-iOS-Simulator.zip
           if-no-files-found: error
           retention-days: 14
 
   desktop-packaging-metadata:
     name: Desktop packaging metadata (${{ matrix.os }})
+    if: github.event_name == 'pull_request' || github.ref_type == 'branch'
     runs-on: ${{ matrix.os }}
     timeout-minutes: 15
     strategy:
@@ -324,3 +327,138 @@ jobs:
 
       - name: Check desktop branding and packaging metadata
         run: python clients/desktop/scripts/test_chat_desktop_branding.py
+
+  desktop-build-preview:
+    name: Desktop Debug packages (all platforms)
+    if: github.event_name == 'push' && github.ref_type == 'tag' && startsWith(github.ref_name, 'v') && contains(github.ref_name, '-preview.')
+    permissions:
+      contents: read
+    uses: ./.github/workflows/desktop-build.yml
+    with:
+      platform: all
+
+  candidate-package:
+    name: Assemble checksummed preview candidate
+    if: github.event_name == 'push' && github.ref_type == 'tag' && startsWith(github.ref_name, 'v') && contains(github.ref_name, '-preview.')
+    needs:
+      - repository
+      - server
+      - server-build-preview
+      - web-build-preview
+      - android-compile
+      - ios-simulator-build
+      - desktop-build-preview
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    outputs:
+      artifact_id: ${{ steps.upload_candidate.outputs.artifact-id }}
+    steps:
+      - name: Check out tagged source for the package builder
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@6d4fd22b20465ccc0f7354476588e8df7c9ca0e0
+        with:
+          python-version: "3.12"
+
+      - name: Download same-run build artifacts
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          path: ${{ runner.temp }}/chat-candidate-artifacts
+
+      - name: Assemble preview candidate and checksums
+        run: |
+          python3 tools/package_candidate_release.py \
+            --artifacts-dir "${RUNNER_TEMP}/chat-candidate-artifacts" \
+            --output-dir "${RUNNER_TEMP}/chat-candidate-release" \
+            --tag "${GITHUB_REF_NAME}" \
+            --revision "${GITHUB_SHA}" \
+            --run-id "${GITHUB_RUN_ID}" \
+            --run-attempt "${GITHUB_RUN_ATTEMPT}"
+
+      - name: Upload candidate release bundle
+        id: upload_candidate
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
+        with:
+          name: chat-candidate-release-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/chat-candidate-release/*
+          if-no-files-found: error
+          retention-days: 90
+          compression-level: 0
+
+  candidate-release:
+    name: Create draft preview release
+    if: github.event_name == 'push' && github.ref_type == 'tag' && startsWith(github.ref_name, 'v') && contains(github.ref_name, '-preview.')
+    needs: candidate-package
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    concurrency:
+      group: candidate-preview-release-${{ github.ref_name }}
+      cancel-in-progress: false
+    permissions:
+      contents: write
+    steps:
+      - name: Download checksummed candidate
+        id: download_candidate
+        continue-on-error: true
+        uses: actions/download-artifact@37930b1c2abaa49bbe596cd826c3c89aef350131
+        with:
+          artifact-ids: ${{ needs.candidate-package.outputs.artifact_id }}
+          path: ${{ runner.temp }}/chat-candidate-release
+
+      - name: Explain how to recover a missing candidate
+        if: steps.download_candidate.outcome != 'success'
+        run: |
+          echo "The candidate artifact is unavailable to this workflow attempt." >&2
+          echo "Re-run all jobs in this workflow run to rebuild and upload the candidate." >&2
+          exit 1
+
+      - name: Verify candidate bundle checksum
+        run: |
+          cd "${RUNNER_TEMP}/chat-candidate-release"
+          sha256sum --check SHA256SUMS
+
+      - name: Create or resume draft preview release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          candidate_dir="${RUNNER_TEMP}/chat-candidate-release"
+          tag_sha="$(gh api "repos/${GITHUB_REPOSITORY}/commits/${GITHUB_REF_NAME}" --jq .sha)"
+          if [ "${tag_sha}" != "${GITHUB_SHA}" ]; then
+            echo "The preview tag no longer points to the built source revision." >&2
+            exit 1
+          fi
+
+          release_notes="Unsigned preview candidate for review.
+          Source revision: ${GITHUB_SHA}
+          Workflow run ID: ${GITHUB_RUN_ID}
+          This is not a stable or signed production release."
+          existing_release="$(gh api "repos/${GITHUB_REPOSITORY}/releases/tags/${GITHUB_REF_NAME}" 2>/dev/null || true)"
+          if [ -n "${existing_release}" ]; then
+            if ! jq -e \
+              --arg tag "${GITHUB_REF_NAME}" \
+              --arg revision "${GITHUB_SHA}" \
+              --arg run_id "${GITHUB_RUN_ID}" \
+              '.tag_name == $tag and .draft == true and .prerelease == true and (.body | contains($revision)) and (.body | contains($run_id))' \
+              <<<"${existing_release}" >/dev/null; then
+              echo "An existing draft release does not match this tag, revision, and workflow run." >&2
+              exit 1
+            fi
+            gh release upload "${GITHUB_REF_NAME}" \
+              --repo "${GITHUB_REPOSITORY}" \
+              --clobber \
+              "${candidate_dir}/"*
+          else
+            gh release create "${GITHUB_REF_NAME}" \
+              --repo "${GITHUB_REPOSITORY}" \
+              --verify-tag \
+              --draft \
+              --prerelease \
+              --title "Chat ${GITHUB_REF_NAME} (unsigned preview)" \
+              --notes "${release_notes}" \
+              "${candidate_dir}/"*
+          fi
