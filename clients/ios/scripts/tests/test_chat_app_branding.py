@@ -679,6 +679,112 @@ print(InitialLocalization.shouldUseBundledStrings(languageCode: \"en\", existing
                     f"{key} must preserve its formatting placeholders",
                 )
 
+    def test_simplified_chinese_covers_the_core_conversation_flow(self):
+        required_keys = {
+            "Chat.AttachmentLimitReached",
+            "Chat.AttachmentMultipleFilesDisabled",
+            "Chat.AttachmentMultipleForwardDisabled",
+            "Chat.DeleteMessagesConfirmation_1",
+            "Chat.DeleteMessagesConfirmation_any",
+            "Chat.MultipleTextMessagesDisabled",
+            "Chat.SlowmodeAttachmentLimitReached",
+            "Chat.SlowmodeSendError",
+            "Chat.UnsendMyMessages",
+            "Chat.UnsendMyMessagesAlertTitle",
+            "Conversation.ChecksTooltip.Delivered",
+            "Conversation.ChecksTooltip.Read",
+            "Conversation.ContextMenuCancelEditing",
+            "Conversation.ContextMenuCancelSending",
+            "Conversation.ContextMenuCopy",
+            "Conversation.ContextMenuCopyLink",
+            "Conversation.ContextMenuDelete",
+            "Conversation.ContextMenuForward",
+            "Conversation.ContextMenuReply",
+            "Conversation.ContextMenuSearchMessages",
+            "Conversation.ContextMenuSendMessage",
+            "Conversation.DeleteMessagesFor",
+            "Conversation.DeleteMessagesForEveryone",
+            "Conversation.DeleteMessagesForMe",
+            "Conversation.DiscardVoiceMessageAction",
+            "Conversation.DiscardVoiceMessageDescription",
+            "Conversation.DiscardVoiceMessageTitle",
+            "Conversation.EditingCaptionPanelTitle",
+            "Conversation.EditingMessageMediaChange",
+            "Conversation.EditingMessageMediaEditCurrentPhoto",
+            "Conversation.EditingMessageMediaEditCurrentVideo",
+            "Conversation.EditingMessagePanelMedia",
+            "Conversation.EditingMessagePanelTitle",
+            "Conversation.ErrorInaccessibleMessage",
+            "Conversation.FilePhotoOrVideo",
+            "Conversation.ForwardChats",
+            "Conversation.ForwardContacts",
+            "Conversation.ForwardTitle",
+            "Conversation.HoldForVideo",
+            "Conversation.InputTextAnonymousPlaceholder",
+            "Conversation.InputTextCaptionPlaceholder",
+            "Conversation.InputTextPlaceholder",
+            "Conversation.InputTextPlaceholderComment",
+            "Conversation.InputTextPlaceholderReply",
+            "Conversation.InputTextSilentBroadcastPlaceholder",
+            "Conversation.LinkDialogCopy",
+            "Conversation.MessageDeliveryFailed",
+            "Conversation.MessageDialogDelete",
+            "Conversation.MessageDialogEdit",
+            "Conversation.MessageDialogRetry",
+            "Conversation.MessageDialogRetryAll",
+            "Conversation.MessageEditedLabel",
+            "Conversation.MessageViaUser",
+            "Conversation.PinnedMessage",
+            "Conversation.PrivateMessageLinkCopied",
+            "Conversation.SavedMessages",
+            "Conversation.ScheduleMessage.SendOn",
+            "Conversation.ScheduleMessage.SendToday",
+            "Conversation.ScheduleMessage.SendTomorrow",
+            "Conversation.ScheduleMessage.Title",
+            "Conversation.SendMessage.ScheduleMessage",
+            "Conversation.SendMessage.SendSilently",
+            "Conversation.SendMessage.SetReminder",
+            "Conversation.SendMessageErrorTooMuchScheduled",
+            "Conversation.SendingOptionsTooltip",
+            "Conversation.StatusTyping",
+            "Conversation.TapAndHoldToRecord",
+            "Conversation.UnreadMessages",
+            "Conversation.ViewMessage",
+            "Message.Audio",
+            "Message.Contact",
+            "Message.File",
+            "Message.ForwardedMessage",
+            "Message.ForwardedMessageShort",
+            "Message.Location",
+            "Message.Photo",
+            "Message.Sticker",
+            "Message.Video",
+        }
+        english = parse_strings_file(
+            (IOS_APP / "en.lproj/Localizable.strings").read_text(encoding="utf-8")
+        )
+        chinese = parse_strings_file(
+            (IOS_APP / "zh-Hans.lproj/Localizable.strings").read_text(encoding="utf-8")
+        )
+
+        self.assertEqual(set(), required_keys - english.keys())
+        self.assertEqual(
+            set(),
+            required_keys - chinese.keys(),
+            "the Simplified Chinese core conversation strings are incomplete",
+        )
+
+        placeholder_pattern = re.compile(r"%(?:\d+\$)?(?:@|d|f|s)")
+        for key in sorted(required_keys):
+            with self.subTest(key=key):
+                self.assertTrue(chinese[key].strip())
+                self.assertNotEqual(english[key], chinese[key], f"{key} is still untranslated")
+                self.assertEqual(
+                    sorted(placeholder_pattern.findall(english[key])),
+                    sorted(placeholder_pattern.findall(chinese[key])),
+                    f"{key} must preserve its formatting placeholders",
+                )
+
     def test_app_localizations_do_not_show_upstream_brand_or_links(self):
         resource_paths = (
             IOS_APP / "en.lproj/Localizable.strings",
