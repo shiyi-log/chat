@@ -89,7 +89,7 @@ jobs:
 
       - name: Test scoped offline unit packages
         working-directory: server
-        run: go test ./pkg/hashx ./pkg/phonenumber ./pkg/mention ./pkg/code/none ./pkg/code/localfile ./app/interface/session/internal/sess
+        run: go test ./pkg/hashx ./pkg/phonenumber ./pkg/mention ./pkg/code/none ./pkg/code/localfile ./app/interface/session/internal/sess ./app/bff/authorization/internal/core
 
   server-build-preview:
     name: Linux server preview binaries

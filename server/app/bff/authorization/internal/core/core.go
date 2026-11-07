@@ -56,11 +56,11 @@ func checkPhoneNumberInvalid(phone string) (string, string, error) {
 }
 
 const (
-	signInMessageTpl = `Login code: %s. Do not give this code to anyone, even if they say they are from %s!
+	signInMessageTpl = `登录验证码：%s。请勿将此验证码告诉任何人，即使对方声称来自 %s！
 
-This code can be used to log in to your %s account. We never ask it for anything else.
+此验证码用于登录你的 %s 账户。我们不会将其用于其他用途。
 
-If you didn't request this code by trying to log in on another device, simply ignore this message.`
+如果你没有尝试在其他设备登录，请忽略此消息。`
 )
 
 func (c *AuthorizationCore) pushSignInMessage(ctx context.Context, signInUserId int64, code string) {
@@ -74,11 +74,11 @@ func (c *AuthorizationCore) pushSignInMessage(ctx context.Context, signInUserId 
 			Entities: []*mtproto.MessageEntity{
 				mtproto.MakeTLMessageEntityBold(&mtproto.MessageEntity{
 					Offset: 0,
-					Length: 11,
+					Length: 6,
 				}).To_MessageEntity(),
 				mtproto.MakeTLMessageEntityBold(&mtproto.MessageEntity{
-					Offset: 22,
-					Length: 3,
+					Offset: int32(7 + len(code)),
+					Length: 2,
 				}).To_MessageEntity(),
 			},
 		}).To_Message()

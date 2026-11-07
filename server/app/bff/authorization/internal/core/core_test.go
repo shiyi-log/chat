@@ -10,7 +10,7 @@ import (
 	"github.com/teamgram/teamgram-server/pkg/env2"
 )
 
-func TestDefaultSignInMessageUsesChatBrand(t *testing.T) {
+func TestDefaultSignInMessageUsesChineseAndChatBrand(t *testing.T) {
 	appNameFlag := flag.Lookup("app_name")
 	if appNameFlag == nil {
 		t.Fatal("app_name flag is not registered")
@@ -23,7 +23,10 @@ func TestDefaultSignInMessageUsesChatBrand(t *testing.T) {
 	if strings.Contains(message, "Private Chat") {
 		t.Fatalf("default sign-in message contains the old product name: %q", message)
 	}
-	if !strings.Contains(message, "Chat account") {
+	if !strings.Contains(message, "登录验证码：12345") {
+		t.Fatalf("default sign-in message is not Simplified Chinese: %q", message)
+	}
+	if !strings.Contains(message, "Chat 账户") {
 		t.Fatalf("default sign-in message does not use the Chat product name: %q", message)
 	}
 }

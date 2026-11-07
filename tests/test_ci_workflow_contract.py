@@ -69,6 +69,7 @@ class CiWorkflowContractTest(unittest.TestCase):
         self.assertIn("./pkg/code/none", commands)
         self.assertIn("./pkg/code/localfile", commands)
         self.assertIn("./app/interface/session/internal/sess", commands)
+        self.assertIn("./app/bff/authorization/internal/core", commands)
         self.assertNotIn("go test ./...", commands)
 
     def test_server_job_runs_local_runtime_configuration_tests(self):
