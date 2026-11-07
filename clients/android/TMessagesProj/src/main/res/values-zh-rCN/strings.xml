@@ -549,10 +549,14 @@
     <string name="SettingsPrivacySecurity">隐私与安全</string>
     <string name="SettingsPrivacySecurityInfo">最后上线时间、设备、通行密钥</string>
     <string name="TelegramBusiness">Chat 商业版</string>
+    <string name="TelegramCacheSize">Chat 缓存：%s</string>
+    <string name="TelegramContacts_one">%1$d 位 Chat 联系人</string>
+    <string name="TelegramContacts_other">%1$d 位 Chat 联系人</string>
     <string name="TelegramFAQ">Chat 常见问题</string>
     <string name="TelegramFaqUrl">https://privatechat.local/faq</string>
     <string name="TelegramFeatures">Chat 功能</string>
     <string name="TelegramFeaturesUrl">https://privatechat.local/features</string>
+    <string name="TelegramPassport">Chat 身份认证</string>
     <string name="TelegramPremium">Chat Premium</string>
     <string name="TelegramStars">Chat Stars</string>
     <string name="TelegramVersion">Chat Android 版 %1$s</string>

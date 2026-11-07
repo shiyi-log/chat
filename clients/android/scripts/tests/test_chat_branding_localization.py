@@ -159,6 +159,31 @@ class ChatBrandingLocalizationTests(unittest.TestCase):
                             f"format placeholders differ for {key}",
                         )
 
+    def test_contact_count_has_local_chinese_plural_variants(self):
+        contacts_cell = (ROOT / "TMessagesProj/src/main/java/org/telegram/ui/Cells/InviteUserCell.java").read_text(encoding="utf-8")
+        self.assertIn('formatPluralString("TelegramContacts", currentContact.imported)', contacts_cell)
+        for key in ("TelegramContacts_one", "TelegramContacts_other"):
+            with self.subTest(key=key):
+                self.assertEqual("%1$d 位 Chat 联系人", self.chinese.get(key))
+                self.assertEqual(
+                    sorted(FORMATS.findall(self.english[key])),
+                    sorted(FORMATS.findall(self.chinese.get(key, ""))),
+                )
+
+    def test_storage_cache_size_has_local_chinese_copy(self):
+        storage_view = (ROOT / "TMessagesProj/src/main/java/org/telegram/ui/Components/StorageUsageView.java").read_text(encoding="utf-8")
+        self.assertIn('formatString("TelegramCacheSize", R.string.TelegramCacheSize,', storage_view)
+        self.assertEqual("Chat 缓存：%s", self.chinese.get("TelegramCacheSize"))
+        self.assertEqual(
+            sorted(FORMATS.findall(self.english["TelegramCacheSize"])),
+            sorted(FORMATS.findall(self.chinese.get("TelegramCacheSize", ""))),
+        )
+
+    def test_passport_settings_title_has_local_chinese_copy(self):
+        privacy_settings = (ROOT / "TMessagesProj/src/main/java/org/telegram/ui/PrivacySettingsActivity.java").read_text(encoding="utf-8")
+        self.assertIn('getString("TelegramPassport", R.string.TelegramPassport)', privacy_settings)
+        self.assertEqual("Chat 身份认证", self.chinese.get("TelegramPassport"))
+
     def test_attachment_and_media_strings_are_local_and_format_compatible(self):
         keys = {
             key for key in self.english
