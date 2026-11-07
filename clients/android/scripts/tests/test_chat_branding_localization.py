@@ -262,6 +262,20 @@ class ChatBrandingLocalizationTests(unittest.TestCase):
             with self.subTest(locale="zh-CN", key=key):
                 self.assertEqual(value, self.chinese.get(key))
 
+    def test_secret_chat_theme_preview_uses_localized_chat_beta_name(self):
+        source = (ROOT / "TMessagesProj/src/main/java/org/telegram/ui/ThemePreviewActivity.java").read_text(encoding="utf-8")
+        match = re.search(
+            r"if \(messagesAdapter\.showSecretMessages\) \{(?P<body>.*?)\n\s*\} else \{",
+            source,
+            re.S,
+        )
+        self.assertIsNotNone(match, "secret-chat theme preview branch should remain available")
+        self.assertIn(
+            "actionBar2.setTitle(LocaleController.getString(R.string.AppNameBeta));",
+            match.group("body"),
+        )
+        self.assertEqual("Chat 测试版", self.chinese["AppNameBeta"])
+
     def test_contact_invites_use_localized_copy_when_server_link_is_missing(self):
         contacts = (ROOT / "TMessagesProj/src/main/java/org/telegram/messenger/ContactsController.java").read_text(encoding="utf-8")
         match = re.search(r"public String getInviteText\(int contacts\)\s*\{(?P<body>.*?)\n    \}", contacts, re.S)
