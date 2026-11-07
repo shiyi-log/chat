@@ -445,11 +445,11 @@ public final class DeviceAccess {
                         })
                     }
                 case let .location(locationSubject):
-                    let locationManager = CLLocationManager()
-                    let status = locationManager.authorizationStatus
+                    let systemLocationManager = CLLocationManager()
+                    let status = systemLocationManager.authorizationStatus
                     let hasPreciseLocation: Bool
                     if #available(iOS 14.0, *) {
-                        if case .fullAccuracy = locationManager.accuracyAuthorization {
+                        if case .fullAccuracy = systemLocationManager.accuracyAuthorization {
                             hasPreciseLocation = true
                         } else {
                             hasPreciseLocation = false

@@ -1,12 +1,12 @@
 import Foundation
 import UIKit
+import UniformTypeIdentifiers
 import Postbox
 import SwiftSignalKit
 import Display
 import AsyncDisplayKit
 import TelegramCore
 import SafariServices
-import MobileCoreServices
 import Intents
 import LegacyComponents
 import TelegramPresentationData
@@ -9748,7 +9748,7 @@ public final class ChatControllerImpl: TelegramBaseController, ChatController, G
     
     @available(iOSApplicationExtension 11.0, iOS 11.0, *)
     public func dropInteraction(_ interaction: UIDropInteraction, canHandle session: UIDropSession) -> Bool {
-        return session.hasItemsConforming(toTypeIdentifiers: [kUTTypeImage as String])
+        return session.hasItemsConforming(toTypeIdentifiers: [UTType.image.identifier])
     }
     
     @available(iOSApplicationExtension 11.0, iOS 11.0, *)

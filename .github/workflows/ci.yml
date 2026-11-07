@@ -218,7 +218,7 @@ jobs:
 
   ios-simulator-build:
     name: iOS simulator build (unsigned)
-    runs-on: macos-26
+    runs-on: xcode-27
     timeout-minutes: 180
     permissions:
       contents: read
@@ -232,6 +232,11 @@ jobs:
         uses: actions/setup-python@v7
         with:
           python-version: "3.12"
+
+      - name: Show Apple build toolchain
+        run: |
+          xcodebuild -version
+          swiftc --version
 
       - name: Test headless Xcode project generation
         working-directory: clients/ios

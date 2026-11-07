@@ -1,10 +1,10 @@
 import Foundation
 import UIKit
+import UniformTypeIdentifiers
 import Display
 import AsyncDisplayKit
 import SwiftSignalKit
 import TelegramCore
-import MobileCoreServices
 import TelegramPresentationData
 import TextFormat
 import AccountContext
@@ -2299,7 +2299,7 @@ public class AttachmentTextInputPanelNode: ASDisplayNode, TGCaptionPanelView, AS
         let pasteboard = UIPasteboard.general
 
         var attributedString: NSAttributedString?
-        if let data = pasteboard.data(forPasteboardType: kUTTypeRTF as String) {
+        if let data = pasteboard.data(forPasteboardType: UTType.rtf.identifier) {
             attributedString = chatInputStateStringFromRTF(data, type: NSAttributedString.DocumentType.rtf)
         } else if let data = pasteboard.data(forPasteboardType: "com.apple.flat-rtfd") {
             attributedString = chatInputStateStringFromRTF(data, type: NSAttributedString.DocumentType.rtfd)

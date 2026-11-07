@@ -13,6 +13,43 @@ build:macos --features=debug_prefix_map_pwd_is_dot
 build:macos --features=swift.cacheable_swiftmodules
 build:macos --features=swift.debug_prefix_map
 build:macos --features=swift.enable_vfsoverlays
+# Keep this legacy Swift 5 diagnostic nonfatal only in targets that use the pattern.
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/Settings/PeerNameColorItem:PeerNameColorItem=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/PeerInfo/MessagePriceItem:MessagePriceItem=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/ItemListVenueItem:ItemListVenueItem=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/ItemListStickerPackItem:ItemListStickerPackItem=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/PeerInfo/PeerCopyProtectionInfoScreen:PeerCopyProtectionInfoScreen=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/ItemListPeerActionItem:ItemListPeerActionItem=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/ItemListAvatarAndNameInfoItem:ItemListAvatarAndNameInfoItem=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/ReactionSelectionNode:ReactionSelectionNode=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/Stars/StarsTransferScreen:StarsTransferScreen=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/BotPaymentsUI:BotPaymentsUI=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/Settings/QuickReactionSetupController:QuickReactionSetupController=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/ItemListPeerItem:ItemListPeerItem=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/Settings/ThemeCarouselItem:ThemeCarouselItem=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/Settings/ThemeSettingsThemeItem:ThemeSettingsThemeItem=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TranslateUI:TranslateUI=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/ShareWithPeersScreen:ShareWithPeersScreen=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/AuthConfirmationScreen:AuthConfirmationScreen=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/HorizontalPeerItem:HorizontalPeerItem=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/Chat/ChatMessageInteractiveFileNode:ChatMessageInteractiveFileNode=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/Chat/ChatMessageCallBubbleContentNode:ChatMessageCallBubbleContentNode=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/Chat/ChatMessageFactCheckBubbleContentNode:ChatMessageFactCheckBubbleContentNode=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/Chat/ChatMessageTodoBubbleContentNode:ChatMessageTodoBubbleContentNode=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/Chat/ChatMessageReactionsFooterContentNode:ChatMessageReactionsFooterContentNode=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/Chat/ChatMessageCommentFooterContentNode:ChatMessageCommentFooterContentNode=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/Chat/ChatMessageTextBubbleContentNode:ChatMessageTextBubbleContentNode=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/Chat/ChatMessageContactBubbleContentNode:ChatMessageContactBubbleContentNode=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/Chat/ChatMessageMapBubbleContentNode:ChatMessageMapBubbleContentNode=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/Chat/ChatMessageRestrictedBubbleContentNode:ChatMessageRestrictedBubbleContentNode=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/Chat/ChatMessageBirthdateSuggestionContentNode:ChatMessageBirthdateSuggestionContentNode=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/Chat/ChatMessageUnsupportedBubbleContentNode:ChatMessageUnsupportedBubbleContentNode=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/Chat/ChatMessageWallpaperBubbleContentNode:ChatMessageWallpaperBubbleContentNode=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/Chat/ChatMessageGiftOfferBubbleContentNode:ChatMessageGiftOfferBubbleContentNode=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/Chat/ChatMessageDisableCopyProtectionBubbleContentNode:ChatMessageDisableCopyProtectionBubbleContentNode=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/Chat/ChatMessageInteractiveInstantVideoNode:ChatMessageInteractiveInstantVideoNode=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/Chat/ChatMessageGiveawayBubbleContentNode:ChatMessageGiveawayBubbleContentNode=-Wwarning,ImplicitStrongCapture
+build:macos --@build_bazel_rules_swift//swift:per_module_swiftcopt=@@//submodules/TelegramUI/Components/Chat/ChatMessageGiftBubbleContentNode:ChatMessageGiftBubbleContentNode=-Wwarning,ImplicitStrongCapture
 build:dbg --features=swift.emit_swiftsourceinfo
 
 # Linux-specific settings (auto-applied on Linux via --enable_platform_specific_config)

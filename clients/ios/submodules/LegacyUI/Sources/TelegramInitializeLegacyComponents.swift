@@ -81,6 +81,15 @@ private func isKeyboardWindow(window: NSObject) -> Bool {
     return false
 }
 
+private func legacyApplicationWindows() -> [UIWindow] {
+    guard let application = legacyComponentsApplication else {
+        return []
+    }
+    return application.connectedScenes
+        .compactMap { $0 as? UIWindowScene }
+        .flatMap { $0.windows }
+}
+
 private final class LegacyComponentsGlobalsProviderImpl: NSObject, LegacyComponentsGlobalsProvider {
     func log(_ string: String!) {
         if let string = string {
@@ -93,7 +102,7 @@ private final class LegacyComponentsGlobalsProviderImpl: NSObject, LegacyCompone
     }
     
     public func applicationWindows() -> [UIWindow]! {
-        return legacyComponentsApplication?.windows ?? []
+        return legacyApplicationWindows()
     }
     
     public func applicationStatusBarWindow() -> UIWindow! {
@@ -101,7 +110,7 @@ private final class LegacyComponentsGlobalsProviderImpl: NSObject, LegacyCompone
     }
     
     public func applicationKeyboardWindow() -> UIWindow! {
-        for window in legacyComponentsApplication?.windows ?? [] {
+        for window in legacyApplicationWindows() {
             if isKeyboardWindow(window: window) {
                 return window
             }

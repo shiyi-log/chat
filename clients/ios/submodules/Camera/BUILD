@@ -48,6 +48,8 @@ swift_library(
     ]),
     copts = [
         "-warnings-as-errors",
+        "-Wwarning",
+        "ImplicitStrongCapture",
     ],
     data = [
         ":CameraBundle",
