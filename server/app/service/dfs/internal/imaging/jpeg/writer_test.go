@@ -102,12 +102,12 @@ var testCase = []struct {
 	quality   int
 	tolerance int64
 }{
-	{"../testdata/video-001.png", 1, 24 << 8},
-	{"../testdata/video-001.png", 20, 12 << 8},
-	{"../testdata/video-001.png", 60, 8 << 8},
-	{"../testdata/video-001.png", 80, 6 << 8},
-	{"../testdata/video-001.png", 90, 4 << 8},
-	{"../testdata/video-001.png", 100, 2 << 8},
+	{"video-001.png", 1, 24 << 8},
+	{"video-001.png", 20, 12 << 8},
+	{"video-001.png", 60, 8 << 8},
+	{"video-001.png", 80, 6 << 8},
+	{"video-001.png", 90, 4 << 8},
+	{"video-001.png", 100, 2 << 8},
 }
 
 func delta(u0, u1 uint32) int64 {
@@ -130,31 +130,32 @@ func readPng(filename string) (image.Image, error) {
 func TestWriter(t *testing.T) {
 	for _, tc := range testCase {
 		// Read the image.
-		m0, err := readPng(tc.filename)
+		filename := jpegFixturePath(t, tc.filename)
+		m0, err := readPng(filename)
 		if err != nil {
-			t.Error(tc.filename, err)
+			t.Error(filename, err)
 			continue
 		}
 		// Encode that image as JPEG.
 		var buf bytes.Buffer
 		err = Encode(&buf, m0, &Options{Quality: tc.quality})
 		if err != nil {
-			t.Error(tc.filename, err)
+			t.Error(filename, err)
 			continue
 		}
 		// Decode that JPEG.
 		m1, err := Decode(&buf)
 		if err != nil {
-			t.Error(tc.filename, err)
+			t.Error(filename, err)
 			continue
 		}
 		if m0.Bounds() != m1.Bounds() {
-			t.Errorf("%s, bounds differ: %v and %v", tc.filename, m0.Bounds(), m1.Bounds())
+			t.Errorf("%s, bounds differ: %v and %v", filename, m0.Bounds(), m1.Bounds())
 			continue
 		}
 		// Compare the average delta to the tolerance level.
 		if averageDelta(m0, m1) > tc.tolerance {
-			t.Errorf("%s, quality=%d: average delta is too high", tc.filename, tc.quality)
+			t.Errorf("%s, quality=%d: average delta is too high", filename, tc.quality)
 			continue
 		}
 	}

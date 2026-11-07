@@ -87,6 +87,58 @@ def read_png_pixels(path):
 
 
 class ChatAppBrandingTests(unittest.TestCase):
+    def test_app_declares_a_single_scene_configuration_for_its_scene_delegate(self):
+        import plistlib
+
+        info = plistlib.loads((IOS_APP / "Info.plist").read_bytes())
+        manifest = info.get("UIApplicationSceneManifest")
+        self.assertIsInstance(manifest, dict)
+        self.assertFalse(manifest.get("UIApplicationSupportsMultipleScenes", True))
+
+        configurations = manifest.get("UISceneConfigurations", {})
+        app_configurations = configurations.get("UIWindowSceneSessionRoleApplication", [])
+        self.assertEqual(1, len(app_configurations))
+        self.assertEqual("Chat Application Scene", app_configurations[0].get("UISceneConfigurationName"))
+        self.assertEqual("AppSceneDelegate", app_configurations[0].get("UISceneDelegateClassName"))
+
+        build = (ROOT / "Telegram/BUILD").read_text(encoding="utf-8")
+        main_plist = build.split('name = "TelegramInfoPlist"', 1)[1].split("plist_fragment(", 1)[0]
+        self.assertIn("<key>UIApplicationSceneManifest</key>", main_plist)
+        self.assertIn("<key>UISceneDelegateClassName</key>", main_plist)
+        self.assertIn("<string>AppSceneDelegate</string>", main_plist)
+
+        app_delegate = (
+            ROOT / "submodules/TelegramUI/Sources/AppDelegate.swift"
+        ).read_text(encoding="utf-8")
+        self.assertIn("@objc(AppSceneDelegate)", app_delegate)
+        self.assertIn("func scene(_ scene: UIScene, willConnectTo", app_delegate)
+        scene_delegate = app_delegate.split("@objc(AppSceneDelegate)", 1)[1]
+        self.assertRegex(
+            scene_delegate,
+            r"if let shortcutItem = connectionOptions\.shortcutItem\s*\{\s*"
+            r"appDelegate\.application\(UIApplication\.shared,\s*"
+            r"performActionFor: shortcutItem,\s*completionHandler:",
+        )
+
+    def test_keyboard_window_lookup_uses_the_app_window_scene(self):
+        app_delegate = (
+            ROOT / "submodules/TelegramUI/Sources/AppDelegate.swift"
+        ).read_text(encoding="utf-8")
+        keyboard_window = re.search(
+            r"var keyboardWindow: UIWindow\? \{(.*?)\n    \}\n    \n    var keyboardView",
+            app_delegate,
+            re.S,
+        )
+        self.assertIsNotNone(keyboard_window)
+        source = keyboard_window.group(1)
+        self.assertNotIn("internalGetKeyboard", source)
+        self.assertIn("guard let scene = self.scene", source)
+        self.assertRegex(
+            source,
+            r"for window in scene\.windows\s*\{\s*"
+            r"if isKeyboardWindow\(window: window\)",
+        )
+
     def test_camera_orientation_uses_the_view_window_scene(self):
         source = (
             ROOT / "submodules/Camera/Sources/CameraPreviewView.swift"

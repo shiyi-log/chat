@@ -12,14 +12,16 @@ import (
 	"github.com/teamgram/teamgram-server/app/service/status/status"
 )
 
-// mockKVStore embeds kv.Store interface; override only the methods we need.
+// mockKVStore embeds kv.ExtStore; override only the methods these tests need.
 // Unimplemented methods will panic if called (signals a test gap).
 type mockKVStore struct {
-	kv.Store
+	kv.ExtStore
 	evalCtxFn    func(ctx context.Context, script, key string, args ...any) (any, error)
 	hdelCtxFn    func(ctx context.Context, key, field string) (bool, error)
 	hgetallCtxFn func(ctx context.Context, key string) (map[string]string, error)
 }
+
+var _ kv.ExtStore = (*mockKVStore)(nil)
 
 func (m *mockKVStore) EvalCtx(ctx context.Context, script, key string, args ...any) (any, error) {
 	return m.evalCtxFn(ctx, script, key, args...)
@@ -33,7 +35,7 @@ func (m *mockKVStore) HgetallCtx(ctx context.Context, key string) (map[string]st
 	return m.hgetallCtxFn(ctx, key)
 }
 
-func newTestCore(store kv.Store, expire int) *StatusCore {
+func newTestCore(store kv.ExtStore, expire int) *StatusCore {
 	svcCtx := &svc.ServiceContext{
 		Config: config.Config{StatusExpire: expire},
 		Dao:    &dao.Dao{KV: store},

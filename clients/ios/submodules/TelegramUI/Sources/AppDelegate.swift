@@ -119,10 +119,6 @@ private class ApplicationStatusBarHost: StatusBarHost {
     }
     
     var keyboardWindow: UIWindow? {
-        if #available(iOS 16.0, *) {
-            return UIApplication.shared.internalGetKeyboard()
-        }
-        
         guard let scene = self.scene else {
             return nil
         }
@@ -323,8 +319,26 @@ private func extractAccountManagerState(records: AccountRecordsView<TelegramAcco
     private let regularDeviceToken = Promise<Data?>(nil)
     
     private var recaptchaClientsBySiteKey: [String: Promise<RecaptchaClient>] = [:]
+
+    private var pendingLaunchOptions: [UIApplication.LaunchOptionsKey: Any]?
         
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil) -> Bool {
+        self.pendingLaunchOptions = launchOptions
+        return true
+    }
+
+    func start(windowScene: UIWindowScene) {
+        guard !testIsLaunched else {
+            self.window?.makeKeyAndVisible()
+            return
+        }
+
+        let launchOptions = self.pendingLaunchOptions
+        self.pendingLaunchOptions = nil
+        self.initialize(application: UIApplication.shared, windowScene: windowScene, launchOptions: launchOptions)
+    }
+
+    private func initialize(application: UIApplication, windowScene: UIWindowScene, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         precondition(!testIsLaunched)
         testIsLaunched = true
         
@@ -397,7 +411,7 @@ private func extractAccountManagerState(records: AccountRecordsView<TelegramAcco
             )
         }
         
-        let (window, hostView) = nativeWindowHostView()
+        let (window, hostView) = nativeWindowHostView(windowScene: windowScene)
         let statusBarHost = ApplicationStatusBarHost(scene: window.windowScene)
         self.mainWindow = Window1(hostView: hostView, statusBarHost: statusBarHost)
         if let traitCollection = window.rootViewController?.traitCollection {
@@ -646,7 +660,7 @@ private func extractAccountManagerState(records: AccountRecordsView<TelegramAcco
         
         guard let appGroupUrl = maybeAppGroupUrl else {
             self.mainWindow?.presentNative(UIAlertController(title: nil, message: "Error 2", preferredStyle: .alert))
-            return true
+            return
         }
         
         var isDebugConfiguration = false
@@ -714,7 +728,7 @@ private func extractAccountManagerState(records: AccountRecordsView<TelegramAcco
             }))
             self.mainWindow?.presentNative(alertController)
             
-            return true
+            return
         }
         
         let legacyLogs: [String] = [
@@ -1030,7 +1044,7 @@ private func extractAccountManagerState(records: AccountRecordsView<TelegramAcco
                 }
             })
 
-            return true
+            return
         }
 
         let pushRegistry = PKPushRegistry(queue: .main)
@@ -1671,7 +1685,6 @@ private func extractAccountManagerState(records: AccountRecordsView<TelegramAcco
             }
         })
                 
-        return true
     }
     
     private var backgroundSessionSourceDataDisposables: [String: Disposable] = [:]
@@ -3303,5 +3316,53 @@ final class UpdateSettings: Codable, Equatable {
     
     static func ==(lhs: UpdateSettings, rhs: UpdateSettings) -> Bool {
         return lhs.url == rhs.url
+    }
+}
+
+@objc(AppSceneDelegate) final class AppSceneDelegate: UIResponder, UIWindowSceneDelegate {
+    var window: UIWindow?
+
+    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+        guard let windowScene = scene as? UIWindowScene,
+              let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+
+        appDelegate.start(windowScene: windowScene)
+        self.window = appDelegate.window
+
+        for context in connectionOptions.urlContexts {
+            _ = appDelegate.application(UIApplication.shared, open: context.url)
+        }
+        if let userActivity = connectionOptions.userActivities.first {
+            _ = appDelegate.application(UIApplication.shared, continue: userActivity, restorationHandler: { _ in })
+        }
+        if let shortcutItem = connectionOptions.shortcutItem {
+            appDelegate.application(UIApplication.shared, performActionFor: shortcutItem, completionHandler: { _ in })
+        }
+    }
+
+    func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        for context in URLContexts {
+            _ = appDelegate.application(UIApplication.shared, open: context.url)
+        }
+    }
+
+    func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        _ = appDelegate.application(UIApplication.shared, continue: userActivity, restorationHandler: { _ in })
+    }
+
+    func windowScene(_ windowScene: UIWindowScene, performActionFor shortcutItem: UIApplicationShortcutItem, completionHandler: @escaping (Bool) -> Void) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            completionHandler(false)
+            return
+        }
+        appDelegate.application(UIApplication.shared, performActionFor: shortcutItem, completionHandler: completionHandler)
     }
 }

@@ -303,7 +303,17 @@ private final class NativeWindow: UIWindow, WindowHost {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
+
+        self.configureGestureRecognizers()
+    }
+
+    override init(windowScene: UIWindowScene) {
+        super.init(windowScene: windowScene)
+
+        self.configureGestureRecognizers()
+    }
+
+    private func configureGestureRecognizers() {
         if let gestureRecognizers = self.gestureRecognizers {
             for recognizer in gestureRecognizers {
                 recognizer.delaysTouchesBegan = false
@@ -371,8 +381,13 @@ private final class NativeWindow: UIWindow, WindowHost {
     }
 }
 
-public func nativeWindowHostView() -> (UIWindow & WindowHost, WindowHostView) {
-    let window = NativeWindow(frame: UIScreen.main.bounds)
+public func nativeWindowHostView(windowScene: UIWindowScene? = nil) -> (UIWindow & WindowHost, WindowHostView) {
+    let window: NativeWindow
+    if let windowScene = windowScene {
+        window = NativeWindow(windowScene: windowScene)
+    } else {
+        window = NativeWindow(frame: UIScreen.main.bounds)
+    }
     
     let rootViewController = WindowRootViewController()
     window.rootViewController = rootViewController

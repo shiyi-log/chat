@@ -1,0 +1,241 @@
+name: Desktop Debug Build
+
+on:
+  workflow_dispatch:
+    inputs:
+      platform:
+        description: Uses a self-hosted chat-desktop-build runner; macOS dependency preparation needs about 55 GB.
+        required: true
+        type: choice
+        options:
+          - linux
+          - macos
+          - windows
+
+permissions:
+  contents: read
+
+jobs:
+  linux:
+    name: Linux Debug (self-hosted)
+    if: inputs.platform == 'linux'
+    runs-on: [self-hosted, Linux, X64, chat-desktop-build]
+    timeout-minutes: 360
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Test Debug packaging helper
+        working-directory: clients/desktop
+        run: python scripts/test_package_desktop_debug.py
+
+      - name: Connect runner-local dependency cache
+        working-directory: clients/desktop
+        run: |
+          set -eu
+          cache_root="${RUNNER_WORKSPACE}/desktop-build-cache/chat/linux"
+          mkdir -p "${cache_root}/Libraries" "${cache_root}/ThirdParty"
+          for directory in Libraries ThirdParty; do
+            link="../${directory}"
+            target="${cache_root}/${directory}"
+            if [ -e "${link}" ] || [ -L "${link}" ]; then
+              if [ ! -L "${link}" ] || [ "$(readlink "${link}")" != "${target}" ]; then
+                echo "Refusing to replace unexpected dependency path: ${link}" >&2
+                exit 1
+              fi
+            else
+              ln -s "${target}" "${link}"
+            fi
+          done
+
+      - name: Prepare the Linux build image
+        working-directory: clients/desktop
+        run: |
+          python -m venv "${RUNNER_TEMP}/desktop-poetry"
+          "${RUNNER_TEMP}/desktop-poetry/bin/pip" install poetry
+          PATH="${RUNNER_TEMP}/desktop-poetry/bin:${PATH}" Telegram/build/prepare/linux.sh
+
+      - name: Build Linux Debug application
+        working-directory: clients/desktop
+        run: |
+          docker run --rm -i \
+            --user "$(id -u):$(id -g)" \
+            --volume "${PWD}:/usr/src/tdesktop" \
+            --volume "${RUNNER_WORKSPACE}/desktop-build-cache/chat/linux/Libraries:/usr/src/Libraries" \
+            --volume "${RUNNER_WORKSPACE}/desktop-build-cache/chat/linux/ThirdParty:/usr/src/ThirdParty" \
+            --workdir /usr/src/tdesktop \
+            --env CONFIG=Debug \
+            tdesktop:centos_env \
+            /usr/src/tdesktop/Telegram/build/docker/centos_env/build.sh \
+            -D TDESKTOP_API_TEST=ON
+
+      - name: Package Linux Debug application
+        working-directory: clients/desktop
+        run: >-
+          python scripts/package_desktop_debug.py
+          --platform linux
+          --build-dir out/Debug
+          --output "${RUNNER_TEMP}/chat-desktop-linux-debug-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.tar.gz"
+
+      - name: Upload Linux Debug artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: chat-desktop-linux-debug-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/chat-desktop-linux-debug-${{ github.run_id }}-${{ github.run_attempt }}.tar.gz
+            ${{ runner.temp }}/chat-desktop-linux-debug-${{ github.run_id }}-${{ github.run_attempt }}.tar.gz.manifest.json
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+
+  macos:
+    name: macOS Debug (self-hosted)
+    if: inputs.platform == 'macos'
+    runs-on: [self-hosted, macOS, ARM64, chat-desktop-build]
+    timeout-minutes: 360
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Test Debug packaging helper
+        working-directory: clients/desktop
+        run: python scripts/test_package_desktop_debug.py
+
+      - name: Connect runner-local dependency cache
+        working-directory: clients/desktop
+        run: |
+          set -eu
+          cache_root="${RUNNER_WORKSPACE}/desktop-build-cache/chat/macos"
+          mkdir -p "${cache_root}/Libraries" "${cache_root}/ThirdParty"
+          for directory in Libraries ThirdParty; do
+            link="../${directory}"
+            target="${cache_root}/${directory}"
+            if [ -e "${link}" ] || [ -L "${link}" ]; then
+              if [ ! -L "${link}" ] || [ "$(readlink "${link}")" != "${target}" ]; then
+                echo "Refusing to replace unexpected dependency path: ${link}" >&2
+                exit 1
+              fi
+            else
+              ln -s "${target}" "${link}"
+            fi
+          done
+
+      - name: Show Apple build toolchain
+        run: |
+          xcode-select -p
+          xcodebuild -version
+
+      - name: Prepare macOS Debug dependencies
+        working-directory: clients/desktop
+        run: Telegram/build/prepare/mac.sh skip-release silent
+
+      - name: Configure and build macOS Debug application
+        working-directory: clients/desktop
+        run: |
+          Telegram/configure.sh -D TDESKTOP_API_TEST=ON
+          cmake --build out --config Debug --target Telegram --parallel 4
+
+      - name: Package macOS Debug application
+        working-directory: clients/desktop
+        run: >-
+          python scripts/package_desktop_debug.py
+          --platform macos
+          --build-dir out/Debug
+          --output "${RUNNER_TEMP}/chat-desktop-macos-debug-${GITHUB_RUN_ID}-${GITHUB_RUN_ATTEMPT}.zip"
+
+      - name: Upload macOS Debug artifact and signature report
+        uses: actions/upload-artifact@v7
+        with:
+          name: chat-desktop-macos-debug-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/chat-desktop-macos-debug-${{ github.run_id }}-${{ github.run_attempt }}.zip
+            ${{ runner.temp }}/chat-desktop-macos-debug-${{ github.run_id }}-${{ github.run_attempt }}.zip.manifest.json
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0
+
+  windows:
+    name: Windows Debug (self-hosted)
+    if: inputs.platform == 'windows'
+    runs-on: [self-hosted, Windows, X64, chat-desktop-build]
+    timeout-minutes: 360
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+
+      - name: Test Debug packaging helper
+        working-directory: clients/desktop
+        run: python scripts/test_package_desktop_debug.py
+
+      - name: Connect runner-local dependency cache
+        working-directory: clients/desktop
+        shell: pwsh
+        run: |
+          $cacheRoot = Join-Path $env:RUNNER_WORKSPACE 'desktop-build-cache\chat\windows'
+          foreach ($directory in @('Libraries', 'ThirdParty')) {
+            $target = Join-Path $cacheRoot $directory
+            New-Item -ItemType Directory -Force -Path $target | Out-Null
+            $link = Join-Path $env:GITHUB_WORKSPACE "clients\$directory"
+            if (Test-Path -LiteralPath $link) {
+              $item = Get-Item -LiteralPath $link -Force
+              if ($item.LinkType -ne 'Junction' -or [IO.Path]::GetFullPath($item.Target) -ne [IO.Path]::GetFullPath($target)) {
+                throw "Refusing to replace unexpected dependency path: $link"
+              }
+            } else {
+              New-Item -ItemType Junction -Path $link -Target $target | Out-Null
+            }
+          }
+
+      - name: Prepare and build Windows Debug application
+        working-directory: clients/desktop
+        shell: cmd
+        run: |
+          for /f "usebackq tokens=*" %%i in (`"%ProgramFiles(x86)%\Microsoft Visual Studio\Installer\vswhere.exe" -latest -products * -property installationPath`) do set "VSINSTALL=%%i"
+          if not defined VSINSTALL exit /b 1
+          call "%VSINSTALL%\VC\Auxiliary\Build\vcvars64.bat" -vcvars_ver=14.44
+          if errorlevel 1 exit /b 1
+          call Telegram\build\prepare\win.bat skip-release silent
+          if errorlevel 1 exit /b 1
+          call Telegram\configure.bat x64 -D TDESKTOP_API_TEST=ON
+          if errorlevel 1 exit /b 1
+          cmake --build out --config Debug --target Telegram --parallel 4
+          if errorlevel 1 exit /b 1
+
+      - name: Package Windows Debug application
+        working-directory: clients/desktop
+        shell: pwsh
+        run: |
+          $output = "$env:RUNNER_TEMP/chat-desktop-windows-debug-$($env:GITHUB_RUN_ID)-$($env:GITHUB_RUN_ATTEMPT).zip"
+          python scripts/package_desktop_debug.py --platform windows --build-dir out/Debug --output $output
+
+      - name: Upload Windows Debug artifact and signature report
+        uses: actions/upload-artifact@v7
+        with:
+          name: chat-desktop-windows-debug-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            ${{ runner.temp }}/chat-desktop-windows-debug-${{ github.run_id }}-${{ github.run_attempt }}.zip
+            ${{ runner.temp }}/chat-desktop-windows-debug-${{ github.run_id }}-${{ github.run_attempt }}.zip.manifest.json
+          if-no-files-found: error
+          retention-days: 14
+          compression-level: 0

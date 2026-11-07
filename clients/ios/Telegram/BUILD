@@ -1654,6 +1654,23 @@ plist_fragment(
     <string>LaunchScreen</string>
     <key>UIRequiresPersistentWiFi</key>
     <true/>
+    <key>UIApplicationSceneManifest</key>
+    <dict>
+        <key>UIApplicationSupportsMultipleScenes</key>
+        <false/>
+        <key>UISceneConfigurations</key>
+        <dict>
+            <key>UIWindowSceneSessionRoleApplication</key>
+            <array>
+                <dict>
+                    <key>UISceneConfigurationName</key>
+                    <string>Chat Application Scene</string>
+                    <key>UISceneDelegateClassName</key>
+                    <string>AppSceneDelegate</string>
+                </dict>
+            </array>
+        </dict>
+    </dict>
     <key>UIStatusBarStyle</key>
     <string>UIStatusBarStyleDefault</string>
     <key>UISupportedInterfaceOrientations</key>

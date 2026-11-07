@@ -1,231 +1,112 @@
 package test
 
 import (
-	"io/ioutil"
-	"os/exec"
-	"sync"
+	"io"
+	"os"
+	"path/filepath"
 	"testing"
 
-	"github.com/stretchr/testify/assert"
+	"github.com/stretchr/testify/require"
 
 	"github.com/teamgram/teamgram-server/pkg/goffmpeg/transcoder"
 )
 
 func TestInputNotFound(t *testing.T) {
+	requireFFmpegTools(t)
 
-	var inputPath = "/tmp/ffmpeg/nf"
-	var outputPath = "/tmp/ffmpeg/out/nf.mp4"
-
-	trans := new(transcoder.Transcoder)
-
-	err := trans.Initialize(inputPath, outputPath)
-	assert.NotNil(t, err)
+	inputPath := filepath.Join(t.TempDir(), "missing")
+	outputPath := filepath.Join(t.TempDir(), "out.mp4")
+	err := new(transcoder.Transcoder).Initialize(inputPath, outputPath)
+	require.Error(t, err)
 }
 
-func TestTranscoding3GP(t *testing.T) {
+func runTranscoding(t *testing.T, fixtureName string, progress bool) {
+	t.Helper()
 
-	var inputPath = "/tmp/ffmpeg/3gp"
-	var outputPath = "/tmp/ffmpeg/out/3gp.mp4"
-
-	trans := new(transcoder.Transcoder)
-
-	err := trans.Initialize(inputPath, outputPath)
-	assert.Nil(t, err)
-
-	done := trans.Run(false)
-	err = <-done
-	assert.Nil(t, err)
-}
-
-func TestTranscodingAVI(t *testing.T) {
-
-	var inputPath = "/tmp/ffmpeg/avi"
-	var outputPath = "/tmp/ffmpeg/out/avi.mp4"
+	inputPath := mediaFixture(t, fixtureName)
+	requireFFmpegTools(t)
+	outputPath := filepath.Join(t.TempDir(), fixtureName+".mp4")
 
 	trans := new(transcoder.Transcoder)
+	require.NoError(t, trans.Initialize(inputPath, outputPath))
 
-	err := trans.Initialize(inputPath, outputPath)
-	assert.Nil(t, err)
-
-	done := trans.Run(false)
-	err = <-done
-	assert.Nil(t, err)
-}
-
-func TestTranscodingFLV(t *testing.T) {
-
-	var inputPath = "/tmp/ffmpeg/flv"
-	var outputPath = "/tmp/ffmpeg/out/flv.mp4"
-
-	trans := new(transcoder.Transcoder)
-
-	err := trans.Initialize(inputPath, outputPath)
-	assert.Nil(t, err)
-
-	done := trans.Run(false)
-	err = <-done
-	assert.Nil(t, err)
-}
-
-func TestTranscodingMKV(t *testing.T) {
-
-	var inputPath = "/tmp/ffmpeg/mkv"
-	var outputPath = "/tmp/ffmpeg/out/mkv.mp4"
-
-	trans := new(transcoder.Transcoder)
-
-	err := trans.Initialize(inputPath, outputPath)
-	assert.Nil(t, err)
-
-	done := trans.Run(false)
-	err = <-done
-	assert.Nil(t, err)
-}
-
-func TestTranscodingMOV(t *testing.T) {
-
-	var inputPath = "/tmp/ffmpeg/mov"
-	var outputPath = "/tmp/ffmpeg/out/mov.mp4"
-
-	trans := new(transcoder.Transcoder)
-
-	err := trans.Initialize(inputPath, outputPath)
-	assert.Nil(t, err)
-
-	done := trans.Run(false)
-	err = <-done
-	assert.Nil(t, err)
-}
-
-func TestTranscodingMPEG(t *testing.T) {
-
-	var inputPath = "/tmp/ffmpeg/mpeg"
-	var outputPath = "/tmp/ffmpeg/out/mpeg.mp4"
-
-	trans := new(transcoder.Transcoder)
-
-	err := trans.Initialize(inputPath, outputPath)
-	assert.Nil(t, err)
-
-	done := trans.Run(false)
-	err = <-done
-	assert.Nil(t, err)
-}
-
-func TestTranscodingOGG(t *testing.T) {
-
-	var inputPath = "/tmp/ffmpeg/ogg"
-	var outputPath = "/tmp/ffmpeg/out/ogg.mp4"
-
-	trans := new(transcoder.Transcoder)
-
-	err := trans.Initialize(inputPath, outputPath)
-	assert.Nil(t, err)
-
-	done := trans.Run(false)
-	err = <-done
-	assert.Nil(t, err)
-}
-
-func TestTranscodingWAV(t *testing.T) {
-
-	var inputPath = "/tmp/ffmpeg/wav"
-	var outputPath = "/tmp/ffmpeg/out/wav.mp4"
-
-	trans := new(transcoder.Transcoder)
-
-	err := trans.Initialize(inputPath, outputPath)
-	assert.Nil(t, err)
-
-	done := trans.Run(false)
-	err = <-done
-	assert.Nil(t, err)
-}
-
-func TestTranscodingWEBM(t *testing.T) {
-
-	var inputPath = "/tmp/ffmpeg/webm"
-	var outputPath = "/tmp/ffmpeg/out/webm.mp4"
-
-	trans := new(transcoder.Transcoder)
-
-	err := trans.Initialize(inputPath, outputPath)
-	assert.Nil(t, err)
-
-	done := trans.Run(false)
-	err = <-done
-	assert.Nil(t, err)
-}
-
-func TestTranscodingWMV(t *testing.T) {
-
-	var inputPath = "/tmp/ffmpeg/wmv"
-	var outputPath = "/tmp/ffmpeg/out/wmv.mp4"
-
-	trans := new(transcoder.Transcoder)
-
-	err := trans.Initialize(inputPath, outputPath)
-	assert.Nil(t, err)
-
-	done := trans.Run(false)
-	err = <-done
-	assert.Nil(t, err)
-}
-
-func TestTranscodingProgress(t *testing.T) {
-
-	var inputPath = "/tmp/ffmpeg/avi"
-	var outputPath = "/tmp/ffmpeg/out/avi.mp4"
-
-	trans := new(transcoder.Transcoder)
-
-	err := trans.Initialize(inputPath, outputPath)
-	assert.Nil(t, err)
-
-	done := trans.Run(true)
-	for val := range trans.Output() {
-		if &val != nil {
-			break
+	done := trans.Run(progress)
+	if progress {
+		for range trans.Output() {
 		}
 	}
+	require.NoError(t, <-done)
 
-	err = <-done
-	assert.Nil(t, err)
+	output, err := os.Stat(outputPath)
+	require.NoError(t, err)
+	require.Greater(t, output.Size(), int64(0))
+}
+
+func TestTranscoding3GP(t *testing.T)  { runTranscoding(t, "3gp", false) }
+func TestTranscodingAVI(t *testing.T)  { runTranscoding(t, "avi", false) }
+func TestTranscodingFLV(t *testing.T)  { runTranscoding(t, "flv", false) }
+func TestTranscodingMKV(t *testing.T)  { runTranscoding(t, "mkv", false) }
+func TestTranscodingMOV(t *testing.T)  { runTranscoding(t, "mov", false) }
+func TestTranscodingMPEG(t *testing.T) { runTranscoding(t, "mpeg", false) }
+func TestTranscodingOGG(t *testing.T)  { runTranscoding(t, "ogg", false) }
+func TestTranscodingWAV(t *testing.T)  { runTranscoding(t, "wav", false) }
+func TestTranscodingWEBM(t *testing.T) { runTranscoding(t, "webm", false) }
+func TestTranscodingWMV(t *testing.T)  { runTranscoding(t, "wmv", false) }
+
+func TestTranscodingProgress(t *testing.T) {
+	runTranscoding(t, "avi", true)
 }
 
 func TestTranscodePipes(t *testing.T) {
-	c1 := exec.Command("cat", "/tmp/ffmpeg/mkv")
+	inputPath := mediaFixture(t, "mkv")
+	requireFFmpegTools(t)
 
 	trans := new(transcoder.Transcoder)
+	require.NoError(t, trans.InitializeEmptyTranscoder())
 
-	err := trans.InitializeEmptyTranscoder()
-	assert.Nil(t, err)
+	input, err := os.Open(inputPath)
+	require.NoError(t, err)
+	defer input.Close()
 
-	w, err := trans.CreateInputPipe()
-	assert.Nil(t, err)
-	c1.Stdout = w
+	inputPipe, err := trans.CreateInputPipe()
+	require.NoError(t, err)
+	outputPipe, err := trans.CreateOutputPipe("mp4")
+	require.NoError(t, err)
 
-	r, err := trans.CreateOutputPipe("mp4")
-	assert.Nil(t, err)
-
-	wg := &sync.WaitGroup{}
-	wg.Add(1)
+	writeDone := make(chan error, 1)
 	go func() {
-		_, err := ioutil.ReadAll(r)
-		assert.Nil(t, err)
-
-		r.Close()
-		wg.Done()
+		_, copyErr := io.Copy(inputPipe, input)
+		closeErr := inputPipe.Close()
+		if copyErr == nil {
+			copyErr = closeErr
+		}
+		writeDone <- copyErr
 	}()
 
+	type outputResult struct {
+		bytes int64
+		err   error
+	}
+	readDone := make(chan outputResult, 1)
 	go func() {
-		err := c1.Run()
-		assert.Nil(t, err)
-		w.Close()
+		written, copyErr := io.Copy(io.Discard, outputPipe)
+		closeErr := outputPipe.Close()
+		if copyErr == nil {
+			copyErr = closeErr
+		}
+		readDone <- outputResult{bytes: written, err: copyErr}
 	}()
-	done := trans.Run(false)
-	err = <-done
-	assert.Nil(t, err)
 
-	wg.Wait()
+	runErr := <-trans.Run(false)
+	if runErr != nil {
+		_ = inputPipe.CloseWithError(runErr)
+		_ = outputPipe.CloseWithError(runErr)
+	}
+	writeErr := <-writeDone
+	output := <-readDone
+
+	require.NoError(t, runErr)
+	require.NoError(t, writeErr)
+	require.NoError(t, output.err)
+	require.Greater(t, output.bytes, int64(0))
 }

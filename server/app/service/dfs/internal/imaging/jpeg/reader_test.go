@@ -22,24 +22,24 @@ import (
 // space for color images, and Y space for grayscale images.
 func TestDecodeProgressive(t *testing.T) {
 	testCases := []string{
-		"../testdata/video-001",
-		"../testdata/video-001.q50.410",
-		"../testdata/video-001.q50.411",
-		"../testdata/video-001.q50.420",
-		"../testdata/video-001.q50.422",
-		"../testdata/video-001.q50.440",
-		"../testdata/video-001.q50.444",
-		"../testdata/video-005.gray.q50",
-		"../testdata/video-005.gray.q50.2x2",
-		"../testdata/video-001.separate.dc.progression",
+		"video-001",
+		"video-001.q50.410",
+		"video-001.q50.411",
+		"video-001.q50.420",
+		"video-001.q50.422",
+		"video-001.q50.440",
+		"video-001.q50.444",
+		"video-005.gray.q50",
+		"video-005.gray.q50.2x2",
+		"video-001.separate.dc.progression",
 	}
 	for _, tc := range testCases {
-		m0, err := decodeFile(tc + ".jpeg")
+		m0, err := decodeFile(jpegFixturePath(t, tc+".jpeg"))
 		if err != nil {
 			t.Errorf("%s: %v", tc+".jpeg", err)
 			continue
 		}
-		m1, err := decodeFile(tc + ".progressive.jpeg")
+		m1, err := decodeFile(jpegFixturePath(t, tc+".progressive.jpeg"))
 		if err != nil {
 			t.Errorf("%s: %v", tc+".progressive.jpeg", err)
 			continue
@@ -116,7 +116,7 @@ func (r *eofReader) Read(b []byte) (n int, err error) {
 
 func TestDecodeEOF(t *testing.T) {
 	// Check that if reader returns final data and EOF at same time, jpeg handles it.
-	data, err := os.ReadFile("../testdata/video-001.jpeg")
+	data, err := os.ReadFile(jpegFixturePath(t, "video-001.jpeg"))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -187,7 +187,7 @@ func pixString(pix []byte, stride, x, y int) string {
 }
 
 func TestTruncatedSOSDataDoesntPanic(t *testing.T) {
-	b, err := os.ReadFile("../testdata/video-005.gray.q50.jpeg")
+	b, err := os.ReadFile(jpegFixturePath(t, "video-005.gray.q50.jpeg"))
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -339,9 +339,9 @@ func benchmarkDecode(b *testing.B, filename string) {
 }
 
 func BenchmarkDecodeBaseline(b *testing.B) {
-	benchmarkDecode(b, "../testdata/video-001.jpeg")
+	benchmarkDecode(b, jpegFixturePath(b, "video-001.jpeg"))
 }
 
 func BenchmarkDecodeProgressive(b *testing.B) {
-	benchmarkDecode(b, "../testdata/video-001.progressive.jpeg")
+	benchmarkDecode(b, jpegFixturePath(b, "video-001.progressive.jpeg"))
 }
