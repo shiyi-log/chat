@@ -373,8 +373,27 @@ class ChatDesktopBrandingTests(unittest.TestCase):
             "parse-info: [usr/share/metainfo/com.privatechat.desktop.metainfo.xml]",
             snapcraft,
         )
-        self.assertIn('mv "$CRAFT_PART_INSTALL"/usr/bin/{Chat,telegram-desktop}', snapcraft)
+        self.assertIn("name: chat-shiyi-log", snapcraft)
+        self.assertIn("  chat:\n    command: usr/bin/Chat", snapcraft)
+        self.assertIn("common-id: com.privatechat.desktop", snapcraft)
+        self.assertNotIn("org.telegram.desktop", snapcraft)
+        self.assertNotIn("telegram-desktop", snapcraft)
         self.assertIn("APP_ID=com.privatechat.desktop", snapcraft)
+
+    def test_desktop_confirmation_and_authorization_surfaces_use_chat_brand(self):
+        authorization = read_text("Telegram/SourceFiles/api/api_authorizations.cpp")
+        external_control = read_text("Telegram/SourceFiles/core/external_control.cpp")
+
+        self.assertIn('u"Chat Desktop%1"_q', authorization)
+        self.assertNotIn("Telegram Desktop%1", authorization)
+        self.assertIn('u"本地自动化"_q', external_control)
+        self.assertIn('{ u"启用"_q, enable }', external_control)
+        self.assertIn('{ u"取消"_q, cancel }', external_control)
+        self.assertIn('{ u"不确定"_q, cancel }', external_control)
+        self.assertIn("Chat 桌面端", external_control)
+        self.assertIn("Chat 窗口", external_control)
+        self.assertNotIn('u"Telegram Desktop over the local socket', external_control)
+        self.assertNotIn('u"Telegram window to enable"', external_control)
 
     def test_windows_package_and_update_paths_match_chat_executable(self):
         manifest = ET.parse(ROOT / "Telegram/Resources/uwp/AppX/AppxManifest.xml")

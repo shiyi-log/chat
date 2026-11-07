@@ -43,7 +43,7 @@ void FillAutomationConfirmBox(
 		not_null<Ui::GenericBox*> box,
 		const QString &text,
 		Fn<void()> enable) {
-	box->setTitle(rpl::single(u"Local automation"_q));
+	box->setTitle(rpl::single(u"本地自动化"_q));
 	box->addRow(object_ptr<Ui::FlatLabel>(
 		box,
 		rpl::single(text),
@@ -57,9 +57,9 @@ void FillAutomationConfirmBox(
 		Fn<void()> callback;
 	};
 	auto entries = std::vector<Entry>{
-		{ u"Enable"_q, enable },
-		{ u"Cancel"_q, cancel },
-		{ u"Not sure"_q, cancel },
+		{ u"启用"_q, enable },
+		{ u"取消"_q, cancel },
+		{ u"不确定"_q, cancel },
 	};
 	for (auto i = int(entries.size()) - 1; i > 0; --i) {
 		std::swap(entries[i], entries[base::RandomIndex(i + 1)]);
@@ -96,8 +96,7 @@ void RequestEnableAutomation() {
 		current = box.get();
 		FillAutomationConfirmBox(
 			box,
-			u"Just to be sure — confirm once more to enable local "
-			u"automation."_q,
+			u"请再次确认是否启用本地自动化。"_q,
 			[=] {
 				Core::App().settings().writePref<bool>(
 					kAutomationKey,
@@ -109,11 +108,8 @@ void RequestEnableAutomation() {
 		current = box.get();
 		FillAutomationConfirmBox(
 			box,
-			u"An external program is trying to control "
-			u"Telegram Desktop over the local socket — read open "
-			u"windows and activate them.\n\nEnable local "
-			u"automation? While it is on, anything running under your "
-			u"user account can control the app."_q,
+			u"有外部程序正通过本地套接字尝试控制 Chat 桌面端，以读取已打开的窗口并激活窗口。\n\n"
+			u"启用本地自动化后，当前用户帐户下运行的程序都可以控制此应用。"_q,
 			[=] {
 				box->closeBox();
 				show->showBox(Box(second));
@@ -218,8 +214,7 @@ QByteArray HandleExternalControl(const QString &command) {
 		return Error(u"application is not launched"_q);
 	} else if (!AutomationEnabled()) {
 		RequestEnableAutomation();
-		return Error(u"local automation is disabled — confirm in the "
-			u"Telegram window to enable"_q);
+		return Error(u"本地自动化已关闭，请在 Chat 窗口中确认后启用"_q);
 	} else if (command == u"automation-off"_q) { // TEMP test helper.
 		Core::App().settings().writePref<bool>(kAutomationKey, false);
 		auto object = QJsonObject();
