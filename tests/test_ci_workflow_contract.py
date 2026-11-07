@@ -142,7 +142,7 @@ class CiWorkflowContractTest(unittest.TestCase):
         commands = "\n".join(step.get("run", "") for step in ios["steps"])
         artifact = next(step for step in ios["steps"] if step.get("name") == "Upload unsigned iOS simulator preview")
 
-        self.assertEqual("macos-26", ios["runs-on"])
+        self.assertEqual("xcode-27", ios["runs-on"])
         self.assertIn("generateProject", commands)
         self.assertIn("xcodebuild", commands)
         self.assertIn("-sdk iphonesimulator", commands)
