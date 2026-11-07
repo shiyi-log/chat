@@ -213,6 +213,32 @@ class ChatBrandingLocalizationTests(unittest.TestCase):
                     f"format placeholders differ for {key}",
                 )
 
+    def test_common_message_actions_are_local_and_format_compatible(self):
+        chat = ROOT / "TMessagesProj/src/main/java/org/telegram/ui/ChatActivity.java"
+        source = chat.read_text(encoding="utf-8")
+        referenced = set(re.findall(r"R[.]string[.]([A-Za-z0-9_]+)", source))
+        keys = {
+            "BlockContact", "ClearAllHistory", "Copy", "CopyHashtag", "DeleteAndBlock",
+            "DeleteAndExit", "DeleteChatUser", "DeleteFromFavorites", "DeleteThisChat",
+            "DeleteThisGroup", "EditCaption", "EditMessageError", "Forward",
+            "ForwardingFromNames", "JumpToDate", "MessageNotFound", "MessageScheduleEditTime",
+            "MessageScheduleSend", "MessageScheduledOn", "MessageScheduledUntilOnline",
+            "OpenInstantView", "PinMessageAlert", "PinMessageAlertChannel", "PinMessageAlertChat",
+            "PinMessageAlertTitle", "PinNotify", "PinnedMessage", "ReplyTo", "ReplyToPoll",
+            "ReplyToPollIn", "ReplyToQuote", "ReplyToTask", "ReplyToTaskIn", "ReportChat",
+            "ReportMessagesNoCaps", "ReportSelectMessages",
+        }
+        self.assertFalse(keys - referenced, "the required message actions must be used in ChatActivity")
+        missing = keys - self.chinese.keys()
+        self.assertFalse(missing, f"missing chat action Chinese strings: {sorted(missing)}")
+        for key in keys:
+            with self.subTest(key=key):
+                self.assertEqual(
+                    sorted(FORMATS.findall(self.english[key])),
+                    sorted(FORMATS.findall(self.chinese[key])),
+                    f"format placeholders differ for {key}",
+                )
+
     def test_default_install_uses_chat_brand_while_preserving_upstream_domain_names(self):
         self.assertEqual("Chat", self.english["AppName"])
         self.assertEqual("Chat Beta", self.english["AppNameBeta"])
