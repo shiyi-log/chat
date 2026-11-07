@@ -170,6 +170,7 @@
 "lng_attach_document" = "文档";
 "lng_attach_photo_or_video" = "图片或视频";
 "lng_attach_profile_emoji" = "使用表情";
+"lng_mime_type_chat_sticker" = "Chat 贴纸（*.tgs）";
 
 "lng_send_button" = "发送";
 "lng_send_silent_message" = "静音发送";

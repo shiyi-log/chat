@@ -5076,6 +5076,7 @@ https://github.com/telegramdesktop/tdesktop/blob/master/LEGAL
 "lng_save_audio" = "Save voice message";
 "lng_save_file" = "Save File";
 "lng_save_downloaded" = "{ready} / {total} {mb}";
+"lng_mime_type_chat_sticker" = "Chat sticker (*.tgs)";
 "lng_duration_and_size" = "{duration}, {size}";
 "lng_duration_played" = "{played} / {duration}";
 "lng_date_and_duration" = "{date}, {duration}";

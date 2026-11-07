@@ -573,6 +573,30 @@ class ChatDesktopBrandingTests(unittest.TestCase):
         self.assertIn("M53,17h26", serialized)
         self.assertIn("M17,28h42", serialized)
 
+    def test_secondary_user_visible_surfaces_use_chat_branding(self):
+        webview = read_text("Telegram/Resources/bot_webview_shell_html/page.js")
+        linux_shell = read_text(
+            "Telegram/SourceFiles/ui/chat/attach/attach_bot_webview_linux_shell.cpp"
+        )
+        recorder = read_text("Telegram/SourceFiles/ui/controls/round_video_recorder.cpp")
+        mime_types = read_text("Telegram/SourceFiles/core/mime_type.cpp")
+        file_utilities = read_text("Telegram/SourceFiles/core/file_utilities.cpp")
+        base_language = read_strings("Telegram/Resources/langs/lang.strings")
+        chinese_language = read_strings("Telegram/Resources/langs/zh-Hans.strings")
+
+        self.assertNotIn("|| 'Telegram'", webview)
+        self.assertIn("|| 'Chat'", webview)
+        self.assertNotIn("document.title = 'Telegram';", linux_shell)
+        self.assertIn("document.title = 'Chat';", linux_shell)
+        self.assertIn('u"Chat"_q.toUpper()', recorder)
+        self.assertNotIn('u"Telegram"_q.toUpper()', recorder)
+        self.assertIn('tr::lng_mime_type_chat_sticker(tr::now)', mime_types)
+        self.assertNotIn('u"Telegram sticker (*.tgs)"_q', mime_types)
+        self.assertEqual(base_language["lng_mime_type_chat_sticker"], "Chat sticker (*.tgs)")
+        self.assertEqual(chinese_language["lng_mime_type_chat_sticker"], "Chat 贴纸（*.tgs）")
+        self.assertIn('return u"Chat Lite"_q;', file_utilities)
+        self.assertNotIn('return u"Telegram Lite"_q;', file_utilities)
+
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
