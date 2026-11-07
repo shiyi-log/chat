@@ -3,6 +3,7 @@ import re
 import shutil
 import struct
 import subprocess
+import sys
 import tempfile
 import unittest
 import zlib
@@ -230,6 +231,10 @@ print(InitialLocalization.startButtonTitle(for: "zh-hans"))
 print(InitialLocalization.startButtonTitle(for: "zh-hant"))
 print(InitialLocalization.code(for: [\"zh-CN\"], existingLanguageCode: \"en\"))
 print(InitialLocalization.code(for: [\"en-US\"], existingLanguageCode: \"fr\"))
+print(InitialLocalization.shouldUseBundledStrings(languageCode: \"zh-hans\", existingLanguageCode: nil))
+print(InitialLocalization.shouldUseBundledStrings(languageCode: \"zh-Hans\", existingLanguageCode: \"en\"))
+print(InitialLocalization.shouldUseBundledStrings(languageCode: \"zh-hant\", existingLanguageCode: nil))
+print(InitialLocalization.shouldUseBundledStrings(languageCode: \"en\", existingLanguageCode: nil))
 """
         with tempfile.TemporaryDirectory() as directory:
             source = Path(directory) / "main.swift"
@@ -243,9 +248,172 @@ print(InitialLocalization.code(for: [\"en-US\"], existingLanguageCode: \"fr\"))
             )
             result = subprocess.run([str(binary)], check=True, capture_output=True, text=True)
         self.assertEqual(
-            "zh-hans\nzh-hant\nzh-hans\nzh-hans\nzh-Hans\nzh-Hant\nStart Messaging\n开始聊天\n開始聊天\nen\nfr\n",
+            "zh-hans\nzh-hant\nzh-hans\nzh-hans\nzh-Hans\nzh-Hant\nStart Messaging\n开始聊天\n開始聊天\nen\nfr\ntrue\nfalse\nfalse\nfalse\n",
             result.stdout,
         )
+
+    def test_default_presentation_strings_use_bundled_simplified_chinese_with_english_fallback(self):
+        default_strings = (
+            ROOT / "submodules/TelegramPresentationData/Sources/DefaultPresentationStrings.swift"
+        ).read_text(encoding="utf-8")
+        self.assertIn('languageCode: "zh-hans"', default_strings)
+        self.assertIn('forLocalization: "zh-Hans"', default_strings)
+
+        build = (ROOT / "Telegram/BUILD").read_text(encoding="utf-8")
+        self.assertIn('"Telegram-iOS/zh-Hans.lproj/Localizable.strings"', build)
+
+        simplified = parse_strings_file(
+            (IOS_APP / "zh-Hans.lproj/Localizable.strings").read_text(encoding="utf-8")
+        )
+        english = parse_strings_file(
+            (IOS_APP / "en.lproj/Localizable.strings").read_text(encoding="utf-8")
+        )
+        self.assertEqual("你的手机号", simplified["Login.PhoneTitle"])
+        self.assertEqual("Settings", english["Settings.Title"])
+
+        generator = (ROOT / "build-system/GenerateStrings/GenerateStrings.py").read_text(
+            encoding="utf-8"
+        )
+        single_lookup = generator.split("static NSString * _Nonnull getSingle(", 1)[1].split(
+            "static NSString * _Nonnull getSingleIndirect(", 1
+        )[0]
+        self.assertIn("strings.primaryComponent.dict[key]", single_lookup)
+        self.assertIn("fallbackDict[key]", single_lookup)
+
+        if sys.platform != "darwin":
+            return
+
+        swift = shutil.which("swiftc")
+        clang = shutil.which("clang")
+        if swift is None or clang is None:
+            self.skipTest("Swift and Clang are required for the strings runtime harness")
+
+        with tempfile.TemporaryDirectory() as directory:
+            work = Path(directory)
+            bundle = work / "Localization.bundle"
+            bundle.mkdir()
+            (bundle / "Info.plist").write_text(
+                '<?xml version="1.0" encoding="UTF-8"?>'
+                '<plist version="1.0"><dict><key>CFBundleIdentifier</key>'
+                '<string>chat.localization.tests</string></dict></plist>',
+                encoding="utf-8",
+            )
+            for language in ("en", "zh-Hans"):
+                destination = bundle / f"{language}.lproj"
+                destination.mkdir()
+                shutil.copyfile(
+                    IOS_APP / f"{language}.lproj/Localizable.strings",
+                    destination / "Localizable.strings",
+                )
+
+            include = work / "include"
+            headers = include / "PresentationStrings"
+            headers.mkdir(parents=True)
+            generated = work / "PresentationStrings.m"
+            header = headers / "PresentationStrings.h"
+            subprocess.run(
+                [
+                    "python3", str(ROOT / "build-system/GenerateStrings/GenerateStrings.py"),
+                    "--source", str(IOS_APP / "en.lproj/Localizable.strings"),
+                    "--outImplementation", str(generated),
+                    "--outHeader", str(header),
+                    "--outData", str(bundle / "PresentationStrings.data"),
+                ],
+                check=True, capture_output=True, text=True,
+            )
+            app_bundle = include / "AppBundle"
+            app_bundle.mkdir()
+            (app_bundle / "AppBundle.h").write_text(
+                '#import <Foundation/Foundation.h>\nNSBundle * _Nonnull getAppBundle(void);\n',
+                encoding="utf-8",
+            )
+            (include / "module.modulemap").write_text(
+                'module PresentationStrings { header "PresentationStrings/PresentationStrings.h" export * }\n'
+                'module AppBundle { header "AppBundle/AppBundle.h" export * }\n',
+                encoding="utf-8",
+            )
+            bundle_source = work / "AppBundle.m"
+            bundle_source.write_text(
+                '#import <AppBundle/AppBundle.h>\n'
+                f'NSBundle *getAppBundle(void) {{ return [NSBundle bundleWithPath:@"{bundle}"]; }}\n',
+                encoding="utf-8",
+            )
+            pluralization = ROOT / "submodules/NumberPluralizationForm"
+            objects = []
+            for index, source in enumerate(
+                (generated, bundle_source, pluralization / "Sources/NumberPluralizationForm.m")
+            ):
+                output = work / f"runtime-{index}.o"
+                subprocess.run(
+                    [clang, "-fobjc-arc", "-fmodules", "-I", str(include),
+                     "-I", str(pluralization / "PublicHeaders"), "-c", str(source), "-o", str(output)],
+                    check=True, capture_output=True, text=True,
+                )
+                objects.append(str(output))
+
+            harness = work / "main.swift"
+            harness.write_text(
+                'import Foundation\n'
+                'print(defaultPresentationStrings.primaryComponent.languageCode)\n'
+                'print(defaultPresentationStrings.Login_PhoneTitle)\n'
+                'var dict = defaultPresentationStrings.primaryComponent.dict\n'
+                'dict.removeValue(forKey: "Settings.Title")\n'
+                'let strings = PresentationStrings(primaryComponent: PresentationStrings.Component('
+                'languageCode: "zh-hans", localizedName: "简体中文", pluralizationRulesCode: nil, '
+                'dict: dict), secondaryComponent: nil, groupingSeparator: "")\n'
+                'print(strings.Settings_Title)\n',
+                encoding="utf-8",
+            )
+            binary = work / "localization-runtime"
+            subprocess.run(
+                [swift, "-I", str(include),
+                 str(ROOT / "submodules/TelegramPresentationData/Sources/DefaultPresentationStrings.swift"),
+                 str(harness), *objects, "-framework", "Foundation", "-o", str(binary)],
+                check=True, capture_output=True, text=True,
+            )
+            result = subprocess.run([str(binary)], check=True, capture_output=True, text=True)
+            self.assertEqual("zh-hans\n你的手机号\nSettings\n", result.stdout)
+
+    def test_first_simplified_chinese_start_uses_local_strings_without_waiting_for_remote_language(self):
+        helper = (
+            ROOT / "submodules/AuthorizationUI/Sources/InitialLocalization.swift"
+        ).read_text(encoding="utf-8")
+        self.assertIn("shouldUseBundledStrings", helper)
+
+        splash = (
+            ROOT / "submodules/AuthorizationUI/Sources/AuthorizationSequenceSplashController.swift"
+        ).read_text(encoding="utf-8")
+        activation = splash.split("private func activateLocalization(", 1)[1].split(
+            "private func pressNext(", 1
+        )[0]
+        local_path = activation.split("shouldUseBundledStrings", 1)[1].split(
+            "let suggestedCode", 1
+        )[0]
+        self.assertIn("pressNext(strings: defaultPresentationStrings)", local_path)
+        self.assertIn("return", local_path)
+
+    def test_managed_localization_updates_skip_missing_settings_without_english_requests_or_writes(self):
+        source = (
+            ROOT
+            / "submodules/TelegramCore/Sources/State/ManagedLocalizationUpdatesOperations.swift"
+        ).read_text(encoding="utf-8")
+        self.assertRegex(
+            source,
+            r"func getLocalization\(.*?\)\s*->\s*\(.*?\)\?\s*\{",
+        )
+        self.assertNotIn('return (primary: ("en", 0, [])', source)
+        self.assertNotIn(
+            'LocalizationComponent(languageCode: "en", localizedName: "English"', source
+        )
+
+        synchronize = source.split("private func synchronizeLocalizationUpdates(", 1)[1].split(
+            "func tryApplyingLanguageDifference(", 1
+        )[0]
+        self.assertIn("guard let (primary, secondary) = getLocalization(transaction)", synchronize)
+        self.assertIn("return .fail(.done)", synchronize)
+        self.assertIn("return .fail(Void())", synchronize)
+        self.assertIn("var currentSettings = transaction.getSharedData", synchronize)
+        self.assertIn("guard let (primary, _) = getLocalization(transaction)", synchronize)
 
     def test_startup_continues_when_the_preferred_language_download_fails(self):
         source = (
@@ -261,6 +429,23 @@ print(InitialLocalization.code(for: [\"en-US\"], existingLanguageCode: \"fr\"))
         self.assertIn("controller.isEnabled = true", error_callback.group("body"))
         self.assertIn("startButton.alpha = 1.0", error_callback.group("body"))
         self.assertIn("pressNext(strings: nil)", error_callback.group("body"))
+
+    def test_configuration_poll_does_not_schedule_language_updates_without_settings(self):
+        source = (
+            ROOT / "submodules/TelegramCore/Sources/State/ManagedConfigurationUpdates.swift"
+        ).read_text(encoding="utf-8")
+        self.assertIn("guard let (primary, secondary) = getLocalization(transaction)", source)
+        self.assertRegex(
+            source,
+            r"guard let \(primary, secondary\) = getLocalization\(transaction\) else \{\s*return \.complete\(\)",
+        )
+
+    def test_explicit_english_selection_applies_settings_on_first_launch(self):
+        source = (
+            ROOT / "submodules/AuthorizationUI/Sources/AuthorizationSequenceSplashController.swift"
+        ).read_text(encoding="utf-8")
+        self.assertNotIn('(currentCode ?? "en") == code', source)
+        self.assertIn("if currentCode == code", source)
 
     def test_bazel_generated_app_url_schemes_use_private_chat_brand(self):
         import plistlib

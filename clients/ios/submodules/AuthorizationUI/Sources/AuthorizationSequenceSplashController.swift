@@ -198,60 +198,72 @@ public final class AuthorizationSequenceSplashController: ViewController {
                 return nil
             }
         }
-        let suggestedCode = self.suggestedLocalization.get()
-        |> map { localization -> String? in
-            return localization?.availableLocalizations.first?.languageCode
-        }
-        
-        let _ = (combineLatest(currentCode, suggestedCode)
+        let _ = (currentCode
         |> take(1)
-        |> deliverOnMainQueue).start(next: { [weak self] currentCode, suggestedCode in
+        |> deliverOnMainQueue).start(next: { [weak self] currentCode in
             guard let strongSelf = self else {
                 return
             }
 
             let code = preserveExistingLanguage ? InitialLocalization.code(for: Locale.preferredLanguages, existingLanguageCode: currentCode) : requestedCode
-            
-            if let suggestedCode = suggestedCode {
-                _ = TelegramEngineUnauthorized(account: strongSelf.account).localization.markSuggestedLocalizationAsSeenInteractively(languageCode: suggestedCode).start()
-            }
-            
-            if (currentCode ?? "en") == code {
-                strongSelf.pressNext(strings: nil)
+
+            if InitialLocalization.shouldUseBundledStrings(languageCode: code, existingLanguageCode: currentCode) {
+                strongSelf.pressNext(strings: defaultPresentationStrings)
                 return
             }
-            
-            strongSelf.controller.isEnabled = false
-            strongSelf.startButton.alpha = 0.6
-            let accountManager = strongSelf.accountManager
-            
-            strongSelf.activateLocalizationDisposable.set(TelegramEngineUnauthorized(account: strongSelf.account).localization.downloadAndApplyLocalization(accountManager: accountManager, languageCode: code).start(error: { [weak self] _ in
+
+            let suggestedCode = strongSelf.suggestedLocalization.get()
+            |> map { localization -> String? in
+                return localization?.availableLocalizations.first?.languageCode
+            }
+            let _ = (suggestedCode
+            |> take(1)
+            |> deliverOnMainQueue).start(next: { [weak self] suggestedCode in
+                self?.applyLocalization(code, currentCode: currentCode, suggestedCode: suggestedCode)
+            })
+        })
+    }
+
+    private func applyLocalization(_ code: String, currentCode: String?, suggestedCode: String?) {
+        if let suggestedCode = suggestedCode {
+            _ = TelegramEngineUnauthorized(account: self.account).localization.markSuggestedLocalizationAsSeenInteractively(languageCode: suggestedCode).start()
+        }
+
+        if currentCode == code {
+            self.pressNext(strings: nil)
+            return
+        }
+
+        self.controller.isEnabled = false
+        self.startButton.alpha = 0.6
+        let accountManager = self.accountManager
+
+        self.activateLocalizationDisposable.set(TelegramEngineUnauthorized(account: self.account).localization.downloadAndApplyLocalization(accountManager: accountManager, languageCode: code).start(error: { [weak self] _ in
+            self?.controller.isEnabled = true
+            self?.startButton.alpha = 1.0
+            self?.pressNext(strings: nil)
+        }, completed: { [weak self] in
+            let _ = (accountManager.transaction { transaction -> PresentationStrings? in
+                let localizationSettings: LocalizationSettings?
+                if let current = transaction.getSharedData(SharedDataKeys.localizationSettings)?.get(LocalizationSettings.self) {
+                    localizationSettings = current
+                } else {
+                    localizationSettings = nil
+                }
+                let stringsValue: PresentationStrings
+                if let localizationSettings = localizationSettings {
+                    stringsValue = PresentationStrings(primaryComponent: PresentationStrings.Component(languageCode: localizationSettings.primaryComponent.languageCode, localizedName: localizationSettings.primaryComponent.localizedName, pluralizationRulesCode: localizationSettings.primaryComponent.customPluralizationCode, dict: dictFromLocalization(localizationSettings.primaryComponent.localization)), secondaryComponent: localizationSettings.secondaryComponent.flatMap({ PresentationStrings.Component(languageCode: $0.languageCode, localizedName: $0.localizedName, pluralizationRulesCode: $0.customPluralizationCode, dict: dictFromLocalization($0.localization)) }), groupingSeparator: "")
+                } else {
+                    stringsValue = defaultPresentationStrings
+                }
+                return stringsValue
+            }
+            |> deliverOnMainQueue).start(next: { [weak self] strings in
                 self?.controller.isEnabled = true
                 self?.startButton.alpha = 1.0
-                self?.pressNext(strings: nil)
-            }, completed: {
-                let _ = (accountManager.transaction { transaction -> PresentationStrings? in
-                    let localizationSettings: LocalizationSettings?
-                    if let current = transaction.getSharedData(SharedDataKeys.localizationSettings)?.get(LocalizationSettings.self) {
-                        localizationSettings = current
-                    } else {
-                        localizationSettings = nil
-                    }
-                    let stringsValue: PresentationStrings
-                    if let localizationSettings = localizationSettings {
-                        stringsValue = PresentationStrings(primaryComponent: PresentationStrings.Component(languageCode: localizationSettings.primaryComponent.languageCode, localizedName: localizationSettings.primaryComponent.localizedName, pluralizationRulesCode: localizationSettings.primaryComponent.customPluralizationCode, dict: dictFromLocalization(localizationSettings.primaryComponent.localization)), secondaryComponent: localizationSettings.secondaryComponent.flatMap({ PresentationStrings.Component(languageCode: $0.languageCode, localizedName: $0.localizedName, pluralizationRulesCode: $0.customPluralizationCode, dict: dictFromLocalization($0.localization)) }), groupingSeparator: "")
-                    } else {
-                        stringsValue = defaultPresentationStrings
-                    }
-                    return stringsValue
-                }
-                |> deliverOnMainQueue).start(next: { strings in
-                    self?.controller.isEnabled = true
-                    self?.startButton.alpha = 1.0
-                    self?.pressNext(strings: strings)
-                })
-            }))
-        })
+                self?.pressNext(strings: strings)
+            })
+        }))
     }
     
     private func pressNext(strings: PresentationStrings?) {

@@ -116,18 +116,11 @@ private enum SynchronizeLocalizationUpdatesError {
     case reset
 }
 
-func getLocalization(_ transaction: AccountManagerModifier<TelegramAccountManagerTypes>) -> (primary: (code: String, version: Int32, entries: [LocalizationEntry]), secondary: (code: String, version: Int32, entries: [LocalizationEntry])?) {
-    let localizationSettings: LocalizationSettings?
-    if let current = transaction.getSharedData(SharedDataKeys.localizationSettings)?.get(LocalizationSettings.self) {
-        localizationSettings = current
-    } else {
-        localizationSettings = nil
+func getLocalization(_ transaction: AccountManagerModifier<TelegramAccountManagerTypes>) -> (primary: (code: String, version: Int32, entries: [LocalizationEntry]), secondary: (code: String, version: Int32, entries: [LocalizationEntry])?)? {
+    guard let localizationSettings = transaction.getSharedData(SharedDataKeys.localizationSettings)?.get(LocalizationSettings.self) else {
+        return nil
     }
-    if let localizationSettings = localizationSettings {
-        return (primary: (localizationSettings.primaryComponent.languageCode, localizationSettings.primaryComponent.localization.version, localizationSettings.primaryComponent.localization.entries), secondary: localizationSettings.secondaryComponent.flatMap({ ($0.languageCode, $0.localization.version, $0.localization.entries) }))
-    } else {
-        return (primary: ("en", 0, []), secondary: nil)
-    }
+    return (primary: (localizationSettings.primaryComponent.languageCode, localizationSettings.primaryComponent.localization.version, localizationSettings.primaryComponent.localization.entries), secondary: localizationSettings.secondaryComponent.flatMap({ ($0.languageCode, $0.localization.version, $0.localization.entries) }))
 }
 
 private func parseLangPackDifference(_ difference: Api.LangPackDifference) -> (code: String, fromVersion: Int32, version: Int32, entries: [LocalizationEntry]) {
@@ -153,14 +146,19 @@ private func parseLangPackDifference(_ difference: Api.LangPackDifference) -> (c
 }
 
 private func synchronizeLocalizationUpdates(accountManager: AccountManager<TelegramAccountManagerTypes>, postbox: Postbox, network: Network) -> Signal<Void, NoError> {
-    let currentLanguageAndVersion = accountManager.transaction { transaction -> (primary: (code: String, version: Int32), secondary: (code: String, version: Int32)?) in
-        let (primary, secondary) = getLocalization(transaction)
+    let currentLanguageAndVersion = accountManager.transaction { transaction -> (primary: (code: String, version: Int32), secondary: (code: String, version: Int32)?)? in
+        guard let (primary, secondary) = getLocalization(transaction) else {
+            return nil
+        }
         return ((primary.code, primary.version), secondary.flatMap({ ($0.code, $0.version) }))
     }
     
     let poll = currentLanguageAndVersion
     |> castError(SynchronizeLocalizationUpdatesError.self)
-    |> mapToSignal { (primary, secondary) -> Signal<Void, SynchronizeLocalizationUpdatesError> in
+    |> mapToSignal { languageAndVersion -> Signal<Void, SynchronizeLocalizationUpdatesError> in
+        guard let (primary, secondary) = languageAndVersion else {
+            return .fail(.done)
+        }
         var differences: [Signal<Api.LangPackDifference, MTRpcError>] = []
         differences.append(network.request(Api.functions.langpack.getDifference(langPack: "", langCode: primary.code, fromVersion: primary.version)))
         if let secondary = secondary {
@@ -172,9 +170,10 @@ private func synchronizeLocalizationUpdates(accountManager: AccountManager<Teleg
         |> mapToSignal { differences -> Signal<Void, SynchronizeLocalizationUpdatesError> in
             let parsedDifferences = differences.map(parseLangPackDifference)
             return accountManager.transaction { transaction -> Signal<Void, SynchronizeLocalizationUpdatesError> in
-                let (primary, secondary) = getLocalization(transaction)
-                
-                var currentSettings = transaction.getSharedData(SharedDataKeys.localizationSettings)?.get(LocalizationSettings.self) ?? LocalizationSettings(primaryComponent: LocalizationComponent(languageCode: "en", localizedName: "English", localization: Localization(version: 0, entries: []), customPluralizationCode: nil), secondaryComponent: nil)
+                guard let (primary, secondary) = getLocalization(transaction),
+                      var currentSettings = transaction.getSharedData(SharedDataKeys.localizationSettings)?.get(LocalizationSettings.self) else {
+                    return .fail(.done)
+                }
                 
                 for difference in parsedDifferences {
                     let current: (isPrimary: Bool, entries: [LocalizationEntry])
@@ -229,7 +228,9 @@ private func synchronizeLocalizationUpdates(accountManager: AccountManager<Teleg
                 return .fail(Void())
             case .reset:
                 return accountManager.transaction { transaction -> Signal<Void, Void> in
-                    let (primary, _) = getLocalization(transaction)
+                    guard let (primary, _) = getLocalization(transaction) else {
+                        return .fail(Void())
+                    }
                     return _internal_downloadAndApplyLocalization(accountManager: accountManager, postbox: postbox, network: network, languageCode: primary.code)
                     |> mapError { _ -> Void in
                         return Void()
@@ -244,7 +245,9 @@ private func synchronizeLocalizationUpdates(accountManager: AccountManager<Teleg
 }
 
 func tryApplyingLanguageDifference(transaction: AccountManagerModifier<TelegramAccountManagerTypes>, langCode: String, difference: Api.LangPackDifference) -> Bool {
-    let (primary, secondary) = getLocalization(transaction)
+    guard let (primary, secondary) = getLocalization(transaction) else {
+        return false
+    }
     switch difference {
         case let .langPackDifference(langPackDifferenceData):
             let (updatedCode, fromVersion, updatedVersion, strings) = (langPackDifferenceData.langCode, langPackDifferenceData.fromVersion, langPackDifferenceData.version, langPackDifferenceData.strings)
@@ -289,7 +292,9 @@ func tryApplyingLanguageDifference(transaction: AccountManagerModifier<TelegramA
             }
             mergedEntries.append(contentsOf: updatedEntries)
             
-            let currentSettings = transaction.getSharedData(SharedDataKeys.localizationSettings)?.get(LocalizationSettings.self) ?? LocalizationSettings(primaryComponent: LocalizationComponent(languageCode: "en", localizedName: "English", localization: Localization(version: 0, entries: []), customPluralizationCode: nil), secondaryComponent: nil)
+            guard let currentSettings = transaction.getSharedData(SharedDataKeys.localizationSettings)?.get(LocalizationSettings.self) else {
+                return false
+            }
             
             var updatedSettings: LocalizationSettings
             if isPrimary {

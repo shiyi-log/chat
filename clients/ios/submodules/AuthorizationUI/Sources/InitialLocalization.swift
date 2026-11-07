@@ -1,4 +1,8 @@
 public enum InitialLocalization {
+    public static func shouldUseBundledStrings(languageCode: String, existingLanguageCode: String?) -> Bool {
+        return existingLanguageCode == nil && languageCode.lowercased() == "zh-hans"
+    }
+
     public static func code(for preferredLanguages: [String]) -> String {
         return code(for: preferredLanguages, existingLanguageCode: nil)
     }

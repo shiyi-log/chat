@@ -238,6 +238,13 @@ jobs:
           xcodebuild -version
           swiftc --version
 
+      - name: Verify iOS branding and bundled localization
+        working-directory: clients/ios
+        run: python3 -m unittest scripts.tests.test_chat_app_branding -v
+
+      - name: Test iOS simulator artifact resolution
+        run: python3 clients/ios/scripts/tests/test_resolve_simulator_app.py -v
+
       - name: Test headless Xcode project generation
         working-directory: clients/ios
         run: python3 scripts/tests/test_make_project_generation.py
@@ -274,8 +281,10 @@ jobs:
 
       - name: Archive unsigned iOS simulator app
         run: |
+          simulator_app="$(python3 clients/ios/scripts/resolve_simulator_app.py \
+            "${RUNNER_TEMP}/private-chat-ios-derived-data/Build/Products/Debug-iphonesimulator")"
           ditto -c -k --sequesterRsrc --keepParent \
-            "${RUNNER_TEMP}/private-chat-ios-derived-data/Build/Products/Debug-iphonesimulator/Telegram.app" \
+            "${simulator_app}" \
             "${RUNNER_TEMP}/Chat-iOS-Simulator.zip"
 
       - name: Upload unsigned iOS simulator preview

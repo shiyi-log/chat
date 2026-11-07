@@ -96,7 +96,9 @@ func managedConfigurationUpdates(accountManager: AccountManager<TelegramAccountM
                     })
                 
                     return accountManager.transaction { transaction -> Signal<Void, NoError> in
-                        let (primary, secondary) = getLocalization(transaction)
+                        guard let (primary, secondary) = getLocalization(transaction) else {
+                            return .complete()
+                        }
                         var invalidateLocalization = false
                         if primary.version != langPackVersion {
                             invalidateLocalization = true
