@@ -559,4 +559,27 @@
     <string name="YourPasswordRemember">你的账号已受两步验证保护。\n你还记得密码吗？</string>
     <string name="YourPasswordRememberNo">不太确定</string>
     <string name="YourPasswordRememberYes">是，当然记得</string>
+    <string name="AccDescrContactSorting">更改联系人排序方式</string>
+    <string name="AddAsAdmin">添加为管理员</string>
+    <string name="AddBotAdminAlert">将机器人添加为管理员？</string>
+    <string name="AddBotAsAdmin">机器人只能作为管理员添加。</string>
+    <string name="AddToTheGroupForwardCount">要转发的最近消息数量：</string>
+    <string name="BotCantJoinGroups">此机器人无法加入群组。</string>
+    <string name="CantAddBotAsAdmin">抱歉，机器人只能作为管理员添加到频道。</string>
+    <string name="CreateNewContact">新建联系人</string>
+    <string name="DeleteContactSubtitle">确定要删除此联系人吗？</string>
+    <string name="DeleteContactTitle">删除联系人</string>
+    <string name="DeleteContactsSubtitle">确定要删除这些联系人吗？</string>
+    <string name="Hide">隐藏</string>
+    <string name="InviteUser">此用户尚未使用 Chat，是否发送邀请？</string>
+    <string name="NewSecretChat">新建私密聊天</string>
+    <string name="NoContacts">暂无联系人</string>
+    <string name="NoResult">没有搜索结果</string>
+    <string name="NotificationsStoryMute">关闭动态通知</string>
+    <string name="NotificationsStoryUnmute">开启动态通知</string>
+    <string name="SearchContacts">搜索联系人</string>
+    <string name="SearchEmptyViewFilteredSubtitle2">尝试其他搜索词。</string>
+    <string name="SearchPeopleByUsername">按用户名搜索用户</string>
+    <string name="SelectContact">选择联系人</string>
+    <string name="ShowInChats">在聊天中显示</string>
 </resources>
