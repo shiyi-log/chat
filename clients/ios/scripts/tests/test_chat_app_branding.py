@@ -609,6 +609,76 @@ print(InitialLocalization.shouldUseBundledStrings(languageCode: \"en\", existing
                     f"{key} must preserve its formatting placeholders",
                 )
 
+    def test_simplified_chinese_covers_the_main_chat_and_settings_shell(self):
+        required_keys = {
+            "DialogList.Title",
+            "Contacts.Title",
+            "Calls.TabTitle",
+            "Settings.Title",
+            "DialogList.SearchLabel",
+            "DialogList.SearchLabelCompact",
+            "DialogList.NoMessagesTitle",
+            "DialogList.NoMessagesText",
+            "DialogList.SearchSectionDialogs",
+            "DialogList.SearchSectionMessages",
+            "DialogList.SearchSectionMessagesIn",
+            "DialogList.SearchSectionRecent",
+            "DialogList.SavedMessages",
+            "DialogList.SavedMessagesHelp",
+            "DialogList.You",
+            "DialogList.Draft",
+            "ChatList.EmptyChatList",
+            "ChatList.EmptyChatListWithArchive",
+            "ChatList.EmptyChatListFilterTitle",
+            "ChatList.EmptyChatListFilterText",
+            "ChatList.EmptyChatListNewMessage",
+            "ChatList.EmptyChatListEditFilter",
+            "ChatList.Tabs.AllChats",
+            "ChatList.Tabs.All",
+            "Compose.NewMessage",
+            "Settings.Search",
+            "Settings.MyProfile",
+            "Settings.SetProfilePhotoOrVideo",
+            "Settings.Logout",
+            "Settings.PhoneNumber",
+            "Settings.Username",
+            "Settings.PrivacySettings",
+            "Settings.NotificationsAndSounds",
+            "Settings.ChatSettings",
+            "Settings.Appearance",
+            "Settings.Devices",
+            "Settings.AppLanguage",
+            "Settings.CallSettings",
+            "Settings.Support",
+            "Settings.ChatFolders",
+            "Settings.AddAccount",
+            "Settings.AddAnotherAccount",
+        }
+        english = parse_strings_file(
+            (IOS_APP / "en.lproj/Localizable.strings").read_text(encoding="utf-8")
+        )
+        chinese = parse_strings_file(
+            (IOS_APP / "zh-Hans.lproj/Localizable.strings").read_text(encoding="utf-8")
+        )
+
+        self.assertEqual(set(), required_keys - english.keys())
+        self.assertEqual(
+            set(),
+            required_keys - chinese.keys(),
+            "the Simplified Chinese chat and settings strings are incomplete",
+        )
+
+        placeholder_pattern = re.compile(r"%(?:\d+\$)?(?:@|d|f|s)")
+        for key in sorted(required_keys):
+            with self.subTest(key=key):
+                self.assertTrue(chinese[key].strip())
+                self.assertNotEqual(english[key], chinese[key], f"{key} is still untranslated")
+                self.assertEqual(
+                    sorted(placeholder_pattern.findall(english[key])),
+                    sorted(placeholder_pattern.findall(chinese[key])),
+                    f"{key} must preserve its formatting placeholders",
+                )
+
     def test_app_localizations_do_not_show_upstream_brand_or_links(self):
         resource_paths = (
             IOS_APP / "en.lproj/Localizable.strings",
