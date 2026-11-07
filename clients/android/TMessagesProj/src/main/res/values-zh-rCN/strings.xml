@@ -582,4 +582,23 @@
     <string name="SearchPeopleByUsername">按用户名搜索用户</string>
     <string name="SelectContact">选择联系人</string>
     <string name="ShowInChats">在聊天中显示</string>
+    <string name="AddContactQr">通过二维码添加</string>
+    <string name="AddContactSync">同步联系人到手机</string>
+    <string name="ContactShortcutMessage">向 %1$s 发送消息</string>
+    <string name="ContactShortcutVideoCall">与 %1$s 进行视频通话</string>
+    <string name="ContactShortcutVoiceCall">与 %1$s 进行语音通话</string>
+    <string name="CreateContact">创建联系人</string>
+    <string name="DeletedFromYourContacts">%s 已从你的联系人中删除</string>
+    <string name="HiddenName">已删除账号</string>
+    <string name="InviteText2">我正在使用 Chat，快来和我聊天吧！下载链接：%1$s</string>
+    <string name="InviteTextNum_one">我正在使用 Chat 聊天，我们的其他联系人中还有 %1$d 位也在使用。快来加入我们！下载链接：%2$s</string>
+    <string name="InviteTextNum_other">我正在使用 Chat 聊天，我们的其他联系人中还有 %1$d 位也在使用。快来加入我们！下载链接：%2$s</string>
+    <string name="NewContactTitle">新建联系人</string>
+    <string name="PermissionNoContactsSaving">**Chat** 需要访问通讯录，以便将联系人保存到手机。请前往“设置”→“权限”，并开启**联系人**。</string>
+    <string name="PhoneHome">家庭</string>
+    <string name="PhoneMain">主号码</string>
+    <string name="PhoneMobile">手机</string>
+    <string name="PhoneOther">其他</string>
+    <string name="PhoneWork">工作</string>
+    <string name="ScanQrCode">扫描二维码</string>
 </resources>

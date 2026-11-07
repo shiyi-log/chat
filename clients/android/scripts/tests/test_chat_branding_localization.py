@@ -118,6 +118,47 @@ class ChatBrandingLocalizationTests(unittest.TestCase):
                         f"format placeholders differ for {activity}.{key}",
                     )
 
+    def test_contact_management_flows_have_local_chinese_resources(self):
+        sources = (
+            "org/telegram/messenger/ContactsController.java",
+            "org/telegram/ui/NewContactBottomSheet.java",
+        )
+        for source_name in sources:
+            source_path = ROOT / "TMessagesProj/src/main/java" / source_name
+            source = source_path.read_text(encoding="utf-8")
+            resource_keys = set(re.findall(r"R[.]string[.]([A-Za-z0-9_]+)", source))
+            dynamic_keys = set(re.findall(
+                r'LocaleController[.](?:getString|formatString)\(\s*"([A-Za-z0-9_]+)"', source
+            ))
+            missing = (resource_keys | dynamic_keys) - self.chinese.keys()
+            with self.subTest(source=source_name):
+                self.assertFalse(missing, f"missing contact-flow Chinese strings: {sorted(missing)}")
+            for key in (resource_keys | dynamic_keys) - missing:
+                with self.subTest(source=source_name, key=key):
+                    self.assertEqual(
+                        sorted(FORMATS.findall(self.english[key])),
+                        sorted(FORMATS.findall(self.chinese[key])),
+                        f"format placeholders differ for {source_name}.{key}",
+                    )
+
+            for plural_key in set(re.findall(
+                r'LocaleController[.]getPluralString\(\s*"([A-Za-z0-9_]+)"', source
+            )):
+                variants = sorted(key for key in self.english if key.startswith(plural_key + "_"))
+                self.assertTrue(variants, f"missing English plural variants: {plural_key}")
+                missing_variants = set(variants) - self.chinese.keys()
+                self.assertFalse(
+                    missing_variants,
+                    f"missing contact-flow Chinese plurals: {sorted(missing_variants)}",
+                )
+                for key in set(variants) - missing_variants:
+                    with self.subTest(source=source_name, plural=key):
+                        self.assertEqual(
+                            sorted(FORMATS.findall(self.english[key])),
+                            sorted(FORMATS.findall(self.chinese[key])),
+                            f"format placeholders differ for {key}",
+                        )
+
     def test_attachment_and_media_strings_are_local_and_format_compatible(self):
         keys = {
             key for key in self.english
