@@ -8,6 +8,8 @@ swift_library(
     ]),
     copts = [
         "-warnings-as-errors",
+        "-Wwarning",
+        "ImplicitStrongCapture",
     ],
     deps = [
         "//submodules/ComponentFlow:ComponentFlow",

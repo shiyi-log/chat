@@ -237,6 +237,10 @@ jobs:
         working-directory: clients/ios
         run: python3 scripts/tests/test_make_project_generation.py
 
+      - name: Verify Swift 5 warning policy
+        working-directory: clients/ios
+        run: python3 scripts/tests/test_telegram_core_swift_warnings.py
+
       - name: Generate unsigned simulator project
         working-directory: clients/ios
         run: |

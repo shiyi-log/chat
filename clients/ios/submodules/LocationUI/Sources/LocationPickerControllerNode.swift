@@ -307,12 +307,7 @@ private class LocationContext: NSObject, CLLocationManagerDelegate {
     }
     
     func locationAccess() -> Signal<CLAuthorizationStatus, NoError> {
-        let initialStatus: CLAuthorizationStatus
-        if #available(iOS 14.0, *) {
-            initialStatus = self.locationManager.authorizationStatus
-        } else {
-            initialStatus = CLLocationManager.authorizationStatus()
-        }
+        let initialStatus = self.locationManager.authorizationStatus
         return .single(initialStatus)
         |> then(
             self.accessSink.signal()
