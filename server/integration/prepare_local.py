@@ -3,6 +3,7 @@ import json
 import os
 import re
 import signal
+import stat
 import subprocess
 import time
 from pathlib import Path
@@ -117,6 +118,30 @@ def _generate_runtime_key(path):
         path.unlink(missing_ok=True)
         raise RuntimeError("unable to generate the local runtime RSA key")
     path.chmod(0o600)
+
+
+def _ensure_runtime_key(path):
+    path = Path(path)
+    if path.exists() or path.is_symlink():
+        try:
+            info = path.lstat()
+        except OSError as exc:
+            raise RuntimeError("unable to inspect the local runtime RSA key") from exc
+        if not stat.S_ISREG(info.st_mode):
+            raise RuntimeError("local runtime RSA key path must be a regular file")
+        try:
+            result = subprocess.run(
+                ["openssl", "rsa", "-in", str(path), "-check", "-noout"],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+            )
+        except OSError as exc:
+            raise RuntimeError("OpenSSL is required to validate the local runtime RSA key") from exc
+        if result.returncode != 0:
+            raise RuntimeError("existing local runtime RSA key is invalid")
+        path.chmod(0o600)
+        return
+    _generate_runtime_key(path)
 
 
 def _read_der_value(data, offset, expected_tag):
@@ -336,7 +361,7 @@ def prepare_runtime(server_root, runtime_root, env_path):
 
     _ensure_private_dir(runtime_root)
     runtime_key = runtime_root / "server_pkcs1.key"
-    _generate_runtime_key(runtime_key)
+    _ensure_runtime_key(runtime_key)
     rsa_fingerprint = _runtime_key_fingerprint(runtime_key)
     rendered = {
         name: _render_service_config(

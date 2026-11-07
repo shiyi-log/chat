@@ -161,6 +161,34 @@ class PrepareRuntimeTests(unittest.TestCase):
 
         self.assertEqual(configured, [expected, expected])
 
+    def test_prepare_runtime_reuses_existing_runtime_key(self):
+        prepare_local.prepare_runtime(self.server, self.runtime, self.env_path)
+        runtime_key = self.runtime / "server_pkcs1.key"
+        first_key = runtime_key.read_bytes()
+        first_fingerprint = _expected_mtproto_fingerprint(runtime_key)
+
+        prepare_local.prepare_runtime(self.server, self.runtime, self.env_path)
+
+        gateway = (self.runtime / "etc/gnetway.yaml").read_text(encoding="utf-8")
+        configured = [
+            line.split(":", 1)[1].strip().strip('"')
+            for line in gateway.splitlines()
+            if "KeyFingerprint:" in line
+        ]
+        self.assertEqual(runtime_key.read_bytes(), first_key)
+        self.assertEqual(configured, [first_fingerprint, first_fingerprint])
+
+    def test_prepare_runtime_rejects_invalid_existing_runtime_key(self):
+        prepare_local.prepare_runtime(self.server, self.runtime, self.env_path)
+        runtime_key = self.runtime / "server_pkcs1.key"
+        invalid_key = b"not a private key\n"
+        runtime_key.write_bytes(invalid_key)
+
+        with self.assertRaisesRegex(RuntimeError, "existing local runtime RSA key is invalid"):
+            prepare_local.prepare_runtime(self.server, self.runtime, self.env_path)
+
+        self.assertEqual(runtime_key.read_bytes(), invalid_key)
+
     def test_missing_credentials_fail_without_echoing_secret_values(self):
         secret = "sensitive-value-must-not-appear"
         self.env_path.write_text(
