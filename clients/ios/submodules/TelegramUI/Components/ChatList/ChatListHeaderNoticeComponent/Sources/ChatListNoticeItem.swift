@@ -164,7 +164,7 @@ final class ChatListNoticeItemNode: ItemListRevealOptionsItemNode {
         let makeOkButtonTextLayout = TextNode.asyncLayout(self.okButtonText)
         let makeCancelButtonTextLayout = TextNode.asyncLayout(self.cancelButtonText)
         
-        return { item, params, last in
+        return { [self] item, params, last in
             let baseWidth = params.width - params.leftInset - params.rightInset
             let _ = baseWidth
             

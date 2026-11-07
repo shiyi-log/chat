@@ -1149,7 +1149,7 @@ public final class ChatMessageInteractiveMediaNode: ASDisplayNode, GalleryItemTr
                 maxWidth = maxDimensions.width
             }
             
-            return (nativeSize, maxWidth, { constrainedSize, automaticPlayback, wideLayout, corners in
+            return (nativeSize, maxWidth, { [context] constrainedSize, automaticPlayback, wideLayout, corners in
                 var resultWidth: CGFloat
                 
                 var automaticPlayback = automaticPlayback

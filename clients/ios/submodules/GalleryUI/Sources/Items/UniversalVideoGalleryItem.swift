@@ -3027,7 +3027,7 @@ final class UniversalVideoGalleryItemNode: ZoomableContentGalleryItemNode {
 
             let playbackRate = self.playbackRate
 
-            expandImpl = { [weak overlayNode] in
+            expandImpl = { [weak overlayNode, context] in
                 guard let contentInfo = item.contentInfo, let overlayNode = overlayNode else {
                     return
                 }
@@ -3727,7 +3727,7 @@ final class UniversalVideoGalleryItemNode: ZoomableContentGalleryItemNode {
                                     c?.popItems()
                                 })))
                                 
-                                let addItem: (Int?, FileMediaReference) -> Void = { quality, qualityFile in
+                                let addItem: (Int?, FileMediaReference) -> Void = { [self] quality, qualityFile in
                                     guard let qualityFileSize = qualityFile.media.size else {
                                         return
                                     }

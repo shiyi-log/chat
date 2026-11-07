@@ -2994,7 +2994,10 @@ final class ShareWithPeersScreenComponent: Component {
                                 base = .nobody
                             }
                             
-                            let proceed = {
+                            let proceed = { [weak controller, weak component] in
+                                guard let controller, let component else {
+                                    return
+                                }
                                 var savePeers = true
                                 if component.stateContext.editing {
                                     savePeers = false
@@ -3017,7 +3020,10 @@ final class ShareWithPeersScreenComponent: Component {
                                     }
                                 }
                                 
-                                let complete = {
+                                let complete = { [weak controller, weak component] in
+                                    guard let controller, let component else {
+                                        return
+                                    }
                                     let peers = component.context.engine.data.get(EngineDataMap(selectedPeers.map { id in
                                         return TelegramEngine.EngineData.Item.Peer.Peer(id: id)
                                     }))

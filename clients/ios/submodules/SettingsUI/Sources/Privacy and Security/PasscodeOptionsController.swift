@@ -257,7 +257,7 @@ func passcodeOptionsController(context: AccountContext, focusOnItemTag: Passcode
         return PasscodeOptionsData(accessChallenge: accessChallenge, presentationSettings: passcodeSettings)
     })
     
-    let arguments = PasscodeOptionsControllerArguments(turnPasscodeOff: {
+    let arguments = PasscodeOptionsControllerArguments(turnPasscodeOff: { [passcodeOptionsDataPromise] in
         let presentationData = context.sharedContext.currentPresentationData.with { $0 }
         let actionSheet = ActionSheetController(presentationData: presentationData)
         actionSheet.setItemGroups([ActionSheetItemGroup(items: [
@@ -339,7 +339,7 @@ func passcodeOptionsController(context: AccountContext, focusOnItemTag: Passcode
         })
     }, changePasscodeTimeout: {
         let presentationData = context.sharedContext.currentPresentationData.with { $0 }
-        let setAction: (Int32?) -> Void = { value in
+        let setAction: (Int32?) -> Void = { [passcodeOptionsDataPromise] value in
             let _ = (passcodeOptionsDataPromise.get()
             |> take(1)).start(next: { [weak passcodeOptionsDataPromise] data in
                 passcodeOptionsDataPromise?.set(.single(data.withUpdatedPresentationSettings(data.presentationSettings.withUpdatedAutolockTimeout(value))))
@@ -388,7 +388,7 @@ func passcodeOptionsController(context: AccountContext, focusOnItemTag: Passcode
             sourceNode?.updateHasContextMenu(hasContextMenu: false)
         }
         presentInGlobalOverlayImpl?(contextController)
-    }, changeTouchId: { value in
+    }, changeTouchId: { [passcodeOptionsDataPromise] value in
         let _ = (passcodeOptionsDataPromise.get() |> take(1)).start(next: { [weak passcodeOptionsDataPromise] data in
             passcodeOptionsDataPromise?.set(.single(data.withUpdatedPresentationSettings(data.presentationSettings.withUpdatedEnableBiometrics(value))))
             

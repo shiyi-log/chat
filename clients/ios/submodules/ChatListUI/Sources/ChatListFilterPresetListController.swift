@@ -602,7 +602,7 @@ public func chatListFilterPresetListController(context: AccountContext, mode: Ch
             TelegramEngine.EngineData.Item.ChatList.FiltersDisplayTags()
         )
     )
-    |> map { presentationData, state, filtersWithCountsValue, preferences, updatedFilterOrderValue, suggestedFilters, peer, allLimits, displayTags -> (ItemListControllerState, (ItemListNodeState, Any)) in
+    |> map { [updatedFilterOrder] presentationData, state, filtersWithCountsValue, preferences, updatedFilterOrderValue, suggestedFilters, peer, allLimits, displayTags -> (ItemListControllerState, (ItemListNodeState, Any)) in
         var presentationData = presentationData
 
         let updatedTheme = presentationData.theme.withModalBlocksBackground()

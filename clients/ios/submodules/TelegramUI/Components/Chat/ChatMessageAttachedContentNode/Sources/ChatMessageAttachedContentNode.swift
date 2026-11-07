@@ -481,7 +481,7 @@ public final class ChatMessageAttachedContentNode: ASDisplayNode {
                 contentFileContinueLayout = nil
             }
             
-            return (maxWidth, { constrainedSize, position in
+            return (maxWidth, { [controllerInteraction] constrainedSize, position in
                 enum ContentLayoutOrderItem {
                     case title
                     case subtitle

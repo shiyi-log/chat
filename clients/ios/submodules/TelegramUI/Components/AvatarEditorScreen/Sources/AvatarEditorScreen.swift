@@ -1454,8 +1454,8 @@ final class AvatarEditorScreenComponent: Component {
             }
             
             let context = controller.context
-            let _ = context.animationCache.getFirstFrame(queue: self.queue, sourceId: file.resource.id.stringRepresentation, size: CGSize(width: 640.0, height: 640.0), fetch: animationCacheFetchFile(context: context, userLocation: .other, userContentType: .sticker, resource: .media(media: .standalone(media: file), resource: file.resource), type: AnimationCacheAnimationType(file: file), keyframeOnly: true, customColor: nil), completion: { result in
-                guard let item = result.item else {
+            let _ = context.animationCache.getFirstFrame(queue: self.queue, sourceId: file.resource.id.stringRepresentation, size: CGSize(width: 640.0, height: 640.0), fetch: animationCacheFetchFile(context: context, userLocation: .other, userContentType: .sticker, resource: .media(media: .standalone(media: file), resource: file.resource), type: AnimationCacheAnimationType(file: file), keyframeOnly: true, customColor: nil), completion: { [weak controller] result in
+                guard let controller, let item = result.item else {
                     return
                 }
                 var image: UIImage?
@@ -1479,8 +1479,8 @@ final class AvatarEditorScreenComponent: Component {
                     }
                 }
                 
-                Queue.mainQueue().async {
-                    guard let image else {
+                Queue.mainQueue().async { [weak controller] in
+                    guard let controller, let image else {
                         return
                     }
                     

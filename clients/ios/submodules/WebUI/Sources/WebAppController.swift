@@ -1008,7 +1008,7 @@ public final class WebAppController: ViewController, AttachmentContainable {
                 }
                 
                 if previousLayout != nil && (previousLayout?.inputHeight ?? 0.0).isZero, let inputHeight = layout.inputHeight, inputHeight > 44.0, transition.isAnimated {
-                    Queue.mainQueue().after(0.4, {
+                    Queue.mainQueue().after(0.4, { [self] in
                         if let inputHeight = self.validLayout?.0.inputHeight, inputHeight > 44.0 {
                             webView.scrollToActiveElement(layout: layout, completion: { [weak self] contentOffset in
                                 let _ = self
@@ -3026,7 +3026,7 @@ public final class WebAppController: ViewController, AttachmentContainable {
                         undoText: self.presentationData.strings.WebApp_Download_Cancel
                     )
                 },
-                completion: { [weak self] resultUrl, _ in
+                completion: { [weak self, controller] resultUrl, _ in
                     if let resultUrl, let self {
                         removeImpl?()
                         
@@ -4015,7 +4015,7 @@ public final class WebAppController: ViewController, AttachmentContainable {
                 
                 let context = self.context
                 let _ = (cachedWebAppTermsPage(context: context)
-                |> deliverOnMainQueue).startStandalone(next: { resolvedUrl in
+                |> deliverOnMainQueue).startStandalone(next: { [self] resolvedUrl in
                     context.sharedContext.openResolvedUrl(resolvedUrl, context: context, urlContext: .generic, navigationController: navigationController, forceExternal: true, forceUpdate: false, openPeer: { peer, navigation in
                     }, sendFile: nil, sendSticker: nil, sendEmoji: nil, requestMessageActionUrlAuth: nil, joinVoiceChat: nil, present: { [weak self] c, arguments in
                         self?.push(c)

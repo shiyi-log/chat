@@ -282,7 +282,11 @@ final class ChatTranslationPanelNode: ASDisplayNode {
         
         let items: Signal<ContextController.Items, NoError> = context.sharedContext.accountManager.sharedData(keys: [ApplicationSpecificSharedDataKeys.translationSettings])
         |> take(1)
-        |> map { sharedData -> ContextController.Items in
+        |> map { [weak self] sharedData -> ContextController.Items in
+            guard let self else {
+                return ContextController.Items(content: .list([]))
+            }
+
             let settings: TranslationSettings
             if let current = sharedData.entries[ApplicationSpecificSharedDataKeys.translationSettings]?.get(TranslationSettings.self) {
                 settings = current

@@ -135,7 +135,7 @@ class ItemListSecretChatKeyItemNode: ListViewItemNode {
         
         let currentItem = self.item
         
-        return { item, params, neighbors in
+        return { [self] item, params, neighbors in
             let rightInset: CGFloat
             switch item.disclosureStyle {
             case .none:

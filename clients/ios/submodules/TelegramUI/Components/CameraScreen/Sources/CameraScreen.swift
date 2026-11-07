@@ -902,7 +902,7 @@ private final class CameraScreenComponent: CombinedComponent {
                 self.updated(transition: .spring(duration: 0.3))
             }
             
-            let startRecording = {
+            let startRecording = { [self] in
                 self.resultDisposable.set((camera.startRecording()
                 |> deliverOnMainQueue).start(next: { [weak self] recordingData in
                     if let self, let controller = self.getController() {

@@ -614,7 +614,7 @@ extension MediaEditorScreenImpl {
             }
         }
         
-        dispatchGroup.notify(queue: .main) {
+        dispatchGroup.notify(queue: .main) { [self] in
             let results = multipleResults.with { $0 }
             if results.count == totalItems {
                 var orderedResults: [MediaEditorScreenImpl.Result] = []

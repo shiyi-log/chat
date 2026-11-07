@@ -25,7 +25,7 @@ extension ChatControllerImpl {
                 return
             }
             
-            Queue.mainQueue().after(0.5) {
+            Queue.mainQueue().after(0.5) { [self] in
                 let sourceRect = sourceNode.view.convert(sourceNode.view.bounds, to: nil)
                 
                 self.messageTooltipController?.dismiss()

@@ -727,8 +727,8 @@ public final class DrawingView: UIView, UIGestureRecognizerDelegate, UIPencilInt
         self.drawingImage = nil
         self.layer.contents = nil
         
-        Queue.mainQueue().justDispatch {
-            snapshotView.layer.animateAlpha(from: 1.0, to: 0.0, duration: 0.2, removeOnCompletion: false, completion: { [weak snapshotView] _ in
+        Queue.mainQueue().justDispatch { [weak snapshotView] in
+            snapshotView?.layer.animateAlpha(from: 1.0, to: 0.0, duration: 0.2, removeOnCompletion: false, completion: { [weak snapshotView] _ in
                 snapshotView?.removeFromSuperview()
             })
         }

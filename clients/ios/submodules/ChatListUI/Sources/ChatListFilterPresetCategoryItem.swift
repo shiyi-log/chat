@@ -170,7 +170,7 @@ class ChatListFilterPresetCategoryItemNode: ItemListRevealOptionsItemNode, ItemL
         
         let currentItem = self.item
         
-        return { item, params, neighbors, headerAtTop in
+        return { [self] item, params, neighbors, headerAtTop in
             var updatedTheme: PresentationTheme?
             
             let titleFont = Font.medium(item.presentationData.fontSize.itemListBaseFontSize)

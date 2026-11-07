@@ -66,7 +66,7 @@ func chatContextMenuItems(context: AccountContext, peerId: EnginePeer.Id, promoI
             TelegramEngine.EngineData.Item.Configuration.UserLimits(isPremium: true)
         )
     )
-    |> mapToSignal { peerGroup, recentlySearchedPeers, limitsData -> Signal<[ContextMenuItem], NoError> in
+    |> mapToSignal { [chatListController] peerGroup, recentlySearchedPeers, limitsData -> Signal<[ContextMenuItem], NoError> in
         let location: TogglePeerChatPinnedLocation
         var chatListFilter: ChatListFilter?
         if case let .chatList(filter) = source, let chatFilter = filter {
@@ -608,7 +608,7 @@ public func chatForumTopicMenuItems(context: AccountContext, peerId: EnginePeer.
         TelegramEngine.EngineData.Item.Peer.ThreadData(id: peerId, threadId: threadId),
         TelegramEngine.EngineData.Item.NotificationSettings.Global()
     )
-    |> mapToSignal { peer, peerNotificationSettings, threadData, globalNotificationSettings -> Signal<[ContextMenuItem], NoError> in
+    |> mapToSignal { [chatListController] peer, peerNotificationSettings, threadData, globalNotificationSettings -> Signal<[ContextMenuItem], NoError> in
         guard let peer else {
             return .single([])
         }

@@ -1467,7 +1467,7 @@ public final class StarsTransactionsScreen: ViewControllerComponentContainer {
                                 navigationController.setViewControllers(controllers, animated: true)
                             }
                             
-                            Queue.mainQueue().after(2.0) {
+                            Queue.mainQueue().after(2.0) { [self] in
                                 let presentationData = context.sharedContext.currentPresentationData.with { $0 }
                                 let resultController = UndoOverlayController(
                                     presentationData: presentationData,

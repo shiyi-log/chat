@@ -3,6 +3,7 @@ import UIKit
 import Display
 import TelegramPresentationData
 import LegacyUI
+import UniformTypeIdentifiers
 
 private class DocumentPickerViewController: UIDocumentPickerViewController {
     var forceDarkTheme = false
@@ -54,16 +55,6 @@ public enum LegacyICloudFilePickerMode {
     case `import`
     case `export`
     
-    var documentPickerMode: UIDocumentPickerMode {
-        switch self {
-        case .default:
-            return .open
-        case .import:
-            return .import
-        case .export:
-            return .exportToService
-        }
-    }
 }
 
 public func legacyICloudFilePicker(theme: PresentationTheme, mode: LegacyICloudFilePickerMode = .default, hasMultiselection: Bool = false, url: URL? = nil, documentTypes: [String] = ["public.item"], forceDarkTheme: Bool = false, dismissed: @escaping () -> Void = {}, completion: @escaping ([URL]) -> Void) -> ViewController {
@@ -74,15 +65,19 @@ public func legacyICloudFilePicker(theme: PresentationTheme, mode: LegacyICloudF
     })
     legacyController.statusBar.statusBarStyle = .Black
     
+    let contentTypes = documentTypes.map { UTType(importedAs: $0) }
     let controller: DocumentPickerViewController
-    if case .export = mode, let url {
-        if #available(iOS 14.0, *) {
+    switch mode {
+    case .default:
+        controller = DocumentPickerViewController(forOpeningContentTypes: contentTypes, asCopy: false)
+    case .import:
+        controller = DocumentPickerViewController(forOpeningContentTypes: contentTypes, asCopy: true)
+    case .export:
+        if let url {
             controller = DocumentPickerViewController(forExporting: [url], asCopy: true)
         } else {
-            controller = DocumentPickerViewController(url: url, in: mode.documentPickerMode)
+            controller = DocumentPickerViewController(forOpeningContentTypes: contentTypes, asCopy: false)
         }
-    } else {
-        controller = DocumentPickerViewController(documentTypes: documentTypes, in: mode.documentPickerMode)
     }
     controller.forceDarkTheme = forceDarkTheme || theme.overallDarkAppearance
     controller.didDisappear = {

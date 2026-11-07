@@ -784,7 +784,7 @@ final class SecureIdAuthControllerNode: ViewControllerTracingNode {
             return
         }
         
-        let updatedValues: (SecureIdValueKey) -> ([SecureIdValueWithContext]) -> Void = { valueKey in
+        let updatedValues: (SecureIdValueKey) -> ([SecureIdValueWithContext]) -> Void = { [self] valueKey in
             return { [weak self] updatedValues in
                 guard let strongSelf = self else {
                     return

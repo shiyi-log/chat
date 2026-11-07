@@ -46,6 +46,10 @@ public struct ChatMediaInputPaneScrollState {
 }
 
 public final class ChatEntityKeyboardInputNode: ChatInputNode {
+    public static func makeEmptyInputView() -> UIView {
+        return EmptyInputView()
+    }
+
     public final class Interaction {
         let sendSticker: (FileMediaReference, Bool, Bool, String?, Bool, UIView?, CGRect?, CALayer?, [ItemCollectionId]) -> Bool
         let sendEmoji: (String, ChatTextInputTextCustomEmojiAttribute, Bool) -> Void

@@ -9286,7 +9286,7 @@ public final class ChatControllerImpl: TelegramBaseController, ChatController, G
     }
     
     func openPeerMention(_ name: String, navigation: ChatControllerInteractionNavigateToPeer = .default, sourceMessageId: MessageId? = nil, progress: Promise<Bool>? = nil) {
-        let _ = self.presentVoiceMessageDiscardAlert(action: {
+        let _ = self.presentVoiceMessageDiscardAlert(action: { [self] in
             let disposable: MetaDisposable
             if let resolvePeerByNameDisposable = self.resolvePeerByNameDisposable {
                 disposable = resolvePeerByNameDisposable
@@ -9355,7 +9355,7 @@ public final class ChatControllerImpl: TelegramBaseController, ChatController, G
     }
     
     func openHashtag(_ hashtag: String, peerName: String?) {
-        let _ = self.presentVoiceMessageDiscardAlert(action: {
+        let _ = self.presentVoiceMessageDiscardAlert(action: { [self] in
             if self.resolvePeerByNameDisposable == nil {
                 self.resolvePeerByNameDisposable = MetaDisposable()
             }
@@ -10541,7 +10541,7 @@ public final class ChatControllerImpl: TelegramBaseController, ChatController, G
                 discard = true
             }
             alertAction?()
-            Queue.mainQueue().after(delay ? 0.2 : 0.0) {
+            Queue.mainQueue().after(delay ? 0.2 : 0.0) { [self] in
                 let alertController = textAlertController(
                     context: self.context,
                     updatedPresentationData: self.updatedPresentationData,

@@ -881,7 +881,7 @@ public func dataAndStorageController(context: AccountContext, focusOnItemTag: Da
     }, openIntents: {
         let controller = intentsSettingsController(context: context)
         pushControllerImpl?(controller)
-    }, toggleSensitiveContent: { value in
+    }, toggleSensitiveContent: { [contentSettingsConfiguration] value in
         let update = {
             let _ = (contentSettingsConfiguration.get()
             |> take(1)

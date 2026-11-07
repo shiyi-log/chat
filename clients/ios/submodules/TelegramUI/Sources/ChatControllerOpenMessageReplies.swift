@@ -16,7 +16,7 @@ extension ChatControllerImpl {
             return
         }
         
-        let _ = self.presentVoiceMessageDiscardAlert(action: {
+        let _ = self.presentVoiceMessageDiscardAlert(action: { [self] in
             let progressSignal: Signal<Never, NoError> = Signal { [weak self] _ in
                 guard let strongSelf = self, let controllerInteraction = strongSelf.controllerInteraction else {
                     return EmptyDisposable

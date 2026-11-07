@@ -196,7 +196,7 @@ public final class ChatMessageWebpageBubbleContentNode: ChatMessageBubbleContent
         let currentWebpage = self.webPage
         let currentContentNodeLayout = self.contentNode.asyncLayout()
         
-        return { item, layoutConstants, preparePosition, _, constrainedSize, _ in
+        return { [self, contentNode = self.contentNode] item, layoutConstants, preparePosition, _, constrainedSize, _ in
             var webPage: TelegramMediaWebpage?
             var webPageContent: TelegramMediaWebpageLoadedContent?
             for media in item.message.media {

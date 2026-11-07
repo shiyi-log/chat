@@ -160,7 +160,7 @@ class VoiceChatParticipantStatusNode: ASDisplayNode {
     func asyncLayout() -> (_ size: CGSize, _ text: VoiceChatParticipantItem.ParticipantText, _ expanded: Bool) -> (CGSize, () -> Void) {
         let makeTextLayout = TextNode.asyncLayout(self.textNode)
         
-        return { size, text, expanded in
+        return { [self] size, text, expanded in
             let statusFont = Font.regular(14.0)
             
             var attributedString: NSAttributedString?
@@ -772,7 +772,7 @@ class VoiceChatParticipantItemNode: ItemListRevealOptionsItemNode {
         let currentItem = self.layoutParams?.0
         let currentTitle = self.currentTitle
         
-        return { item, params, first, last in
+        return { [self] item, params, first, last in
             var updatedTheme: PresentationTheme?
             if currentItem?.presentationData.theme !== item.presentationData.theme {
                 updatedTheme = item.presentationData.theme

@@ -252,9 +252,11 @@ final class TextFontComponent: Component {
             }
             
             self.button.clipsToBounds = true
+            var configuration = self.button.configuration ?? .plain()
+            configuration.contentInsets = NSDirectionalEdgeInsets(top: 0.0, leading: 0.0, bottom: 0.0, trailing: 20.0)
+            self.button.configuration = configuration
             self.button.setTitle(value.title, for: .normal)
             self.button.titleLabel?.font = value.uiFont(size: 13.0)
-            self.button.contentEdgeInsets = UIEdgeInsets(top: 0.0, left: 0.0, bottom: 0.0, right: 20.0)
             var buttonSize = self.button.sizeThatFits(availableSize)
             buttonSize.width += 20.0
             buttonSize.height = 30.0
