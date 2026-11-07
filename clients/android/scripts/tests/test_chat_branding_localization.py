@@ -239,6 +239,31 @@ class ChatBrandingLocalizationTests(unittest.TestCase):
                     f"format placeholders differ for {key}",
                 )
 
+    def test_high_priority_message_flow_strings_are_local_and_format_compatible(self):
+        keys = {
+            "SendMessageRestricted", "SendMessageRestrictedForever",
+            "SendReactionsIsRestrictedInThisChat", "ForwardsRestrictedInfoUser",
+            "ForwardsRestrictedInfoChannel", "ForwardsRestrictedInfoGroup",
+            "ForwardsRestrictedInfoBot", "ReplyPrivate", "ReplyPrivateGroup",
+            "ReplyPrivateChannel", "SearchThisChat", "SearchMyMessages",
+            "SearchPublicPosts", "SearchHashtagsHint", "SearchMembers",
+            "SavedTagSearchHint", "EditMessageEditPhoto", "EditMessageEditVideo",
+            "EditMessageReplaceFile", "EditMessageReplaceAudio",
+            "MessageShowSensitiveContentMediaTitle", "MessageShowSensitiveContentMediaText",
+            "MessageShowSensitiveContentButton", "ShareMyContactInfo",
+            "ShareYouPhoneNumberTitle",
+        }
+        missing = keys - self.chinese.keys()
+        self.assertFalse(missing, f"missing high-priority message-flow Chinese strings: {sorted(missing)}")
+        for key in keys:
+            with self.subTest(key=key):
+                self.assertEqual(
+                    sorted(FORMATS.findall(self.english[key])),
+                    sorted(FORMATS.findall(self.chinese[key])),
+                    f"format placeholders differ for {key}",
+                )
+                self.assertNotEqual(self.english[key], self.chinese[key])
+
     def test_default_install_uses_chat_brand_while_preserving_upstream_domain_names(self):
         self.assertEqual("Chat", self.english["AppName"])
         self.assertEqual("Chat Beta", self.english["AppNameBeta"])

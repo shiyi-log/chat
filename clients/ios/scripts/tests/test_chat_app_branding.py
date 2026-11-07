@@ -779,6 +779,60 @@ print(InitialLocalization.shouldUseBundledStrings(languageCode: \"en\", existing
             "Message.Photo",
             "Message.Sticker",
             "Message.Video",
+            "Compose.TokenListPlaceholder",
+            "Compose.NewGroup",
+            "Compose.NewEncryptedChat",
+            "Compose.Create",
+            "Compose.NewChannel",
+            "Compose.ChannelTokenListPlaceholder",
+            "Compose.GroupTokenListPlaceholder",
+            "Compose.ChannelMembers",
+            "Conversation.typing",
+            "Conversation.Call",
+            "Conversation.Mute",
+            "Conversation.Unmute",
+            "Conversation.Edit",
+            "Conversation.Info",
+            "Conversation.Search",
+            "Conversation.Location",
+            "Conversation.Contact",
+            "Conversation.EmptyPlaceholder",
+            "Conversation.UnsupportedMedia",
+            "Conversation.EncryptionWaiting",
+            "Conversation.EncryptionProcessing",
+            "Conversation.EncryptedPlaceholderTitleIncoming",
+            "Conversation.EncryptedPlaceholderTitleOutgoing",
+            "Conversation.EncryptedDescriptionTitle",
+            "Conversation.EncryptedDescription1",
+            "Conversation.EncryptedDescription2",
+            "Conversation.EncryptedDescription3",
+            "Conversation.EncryptedDescription4",
+            "Conversation.StatusMembers_0",
+            "Conversation.StatusMembers_1",
+            "Conversation.StatusMembers_3_10",
+            "Conversation.StatusMembers_many",
+            "Conversation.StatusOnline_3_10",
+            "Conversation.StatusOnline_any",
+            "Conversation.Megabytes",
+            "Conversation.Kilobytes",
+            "Conversation.Bytes",
+            "Conversation.ShareMyContactInfo",
+            "Conversation.AddContact",
+            "Conversation.SendMessage",
+            "Conversation.EncryptionCanceled",
+            "Conversation.DeleteManyMessages",
+            "Conversation.SlideToCancel",
+            "Conversation.OpenFile",
+            "Conversation.ContextMenuShare",
+            "Conversation.ContextMenuLookUp",
+            "Conversation.SearchPlaceholder",
+            "Conversation.SearchNoResults",
+            "Conversation.StatusMembers_2",
+            "Conversation.StatusMembers_any",
+            "Conversation.StatusOnline_0",
+            "Conversation.StatusOnline_1",
+            "Conversation.StatusOnline_2",
+            "Conversation.StatusOnline_many",
         }
         english = parse_strings_file(
             (IOS_APP / "en.lproj/Localizable.strings").read_text(encoding="utf-8")
@@ -794,11 +848,17 @@ print(InitialLocalization.shouldUseBundledStrings(languageCode: \"en\", existing
             "the Simplified Chinese core conversation strings are incomplete",
         )
 
-        placeholder_pattern = re.compile(r"%(?:\d+\$)?(?:@|d|f|s)")
+        placeholder_pattern = re.compile(r"%(?:\d+\$)?(?:\.\d+)?(?:@|d|f|s)")
+        locale_neutral_keys = {
+            "Conversation.Megabytes",
+            "Conversation.Kilobytes",
+            "Conversation.Bytes",
+        }
         for key in sorted(required_keys):
             with self.subTest(key=key):
                 self.assertTrue(chinese[key].strip())
-                self.assertNotEqual(english[key], chinese[key], f"{key} is still untranslated")
+                if key not in locale_neutral_keys:
+                    self.assertNotEqual(english[key], chinese[key], f"{key} is still untranslated")
                 self.assertEqual(
                     sorted(placeholder_pattern.findall(english[key])),
                     sorted(placeholder_pattern.findall(chinese[key])),
