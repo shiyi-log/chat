@@ -109,6 +109,122 @@ def ico_png_images(data):
 
 
 class ChatDesktopBrandingTests(unittest.TestCase):
+    def test_disabled_updater_links_to_chat_releases_on_every_platform(self):
+        source = read_text("Telegram/SourceFiles/core/update_checker.cpp")
+        update = re.search(
+            r"void UpdateApplication\(\) \{(?P<body>.*?)\n\}",
+            source,
+            re.DOTALL,
+        )
+        self.assertIsNotNone(update)
+        body = update.group("body")
+        self.assertIn("https://github.com/shiyi-log/chat/releases", body)
+        self.assertNotRegex(
+            body,
+            re.compile(r"(?:telegram\.org|telegram-desktop|org\.telegram\.desktop)", re.IGNORECASE),
+        )
+
+    def test_core_conversation_strings_are_available_in_simplified_chinese(self):
+        base = read_strings("Telegram/Resources/langs/lang.strings")
+        chinese = read_strings("Telegram/Resources/langs/zh-Hans.strings")
+        required = {
+            "lng_chat_status_unaccessible",
+            "lng_chat_status_members#one",
+            "lng_chat_status_members#other",
+            "lng_chat_status_online#one",
+            "lng_chat_status_online#other",
+            "lng_chat_status_members_online",
+            "lng_chat_status_subscribers#one",
+            "lng_chat_status_subscribers#other",
+            "lng_chat_status_direct",
+            "lng_attach_replace",
+            "lng_attach_failed",
+            "lng_attach_file",
+            "lng_attach_photo",
+            "lng_attach_camera",
+            "lng_attach_document",
+            "lng_attach_photo_or_video",
+            "lng_attach_profile_emoji",
+            "lng_send_button",
+            "lng_send_silent_message",
+            "lng_send_text_no",
+            "lng_send_text_no_about",
+            "lng_send_text_type_and_last",
+            "lng_send_image_empty",
+            "lng_send_images_selected#one",
+            "lng_send_images_selected#other",
+            "lng_send_files_selected#one",
+            "lng_send_files_selected#other",
+            "lng_send_grouped",
+            "lng_send_compressed_one",
+            "lng_send_compressed",
+            "lng_send_high_quality",
+            "lng_send_as_documents_one",
+            "lng_send_as_documents",
+            "lng_send_media_invalid_files",
+            "lng_message_empty",
+            "lng_message_unsupported",
+            "lng_message_not_found",
+            "lng_message_ph",
+            "lng_message_stars_ph#one",
+            "lng_message_stars_ph#other",
+            "lng_message_tagged_with",
+            "lng_scheduled_messages",
+            "lng_scheduled_messages_empty",
+            "lng_scheduled_date",
+            "lng_scheduled_date_until_online",
+            "lng_scheduled_send_until_online",
+            "lng_scheduled_send_now",
+            "lng_dialogs_text_with_from",
+            "lng_dialogs_text_from_wrapped",
+            "lng_dialogs_text_media",
+            "lng_dialogs_text_media_wrapped",
+            "lng_dialogs_text_from_in_topic",
+            "lng_forward_choose",
+            "lng_forward_cant",
+            "lng_forward_send",
+            "lng_forward_messages#one",
+            "lng_forward_messages#other",
+            "lng_forward_title",
+            "lng_forward_about",
+            "lng_forward_many_about",
+            "lng_forward_show_sender",
+            "lng_forward_show_senders",
+            "lng_forward_show_caption",
+            "lng_forward_show_captions",
+            "lng_forward_change_recipient",
+            "lng_forward_sender_names_removed",
+            "lng_forward_header_short",
+            "lng_reply_in_another_title",
+            "lng_reply_in_another_chat",
+            "lng_reply_in_author",
+            "lng_reply_in_chats_list",
+            "lng_reply_show_in_chat",
+            "lng_reply_remove",
+            "lng_reply_about_quote",
+            "lng_reply_options_header",
+            "lng_reply_options_quote",
+            "lng_reply_header_short",
+            "lng_reply_quote_selected",
+            "lng_reply_from_private_chat",
+            "lng_reply_quote_long_title",
+            "lng_reply_quote_long_text",
+            "lng_search_back_to_results",
+            "lng_search_results_header",
+            "lng_search_found_results#one",
+            "lng_search_found_results#other",
+            "lng_search_messages_from",
+            "lng_search_messages_n_of_amount",
+        }
+        self.assertTrue(required <= base.keys())
+        self.assertTrue(required <= chinese.keys())
+        for key in required:
+            with self.subTest(key=key):
+                self.assertEqual(
+                    sorted(PLACEHOLDER_PATTERN.findall(base[key])),
+                    sorted(PLACEHOLDER_PATTERN.findall(chinese[key])),
+                )
+
     def test_language_share_uses_the_chat_deep_link(self):
         source = read_text("Telegram/SourceFiles/boxes/language_box.cpp")
         share = re.search(

@@ -188,6 +188,26 @@ class ChatAppBrandingTests(unittest.TestCase):
             )
         self.assertEqual(["Chat"] * len(localized_names), localized_names)
 
+    def test_siri_intent_vocabulary_uses_chat_branding_in_every_locale(self):
+        import plistlib
+
+        vocabulary_files = sorted(IOS_APP.glob("*.lproj/AppIntentVocabulary.plist"))
+        self.assertTrue(vocabulary_files)
+        for path in vocabulary_files:
+            vocabulary = plistlib.loads(path.read_bytes())
+            examples = [
+                example
+                for phrase in vocabulary["IntentPhrases"]
+                for example in phrase["IntentExamples"]
+            ]
+            with self.subTest(language=path.parent.name):
+                self.assertTrue(examples)
+                self.assertTrue(all("Chat" in example for example in examples))
+                self.assertFalse(any("Telegram" in example for example in examples))
+
+        chinese_vocabulary = IOS_APP / "zh-Hans.lproj/AppIntentVocabulary.plist"
+        self.assertTrue(chinese_vocabulary.is_file())
+
     def test_appstore_llc_configuration_uses_chat_release_identity(self):
         config = parse_xcconfig(IOS_APP / "Config-AppStoreLLC.xcconfig")
         fork = parse_xcconfig(IOS_APP / "Config-Fork.xcconfig")

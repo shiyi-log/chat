@@ -151,3 +151,99 @@
 "lng_settings_sessions_title" = "活跃会话";
 "lng_settings_sessions_about" = "管理你所有设备上的会话。";
 "lng_settings_logout" = "退出登录";
+
+"lng_chat_status_unaccessible" = "无法访问此群组";
+"lng_chat_status_members#one" = "{count} 位成员";
+"lng_chat_status_members#other" = "{count} 位成员";
+"lng_chat_status_online#one" = "{count} 人在线";
+"lng_chat_status_online#other" = "{count} 人在线";
+"lng_chat_status_members_online" = "{members_count}，{online_count}";
+"lng_chat_status_subscribers#one" = "{count} 位订阅者";
+"lng_chat_status_subscribers#other" = "{count} 位订阅者";
+"lng_chat_status_direct" = "私信";
+
+"lng_attach_replace" = "替换附件";
+"lng_attach_failed" = "失败";
+"lng_attach_file" = "文件";
+"lng_attach_photo" = "图片";
+"lng_attach_camera" = "相机";
+"lng_attach_document" = "文档";
+"lng_attach_photo_or_video" = "图片或视频";
+"lng_attach_profile_emoji" = "使用表情";
+
+"lng_send_button" = "发送";
+"lng_send_silent_message" = "静音发送";
+"lng_send_text_no" = "不允许发送文字。";
+"lng_send_text_no_about" = "此群组的管理员仅允许发送{types}。";
+"lng_send_text_type_and_last" = "{types}和{last}";
+"lng_send_image_empty" = "文件 {name} 为空，无法发送。";
+"lng_send_images_selected#one" = "已选择 {count} 张图片";
+"lng_send_images_selected#other" = "已选择 {count} 张图片";
+"lng_send_files_selected#one" = "已选择 {count} 个文件";
+"lng_send_files_selected#other" = "已选择 {count} 个文件";
+"lng_send_grouped" = "媒体分组";
+"lng_send_compressed_one" = "压缩图片";
+"lng_send_compressed" = "压缩图片";
+"lng_send_high_quality" = "高清画质";
+"lng_send_as_documents_one" = "作为文件发送";
+"lng_send_as_documents" = "作为文件发送";
+"lng_send_media_invalid_files" = "没有找到可发送的有效文件。";
+
+"lng_message_empty" = "空消息";
+"lng_message_unsupported" = "当前版本的 Chat 不支持此消息。请前往“设置 > 高级”更新，或从 {link} 安装。如果你已使用最新版本，此消息可能依赖尚未实现的功能。";
+"lng_message_not_found" = "消息不存在。";
+"lng_message_ph" = "输入消息…";
+"lng_message_stars_ph#one" = "发送一条价值 {count} 颗星的消息";
+"lng_message_stars_ph#other" = "发送一条价值 {count} 颗星的消息";
+"lng_message_tagged_with" = "带有 {emoji} 标签的消息";
+
+"lng_scheduled_messages" = "定时消息";
+"lng_scheduled_messages_empty" = "暂无定时消息…";
+"lng_scheduled_date" = "将于 {date} 发送";
+"lng_scheduled_date_until_online" = "等对方上线后发送";
+"lng_scheduled_send_until_online" = "上线后发送";
+"lng_scheduled_send_now" = "现在发送这条消息？";
+
+"lng_dialogs_text_with_from" = "{from_part} {message}";
+"lng_dialogs_text_from_wrapped" = "{from}：";
+"lng_dialogs_text_media" = "{media_part} {caption}";
+"lng_dialogs_text_media_wrapped" = "{media}，";
+"lng_dialogs_text_from_in_topic" = "{from} {topic}";
+
+"lng_forward_choose" = "转发到…";
+"lng_forward_cant" = "抱歉，无法转发到这里。";
+"lng_forward_send" = "发送";
+"lng_forward_messages#one" = "{count} 条转发消息";
+"lng_forward_messages#other" = "{count} 条转发消息";
+"lng_forward_title" = "转发消息";
+"lng_forward_about" = "你可以隐藏发送者姓名，让这条消息看起来像是由你发送的。";
+"lng_forward_many_about" = "你可以隐藏发送者姓名，让这些消息看起来像是由你发送的。";
+"lng_forward_show_sender" = "显示发送者姓名";
+"lng_forward_show_senders" = "显示发送者姓名";
+"lng_forward_show_caption" = "显示说明文字";
+"lng_forward_show_captions" = "显示说明文字";
+"lng_forward_change_recipient" = "更改收件人";
+"lng_forward_sender_names_removed" = "已隐藏发送者姓名";
+"lng_forward_header_short" = "转发";
+
+"lng_reply_in_another_title" = "回复到…";
+"lng_reply_in_another_chat" = "在另一个聊天中回复";
+"lng_reply_in_author" = "消息作者";
+"lng_reply_in_chats_list" = "你的聊天";
+"lng_reply_show_in_chat" = "在聊天中显示";
+"lng_reply_remove" = "取消回复";
+"lng_reply_about_quote" = "你可以选择要引用的具体内容。";
+"lng_reply_options_header" = "回复消息";
+"lng_reply_options_quote" = "更新引用内容";
+"lng_reply_header_short" = "回复";
+"lng_reply_quote_selected" = "引用所选内容";
+"lng_reply_from_private_chat" = "此回复来自私密聊天。";
+"lng_reply_quote_long_title" = "引用内容过长！";
+"lng_reply_quote_long_text" = "所选文字过长，无法引用。";
+
+"lng_search_back_to_results" = "返回搜索结果";
+"lng_search_results_header" = "搜索结果";
+"lng_search_found_results#one" = "找到 {count} 条消息";
+"lng_search_found_results#other" = "找到 {count} 条消息";
+"lng_search_messages_from" = "查看来自以下用户的消息";
+"lng_search_messages_n_of_amount" = "{n} / {amount}";
