@@ -6,13 +6,13 @@ struct ContentView: View {
     var body: some View {
         switch client.authState {
         case .starting:
-            LoadingView(label: "Starting…")
+            LoadingView(label: "watch.state.starting")
         case .waitTdlibParameters:
-            LoadingView(label: "Configuring…")
+            LoadingView(label: "watch.state.configuring")
         case .waitPhoneNumber:
-            LoadingView(label: "Preparing QR…")
+            LoadingView(label: "watch.state.preparingQR")
         case .waitCode:
-            ErrorView(message: "Unexpected SMS-code prompt during QR login.")
+            ErrorView(message: WatchCopy.localized("watch.auth.unexpectedSMS"))
         case .waitOtherDeviceConfirmation(let link):
             QrLoginView(link: link)
         case .waitPassword(let info):
@@ -21,10 +21,10 @@ struct ContentView: View {
             if let store = client.chatList {
                 ChatListView(store: store)
             } else {
-                LoadingView(label: "Loading…")
+                LoadingView(label: "watch.state.loading")
             }
         case .loggingOut:
-            LoadingView(label: "Logging out…")
+            LoadingView(label: "watch.state.loggingOut")
         case .closed:
             ClosedView()
         case .failed(let message):

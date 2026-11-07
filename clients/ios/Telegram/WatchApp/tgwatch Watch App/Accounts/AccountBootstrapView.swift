@@ -29,12 +29,12 @@ struct AccountBootstrapContent: View {
     var body: some View {
         if let errorMessage {
             VStack(spacing: 16) {
-                Text(errorMessage)
+                Text(verbatim: errorMessage)
                     .font(.footnote)
                     .foregroundStyle(.red)
                     .multilineTextAlignment(.center)
                     .accessibilityIdentifier("accountBootstrapError")
-                Text("Try again")
+                Text("watch.action.tryAgain")
                     .padding(.horizontal, 16)
                     .padding(.vertical, 10)
                     .background(Color.gray.opacity(0.25), in: Capsule())
@@ -44,7 +44,7 @@ struct AccountBootstrapContent: View {
             }
             .padding()
         } else {
-            LoadingView(label: "Preparing…")
+            LoadingView(label: "watch.state.preparing")
         }
     }
 }

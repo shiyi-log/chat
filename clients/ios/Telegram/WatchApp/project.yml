@@ -12,7 +12,7 @@
 name: tgwatch
 options:
   bundleIdPrefix: ph.telegra   # ph.telegra.Telegraph.watchkitapp, child of the main Telegram app id
-  developmentLanguage: en
+  developmentLanguage: zh-Hans
   deploymentTarget:
     watchOS: "26.0"
 # Both configs are required: xcodegen 2.45.4 crashes generating the scheme when
@@ -51,7 +51,7 @@ targets:
     info:
       path: tgwatch Watch App/Info.plist
       properties:
-        CFBundleDisplayName: Telegram
+        CFBundleDisplayName: Chat
         CFBundleIconName: AppIcon
         CFBundleShortVersionString: $(MARKETING_VERSION)
         CFBundleVersion: $(CURRENT_PROJECT_VERSION)

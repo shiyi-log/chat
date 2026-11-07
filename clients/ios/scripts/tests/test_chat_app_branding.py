@@ -1,4 +1,5 @@
 import json
+import plistlib
 import re
 import shutil
 import struct
@@ -242,6 +243,192 @@ class ChatAppBrandingTests(unittest.TestCase):
         serialized = json.dumps(icon)
         self.assertNotIn("0.21569,0.68627,0.89020", serialized)
         self.assertIn("0.07843,0.35686,0.34118", serialized)
+
+    def test_embedded_watch_app_uses_chat_identity_and_artwork(self):
+        watch_root = ROOT / "Telegram/WatchApp/tgwatch Watch App"
+        info = plistlib.loads((watch_root / "Info.plist").read_bytes())
+        self.assertEqual("Chat", info["CFBundleDisplayName"])
+
+        project = (ROOT / "Telegram/WatchApp/project.yml").read_text(encoding="utf-8")
+        self.assertRegex(project, r"(?m)^  developmentLanguage: zh-Hans$")
+        self.assertRegex(project, r"(?m)^        CFBundleDisplayName: Chat$")
+
+        generated_project = (
+            ROOT / "Telegram/WatchApp/tgwatch.xcodeproj/project.pbxproj"
+        ).read_text(encoding="utf-8")
+        self.assertIn('developmentRegion = "zh-Hans";', generated_project)
+        self.assertIn("WatchCopy.swift in Sources", generated_project)
+        self.assertIn("Localizable.strings in Resources", generated_project)
+        self.assertIn("InfoPlist.strings in Resources", generated_project)
+
+        watch_icon = watch_root / "Assets.xcassets/AppIcon.appiconset/AppIcon.png"
+        chat_icon = IOS_APP / "DefaultAppIcon.xcassets/AppIconLLC.appiconset/Simple-iTunesArtwork.png"
+        self.assertEqual(chat_icon.read_bytes(), watch_icon.read_bytes())
+
+        for language in ("en", "zh-Hans"):
+            localized_info = parse_strings_file(
+                (watch_root / f"{language}.lproj/InfoPlist.strings").read_text(encoding="utf-8")
+            )
+            self.assertEqual("Chat", localized_info["CFBundleDisplayName"])
+
+    def test_watch_qr_login_screen_has_english_and_simplified_chinese_copy(self):
+        watch_root = ROOT / "Telegram/WatchApp/tgwatch Watch App"
+        auth_sources = {
+            "content": (watch_root / "ContentView.swift").read_text(encoding="utf-8"),
+            "qr": (watch_root / "Auth/QrLoginView.swift").read_text(encoding="utf-8"),
+            "password": (watch_root / "Auth/PasswordEntryView.swift").read_text(encoding="utf-8"),
+            "error": (watch_root / "Auth/ErrorView.swift").read_text(encoding="utf-8"),
+            "closed": (watch_root / "Auth/ClosedView.swift").read_text(encoding="utf-8"),
+            "auth_mapping": (watch_root / "AuthStateMapping.swift").read_text(encoding="utf-8"),
+            "error_mapping": (watch_root / "ErrorMapping.swift").read_text(encoding="utf-8"),
+            "bootstrap": (watch_root / "Accounts/AccountBootstrapView.swift").read_text(encoding="utf-8"),
+            "account_manager": (watch_root / "Accounts/AccountManager.swift").read_text(encoding="utf-8"),
+        }
+        required = {
+            "watch.state.starting": ("Starting…", "正在启动…"),
+            "watch.state.configuring": ("Configuring…", "正在配置…"),
+            "watch.state.preparingQR": ("Preparing QR…", "正在准备二维码…"),
+            "watch.state.loading": ("Loading…", "正在加载…"),
+            "watch.state.loggingOut": ("Logging out…", "正在退出登录…"),
+            "watch.state.preparing": ("Preparing…", "正在准备…"),
+            "watch.auth.unexpectedSMS": (
+                "Unexpected SMS-code prompt during QR login.",
+                "二维码登录期间出现了非预期的短信验证码步骤。",
+            ),
+            "watch.login.qr.title": ("Log in to Chat by QR Code", "通过二维码登录 Chat"),
+            "watch.login.qr.phoneSettings": ("Settings on your Phone", "手机上的设置"),
+            "watch.login.qr.devices": ("Devices", "设备"),
+            "watch.login.qr.scan": ("Scan QR", "扫描二维码"),
+            "watch.login.qr.renderError": ("Could not render QR code", "无法生成二维码"),
+            "watch.environment.test": ("TEST", "测试"),
+            "watch.login.password.hint": ("Hint: %@", "提示：%@"),
+            "watch.login.password.prompt": ("Enter your cloud password", "请输入两步验证密码"),
+            "watch.login.password.field": ("Password", "两步验证密码"),
+            "watch.login.password.continue": ("Continue", "继续"),
+            "watch.login.password.title": ("Password", "两步验证"),
+            "watch.action.ok": ("OK", "确定"),
+            "watch.action.tryAgain": ("Try again", "重试"),
+            "watch.error.title": ("Something went wrong", "出现了问题"),
+            "watch.error.accountPersist": (
+                "Couldn't save account list.",
+                "无法保存账号列表。",
+            ),
+            "watch.session.loggedOut": ("Logged out", "已退出登录"),
+            "watch.session.relaunch": (
+                "Relaunch the app to sign in again.",
+                "请重新启动 Chat 以再次登录。",
+            ),
+            "watch.auth.emailUnsupported": (
+                "Email-based login isn't supported in this build yet.",
+                "此版本暂不支持通过电子邮件登录。",
+            ),
+            "watch.auth.registrationUnsupported": (
+                "Registration is not supported with QR login.",
+                "二维码登录暂不支持注册新账号。",
+            ),
+            "watch.auth.premiumUnsupported": (
+                "Premium-purchase login isn't supported in this build yet.",
+                "此版本暂不支持通过购买高级版登录。",
+            ),
+            "watch.auth.stateUnsupported": (
+                "Unsupported authorization state.",
+                "暂不支持此授权状态。",
+            ),
+            "watch.auth.type.appMessage": ("In-app message", "应用内消息"),
+            "watch.auth.type.phoneCall": ("Phone call", "电话"),
+            "watch.auth.type.missedCall": ("Missed call", "未接来电"),
+            "watch.auth.type.flashCall": ("Flash call", "闪呼"),
+            "watch.auth.type.fragment": ("Fragment", "Fragment"),
+            "watch.auth.type.appPush": ("App push", "应用推送"),
+            "watch.auth.type.code": ("Code", "验证码"),
+            "watch.error.unknown": ("An error occurred", "发生错误"),
+            "watch.error.incorrectPassword": ("Incorrect password", "密码错误"),
+            "watch.error.phoneInvalid": (
+                "That phone number doesn't look right.",
+                "手机号格式不正确。",
+            ),
+            "watch.error.codeInvalid": ("That code is wrong.", "验证码错误。"),
+            "watch.error.codeExpired": (
+                "Code expired — request a new one.",
+                "验证码已过期，请重新获取。",
+            ),
+            "watch.error.firstNameInvalid": (
+                "That first name doesn't look right.",
+                "名字格式不正确。",
+            ),
+            "watch.error.lastNameInvalid": (
+                "That last name doesn't look right.",
+                "姓氏格式不正确。",
+            ),
+            "watch.error.floodWait": (
+                "Too many attempts. Wait %ds.",
+                "尝试次数过多，请等待 %d 秒。",
+            ),
+            "watch.error.floodWaitLater": (
+                "Too many attempts. Try again later.",
+                "尝试次数过多，请稍后重试。",
+            ),
+        }
+
+        source_keys = {
+            "content": (
+                "watch.state.starting",
+                "watch.state.configuring",
+                "watch.state.preparingQR",
+                "watch.auth.unexpectedSMS",
+                "watch.state.loading",
+                "watch.state.loggingOut",
+            ),
+            "qr": (
+                "watch.login.qr.title",
+                "watch.environment.test",
+                "watch.login.qr.phoneSettings",
+                "watch.login.qr.devices",
+                "watch.login.qr.scan",
+                "watch.login.qr.renderError",
+            ),
+            "password": (
+                "watch.login.password.hint",
+                "watch.login.password.prompt",
+                "watch.login.password.field",
+                "watch.login.password.continue",
+                "watch.login.password.title",
+                "watch.action.ok",
+            ),
+            "error": ("watch.error.title", "watch.environment.test"),
+            "closed": ("watch.session.loggedOut", "watch.session.relaunch"),
+            "auth_mapping": tuple(
+                key
+                for key in required
+                if key.startswith("watch.auth.") and key != "watch.auth.unexpectedSMS"
+            ),
+            "error_mapping": tuple(
+                key
+                for key in required
+                if key.startswith("watch.error.")
+                and key not in ("watch.error.title", "watch.error.accountPersist")
+            ),
+            "bootstrap": ("watch.action.tryAgain", "watch.state.preparing"),
+            "account_manager": ("watch.error.accountPersist",),
+        }
+        for name, keys in source_keys.items():
+            source = auth_sources[name]
+            for key in keys:
+                if key == "watch.login.password.hint":
+                    self.assertIn('WatchCopy.format("watch.login.password.hint"', source)
+                else:
+                    self.assertIn(f'"{key}"', source)
+
+        english = parse_strings_file(
+            (watch_root / "en.lproj/Localizable.strings").read_text(encoding="utf-8")
+        )
+        chinese = parse_strings_file(
+            (watch_root / "zh-Hans.lproj/Localizable.strings").read_text(encoding="utf-8")
+        )
+        for key, (english_value, chinese_value) in required.items():
+            with self.subTest(key=key):
+                self.assertEqual(english_value, english.get(key))
+                self.assertEqual(chinese_value, chinese.get(key))
 
     def test_shipped_ios_app_icon_assets_use_the_chat_mark(self):
         icon_set = IOS_APP / "DefaultAppIcon.xcassets/AppIconLLC.appiconset"

@@ -233,7 +233,7 @@ final class AccountManager: TDClientLifecycleDelegate {
             return true
         } catch {
             logger.warning("registry save failed: \(error.localizedDescription, privacy: .public)")
-            lastError = "Couldn't save account list."
+            lastError = WatchCopy.localized("watch.error.accountPersist")
             return false
         }
     }

@@ -23,15 +23,15 @@ struct PasswordEntryView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 8) {
                     if !info.hint.isEmpty {
-                        Text("Hint: \(info.hint)")
+                        Text(verbatim: WatchCopy.format("watch.login.password.hint", info.hint))
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     } else {
-                        Text("Enter your cloud password")
+                        Text("watch.login.password.prompt")
                             .font(.caption)
                             .foregroundStyle(.secondary)
                     }
-                    SecureField("Password", text: $password)
+                    SecureField("watch.login.password.field", text: $password)
                         .textContentType(.password)
                         .accessibilityIdentifier("passwordField")
                     Button(action: submit) {
@@ -39,7 +39,7 @@ struct PasswordEntryView: View {
                             if submitting {
                                 ProgressView()
                             } else {
-                                Text("Continue")
+                                Text("watch.login.password.continue")
                             }
                         }
                         .frame(maxWidth: .infinity, minHeight: 36)
@@ -51,7 +51,7 @@ struct PasswordEntryView: View {
                 }
                 .padding()
             }
-            .navigationTitle("Password")
+            .navigationTitle("watch.login.password.title")
             .navigationBarTitleDisplayMode(.inline)
             // Force the nav bar to materialize so the title renders under the
             // clock — watchOS-26 skips chrome on a NavigationStack root view
@@ -69,7 +69,7 @@ struct PasswordEntryView: View {
                 }
             }
             .alert(errorMessage ?? "", isPresented: errorAlertBinding) {
-                Button("OK", role: .cancel) { errorMessage = nil }
+                Button("watch.action.ok", role: .cancel) { errorMessage = nil }
             }
             .onAppear {
 #if DEBUG

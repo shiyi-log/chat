@@ -6,12 +6,12 @@ struct ErrorView: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text("Something went wrong")
+            Text("watch.error.title")
                 .font(.headline)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.vertical, 8)
             if client.useTestDc {
-                Text("TEST")
+                Text("watch.environment.test")
                     .font(.caption2.weight(.semibold))
                     .padding(.horizontal, 6)
                     .padding(.vertical, 2)
@@ -19,7 +19,7 @@ struct ErrorView: View {
                     .foregroundStyle(.yellow)
                     .accessibilityIdentifier("dcTestBadge")
             }
-            Text(message)
+            Text(verbatim: message)
                 .font(.footnote)
                 .foregroundStyle(.secondary)
         }

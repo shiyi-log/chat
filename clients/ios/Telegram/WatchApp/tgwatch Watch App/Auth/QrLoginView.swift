@@ -29,13 +29,13 @@ struct QrLoginContent: View {
 
     var body: some View {
         VStack(spacing: 12) {
-            Text("Log in to Telegram by QR Code")
+            Text("watch.login.qr.title")
                 .font(.headline)
                 .multilineTextAlignment(.center)
                 .frame(maxWidth: .infinity)
 
             if isTestDc {
-                Text("TEST")
+                Text("watch.environment.test")
                     .font(.caption2.weight(.semibold))
                     .padding(.horizontal, 6)
                     .padding(.vertical, 2)
@@ -49,7 +49,7 @@ struct QrLoginContent: View {
             qrCard
 
             if let errorMessage {
-                Text(errorMessage)
+                Text(verbatim: errorMessage)
                     .font(.footnote)
                     .foregroundStyle(.red)
                     .multilineTextAlignment(.center)
@@ -61,11 +61,11 @@ struct QrLoginContent: View {
 
     private var instructionSteps: some View {
         VStack(spacing: 4) {
-            Text("Settings on your Phone")
+            Text("watch.login.qr.phoneSettings")
             Image(systemName: "chevron.down").font(.caption)
-            Text("Devices")
+            Text("watch.login.qr.devices")
             Image(systemName: "chevron.down").font(.caption)
-            Text("Scan QR")
+            Text("watch.login.qr.scan")
         }
         .foregroundStyle(.secondary)
         .multilineTextAlignment(.center)
@@ -83,7 +83,7 @@ struct QrLoginContent: View {
                     .accessibilityIdentifier("qrImage")
                     .id(link)
             } else {
-                Text("Could not render QR code")
+                Text("watch.login.qr.renderError")
                     .font(.footnote)
                     .foregroundStyle(.red)
                     .frame(maxWidth: .infinity, minHeight: 120)

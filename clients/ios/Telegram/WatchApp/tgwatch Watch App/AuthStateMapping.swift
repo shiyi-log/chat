@@ -23,15 +23,15 @@ func mapAuthState(_ s: AuthorizationState) -> AuthState {
             hasRecoveryEmail: payload.hasRecoveryEmailAddress
         ))
     case .authorizationStateWaitEmailAddress, .authorizationStateWaitEmailCode:
-        return .failed("Email-based login isn't supported in this build yet.")
+        return .failed(WatchCopy.localized("watch.auth.emailUnsupported"))
     case .authorizationStateWaitOtherDeviceConfirmation(let payload):
         return .waitOtherDeviceConfirmation(link: payload.link)
     case .authorizationStateWaitRegistration:
-        return .failed("Registration is not supported with QR login.")
+        return .failed(WatchCopy.localized("watch.auth.registrationUnsupported"))
     case .authorizationStateWaitPremiumPurchase:
-        return .failed("Premium-purchase login isn't supported in this build yet.")
+        return .failed(WatchCopy.localized("watch.auth.premiumUnsupported"))
     case .unsupported:
-        return .failed("Unsupported authorization state.")
+        return .failed(WatchCopy.localized("watch.auth.stateUnsupported"))
     }
 }
 
@@ -56,13 +56,21 @@ private func codeLength(from type: AuthenticationCodeType) -> Int? {
 private func typeDescription(from type: AuthenticationCodeType) -> String {
     switch type {
     case .authenticationCodeTypeSms: return "SMS"
-    case .authenticationCodeTypeTelegramMessage: return "Telegram message"
-    case .authenticationCodeTypeCall: return "Phone call"
-    case .authenticationCodeTypeMissedCall: return "Missed call"
-    case .authenticationCodeTypeFlashCall: return "Flash call"
-    case .authenticationCodeTypeFragment: return "Fragment"
-    case .authenticationCodeTypeFirebaseAndroid, .authenticationCodeTypeFirebaseIos: return "App push"
-    case .authenticationCodeTypeSmsWord, .authenticationCodeTypeSmsPhrase: return "SMS"
-    case .unsupported: return "Code"
+    case .authenticationCodeTypeTelegramMessage:
+        return WatchCopy.localized("watch.auth.type.appMessage")
+    case .authenticationCodeTypeCall:
+        return WatchCopy.localized("watch.auth.type.phoneCall")
+    case .authenticationCodeTypeMissedCall:
+        return WatchCopy.localized("watch.auth.type.missedCall")
+    case .authenticationCodeTypeFlashCall:
+        return WatchCopy.localized("watch.auth.type.flashCall")
+    case .authenticationCodeTypeFragment:
+        return WatchCopy.localized("watch.auth.type.fragment")
+    case .authenticationCodeTypeFirebaseAndroid, .authenticationCodeTypeFirebaseIos:
+        return WatchCopy.localized("watch.auth.type.appPush")
+    case .authenticationCodeTypeSmsWord, .authenticationCodeTypeSmsPhrase:
+        return "SMS"
+    case .unsupported:
+        return WatchCopy.localized("watch.auth.type.code")
     }
 }

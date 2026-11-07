@@ -5,7 +5,7 @@ struct LoadingView: View {
     var body: some View {
         VStack(spacing: 8) {
             ProgressView()
-            Text(label)
+            Text(verbatim: WatchCopy.localized(label))
                 .font(.footnote)
                 .foregroundStyle(.secondary)
         }

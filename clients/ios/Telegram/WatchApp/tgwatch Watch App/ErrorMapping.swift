@@ -5,7 +5,7 @@ func humanMessage(_ error: Swift.Error) -> String {
     if let tdErr = error as? TDError {
         return humanMessageForTdLibCode(tdErr.message)
     }
-    return (error as? LocalizedError)?.errorDescription ?? error.localizedDescription
+    return (error as? LocalizedError)?.errorDescription ?? WatchCopy.localized("watch.error.unknown")
 }
 
 /// Maps a TDLib error from `checkAuthenticationPassword` to one of three
@@ -14,31 +14,31 @@ func humanMessage(_ error: Swift.Error) -> String {
 /// passing the raw code through.
 func passwordSubmitErrorMessage(_ error: Swift.Error) -> String {
     guard let tdErr = error as? TDError else {
-        return "An error occurred"
+        return WatchCopy.localized("watch.error.unknown")
     }
     if tdErr.message == "PASSWORD_HASH_INVALID" {
-        return "Incorrect password"
+        return WatchCopy.localized("watch.error.incorrectPassword")
     }
     if let flood = floodWaitMessage(tdErr.message) {
         return flood
     }
-    return "An error occurred"
+    return WatchCopy.localized("watch.error.unknown")
 }
 
 private func humanMessageForTdLibCode(_ code: String) -> String {
     switch code {
     case "PHONE_NUMBER_INVALID":
-        return "That phone number doesn't look right."
+        return WatchCopy.localized("watch.error.phoneInvalid")
     case "PHONE_CODE_INVALID":
-        return "That code is wrong."
+        return WatchCopy.localized("watch.error.codeInvalid")
     case "PHONE_CODE_EXPIRED":
-        return "Code expired — request a new one."
+        return WatchCopy.localized("watch.error.codeExpired")
     case "FIRSTNAME_INVALID":
-        return "That first name doesn't look right."
+        return WatchCopy.localized("watch.error.firstNameInvalid")
     case "LASTNAME_INVALID":
-        return "That last name doesn't look right."
+        return WatchCopy.localized("watch.error.lastNameInvalid")
     default:
-        return floodWaitMessage(code) ?? code
+        return floodWaitMessage(code) ?? WatchCopy.localized("watch.error.unknown")
     }
 }
 
@@ -48,7 +48,7 @@ private func floodWaitMessage(_ code: String) -> String? {
     guard code.hasPrefix("FLOOD_WAIT_") else { return nil }
     let suffix = code.dropFirst("FLOOD_WAIT_".count)
     if let seconds = Int(suffix), seconds > 0 {
-        return "Too many attempts. Wait \(seconds)s."
+        return WatchCopy.format("watch.error.floodWait", seconds)
     }
-    return "Too many attempts. Try again later."
+    return WatchCopy.localized("watch.error.floodWaitLater")
 }
