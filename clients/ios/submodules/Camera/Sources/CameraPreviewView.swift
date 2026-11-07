@@ -51,7 +51,7 @@ public class CameraSimplePreviewView: UIView {
         }
         let statusBarOrientation: UIInterfaceOrientation
         if #available(iOS 13.0, *) {
-            statusBarOrientation = UIApplication.shared.windows.first?.windowScene?.interfaceOrientation ?? .portrait
+            statusBarOrientation = self.window?.windowScene?.interfaceOrientation ?? .portrait
         } else {
             statusBarOrientation = UIApplication.shared.statusBarOrientation
         }

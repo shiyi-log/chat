@@ -13,4 +13,10 @@ describe('normalizePhoneInput', () => {
   it('rejects numbers outside the international length bounds', () => {
     expect(() => normalizePhoneInput('123', '+86')).toThrow('手机号位数不正确');
   });
+
+  it('accepts only the short phone numbers reserved by the local server runtime', () => {
+    expect(normalizePhoneInput('+42402', '+86')).toBe('+42402');
+    expect(normalizePhoneInput('+42777', '+86')).toBe('+42777');
+    expect(() => normalizePhoneInput('+42410', '+86')).toThrow('手机号位数不正确');
+  });
 });

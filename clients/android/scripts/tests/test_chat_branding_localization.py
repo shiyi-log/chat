@@ -102,6 +102,22 @@ class ChatBrandingLocalizationTests(unittest.TestCase):
                     f"format placeholders differ for {key}",
                 )
 
+    def test_primary_post_login_screens_have_local_chinese_resources(self):
+        for activity in ("DialogsActivity", "SettingsActivity"):
+            source_path = ROOT / f"TMessagesProj/src/main/java/org/telegram/ui/{activity}.java"
+            source = source_path.read_text(encoding="utf-8")
+            keys = set(re.findall(r"R[.]string[.]([A-Za-z0-9_]+)", source))
+            missing = keys - self.chinese.keys()
+            with self.subTest(activity=activity):
+                self.assertFalse(missing, f"missing {activity} Chinese strings: {sorted(missing)}")
+            for key in keys - missing:
+                with self.subTest(activity=activity, key=key):
+                    self.assertEqual(
+                        sorted(FORMATS.findall(self.english[key])),
+                        sorted(FORMATS.findall(self.chinese[key])),
+                        f"format placeholders differ for {activity}.{key}",
+                    )
+
     def test_attachment_and_media_strings_are_local_and_format_compatible(self):
         keys = {
             key for key in self.english

@@ -86,6 +86,14 @@ def read_png_pixels(path):
 
 
 class ChatAppBrandingTests(unittest.TestCase):
+    def test_camera_orientation_uses_the_view_window_scene(self):
+        source = (
+            ROOT / "submodules/Camera/Sources/CameraPreviewView.swift"
+        ).read_text(encoding="utf-8")
+
+        self.assertIn("self.window?.windowScene?.interfaceOrientation", source)
+        self.assertNotIn("UIApplication.shared.windows", source)
+
     def test_pasteboard_text_types_use_uniform_type_identifiers(self):
         pasteboard = (
             ROOT / "submodules/Pasteboard/Sources/Pasteboard.swift"
