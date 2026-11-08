@@ -242,6 +242,7 @@ jobs:
       - name: Set up Android SDK and emulator
         uses: android-actions/setup-android@v4
         with:
+          cmdline-tools-version: "15859902"
           packages: >-
             emulator
             platform-tools
@@ -256,13 +257,19 @@ jobs:
 
       - name: Create and boot Android emulator
         run: |
+          set -o pipefail
           android_sdk="${ANDROID_HOME:-${ANDROID_SDK_ROOT}}"
+          avdmanager="${android_sdk}/cmdline-tools/22.0/bin/avdmanager"
           android_adb="${android_sdk}/platform-tools/adb"
-          echo "no" | "${android_sdk}/cmdline-tools/latest/bin/avdmanager" create avd \
-            --force \
-            --name chat-ci \
-            --package 'system-images;android-35;google_apis;x86_64' \
-            --device pixel_2
+          export ANDROID_AVD_HOME="${HOME}/.android/avd"
+          mkdir -p "${ANDROID_AVD_HOME}"
+          printf 'no\n' | "${avdmanager}" -v create avd \
+            -f \
+            -n chat-ci \
+            -k 'system-images;android-35;google_apis;x86_64' \
+            -p "${ANDROID_AVD_HOME}/chat-ci.avd"
+          "${avdmanager}" list avd
+          test -s "${ANDROID_AVD_HOME}/chat-ci.ini"
           "${android_sdk}/emulator/emulator" -avd chat-ci \
             -no-window \
             -no-audio \
