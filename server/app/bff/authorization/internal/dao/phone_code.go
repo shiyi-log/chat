@@ -75,18 +75,15 @@ func (d *Dao) GetPhoneCode(ctx context.Context,
 	phoneNumber, phoneCodeHash string) (codeData *model.PhoneCodeTransaction, err error) {
 
 	if codeData, err = d.GetCachePhoneCode(ctx, authKeyId, phoneNumber); err != nil {
-		logx.WithContext(ctx).Errorf("getPhoneCode by {authKeyId: %d, phoneNumber: %s} error - %v", authKeyId, phoneNumber, err)
+		logx.WithContext(ctx).Errorf("getPhoneCode failed (error type: %T)", err)
 		err = mtproto.ErrPhoneCodeExpired
 		return
 	} else if codeData == nil {
-		logx.WithContext(ctx).Errorf("getPhoneCode by {authKeyId: %d, phoneNumber: %s} error - %v", authKeyId, phoneNumber, err)
+		logx.WithContext(ctx).Errorf("getPhoneCode found no active transaction")
 		err = mtproto.ErrPhoneCodeExpired
 		return
 	} else if codeData.PhoneCodeHash != phoneCodeHash {
-		logx.WithContext(ctx).Errorf("getPhoneCode by {authKeyId: %d, phoneNumber: %s, phoneCodeHash: %s} error - invalid phoneCodeHash",
-			authKeyId,
-			phoneNumber,
-			phoneCodeHash)
+		logx.WithContext(ctx).Errorf("getPhoneCode rejected an invalid code hash")
 		err = mtproto.ErrPhoneCodeInvalid
 	}
 	return

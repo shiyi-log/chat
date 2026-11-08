@@ -57,7 +57,7 @@ func (c *AuthorizationCore) AuthResendCode(in *mtproto.TLAuthResendCode) (*mtpro
 	// client phone number format: "+86 111 1111 1111"
 	_, phoneNumber, err := checkPhoneNumberInvalid(in.PhoneNumber)
 	if err != nil {
-		c.Logger.Errorf("check phone_number(%s) error - %v", in.PhoneNumber, err)
+		c.Logger.Errorf("invalid phone number (error type: %T)", err)
 		err = mtproto.ErrPhoneNumberInvalid
 		return nil, err
 	}
@@ -101,7 +101,7 @@ func (c *AuthorizationCore) AuthResendCode(in *mtproto.TLAuthResendCode) (*mtpro
 	if c.svcCtx.Plugin != nil {
 		banned, _ := c.svcCtx.Plugin.CheckPhoneNumberBanned(c.ctx, phoneNumber)
 		if banned {
-			c.Logger.Errorf("{phone_number: %s} banned: %v", phoneNumber, err)
+			c.Logger.Errorf("phone number is banned")
 			err = mtproto.ErrPhoneNumberBanned
 			return nil, err
 		}
@@ -117,7 +117,7 @@ func (c *AuthorizationCore) AuthResendCode(in *mtproto.TLAuthResendCode) (*mtpro
 	// 6. check can do action
 	actionType := logic.GetActionType(in)
 	if err = c.svcCtx.Dao.CheckCanDoAction(c.ctx, c.MD.PermAuthKeyId, phoneNumber, actionType); err != nil {
-		c.Logger.Errorf("check can do action - %s: %v", phoneNumber, err)
+		c.Logger.Errorf("check can do action failed (error type: %T)", err)
 		return nil, err
 	}
 
@@ -134,7 +134,7 @@ func (c *AuthorizationCore) AuthResendCode(in *mtproto.TLAuthResendCode) (*mtpro
 			// 400	SMS_CODE_CREATE_FAILED	An error occurred while creating the SMS code
 			extraData, err2 := c.svcCtx.AuthLogic.VerifyCodeInterface.SendSmsVerifyCode(c.ctx, phoneNumber, codeData2.PhoneCode, codeData2.PhoneCodeHash)
 			if err2 != nil {
-				c.Logger.Errorf("sendSmsVerifyCode error: %v", err2)
+				c.Logger.Errorf("sendSmsVerifyCode failed (error type: %T)", err2)
 				return err2
 			}
 
@@ -156,7 +156,7 @@ func (c *AuthorizationCore) AuthResendCode(in *mtproto.TLAuthResendCode) (*mtpro
 			//}()
 		})
 	if err2 != nil {
-		c.Logger.Errorf("auth.resendCode - error: %v", err2)
+		c.Logger.Errorf("auth.resendCode failed (error type: %T)", err2)
 		err = err2
 		return nil, err
 	}

@@ -74,7 +74,7 @@ func (c *AuthorizationCore) AuthSignIn(in *mtproto.TLAuthSignIn) (*mtproto.Auth_
 	// client phone number format: "+86 111 1111 1111"
 	_, phoneNumber, err := checkPhoneNumberInvalid(in.PhoneNumber)
 	if err != nil {
-		c.Logger.Errorf("check phone_number(%s) error - %v", in.PhoneNumber, err)
+		c.Logger.Errorf("invalid phone number (error type: %T)", err)
 		err = mtproto.ErrPhoneNumberInvalid
 		return nil, err
 	}
@@ -82,7 +82,7 @@ func (c *AuthorizationCore) AuthSignIn(in *mtproto.TLAuthSignIn) (*mtproto.Auth_
 	// 6. check can do action
 	actionType := logic.GetActionType(in)
 	if err = c.svcCtx.Dao.CheckCanDoAction(c.ctx, c.MD.PermAuthKeyId, phoneNumber, actionType); err != nil {
-		c.Logger.Errorf("check can do action - %s: %v", phoneNumber, err)
+		c.Logger.Errorf("check can do action failed (error type: %T)", err)
 		return nil, err
 	}
 
@@ -92,14 +92,11 @@ func (c *AuthorizationCore) AuthSignIn(in *mtproto.TLAuthSignIn) (*mtproto.Auth_
 		phoneCode,
 		phoneCodeHash,
 		func(codeData2 *model.PhoneCodeTransaction) error {
-			return c.svcCtx.AuthLogic.VerifyCodeInterface.VerifySmsCode(c.ctx,
-				codeData2.PhoneCodeHash,
-				phoneCode,
-				codeData2.PhoneCodeExtraData)
+			return c.svcCtx.AuthLogic.VerifyPhoneCode(c.ctx, codeData2, phoneCode)
 		})
 
 	if err2 != nil {
-		c.Logger.Error(err2.Error())
+		c.Logger.Errorf("auth.signIn failed (error type: %T)", err2)
 		err = err2
 		return nil, err
 	}
@@ -123,7 +120,7 @@ func (c *AuthorizationCore) AuthSignIn(in *mtproto.TLAuthSignIn) (*mtproto.Auth_
 				TermsOfService: nil,
 			}).To_Auth_Authorization(), nil
 		} else {
-			c.Logger.Errorf("auth.signIn - not registered, next step auth.signIn, %v", err)
+			c.Logger.Errorf("auth.signIn requires sign-up for this account")
 			err = mtproto.ErrPhoneNumberUnoccupied
 			return nil, err
 		}
@@ -139,10 +136,10 @@ func (c *AuthorizationCore) AuthSignIn(in *mtproto.TLAuthSignIn) (*mtproto.Auth_
 		Phone: phoneNumber,
 	})
 	if err != nil {
-		c.Logger.Errorf("user(%s) is err - %v", phoneNumber, err)
+		c.Logger.Errorf("load user for auth.signIn failed (error type: %T)", err)
 		return nil, err
 	} else if user == nil {
-		c.Logger.Errorf("user(%s) is nil", phoneNumber)
+		c.Logger.Errorf("load user for auth.signIn returned no user")
 		err = mtproto.ErrInternalServerError
 		return nil, err
 	}

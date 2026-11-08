@@ -137,7 +137,7 @@ func (c *AuthorizationCore) AuthSendCode(in *mtproto.TLAuthSendCode) (*mtproto.A
 func (c *AuthorizationCore) authSendCode(authKeyId, sessionId int64, request *mtproto.TLAuthSendCode) (reply *mtproto.Auth_SentCode, err error) {
 	// 1. check api_id and api_hash
 	if err = c.svcCtx.Dao.CheckApiIdAndHash(request.ApiId, request.ApiHash); err != nil {
-		c.Logger.Errorf("invalid api: {api_id: %d, api_hash: %s}", request.ApiId, request.ApiHash)
+		c.Logger.Errorf("invalid api id: %d", request.ApiId)
 		return
 	}
 
@@ -163,7 +163,7 @@ func (c *AuthorizationCore) authSendCode(authKeyId, sessionId int64, request *mt
 	// client phone number format: "+86 111 1111 1111"
 	_, phoneNumber, err := checkPhoneNumberInvalid(request.PhoneNumber)
 	if err != nil {
-		c.Logger.Errorf("check phone_number(%s) error - %v", request.PhoneNumber, err)
+		c.Logger.Errorf("invalid phone number (error type: %T)", err)
 		err = mtproto.ErrPhoneNumberInvalid
 		return
 	}
@@ -207,7 +207,7 @@ func (c *AuthorizationCore) authSendCode(authKeyId, sessionId int64, request *mt
 	if c.svcCtx.Plugin != nil {
 		banned, _ := c.svcCtx.Plugin.CheckPhoneNumberBanned(c.ctx, phoneNumber)
 		if banned {
-			c.Logger.Errorf("{phone_number: %s} banned: %v", phoneNumber, err)
+			c.Logger.Errorf("phone number is banned")
 			err = mtproto.ErrPhoneNumberBanned
 			return
 		}
@@ -223,7 +223,7 @@ func (c *AuthorizationCore) authSendCode(authKeyId, sessionId int64, request *mt
 	// 6. check can do action
 	actionType := logic.GetActionType(request)
 	if err = c.svcCtx.Dao.CheckCanDoAction(c.ctx, authKeyId, phoneNumber, actionType); err != nil {
-		c.Logger.Errorf("check can do action - %s: %v", phoneNumber, err)
+		c.Logger.Errorf("check can do action failed (error type: %T)", err)
 		return
 	}
 
@@ -336,7 +336,7 @@ func (c *AuthorizationCore) authSendCode(authKeyId, sessionId int64, request *mt
 					codeData2.SentCodeType = model.SentCodeTypeApp
 					codeData2.PhoneCode = "12345"
 					codeData2.PhoneCodeExtraData = "12345"
-					c.Logger.Infof("is test server: %v", codeData2)
+					c.Logger.Infof("using app-delivered code for test account")
 				} else {
 					if status2, _ := c.svcCtx.StatusClient.StatusGetUserOnlineSessions(c.ctx, &statuspb.TLStatusGetUserOnlineSessions{
 						UserId: user.User.Id,
@@ -360,7 +360,7 @@ func (c *AuthorizationCore) authSendCode(authKeyId, sessionId int64, request *mt
 					codeData2.PhoneCode,
 					codeData2.PhoneCodeHash)
 				if err2 != nil {
-					c.Logger.Errorf("send sms code error: %v", err2)
+					c.Logger.Errorf("send sms code failed (error type: %T)", err2)
 					return err2
 				} else {
 					// codeData2.SentCodeType = model.CodeTypeSms
@@ -421,7 +421,7 @@ func (c *AuthorizationCore) authSendCode(authKeyId, sessionId int64, request *mt
 		})
 
 	if err2 != nil {
-		c.Logger.Errorf("auth.sendCode - error: %v", err2)
+		c.Logger.Errorf("auth.sendCode failed (error type: %T)", err2)
 		err = err2
 		return
 	}

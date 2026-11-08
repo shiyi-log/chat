@@ -20,6 +20,7 @@ package logic
 
 import (
 	"context"
+	"crypto/subtle"
 	"time"
 
 	"github.com/teamgram/proto/mtproto"
@@ -189,7 +190,7 @@ func (m *AuthLogic) DoAuthSignIn(ctx context.Context,
 	if codeData.State != model.CodeStateOk &&
 		codeData.State != model.CodeStateSent &&
 		codeData.State != model.CodeStateSignIn {
-		logx.WithContext(ctx).Errorf("error - invalid codeData state: %v", codeData)
+		logx.WithContext(ctx).Errorf("error - invalid phone code state: %d", codeData.State)
 		err = mtproto.ErrInternalServerError
 		return
 	}
@@ -234,6 +235,22 @@ func (m *AuthLogic) DoAuthSignIn(ctx context.Context,
 
 	err = m.Dao.UpdatePhoneCodeData(ctx, authKeyId, phoneNumber, phoneCodeHash, codeData)
 	return
+}
+
+func (m *AuthLogic) VerifyPhoneCode(ctx context.Context, codeData *model.PhoneCodeTransaction, phoneCode string) error {
+	if codeData == nil {
+		return mtproto.ErrPhoneCodeInvalid
+	}
+	if codeData.SentCodeType == model.SentCodeTypeApp {
+		if subtle.ConstantTimeCompare([]byte(phoneCode), []byte(codeData.PhoneCodeExtraData)) != 1 {
+			return mtproto.ErrPhoneCodeInvalid
+		}
+		return nil
+	}
+	if m.VerifyCodeInterface == nil {
+		return mtproto.ErrInternalServerError
+	}
+	return m.VerifyCodeInterface.VerifySmsCode(ctx, codeData.PhoneCodeHash, phoneCode, codeData.PhoneCodeExtraData)
 }
 
 // DoAuthSignUp

@@ -43,7 +43,7 @@ func (d *Dao) GetCachePhoneCode(ctx context.Context, authKeyId int64, phoneNumbe
 
 	v, err := d.kv.GetCtx(ctx, cacheKey)
 	if err != nil {
-		logx.WithContext(ctx).Errorf("conn.GET(%s) error(%v)", cacheKey, err)
+		logx.WithContext(ctx).Errorf("phone code cache GET failed (error type: %T)", err)
 		return nil, err
 	} else if v == "" {
 		return nil, nil
@@ -59,7 +59,7 @@ func (d *Dao) PutCachePhoneCode(ctx context.Context, authKeyId int64, phoneNumbe
 	b, _ := json.Marshal(codeData)
 
 	if err = d.kv.SetexCtx(ctx, cacheKey, string(b), int(phoneCodeTimeout)); err != nil {
-		logx.WithContext(ctx).Errorf("conn.SETEX(%s) error(%v)", cacheKey, err)
+		logx.WithContext(ctx).Errorf("phone code cache SETEX failed (error type: %T)", err)
 	}
 	return
 }
@@ -68,7 +68,7 @@ func (d *Dao) DeleteCachePhoneCode(ctx context.Context, authKeyId int64, phoneNu
 	cacheKey := genCachePhoneCodeKey(authKeyId, phoneNumber)
 
 	if _, err = d.kv.DelCtx(ctx, cacheKey); err != nil {
-		logx.WithContext(ctx).Errorf("conn.DEL(%s) error(%v)", cacheKey, err)
+		logx.WithContext(ctx).Errorf("phone code cache DEL failed (error type: %T)", err)
 	}
 
 	return
