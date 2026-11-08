@@ -40,6 +40,8 @@
 "lng_intro_qr_phone" = "使用手机号登录";
 "lng_intro_qr_passkey" = "使用通行密钥登录";
 "lng_intro_fragment_title" = "输入验证码";
+"lng_intro_fragment_about" = "请前往 Fragment 的“匿名号码”部分获取 {phone_number} 的验证码。";
+"lng_intro_fragment_button" = "打开 Fragment";
 "lng_intro_email_setup_title" = "设置登录邮箱";
 "lng_intro_email_confirm_subtitle" = "请检查邮箱 {email}（包括垃圾邮件文件夹），并输入刚发送的验证码。";
 "lng_phone_title" = "你的手机号";
@@ -58,6 +60,8 @@
 "lng_code_call" = "Chat 将在 {minutes}:{seconds} 后拨打电话";
 "lng_code_calling" = "正在请求 Chat 拨打电话……";
 "lng_code_called" = "Chat 已拨打你的号码";
+"lng_code_block_header_copy" = "复制";
+"lng_code_copied" = "已将验证码复制到剪贴板。";
 "lng_bad_phone" = "手机号无效，请重试。";
 "lng_bad_code" = "验证码无效。";
 "lng_bad_name" = "请输入名字和姓氏。";
@@ -72,6 +76,17 @@
 "lng_signin_recover_hint" = "验证码已发送到 {recover_email}";
 "lng_signin_bad_password" = "密码错误。";
 "lng_signin_wrong_code" = "验证码无效。";
+"lng_signin_no_email_forgot" = "你设置密码时没有提供恢复邮箱。请尝试回忆密码，或重置账号。";
+"lng_signin_cant_email_forgot" = "如果无法恢复邮箱访问权限，请尝试回忆密码，或重置账号。";
+"lng_signin_reset_account" = "重置账号";
+"lng_signin_sure_reset" = "继续操作后，你将失去 Chat 中的所有聊天、消息、媒体和文件。\n\n要重置账号吗？";
+"lng_signin_reset" = "重置";
+"lng_signin_reset_wait" = "由于账号 {phone_number} 正在使用并受密码保护，账号将在 1 周后删除。此延迟是安全措施，你可以随时取消。\n\n你可以重置账号的时间：\n{when}";
+"lng_signin_reset_in_days" = "{days_count} 天 {hours_count} 小时 {minutes_count} 分钟";
+"lng_signin_reset_in_hours" = "{hours_count} 小时 {minutes_count} 分钟";
+"lng_signin_reset_cancelled" = "当前用户已取消最近的账号重置请求，请在 7 天后重试。";
+"lng_signin_banned_text" = "此手机号已被封禁。";
+"lng_signin_banned_help" = "帮助";
 "lng_signin_try_password" = "无法访问你的邮箱？";
 "lng_contacts_loading" = "正在加载……";
 "lng_contacts_not_found" = "没有找到联系人";

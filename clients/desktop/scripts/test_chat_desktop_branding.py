@@ -434,6 +434,41 @@ class ChatDesktopBrandingTests(unittest.TestCase):
         self.assertEqual("设置", chinese["lng_menu_settings"])
         self.assertEqual("开始聊天", chinese["lng_start_msgs"])
 
+    def test_offline_chinese_pack_covers_auth_recovery_and_clipboard_feedback(self):
+        base = read_strings("Telegram/Resources/langs/lang.strings")
+        chinese = read_strings("Telegram/Resources/langs/zh-Hans.strings")
+        required = {
+            "lng_code_block_header_copy",
+            "lng_intro_fragment_about",
+            "lng_intro_fragment_button",
+            "lng_signin_no_email_forgot",
+            "lng_signin_cant_email_forgot",
+            "lng_signin_reset_account",
+            "lng_signin_sure_reset",
+            "lng_signin_reset",
+            "lng_signin_reset_wait",
+            "lng_signin_reset_in_days",
+            "lng_signin_reset_in_hours",
+            "lng_signin_reset_cancelled",
+            "lng_signin_banned_text",
+            "lng_signin_banned_help",
+            "lng_code_copied",
+        }
+
+        self.assertTrue(required <= base.keys())
+        self.assertTrue(
+            required <= chinese.keys(),
+            "the Simplified Chinese auth recovery strings are incomplete",
+        )
+        for key in sorted(required):
+            with self.subTest(locale="zh-Hans", key=key):
+                self.assertNotEqual(base[key], chinese[key], f"{key} is still untranslated")
+                self.assertEqual(
+                    sorted(PLACEHOLDER_PATTERN.findall(base[key])),
+                    sorted(PLACEHOLDER_PATTERN.findall(chinese[key])),
+                    key,
+                )
+
     def test_offline_chinese_pack_is_in_the_runtime_resource_bundle(self):
         tree = ET.parse(ROOT / "Telegram/Resources/qrc/telegram/telegram.qrc")
         files = [node.text for node in tree.findall(".//file")]
