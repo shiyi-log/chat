@@ -1,10 +1,10 @@
-# 私有聊天系统开发任务 / Private Chat Development Tasks
+# Chat 聊天系统开发任务 / Chat Development Tasks
 
-## 当前发行状态（2026-11-03）
+## 历史任务快照（2026-11-03）
 
-以下阶段清单及测试结果保留为此前开发的历史快照。当前服务端源码预览 `v0.1.15-preview.1` 已关闭 `none` 验证器，不再返回验证码或接受固定验证码；接入并审查真实提供方前，默认配置不能完成登录。下文记录的 `12345`、旧测试号及消息互发结果不适用于当前发行配置。
+下方阶段清单、仓库名称、测试结果和端口均保留为早期多仓开发的历史记录，不代表当前单仓布局或当前验证状态。当前目录、CI 产物、本地验证码运行方式和剩余发布限制以根目录 [README](../README.md)、[本地运行说明](../server/integration/LOCAL_RUNTIME.md) 及本文档之外的近期版本记录为准。历史中的固定验证码、旧测试号和消息互发结果不适用于当前发布配置。
 
-- 套件由 `private-chat-server`、`private-chat-desktop`、`private-chat-android`、`private-chat-ios`、`private-chat-docs` 五个仓库组成。macOS 包含在 desktop；目前没有独立 Web 聊天客户端。
+- 当前套件已合并为单仓，包含 server、Android、iOS、macOS/Windows/Linux Desktop 和独立 Web 客户端；Web 客户端仍在开发中。
 - 当前服务端 Compose 要求操作者设置独立的 MySQL、MinIO 和 Grafana 密码，发布端口默认绑定 `127.0.0.1`。
 - 当前单仓本地运行时的 MTProto TCP 端口为 `25222`：Desktop / iOS 使用 `127.0.0.1:25222`，Android 模拟器使用 `10.0.2.2:25222`。跨设备联调需要改为可访问的主机地址并匹配 MTProto 公钥。
 - 服务端定向验证已覆盖禁用验证码提供方、配置替换、Compose 配置和镜像构建；完整 Go 测试仍有 KV 接口不兼容及缺少 FFmpeg 的失败。

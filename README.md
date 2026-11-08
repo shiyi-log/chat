@@ -12,11 +12,11 @@ Chat 是可自行部署和管理的聊天软件套件。本仓库统一维护服
 - `docs/`：架构、迁移、发行和运维文档。
 - `tests/`：仓库级检查。
 
-当前套件包含 Android、iOS、macOS、Windows、Linux 五个平台客户端；独立 Web 客户端正在开发中。
+当前套件包含 Android、iOS、macOS、Windows、Linux 客户端，并提供仍在开发中的独立 Web 客户端。
 
 ## 开发状态
 
-组件源码和文档现已合并到本仓库。CI 覆盖仓库测试、客户端配置校验、部分离线服务端单测、Linux 服务端 11 个程序的预览构建与产物上传、Web 客户端协议检查/测试/静态构建与预览产物上传、Android `afatDebug` APK 预览构建、iOS 无签名模拟器构建与产物上传，以及 Ubuntu、Windows、macOS runner 上的桌面打包元数据检查；桌面端完整二进制构建和正式发行流程尚未接入 CI。五个平台的登录、消息互通和文件传输尚未完成当前版本的端到端验证；Web 客户端仍在开发中。完整中文本地化、所有 Telegram 品牌/UI 遗留项和正式发行也仍需逐项验证。源码合并或静态检查通过不代表这些发布要求已经完成。
+组件源码和文档现已合并到本仓库。常规 PR/main CI 覆盖仓库测试、客户端配置校验、部分离线服务端单测、Linux 服务端 11 个程序的预览构建与产物上传、Web 客户端协议检查/测试/静态构建与预览产物上传、Android `afatDebug` APK 预览构建、iOS 无签名模拟器构建与产物上传，以及 Ubuntu、Windows、macOS runner 上的桌面打包元数据检查。`v*-preview.*` 标签还会调用自托管 runner 构建三平台 Desktop Debug 包并汇总未签名预览候选；正式签名发行流程尚未接入。五个平台及 Web 的登录、消息互通和文件传输尚未完成当前版本的端到端验证；Web 客户端仍在开发中。完整中文本地化、所有 Telegram 来源 UI 遗留项和正式发行也仍需逐项验证。源码合并或预览构建通过不代表这些发布要求已经完成。
 
 ## 本地服务端
 
@@ -38,7 +38,7 @@ Chat 是可自行部署和管理的聊天软件套件。本仓库统一维护服
 
 Chat is a self-hosted messaging suite. This repository maintains the server, Android and iOS apps, macOS, Windows and Linux desktop clients, and project documentation in one Git history.
 
-CI currently runs repository checks, client configuration checks, scoped offline server tests, a Linux preview build and upload of 11 server binaries, Web client protocol/tests/static build with a preview artifact, an Android `afatDebug` APK preview build, an unsigned iOS simulator build and artifact upload, and desktop packaging metadata checks on Ubuntu, Windows, and macOS runners. A full desktop binary build and formal release workflow are not yet part of CI. Current-version login, messaging, and file-transfer flows across the five native client platforms have not completed end-to-end validation, and the Web client remains in development. Complete Chinese localization, remaining Telegram-facing UI cleanup, and a production release also remain under validation. A source import or static check does not establish release readiness.
+Regular PR/main CI runs repository checks, client configuration checks, scoped offline server tests, a Linux preview build and upload of 11 server binaries, Web client protocol/tests/static build with a preview artifact, an Android `afatDebug` APK preview build, an unsigned iOS simulator build and artifact upload, and desktop packaging metadata checks on Ubuntu, Windows, and macOS runners. A `v*-preview.*` tag also calls self-hosted runners to build Debug desktop packages for all three platforms and assembles unsigned preview candidates; a signed production release workflow is not configured. Current-version login, messaging, and file-transfer flows across the five native platforms and Web have not completed end-to-end validation. The Web client remains in development, as do full Chinese localization and remaining Telegram-source UI cleanup. A source import or preview build does not establish release readiness.
 
-The standalone Web client is under development. Each component retains its own license and upstream notices; see the license files in `server/`, `clients/android/`, `clients/ios/`, `clients/desktop/`, and `docs/`.
+The standalone Web client is under development in `clients/web/`. Each component retains its own license and upstream notices; see the license files in `server/`, `clients/android/`, `clients/ios/`, `clients/desktop/`, and `docs/`.
 
