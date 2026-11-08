@@ -117,7 +117,7 @@ def locate_bazel(base_path, cache_host_or_path, cache_dir):
                 '3',
                 '--retry-delay',
                 '2',
-                'https://github.com/bazelbuild/bazel/releases/download/{version}/{name}'.format(
+                'https://releases.bazel.build/{version}/release/{name}'.format(
                     version=versions.bazel_version,
                     name=bazel_name
                 ),

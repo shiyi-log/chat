@@ -1,5 +1,6 @@
-import sys
+import hashlib
 import subprocess
+import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -64,6 +65,34 @@ class MakeProjectGenerationTests(unittest.TestCase):
 
 
 class BazelLocationTests(unittest.TestCase):
+    def test_download_uses_official_bazel_release_host(self):
+        with tempfile.TemporaryDirectory() as directory:
+            base_path = Path(directory) / "ios"
+            base_path.mkdir()
+            payload = b"verified bazel binary"
+            expected_digest = hashlib.sha256(payload).hexdigest()
+
+            def write_download(arguments, **kwargs):
+                output_path = Path(arguments[arguments.index("--output") + 1])
+                output_path.write_bytes(payload)
+
+            versions = SimpleNamespace(
+                bazel_version="8.4.2",
+                bazel_version_sha256=expected_digest,
+            )
+            with (
+                patch("BazelLocation.BuildEnvironmentVersions", return_value=versions),
+                patch("BazelLocation.is_apple_silicon", return_value=True),
+                patch("BazelLocation.call_executable", side_effect=write_download) as call_executable,
+            ):
+                BazelLocation.locate_bazel(str(base_path), None, None)
+
+            download_command = call_executable.call_args.args[0]
+            self.assertIn(
+                "https://releases.bazel.build/8.4.2/release/bazel-8.4.2-darwin-arm64",
+                download_command,
+            )
+
     def test_invalid_download_is_not_copied_into_the_bazel_cache(self):
         with tempfile.TemporaryDirectory() as directory:
             base_path = Path(directory) / "ios"
