@@ -160,6 +160,7 @@ button:disabled { cursor: not-allowed; opacity: .58; }
 }
 
 .sidebar-header { justify-content: space-between; }
+.sidebar-actions { display: flex; align-items: center; gap: 2px; }
 .compact { gap: 9px; font-size: 18px; }
 .compact .brand-mark { width: 34px; height: 34px; }
 .icon-button {
@@ -207,6 +208,11 @@ button:disabled { cursor: not-allowed; opacity: .58; }
 }
 .search-box input { width: 100%; border: 0; outline: 0; color: var(--text); background: transparent; font-size: 13px; }
 .search-box input:focus-visible { outline: 0; }
+.new-chat-form { display: grid; gap: 7px; margin: 0 14px 13px; padding: 12px; border: 1px solid var(--line); border-radius: 5px; background: white; }
+.new-chat-form .field-label { margin-top: 2px; font-size: 12px; }
+.new-chat-form input, .new-chat-form select { width: 100%; min-width: 0; height: 37px; padding: 0 9px; border: 1px solid #dce5de; border-radius: 4px; color: var(--text); background: white; font-size: 13px; }
+.new-chat-form .primary-button { min-height: 39px; margin-top: 3px; font-size: 13px; }
+.new-chat-form .error-message { margin: 2px 0 0; padding: 8px 9px; }
 .list-heading { padding: 0 18px 9px; color: var(--muted); font-size: 12px; font-weight: 650; }
 .dialog-list { flex: 1; overflow: auto; }
 .dialog-row {

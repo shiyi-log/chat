@@ -11,11 +11,13 @@ import {
   Send,
   Smartphone,
   UserRound,
+  UserPlus,
 } from 'lucide-react';
 import { describeAuthError, hasRpcError, isSignUpRequiredAuthorization } from './auth-errors';
+import { normalizeContactPhone, resolveImportedContactUser } from './contact-import';
 import { normalizePhoneInput } from './phone';
 import { withRequestTimeout } from './request-timeout';
-import { SESSION_MARKER_KEY, shouldRestoreSession } from './session-restore';
+import { restoreSessionWithUpdates, SESSION_MARKER_KEY, shouldRestoreSession } from './session-restore';
 import { createTelegramClient } from './telegram';
 
 type AuthStep = 'phone' | 'code' | 'password' | 'profile';
@@ -60,6 +62,12 @@ function messagePreview(message: Message | null): string {
   if (message.text) return message.text;
   if (message.isService) return '系统消息';
   return '附件';
+}
+
+type ChatSelection = Dialog | User;
+
+function selectionPeer(selection: ChatSelection) {
+  return selection instanceof User ? selection : selection.peer;
 }
 
 function AuthView({
@@ -264,16 +272,22 @@ function AuthView({
 function ChatApp({ client }: { client: TelegramClient }) {
   const [user, setUser] = useState<User | null>(null);
   const [dialogs, setDialogs] = useState<Dialog[]>([]);
-  const [selected, setSelected] = useState<Dialog | null>(null);
+  const [selected, setSelected] = useState<ChatSelection | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
   const [search, setSearch] = useState('');
   const [draft, setDraft] = useState('');
+  const [newChatOpen, setNewChatOpen] = useState(false);
+  const [contactCountryCode, setContactCountryCode] = useState('+86');
+  const [contactPhone, setContactPhone] = useState('');
+  const [contactName, setContactName] = useState('');
+  const [contactError, setContactError] = useState('');
   const [startupMessage, setStartupMessage] = useState('');
   const [loading, setLoading] = useState(true);
   const [loadingHistory, setLoadingHistory] = useState(false);
   const [sending, setSending] = useState(false);
+  const [lookingUpContact, setLookingUpContact] = useState(false);
   const [chatError, setChatError] = useState('');
-  const selectedRef = useRef<Dialog | null>(null);
+  const selectedRef = useRef<ChatSelection | null>(null);
   const listEndRef = useRef<HTMLDivElement>(null);
 
   const refreshDialogs = useCallback(async () => {
@@ -305,7 +319,7 @@ function ChatApp({ client }: { client: TelegramClient }) {
     const revealLogin = window.setTimeout(() => {
       if (active) setLoading(false);
     }, 1800);
-    void client.getMe().then(async (currentUser) => {
+    void restoreSessionWithUpdates(client).then(async (currentUser) => {
       if (!active) return;
       setUser(currentUser);
       await refreshDialogs();
@@ -330,7 +344,7 @@ function ChatApp({ client }: { client: TelegramClient }) {
 
   useEffect(() => {
     const handleMessage = (message: Message) => {
-      if (selectedRef.current?.peer.id === message.chat.id) {
+      if (selectedRef.current && selectionPeer(selectedRef.current).id === message.chat.id) {
         setMessages((current) => current.some((item) => item.id === message.id)
           ? current
           : [...current, message]);
@@ -346,10 +360,11 @@ function ChatApp({ client }: { client: TelegramClient }) {
       setMessages([]);
       return;
     }
+    const peer = selectionPeer(selected);
     let active = true;
     setLoadingHistory(true);
     setChatError('');
-    void client.getHistory(selected.peer.inputPeer, { limit: 50 }).then((page) => {
+    void client.getHistory(peer.inputPeer, { limit: 50 }).then((page) => {
       if (active) setMessages([...page].reverse());
     }).catch((reason: unknown) => {
       if (active) setChatError(describeAuthError(reason));
@@ -366,18 +381,54 @@ function ChatApp({ client }: { client: TelegramClient }) {
   const visibleDialogs = dialogs.filter((dialog) =>
     dialog.peer.displayName.toLocaleLowerCase().includes(search.trim().toLocaleLowerCase()),
   );
+  const selectedPeer = selected ? selectionPeer(selected) : null;
+
+  const startContactChat = (event: FormEvent) => {
+    event.preventDefault();
+    if (lookingUpContact) return;
+    setLookingUpContact(true);
+    setContactError('');
+    try {
+      const phone = normalizeContactPhone(contactPhone, contactCountryCode);
+      void client.importContacts([{
+        phone,
+        firstName: contactName.trim() || '联系人',
+        lastName: '',
+      }]).then((result) => {
+        const rawUser = resolveImportedContactUser(result, 1);
+        if (!rawUser) {
+          setContactError('没有找到使用该手机号注册的用户，请检查号码后重试。');
+          return;
+        }
+        setSearch('');
+        setChatError('');
+        setSelected(new User(rawUser));
+        setNewChatOpen(false);
+        setContactPhone('');
+        setContactName('');
+        void refreshDialogs().catch((reason: unknown) => setChatError(describeAuthError(reason)));
+      }).catch((reason: unknown) => {
+        setContactError(describeAuthError(reason));
+      }).finally(() => setLookingUpContact(false));
+    } catch (reason) {
+      setContactError(reason instanceof Error ? reason.message : '请输入有效的手机号。');
+      setLookingUpContact(false);
+    }
+  };
 
   const sendMessage = (event: FormEvent) => {
     event.preventDefault();
     if (!selected || !draft.trim() || sending) return;
+    const peer = selectionPeer(selected);
     const text = draft.trim();
     setSending(true);
     setChatError('');
-    void client.sendText(selected.peer.inputPeer, text).then((message) => {
+    void client.sendText(peer.inputPeer, text).then((message) => {
       setMessages((current) => current.some((item) => item.id === message.id)
         ? current
         : [...current, message]);
       setDraft('');
+      void refreshDialogs().catch((reason: unknown) => setChatError(describeAuthError(reason)));
     }).catch((reason: unknown) => {
       setChatError(describeAuthError(reason));
     }).finally(() => setSending(false));
@@ -407,7 +458,19 @@ function ChatApp({ client }: { client: TelegramClient }) {
             <span className="brand-mark"><MessageCircle size={20} strokeWidth={2.4} /></span>
             <span>Chat</span>
           </div>
-          <button className="icon-button" aria-label="退出登录" title="退出登录" onClick={logOut} type="button"><LogOut size={18} /></button>
+          <div className="sidebar-actions">
+            <button
+              className="icon-button"
+              aria-label="新建聊天"
+              title="新建聊天"
+              onClick={() => {
+                setNewChatOpen((open) => !open);
+                setContactError('');
+              }}
+              type="button"
+            ><UserPlus size={18} /></button>
+            <button className="icon-button" aria-label="退出登录" title="退出登录" onClick={logOut} type="button"><LogOut size={18} /></button>
+          </div>
         </header>
         <div className="profile-line">
           <span className="avatar self-avatar">{initials(user.displayName)}</span>
@@ -418,11 +481,36 @@ function ChatApp({ client }: { client: TelegramClient }) {
           <Search size={17} aria-hidden="true" />
           <input aria-label="搜索会话" onChange={(event) => setSearch(event.target.value)} placeholder="搜索" value={search} />
         </label>
+        {newChatOpen && (
+          <form className="new-chat-form" aria-label="新建聊天" onSubmit={startContactChat}>
+            <label className="field-label" htmlFor="contact-country">国家或地区</label>
+            <select id="contact-country" onChange={(event) => setContactCountryCode(event.target.value)} value={contactCountryCode}>
+              {countries.map((country) => <option key={country.code} value={country.code}>{country.label}</option>)}
+            </select>
+            <label className="field-label" htmlFor="contact-phone">手机号</label>
+            <input
+              autoComplete="tel"
+              id="contact-phone"
+              inputMode="tel"
+              onChange={(event) => setContactPhone(event.target.value)}
+              placeholder="请输入手机号"
+              required
+              value={contactPhone}
+            />
+            <label className="field-label" htmlFor="contact-name">联系人名称（可选）</label>
+            <input id="contact-name" onChange={(event) => setContactName(event.target.value)} value={contactName} />
+            {contactError && <p className="error-message" role="alert">{contactError}</p>}
+            <button className="primary-button" disabled={lookingUpContact} type="submit">
+              {lookingUpContact ? <LoaderCircle className="spin" size={16} /> : null}
+              查找并开始聊天
+            </button>
+          </form>
+        )}
         <div className="list-heading">最近消息</div>
         <div className="dialog-list">
           {visibleDialogs.map((dialog) => (
             <button
-              className={`dialog-row ${selected?.peer.id === dialog.peer.id ? 'selected' : ''}`}
+              className={`dialog-row ${selectedPeer?.id === dialog.peer.id ? 'selected' : ''}`}
               key={dialog.peer.id}
               onClick={() => setSelected(dialog)}
               type="button"
@@ -448,9 +536,9 @@ function ChatApp({ client }: { client: TelegramClient }) {
           <>
             <header className="conversation-header">
               <button className="icon-button back-button" aria-label="返回会话列表" onClick={() => setSelected(null)} type="button"><ArrowLeft size={19} /></button>
-              <span className="avatar small-avatar">{initials(selected.peer.displayName)}</span>
+              <span className="avatar small-avatar">{initials(selectedPeer?.displayName ?? '')}</span>
               <div className="conversation-person">
-                <h1>{selected.peer.displayName}</h1>
+                <h1>{selectedPeer?.displayName}</h1>
                 <span>Chat 会话</span>
               </div>
             </header>
