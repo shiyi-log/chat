@@ -47,7 +47,14 @@ def telegram_owned_targets(value):
 
 def string_map(path):
     root = ET.parse(path).getroot()
-    return {item.get("name"): "".join(item.itertext()) for item in root.findall("string")}
+    values = {
+        item.get("name"): "".join(item.itertext())
+        for item in root.findall("string")
+    }
+    for plural in root.findall("plurals"):
+        for item in plural.findall("item"):
+            values[f"{plural.get('name')}_{item.get('quantity')}"] = "".join(item.itertext())
+    return values
 
 
 def jdk_tools():
@@ -111,6 +118,50 @@ class ChatBrandingLocalizationTests(unittest.TestCase):
             with self.subTest(activity=activity):
                 self.assertFalse(missing, f"missing {activity} Chinese strings: {sorted(missing)}")
             for key in keys - missing:
+                with self.subTest(activity=activity, key=key):
+                    self.assertEqual(
+                        sorted(FORMATS.findall(self.english[key])),
+                        sorted(FORMATS.findall(self.chinese[key])),
+                        f"format placeholders differ for {activity}.{key}",
+                    )
+
+    def test_profile_notification_and_storage_settings_have_local_chinese_resources(self):
+        activities = (
+            "ChangeBioActivity",
+            "ChangeNameActivity",
+            "ChangeUsernameActivity",
+            "NotificationsSettingsActivity",
+            "CacheControlActivity",
+            "DataSettingsActivity",
+        )
+        keys_by_activity = {}
+        for activity in activities:
+            source_path = ROOT / f"TMessagesProj/src/main/java/org/telegram/ui/{activity}.java"
+            source = source_path.read_text(encoding="utf-8")
+            keys = set(re.findall(r"R[.]string[.]([A-Za-z0-9_]+)", source))
+            keys.update(re.findall(
+                r'LocaleController[.](?:getString|formatString)\(\s*"([A-Za-z0-9_]+)"', source
+            ))
+            plural_bases = set(re.findall(
+                r'LocaleController[.](?:getPluralString|formatPluralString|formatPluralStringComma)'
+                r'\(\s*"([A-Za-z0-9_]+)"',
+                source,
+            ))
+            keys.update(
+                key for key in self.english
+                if any(key.startswith(base + "_") for base in plural_bases)
+            )
+            keys_by_activity[activity] = keys & self.english.keys()
+
+        requested = set().union(*keys_by_activity.values())
+        missing = requested - self.chinese.keys()
+        self.assertFalse(
+            missing,
+            f"missing profile, notification, and storage Chinese strings: {sorted(missing)}",
+        )
+        self.assertEqual(2, self.chinese["BotUsernameHelp"].count("*"))
+        for activity, keys in keys_by_activity.items():
+            for key in keys:
                 with self.subTest(activity=activity, key=key):
                     self.assertEqual(
                         sorted(FORMATS.findall(self.english[key])),

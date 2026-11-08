@@ -434,6 +434,23 @@ class ChatDesktopBrandingTests(unittest.TestCase):
         self.assertEqual("设置", chinese["lng_menu_settings"])
         self.assertEqual("开始聊天", chinese["lng_start_msgs"])
 
+    def test_notification_exception_hints_keep_bold_count_markers(self):
+        base = read_strings("Telegram/Resources/langs/lang.strings")
+        chinese = read_strings("Telegram/Resources/langs/zh-Hans.strings")
+        keys = (
+            "lng_notification_about_private_chats#one",
+            "lng_notification_about_private_chats#other",
+            "lng_notification_about_groups#one",
+            "lng_notification_about_groups#other",
+            "lng_notification_about_channels#one",
+            "lng_notification_about_channels#other",
+        )
+
+        for key in keys:
+            with self.subTest(key=key):
+                self.assertEqual(2, base[key].count("**"))
+                self.assertEqual(2, chinese[key].count("**"))
+
     def test_offline_chinese_pack_covers_auth_recovery_and_clipboard_feedback(self):
         base = read_strings("Telegram/Resources/langs/lang.strings")
         chinese = read_strings("Telegram/Resources/langs/zh-Hans.strings")
