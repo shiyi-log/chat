@@ -48,6 +48,7 @@ jobs:
           python clients/android/scripts/verify_private_chat_android_config.py
           python clients/android/scripts/tests/test_private_chat_api_config.py
           python clients/android/scripts/tests/test_chat_branding_localization.py
+          python clients/android/scripts/tests/test_android_emulator_smoke.py
           python clients/android/scripts/tests/test_private_chat_signing_config.py
 
       - name: Run iOS configuration checks
@@ -218,6 +219,76 @@ jobs:
           retention-days: 14
           compression-level: 0
 
+  android-emulator-smoke:
+    name: Android Simplified Chinese first-launch smoke
+    needs:
+      - android-compile
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    permissions:
+      contents: read
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v7
+        with:
+          persist-credentials: false
+
+      - name: Set up Java
+        uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Set up Android SDK and emulator
+        uses: android-actions/setup-android@v4
+        with:
+          packages: >-
+            emulator
+            platform-tools
+            platforms;android-35
+            system-images;android-35;google_apis;x86_64
+
+      - name: Download Android debug APK
+        uses: actions/download-artifact@v7
+        with:
+          name: chat-android-afat-debug-${{ github.run_id }}-${{ github.run_attempt }}
+          path: ${{ runner.temp }}/chat-android-afat-debug
+
+      - name: Create and boot Android emulator
+        run: |
+          android_sdk="${ANDROID_HOME:-${ANDROID_SDK_ROOT}}"
+          android_adb="${android_sdk}/platform-tools/adb"
+          echo "no" | "${android_sdk}/cmdline-tools/latest/bin/avdmanager" create avd \
+            --force \
+            --name chat-ci \
+            --package 'system-images;android-35;google_apis;x86_64' \
+            --device pixel_2
+          "${android_sdk}/emulator/emulator" -avd chat-ci \
+            -no-window \
+            -no-audio \
+            -no-boot-anim \
+            -no-snapshot \
+            -gpu swiftshader_indirect \
+            > "${RUNNER_TEMP}/chat-android-emulator.log" 2>&1 &
+          "${android_adb}" wait-for-device
+          for attempt in $(seq 1 90); do
+            if [ "$("${android_adb}" shell getprop sys.boot_completed | tr -d '\r')" = "1" ]; then
+              exit 0
+            fi
+            sleep 2
+          done
+          cat "${RUNNER_TEMP}/chat-android-emulator.log"
+          echo "Android emulator did not finish booting." >&2
+          exit 1
+
+      - name: Verify clean first launch is Simplified Chinese
+        run: >-
+          python3 clients/android/scripts/smoke_android_emulator.py
+          --apk "${RUNNER_TEMP}/chat-android-afat-debug/app.apk"
+          --serial emulator-5554
+          --adb "${ANDROID_HOME}/platform-tools/adb"
+          --timeout-seconds 180
+
   ios-simulator-build:
     name: iOS simulator build (unsigned)
     runs-on: xcode-27
@@ -346,6 +417,7 @@ jobs:
       - server-build-preview
       - web-build-preview
       - android-compile
+      - android-emulator-smoke
       - ios-simulator-build
       - desktop-build-preview
     runs-on: ubuntu-24.04

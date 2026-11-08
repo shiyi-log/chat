@@ -49,6 +49,7 @@ class CandidateReleaseWorkflowTests(unittest.TestCase):
                 "server-build-preview",
                 "web-build-preview",
                 "android-compile",
+                "android-emulator-smoke",
                 "ios-simulator-build",
                 "desktop-build-preview",
             },

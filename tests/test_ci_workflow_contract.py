@@ -48,6 +48,7 @@ class CiWorkflowContractTest(unittest.TestCase):
         self.assertIn("scripts/verify_private_chat_android_config.py", commands)
         self.assertIn("scripts/tests/test_private_chat_api_config.py", commands)
         self.assertIn("scripts/tests/test_chat_branding_localization.py", commands)
+        self.assertIn("scripts/tests/test_android_emulator_smoke.py", commands)
         self.assertIn("scripts/tests/test_chat_app_branding.py", commands)
         self.assertIn("scripts/test_chat_desktop_branding.py", commands)
         self.assertIn("scripts/verify_private_chat_ios_config.py", commands)
@@ -144,6 +145,31 @@ class CiWorkflowContractTest(unittest.TestCase):
         self.assertNotIn("assembleAfatRelease", commands)
         self.assertNotIn("signingConfig", commands)
         self.assertEqual(android["permissions"], {"contents": "read"})
+
+    def test_android_preview_must_pass_a_chinese_first_launch_emulator_smoke(self):
+        jobs = self.workflow["jobs"]
+        smoke = jobs.get("android-emulator-smoke")
+        self.assertIsNotNone(smoke, "the built APK must be installed and launched on an emulator")
+        self.assertEqual(["android-compile"], smoke["needs"])
+
+        commands = "\n".join(step.get("run", "") for step in smoke["steps"])
+        self.assertTrue(any(step.get("uses") == "actions/setup-java@v6" for step in smoke["steps"]))
+        self.assertIn("system-images;android-35;google_apis;x86_64", commands)
+        self.assertIn("smoke_android_emulator.py", commands)
+        smoke_script = ROOT / "clients/android/scripts/smoke_android_emulator.py"
+        script = smoke_script.read_text(encoding="utf-8")
+        self.assertIn("uiautomator", script)
+        self.assertIn('"pm", "clear"', script)
+
+        download = next(step for step in smoke["steps"] if step.get("name") == "Download Android debug APK")
+        self.assertEqual("actions/download-artifact@v7", download.get("uses"))
+        self.assertEqual(
+            "chat-android-afat-debug-${{ github.run_id }}-${{ github.run_attempt }}",
+            download["with"]["name"],
+        )
+
+        candidate = jobs["candidate-package"]
+        self.assertIn("android-emulator-smoke", candidate["needs"])
 
     def test_ios_simulator_build_uses_the_unsigned_local_configuration(self):
         ios = self.workflow["jobs"]["ios-simulator-build"]
