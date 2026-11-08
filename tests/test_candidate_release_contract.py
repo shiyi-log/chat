@@ -96,19 +96,32 @@ class CandidateReleaseWorkflowTests(unittest.TestCase):
         }
         self.assertEqual(PINNED_ACTIONS, actual)
 
-    def test_desktop_workflow_keeps_single_platform_dispatch_and_supports_all_platform_reuse(self):
+    def test_main_desktop_changes_build_all_debug_platforms(self):
         triggers = self.desktop.get("on", self.desktop.get(True, self.desktop.get("true")))
         self.assertIn("workflow_call", triggers)
+        self.assertEqual(["main"], triggers["push"]["branches"])
         self.assertEqual(
-            ["linux", "macos", "windows"],
+            {"clients/desktop/**", ".github/workflows/desktop-build.yml"},
+            set(triggers["push"]["paths"]),
+        )
+        self.assertEqual(
+            ["linux", "macos", "windows", "all"],
             triggers["workflow_dispatch"]["inputs"]["platform"]["options"],
         )
         self.assertEqual("string", triggers["workflow_call"]["inputs"]["platform"]["type"])
         self.assertTrue(triggers["workflow_call"]["inputs"]["platform"]["required"])
         for platform in ("linux", "macos", "windows"):
             job = self.desktop["jobs"][platform]
-            self.assertIn("'all'", job["if"])
+            self.assertIn("github.event_name == 'push'", job["if"])
+            self.assertIn("github.ref == 'refs/heads/main'", job["if"])
             self.assertIn("self-hosted", job["runs-on"])
+            artifact = next(step for step in job["steps"] if step.get("uses") == "actions/upload-artifact@v7")
+            self.assertEqual(14, artifact["with"]["retention-days"])
+            self.assertIn(".manifest.json", artifact["with"]["path"])
+
+        self.assertIn("'all'", self.desktop["jobs"]["linux"]["if"])
+        self.assertIn("'all'", self.desktop["jobs"]["macos"]["if"])
+        self.assertIn("'all'", self.desktop["jobs"]["windows"]["if"])
 
         caller = self.ci["jobs"]["desktop-build-preview"]
         self.assertEqual("./.github/workflows/desktop-build.yml", caller["uses"])

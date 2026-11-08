@@ -17,6 +17,13 @@ on:
           - linux
           - macos
           - windows
+          - all
+  push:
+    branches:
+      - main
+    paths:
+      - clients/desktop/**
+      - .github/workflows/desktop-build.yml
 
 permissions:
   contents: read
@@ -24,7 +31,7 @@ permissions:
 jobs:
   linux:
     name: Linux Debug (self-hosted)
-    if: inputs.platform == 'linux' || inputs.platform == 'all'
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || inputs.platform == 'linux' || inputs.platform == 'all'
     runs-on: [self-hosted, Linux, X64, chat-desktop-build]
     timeout-minutes: 360
     steps:
@@ -103,7 +110,7 @@ jobs:
 
   macos:
     name: macOS Debug (self-hosted)
-    if: inputs.platform == 'macos' || inputs.platform == 'all'
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || inputs.platform == 'macos' || inputs.platform == 'all'
     runs-on: [self-hosted, macOS, ARM64, chat-desktop-build]
     timeout-minutes: 360
     steps:
@@ -176,7 +183,7 @@ jobs:
 
   windows:
     name: Windows Debug (self-hosted)
-    if: inputs.platform == 'windows' || inputs.platform == 'all'
+    if: (github.event_name == 'push' && github.ref == 'refs/heads/main') || inputs.platform == 'windows' || inputs.platform == 'all'
     runs-on: [self-hosted, Windows, X64, chat-desktop-build]
     timeout-minutes: 360
     steps:
