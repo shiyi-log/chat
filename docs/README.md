@@ -35,7 +35,7 @@ macOS 端由 `clients/desktop/` 覆盖。`clients/web/` 是独立浏览器客户
 
 ## 文档索引
 
-- [development-tasks.md](development-tasks.md)：开发任务与实施状态，顶部标注当前发行边界。
+- [development-tasks.md](development-tasks.md)：当前单仓与预览状态，以及早期多仓开发任务的历史清单。
 - [private-server-migration.md](private-server-migration.md)：原始架构迁移方案与接口定位，包含历史本地配置示例。
 - [版本记录.md](版本记录.md)：历史版本变更记录，保留当时验证结果和限制。
 

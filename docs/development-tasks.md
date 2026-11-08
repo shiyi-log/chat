@@ -1,10 +1,15 @@
 # Chat 聊天系统开发任务 / Chat Development Tasks
 
+## 当前仓库状态（2026-11-08）
+
+当前套件位于一个 Git 仓库，包含服务端、Android、iOS、macOS/Windows/Linux Desktop 和独立 Web 客户端。Web 客户端仍在开发中，附件与完整多客户端端到端验证尚未完成。
+
+本地集成运行时使用 `localfile` 验证码 outbox，不提供真实短信服务；正式服务端仍需真实验证码提供方。CI 可生成调试或未签名预览包，正式签名发行流程与跨客户端登录、消息、文件传输验证仍未完成。详见根目录 [README](../README.md) 和[本地运行说明](../server/integration/LOCAL_RUNTIME.md)。
+
 ## 历史任务快照（2026-11-03）
 
 下方阶段清单、仓库名称、测试结果和端口均保留为早期多仓开发的历史记录，不代表当前单仓布局或当前验证状态。当前目录、CI 产物、本地验证码运行方式和剩余发布限制以根目录 [README](../README.md)、[本地运行说明](../server/integration/LOCAL_RUNTIME.md) 及本文档之外的近期版本记录为准。历史中的固定验证码、旧测试号和消息互发结果不适用于当前发布配置。
 
-- 当前套件已合并为单仓，包含 server、Android、iOS、macOS/Windows/Linux Desktop 和独立 Web 客户端；Web 客户端仍在开发中。
 - 当前服务端 Compose 要求操作者设置独立的 MySQL、MinIO 和 Grafana 密码，发布端口默认绑定 `127.0.0.1`。
 - 当前单仓本地运行时的 MTProto TCP 端口为 `25222`：Desktop / iOS 使用 `127.0.0.1:25222`，Android 模拟器使用 `10.0.2.2:25222`。跨设备联调需要改为可访问的主机地址并匹配 MTProto 公钥。
 - 服务端定向验证已覆盖禁用验证码提供方、配置替换、Compose 配置和镜像构建；完整 Go 测试仍有 KV 接口不兼容及缺少 FFmpeg 的失败。
