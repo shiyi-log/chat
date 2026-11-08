@@ -255,6 +255,11 @@ jobs:
           name: chat-android-afat-debug-${{ github.run_id }}-${{ github.run_attempt }}
           path: ${{ runner.temp }}/chat-android-afat-debug
 
+      - name: Enable KVM access for Android emulator
+        run: |
+          sudo chown "$USER" /dev/kvm
+          "${ANDROID_HOME}/emulator/emulator" -accel-check
+
       - name: Create and boot Android emulator
         run: |
           set -o pipefail
