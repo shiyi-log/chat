@@ -270,10 +270,33 @@ jobs:
             -no-snapshot \
             -gpu swiftshader_indirect \
             > "${RUNNER_TEMP}/chat-android-emulator.log" 2>&1 &
-          "${android_adb}" wait-for-device
+          emulator_pid=$!
+          device_ready=false
           for attempt in $(seq 1 90); do
-            if [ "$("${android_adb}" shell getprop sys.boot_completed | tr -d '\r')" = "1" ]; then
+            if "${android_adb}" -s emulator-5554 get-state >/dev/null 2>&1; then
+              device_ready=true
+              break
+            fi
+            if ! kill -0 "${emulator_pid}" 2>/dev/null; then
+              cat "${RUNNER_TEMP}/chat-android-emulator.log"
+              echo "Android emulator exited before becoming available." >&2
+              exit 1
+            fi
+            sleep 2
+          done
+          if [ "${device_ready}" != "true" ]; then
+            cat "${RUNNER_TEMP}/chat-android-emulator.log"
+            echo "Android emulator did not become available." >&2
+            exit 1
+          fi
+          for attempt in $(seq 1 90); do
+            if [ "$("${android_adb}" -s emulator-5554 shell getprop sys.boot_completed 2>/dev/null | tr -d '\r')" = "1" ]; then
               exit 0
+            fi
+            if ! kill -0 "${emulator_pid}" 2>/dev/null; then
+              cat "${RUNNER_TEMP}/chat-android-emulator.log"
+              echo "Android emulator exited before finishing boot." >&2
+              exit 1
             fi
             sleep 2
           done

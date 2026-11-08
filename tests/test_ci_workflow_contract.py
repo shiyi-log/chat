@@ -155,6 +155,9 @@ class CiWorkflowContractTest(unittest.TestCase):
         commands = "\n".join(step.get("run", "") for step in smoke["steps"])
         self.assertTrue(any(step.get("uses") == "actions/setup-java@v6" for step in smoke["steps"]))
         self.assertIn("system-images;android-35;google_apis;x86_64", commands)
+        self.assertIn("get-state", commands)
+        self.assertIn("emulator_pid", commands)
+        self.assertNotIn("wait-for-device", commands)
         self.assertIn("smoke_android_emulator.py", commands)
         smoke_script = ROOT / "clients/android/scripts/smoke_android_emulator.py"
         script = smoke_script.read_text(encoding="utf-8")
