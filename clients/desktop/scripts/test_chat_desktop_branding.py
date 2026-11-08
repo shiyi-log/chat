@@ -434,6 +434,43 @@ class ChatDesktopBrandingTests(unittest.TestCase):
         self.assertEqual("设置", chinese["lng_menu_settings"])
         self.assertEqual("开始聊天", chinese["lng_start_msgs"])
 
+    def test_offline_chinese_pack_covers_common_chat_and_contact_actions(self):
+        base = read_strings("Telegram/Resources/langs/lang.strings")
+        chinese = read_strings("Telegram/Resources/langs/zh-Hans.strings")
+        required = {
+            "lng_archive_hint_title",
+            "lng_mute_menu_duration_any",
+            "lng_context_mark_unread",
+            "lng_context_copy_message_link",
+            "lng_context_reply_msg",
+            "lng_context_edit_msg",
+            "lng_context_forward_msg",
+            "lng_context_delete_msg",
+            "lng_action_pinned_message",
+            "lng_unread_bar#other",
+            "lng_date_relative_minutes_ago#other",
+            "lng_contact_phone_after",
+            "lng_contact_add_notes_about",
+            "lng_add_contact_button",
+            "lng_edit_contact_title",
+            "lng_contact_details_title",
+            "lng_contact_not_joined",
+        }
+
+        self.assertTrue(required <= base.keys())
+        self.assertTrue(
+            required <= chinese.keys(),
+            "the Simplified Chinese common chat and contact actions are incomplete",
+        )
+        for key in sorted(required):
+            with self.subTest(locale="zh-Hans", key=key):
+                self.assertNotEqual(base[key], chinese[key], f"{key} is still untranslated")
+                self.assertEqual(
+                    sorted(PLACEHOLDER_PATTERN.findall(base[key])),
+                    sorted(PLACEHOLDER_PATTERN.findall(chinese[key])),
+                    key,
+                )
+
     def test_notification_exception_hints_keep_bold_count_markers(self):
         base = read_strings("Telegram/Resources/langs/lang.strings")
         chinese = read_strings("Telegram/Resources/langs/zh-Hans.strings")

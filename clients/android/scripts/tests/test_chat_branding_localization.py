@@ -125,7 +125,7 @@ class ChatBrandingLocalizationTests(unittest.TestCase):
                         f"format placeholders differ for {activity}.{key}",
                     )
 
-    def test_profile_notification_and_storage_settings_have_local_chinese_resources(self):
+    def test_common_profile_notification_storage_security_and_group_screens_have_local_chinese_resources(self):
         activities = (
             "ChangeBioActivity",
             "ChangeNameActivity",
@@ -133,6 +133,10 @@ class ChatBrandingLocalizationTests(unittest.TestCase):
             "NotificationsSettingsActivity",
             "CacheControlActivity",
             "DataSettingsActivity",
+            "TwoStepVerificationActivity",
+            "ChatUsersActivity",
+            "GroupCreateActivity",
+            "ChannelCreateActivity",
         )
         keys_by_activity = {}
         for activity in activities:
