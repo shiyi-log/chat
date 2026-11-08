@@ -1,5 +1,6 @@
 import sys
 import subprocess
+import tempfile
 import unittest
 from pathlib import Path
 from types import SimpleNamespace
@@ -11,6 +12,7 @@ MAKE_ROOT = IOS_ROOT / "build-system" / "Make"
 sys.path.insert(0, str(MAKE_ROOT))
 
 import Make
+import BazelLocation
 
 
 class MakeProjectGenerationTests(unittest.TestCase):
@@ -59,6 +61,34 @@ class MakeProjectGenerationTests(unittest.TestCase):
             Make.generate_project("/tmp/bazel", arguments)
 
         call_executable.assert_not_called()
+
+
+class BazelLocationTests(unittest.TestCase):
+    def test_invalid_download_is_not_copied_into_the_bazel_cache(self):
+        with tempfile.TemporaryDirectory() as directory:
+            base_path = Path(directory) / "ios"
+            base_path.mkdir()
+            cache_path = Path(directory) / "cache"
+            expected_digest = "a" * 64
+
+            def write_invalid_download(arguments, **kwargs):
+                output_path = Path(arguments[arguments.index("--output") + 1])
+                output_path.write_bytes(b"HTTP error response")
+
+            versions = SimpleNamespace(
+                bazel_version="8.4.2",
+                bazel_version_sha256=expected_digest,
+            )
+            with (
+                patch("BazelLocation.BuildEnvironmentVersions", return_value=versions),
+                patch("BazelLocation.is_apple_silicon", return_value=True),
+                patch("BazelLocation.call_executable", side_effect=write_invalid_download),
+                self.assertRaisesRegex(RuntimeError, "SHA256"),
+            ):
+                BazelLocation.locate_bazel(str(base_path), None, str(cache_path))
+
+            cache_file = cache_path / "cas" / expected_digest[:2] / expected_digest
+            self.assertFalse(cache_file.exists())
 
 
 if __name__ == "__main__":

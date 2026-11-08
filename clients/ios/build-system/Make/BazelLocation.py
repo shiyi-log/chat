@@ -105,22 +105,37 @@ def locate_bazel(base_path, cache_host_or_path, cache_dir):
 
 
     if not os.path.isfile(bazel_path):
-        call_executable([
-            'curl',
-            '-L',
-            'https://github.com/bazelbuild/bazel/releases/download/{version}/{name}'.format(
-                version=versions.bazel_version,
-                name=bazel_name
-            ),
-            '--output',
-            bazel_path
-        ])
+        with tempfile.NamedTemporaryFile(delete=False, dir=build_input_dir) as temp_output_file:
+            downloaded_path = temp_output_file.name
 
-        if os.path.isfile(bazel_path) and versions.bazel_version_sha256 is not None:
-            test_sha256 = calculate_sha256(bazel_path)
-            if test_sha256 != versions.bazel_version_sha256:
-                print(f"Bazel at {bazel_path} does not match SHA256 {versions.bazel_version_sha256}, removing")
-                os.remove(bazel_path)
+        try:
+            call_executable([
+                'curl',
+                '--fail',
+                '--location',
+                '--retry',
+                '3',
+                '--retry-delay',
+                '2',
+                'https://github.com/bazelbuild/bazel/releases/download/{version}/{name}'.format(
+                    version=versions.bazel_version,
+                    name=bazel_name
+                ),
+                '--output',
+                downloaded_path
+            ])
+
+            if versions.bazel_version_sha256 is not None:
+                test_sha256 = calculate_sha256(downloaded_path)
+                if test_sha256 != versions.bazel_version_sha256:
+                    raise RuntimeError(
+                        f"Downloaded Bazel does not match SHA256 {versions.bazel_version_sha256}"
+                    )
+
+            shutil.copyfile(downloaded_path, bazel_path)
+        finally:
+            if os.path.exists(downloaded_path):
+                os.remove(downloaded_path)
 
         if resolved_cache_host is not None and versions.bazel_version_sha256 is not None:
             http_cache_host = transform_cache_host_into_http(resolved_cache_host)
